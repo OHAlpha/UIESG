@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .c9
 .c9/
 .c9/*
@@ -11,3 +12,17 @@ bin/*
 doc
 doc/
 doc/*
+=======
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+>>>>>>> d9d20d02e10e0b3c5a537f7c5b3ae3b3818bf950
