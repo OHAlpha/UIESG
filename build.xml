@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project name="UI Efficiency Statistics Generator" default="build">
+ <property name="src.dir" value="src/main/java"/>
+ <property name="build.dir" value="bin/classes"/>
+ <property name="test.src.dir" value="src/test/java"/>
+ <property name="test.build.dir" value="bin/test/classes"/>
+ <property name="jars.dir" value="jars"/>
+ <path id="master-classpath">
+  <fileset dir="${jars.dir}">
+   <include name="*.jar"/>
+  </fileset>
+  <pathelement path="${build.dir}"/>
+ </path>
+ <target name="build">
+  <echo>Building Project</echo>
+  <javac destdir="${build.dir}" source="1.7" target="1.7">
+   <src path="${src.dir}"/>
+   <classpath refid="master-classpath"/>
+  </javac>
+ </target>
+</project>
