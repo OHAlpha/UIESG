@@ -5,6 +5,9 @@
 .git/
 .git/*
 gitignore
-.bin
-.bin/
-.bin/*
+bin
+bin/
+bin/*
+doc
+doc/
+doc/*
