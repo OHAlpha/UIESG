@@ -12,6 +12,7 @@ doc
 doc/
 doc/*
 *.class
+bin/*.class
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -26,3 +27,5 @@ hs_err_pid*
 .project
 *settings
 *metadata*
+.externalToolBuilders
+.externalToolBuilders/AntMake.launch

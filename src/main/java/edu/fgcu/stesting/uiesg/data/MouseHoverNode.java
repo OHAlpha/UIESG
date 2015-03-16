@@ -1,5 +1,5 @@
 package edu.fgcu.stesting.uiesg.data;
 
-class MouseHoverNode implements MouseGraphNode {
+public class MouseHoverNode implements MouseGraphNode {
     
 }

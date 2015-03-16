@@ -1,5 +1,5 @@
 package edu.fgcu.stesting.uiesg.data;
 
-class MouseMoveEdge implements MouseGraphAction {
+public class MouseMoveEdge implements MouseGraphEdge {
     
 }

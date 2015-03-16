@@ -1,5 +1,5 @@
 package edu.fgcu.stesting.uiesg.browser;
 
-class Browser {
+public class Browser {
     
 }

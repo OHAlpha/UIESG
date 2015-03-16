@@ -1,8 +1,8 @@
 package edu.fgcu.stesting.uiesg.data.unit;
 
-class MouseActionInputDataTest {
-    
-    private List<Point2D> rawData;
+import org.junit.Test;
+
+public class MouseActionInputDataTest {
     
     public MouseActionInputDataTest() {
     }

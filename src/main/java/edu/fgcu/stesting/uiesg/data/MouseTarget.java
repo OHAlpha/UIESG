@@ -1,5 +1,5 @@
 package edu.fgcu.stesting.uiesg.data;
 
-class MouseTarget {
+public class MouseTarget {
     
 }

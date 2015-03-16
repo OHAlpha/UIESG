@@ -1,31 +1,46 @@
 <?xml version="1.0"?>
 <project name="UI Efficiency Statistics Generator" default="build">
- <property name="src.dir" value="src/main/java"/>
- <property name="build.dir" value="bin/classes"/>
- <property name="test.src.dir" value="src/test/java"/>
- <property name="test.build.dir" value="bin/test/classes"/>
- <property name="jars.dir" value="jars"/>
- <property name="doc.dir" value="doc"/>
- <path id="master-classpath">
-  <fileset dir="${jars.dir}">
-   <include name="*.jar"/>
-  </fileset>
-  <pathelement path="${build.dir}"/>
- </path>
- <target name="build">
-  <echo>Building Project</echo>
-  <javac destdir="${build.dir}" source="1.7" target="1.7">
-   <src path="${src.dir}"/>
-   <classpath refid="master-classpath"/>
-  </javac>
- </target>
- <target name="gen-jdoc">
-  <javadoc packagenames="edu.fgcu.stesting.uiesg.*" sourcepath="${src.dir}" destdir="${doc.dir}" version="true" windowtitle="${ant.project.name}">
-   <doctitle><![CDATA[= UI Efficiency Statistics Generator =]]></doctitle>
-   <bottom>
-    <![CDATA[Copyright © 2011. All Rights Reserved.]]>
-   </bottom>
-  </javadoc>
-  <echo message="java doc has been generated!" />
- </target>
+	<property name="src.dir" value="src/main/java" />
+	<property name="build.dir" value="bin/classes" />
+	<property name="test.src.dir" value="src/test/java" />
+	<property name="test.build.dir" value="bin/test/classes" />
+	<property name="jars.dir" value="jars" />
+	<property name="doc.dir" value="doc" />
+	<path id="master-classpath">
+		<fileset dir="${jars.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="${build.dir}" />
+	</path>
+	<target name="j-dir">
+		<mkdir dir="${jars.dir}"/>
+	</target>
+	<target name="build" depends="j-dir">
+		<mkdir dir="${build.dir}"/>
+		<javac includeantruntime="false" destdir="${build.dir}" source="1.8" target="1.8">
+			<src path="${src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+	</target>
+	<target name="build-test" depends="build">
+		<mkdir dir="${test.build.dir}"/>
+		<javac includeantruntime="false" destdir="${test.build.dir}" source="1.8" target="1.8">
+			<src path="${test.src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+	</target>
+	<target name="gen-jdoc">
+		<javadoc packagenames="edu.fgcu.stesting.uiesg.*" sourcepath="${src.dir}" destdir="${doc.dir}" version="true" windowtitle="${ant.project.name}">
+			<doctitle>
+				<![CDATA[= UI Efficiency Statistics Generator =]]>
+			</doctitle>
+			<bottom>
+				<![CDATA[Copyright © 2011. All Rights Reserved.]]>
+			</bottom>
+		</javadoc>
+		<echo message="java doc has been generated!" />
+	</target>
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+	</target>
 </project>
