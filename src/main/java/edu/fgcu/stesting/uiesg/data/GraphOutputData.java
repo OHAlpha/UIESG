@@ -1,29 +1,25 @@
 package edu.fgcu.stesting.uiesg.data;
 
-import java.util.Collection;
+import java.util.List;
 
 public class GraphOutputData {
 
-	private Collection<MouseGraphNode> nodes;
+	@SuppressWarnings("unused")
+	private List<MouseGraphNode> nodes;
+
+	@SuppressWarnings("unused")
+	private List<MouseGraphEdge> edges;
 	
-	private Collection<MouseGraphEdge> edges;
-
-	/**
-	 * @param e
-	 * @return
-	 * @see java.util.Collection#add(java.lang.Object)
-	 */
-	public boolean add(MouseGraphNode e) {
-		return nodes.add(e);
+	public GraphOutputData( MouseActionInputData mouseData ) {
+		throw new RuntimeException("constructor not implemented");
 	}
-
-	/**
-	 * @param e
-	 * @return
-	 * @see java.util.Collection#add(java.lang.Object)
-	 */
-	public boolean add(MouseGraphEdge e) {
-		return edges.add(e);
+	
+	public int order() {
+		throw new RuntimeException("method not implemented");
+	}
+	
+	public int size() {
+		throw new RuntimeException("method not implemented");
 	}
     
 }

@@ -18,14 +18,16 @@ public class SiteDataSet {
 		
 		public GraphOutputData graphData;
 		
-		public UIEfficiencyStatistic statistics;
+		public Map<String,UIEfficiencyStatistic> statistics;
 		
 	}
 	
 	private final String domain;
 
+	@SuppressWarnings("unused")
 	private Collection<DataSet> data;
 
+	@SuppressWarnings("unused")
 	private Map<URL,PageContext> pages;
 	
 	public boolean loadData() {

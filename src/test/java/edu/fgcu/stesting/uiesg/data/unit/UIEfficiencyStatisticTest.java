@@ -25,4 +25,14 @@ public class UIEfficiencyStatisticTest {
         throw new RuntimeException("test not implemented");
     }
     
+    @Test
+    public void testGetType() {
+        throw new RuntimeException("test not implemented");
+    }
+    
+    @Test
+    public void testGetValue() {
+        throw new RuntimeException("test not implemented");
+    }
+    
 }

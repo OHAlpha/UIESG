@@ -4,6 +4,7 @@ import java.util.Collection;
 
 public class PageContext {
 	
+	@SuppressWarnings("unused")
 	private Collection<MouseTarget> targets;
     
 }

@@ -7,5 +7,7 @@ public interface UIEfficiencyStatisticType {
 	String getDescription();
 	
 	UIEfficiencyStatistic calculate( GraphOutputData graph );
+	
+	Class<?> getValueType();
 
 }

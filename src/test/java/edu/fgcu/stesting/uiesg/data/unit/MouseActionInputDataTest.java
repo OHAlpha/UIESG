@@ -1,7 +1,5 @@
 package edu.fgcu.stesting.uiesg.data.unit;
 
-import java.awt.geom.Point2D;
-
 import org.junit.*;
 
 public class MouseActionInputDataTest {
@@ -38,6 +36,11 @@ public class MouseActionInputDataTest {
 
     @Test
     public void testAddPoint() {
+        throw new RuntimeException("test not implemented");
+    }
+
+    @Test
+    public void testIterate() {
         throw new RuntimeException("test not implemented");
     }
     

@@ -25,4 +25,14 @@ public class GraphOutputDataTest {
         throw new RuntimeException("test not implemented");
     }
     
+    @Test
+    public void testOrder() {
+        throw new RuntimeException("test not implemented");
+    }
+    
+    @Test
+    public void testSize() {
+        throw new RuntimeException("test not implemented");
+    }
+    
 }
