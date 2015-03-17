@@ -29,6 +29,12 @@
 			<classpath refid="master-classpath" />
 		</javac>
 	</target>
+	<target name="unit-test" depends="build-test">
+		<junit haltonfailure="false" printsummary="true">
+			<classpath refid="master-classpath" />
+			<test name="edu.fgcu.stesting.uiesg.data.unit.UnitTests"/>
+		</junit>
+	</target>
 	<target name="gen-jdoc">
 		<javadoc packagenames="edu.fgcu.stesting.uiesg.*" sourcepath="${src.dir}" destdir="${doc.dir}" version="true" windowtitle="${ant.project.name}">
 			<doctitle>

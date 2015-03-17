@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
      ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
     '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
@@ -17,6 +16,3 @@ http://www.youtube.com/user/c9ide.
 
 Happy coding!
 The Cloud9 IDE team
-=======
-# UIESG
->>>>>>> d9d20d02e10e0b3c5a537f7c5b3ae3b3818bf950
