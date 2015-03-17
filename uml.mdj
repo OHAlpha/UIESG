@@ -18346,7 +18346,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+times: long[0..*]",
+											"text": "-times: long[0..*]",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										},
@@ -18372,7 +18372,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+types: int[0..*]",
+											"text": "-types: int[0..*]",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										}
@@ -30502,7 +30502,7 @@
 								"$ref": "AAAAAAFMBizqUYRiSG0="
 							},
 							"name": "times",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"type": "long",
@@ -30521,7 +30521,7 @@
 								"$ref": "AAAAAAFMBizqUYRiSG0="
 							},
 							"name": "types",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"type": "int",
