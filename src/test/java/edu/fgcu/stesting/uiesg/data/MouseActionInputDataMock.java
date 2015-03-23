@@ -1,47 +1,41 @@
 package edu.fgcu.stesting.uiesg.data;
 
-import org.junit.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class MouseActionInputDataMock {
-    
-    public MouseActionInputDataMock() {
-    }
-    
-    @BeforeClass
-    public static void setup() {}
-    
-    @Before
-    public void before() {}
-    
-    @After
-    public void after() {}
-    
-    @AfterClass
-    public static void teardown() {}
-    
-    @Test
-    public void testConstructor() {
-        throw new RuntimeException("test not implemented");
-    }
-    
-    @Test
-    public void testSize() {
-        throw new RuntimeException("test not implemented");
-    }
-    
-    @Test
-    public void testGetRange() {
-        throw new RuntimeException("test not implemented");
-    }
+public class MouseActionInputDataMock implements MouseActionInputData {
 
-    @Test
-    public void testAddPoint() {
-        throw new RuntimeException("test not implemented");
-    }
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    @Test
-    public void testIterate() {
-        throw new RuntimeException("test not implemented");
-    }
-    
+	@Override
+	public Rectangle2D getRange( boolean page ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long latestTimestamp() throws NoSuchElementException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void addPoint( Point2D browserPoint, Point2D pagePoint,
+			long timestamp, int type ) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Iterator<Point> iterate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
