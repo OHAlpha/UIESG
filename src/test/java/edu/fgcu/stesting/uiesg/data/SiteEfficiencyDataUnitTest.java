@@ -1,4 +1,4 @@
-package edu.fgcu.stesting.uiesg.data.unit;
+package edu.fgcu.stesting.uiesg.data;
 
 import java.net.URL;
 
@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class SiteDataSetTest {
+public class SiteEfficiencyDataUnitTest {
     
     @BeforeClass
     public static void setup() {}

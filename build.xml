@@ -36,7 +36,7 @@
 		</junit>
 	</target>
 	<target name="gen-jdoc">
-		<javadoc packagenames="edu.fgcu.stesting.uiesg.*" sourcepath="${src.dir}" destdir="${doc.dir}" version="true" windowtitle="${ant.project.name}">
+		<javadoc packagenames="edu.fgcu.stesting.uiesg.*" sourcepath="${src.dir}" destdir="${doc.dir}" version="true" windowtitle="${ant.project.name}" Private="true">
 			<doctitle>
 				<![CDATA[= UI Efficiency Statistics Generator =]]>
 			</doctitle>

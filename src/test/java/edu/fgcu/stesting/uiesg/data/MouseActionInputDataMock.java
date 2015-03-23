@@ -1,12 +1,11 @@
-package edu.fgcu.stesting.uiesg.data.unit;
+package edu.fgcu.stesting.uiesg.data;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
-public class UIEfficiencyStatisticTest {
+public class MouseActionInputDataMock {
+    
+    public MouseActionInputDataMock() {
+    }
     
     @BeforeClass
     public static void setup() {}
@@ -26,12 +25,22 @@ public class UIEfficiencyStatisticTest {
     }
     
     @Test
-    public void testGetType() {
+    public void testSize() {
         throw new RuntimeException("test not implemented");
     }
     
     @Test
-    public void testGetValue() {
+    public void testGetRange() {
+        throw new RuntimeException("test not implemented");
+    }
+
+    @Test
+    public void testAddPoint() {
+        throw new RuntimeException("test not implemented");
+    }
+
+    @Test
+    public void testIterate() {
         throw new RuntimeException("test not implemented");
     }
     

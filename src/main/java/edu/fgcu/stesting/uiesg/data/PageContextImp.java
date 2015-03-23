@@ -12,7 +12,13 @@ import java.util.Collection;
  * @author oalpha
  *
  */
-public interface PageContext {
+public class PageContextImp implements PageContext {
+	
+	/**
+	 * The collection of MouseTargets contained in this instance.
+	 */
+	@SuppressWarnings("unused")
+	private Collection<MouseTarget> targets;
 
 	/**
 	 * Returns a Shape instance who's area includes the area of each of the
@@ -20,20 +26,26 @@ public interface PageContext {
 	 * 
 	 * @return the clickable region
 	 */
-	Shape getClickableRegion();
+	public Shape getClickableRegion() {
+		throw new RuntimeException("method not implemented");
+	}
 
 	/**
 	 * Returns a collection of MouseTargets contained in this instance.
 	 * 
 	 * @return the targets
 	 */
-	Collection<MouseTarget> getTargets();
+	public Collection<MouseTarget> getTargets() {
+		throw new RuntimeException("method not implemented");
+	}
 
 	/**
 	 * Returns the SED instance of the domain of this page.
 	 * 
 	 * @return the SED instance
 	 */
-	SiteEfficiencyData getDomain();
-
+	public SiteEfficiencyData getDomain() {
+		throw new RuntimeException("method not implemented");
+	}
+    
 }

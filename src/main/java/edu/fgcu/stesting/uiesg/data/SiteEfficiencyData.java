@@ -5,13 +5,13 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * SiteDataSet is a container for all domain specific data generated and used by
- * the UIESG.
+ * SiteEfficiencyData (SED) is a container for all domain specific data generated and
+ * used by the UIESG.
  * 
  * @author oalpha
  *
  */
-public class SiteDataSet {
+public class SiteEfficiencyData {
 
 	/**
 	 * DuplicateDomainException signifies that the domain for which a SED is
@@ -33,7 +33,7 @@ public class SiteDataSet {
 		 * @param domain
 		 *            the domain to which the exception refers
 		 */
-		public DuplicateDomainException(String domain) {
+		public DuplicateDomainException( String domain ) {
 			super(domain);
 			// TODO Auto-generated constructor stub
 		}
@@ -41,14 +41,16 @@ public class SiteDataSet {
 	}
 
 	/**
-	 * Returns an SED for the specified domain if it exists.
+	 * Returns an SED for the specified domain if it exists. If none exists, one
+	 * will be created.
 	 * 
 	 * @param domain
 	 *            the domain for which a SED is requested
 	 * @return the SED for the specified domain
 	 */
-	public static SiteDataSet getForDomain(String domain) {
+	public static SiteEfficiencyData getForDomain( String domain ) {
 		throw new RuntimeException("method not implemented");
+		// TODO
 	}
 
 	/**
@@ -62,7 +64,7 @@ public class SiteDataSet {
 	 * @exception DuplicateDomainException
 	 *                thrown if a SED for the specified domain already exists
 	 */
-	public SiteDataSet(String domain) throws DuplicateDomainException {
+	protected SiteEfficiencyData( String domain ) throws DuplicateDomainException {
 		this.domain = domain;
 		data = null;
 		pages = null;
@@ -82,12 +84,12 @@ public class SiteDataSet {
 		/**
 		 * The MAID of this set
 		 */
-		public MouseActionInputData mouseData;
+		public MouseActionInputDataImp mouseData;
 
 		/**
 		 * The GOD of this set
 		 */
-		public GraphOutputData graphData;
+		public GraphOutputDataImp graphData;
 
 		/**
 		 * The UIESs of this set
@@ -104,14 +106,14 @@ public class SiteDataSet {
 	/**
 	 * The MAIDs, GODs and UIESs for this SED
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings( "unused" )
 	private Collection<DataSet> data;
 
 	/**
 	 * The contexts per page in the domain of this SED
 	 */
-	@SuppressWarnings("unused")
-	private Map<URL, PageContext> pages;
+	@SuppressWarnings( "unused" )
+	private Map<URL, PageContextImp> pages;
 
 	/**
 	 * Loads the data and pages from file and returns true if successful and
@@ -160,7 +162,7 @@ public class SiteDataSet {
 	 * 
 	 * @return the newly created MAID instance
 	 */
-	public MouseActionInputData newMouseData() {
+	public MouseActionInputDataImp newMouseData() {
 		throw new RuntimeException("method not implemented");
 		// TODO
 	}
@@ -189,7 +191,7 @@ public class SiteDataSet {
 	 *            the address of the desired PageContext
 	 * @return the PageContext instance or null if it does not exist.
 	 */
-	public PageContext getForURL(URL url) {
+	public PageContextImp getForURL( URL url ) {
 		throw new RuntimeException("method not implemented");
 		// TODO
 

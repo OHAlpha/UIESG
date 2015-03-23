@@ -2,7 +2,9 @@ package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -13,38 +15,29 @@ import java.util.NoSuchElementException;
  * @author oalpha
  *
  */
-public interface MouseActionInputData {
+public class MouseActionInputDataImp implements MouseActionInputData {
 
 	/**
-	 * An encapsulation of the location timestamp and type of a mouse event.
-	 * 
-	 * @author oalpha
-	 *
+	 * The rawData recorded by the browser.
 	 */
-	public static class Point {
+	private List<Point> rawData;
 
-		/**
-		 * The location of the event on the browser window.
-		 */
-		public Point2D location;
+	/**
+	 * Constructs a MAID instance with an existing collection. This is for
+	 * testing purposes.
+	 * 
+	 * @param rawData
+	 *            the collection to be used in place of the default.
+	 */
+	protected MouseActionInputDataImp( List<Point> rawData ) {
+		this.rawData = rawData;
+	}
 
-		/**
-		 * The location of the event on the page. This is effected by scrolling.
-		 */
-		public Point2D position;
-
-		/**
-		 * The time the event occurred.
-		 */
-		public long timestamp;
-
-		/**
-		 * The type of event. Can be any of types specified in MouseEvent.
-		 * 
-		 * @see java.awt.event.MouseEvent
-		 */
-		public int type;
-
+	/**
+	 * Constructs a standard MAID instance.
+	 */
+	public MouseActionInputDataImp() {
+		rawData = new ArrayList<Point>();
 	}
 
 	/**
@@ -52,7 +45,9 @@ public interface MouseActionInputData {
 	 * 
 	 * @return the number of points
 	 */
-	int size();
+	public int size() {
+		return rawData.size();
+	}
 
 	/**
 	 * Returns the box bounding the points in rawData.
@@ -62,7 +57,9 @@ public interface MouseActionInputData {
 	 * 
 	 * @return the bounding box
 	 */
-	Rectangle2D getRange( boolean page );
+	public Rectangle2D getRange( boolean page ) {
+		throw new RuntimeException("method not implemented");
+	}
 
 	/**
 	 * Returns the timestamp of the latest point added if any exist.
@@ -71,7 +68,9 @@ public interface MouseActionInputData {
 	 * @throws NoSuchElementException
 	 *             if no points have been added.
 	 */
-	long latestTimestamp() throws NoSuchElementException;
+	public long latestTimestamp() throws NoSuchElementException {
+		throw new RuntimeException("method not implemented");
+	}
 
 	/**
 	 * Records a mouse event.
@@ -90,8 +89,10 @@ public interface MouseActionInputData {
 	 *             if type is not one of the allowed types specified in
 	 *             MouseEvent.
 	 */
-	void addPoint( Point2D browserPoint, Point2D pagePoint,
-			long timestamp, int type ) throws IllegalArgumentException;
+	public void addPoint( Point2D browserPoint, Point2D pagePoint,
+			long timestamp, int type ) throws IllegalArgumentException {
+		throw new RuntimeException("method not implemented");
+	}
 
 	/**
 	 * Iterates through rawData. Used by GODFactories to compile into graph
@@ -99,6 +100,8 @@ public interface MouseActionInputData {
 	 * 
 	 * @return the iterator
 	 */
-	Iterator<Point> iterate();
+	public Iterator<Point> iterate() {
+		throw new RuntimeException("method not implemented");
+	}
 
 }

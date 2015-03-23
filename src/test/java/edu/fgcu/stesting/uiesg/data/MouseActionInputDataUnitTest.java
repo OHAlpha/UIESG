@@ -1,12 +1,11 @@
-package edu.fgcu.stesting.uiesg.data.unit;
+package edu.fgcu.stesting.uiesg.data;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
-public class GraphOutputDataTest {
+public class MouseActionInputDataUnitTest {
+    
+    public MouseActionInputDataUnitTest() {
+    }
     
     @BeforeClass
     public static void setup() {}
@@ -26,12 +25,22 @@ public class GraphOutputDataTest {
     }
     
     @Test
-    public void testOrder() {
+    public void testSize() {
         throw new RuntimeException("test not implemented");
     }
     
     @Test
-    public void testSize() {
+    public void testGetRange() {
+        throw new RuntimeException("test not implemented");
+    }
+
+    @Test
+    public void testAddPoint() {
+        throw new RuntimeException("test not implemented");
+    }
+
+    @Test
+    public void testIterate() {
         throw new RuntimeException("test not implemented");
     }
     

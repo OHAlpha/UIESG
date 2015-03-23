@@ -1,25 +1,27 @@
 package edu.fgcu.stesting.uiesg.data;
 
-import java.util.List;
+/**
+ * GraphOutputData (GOD) is a container for the graph data. Instances will store
+ * nodes and edges representing the various events that occur in the browser
+ * window.
+ * 
+ * @author oalpha
+ *
+ */
+public interface GraphOutputData {
 
-public class GraphOutputData {
+	/**
+	 * The number of nodes in the graph.
+	 * 
+	 * @return the number of nodes
+	 */
+	int order();
 
-	@SuppressWarnings("unused")
-	private List<MouseGraphNode> nodes;
+	/**
+	 * The number of edges in the graph.
+	 * 
+	 * @return the number of edges
+	 */
+	int size();
 
-	@SuppressWarnings("unused")
-	private List<MouseGraphEdge> edges;
-	
-	public GraphOutputData( MouseActionInputData mouseData ) {
-		throw new RuntimeException("constructor not implemented");
-	}
-	
-	public int order() {
-		throw new RuntimeException("method not implemented");
-	}
-	
-	public int size() {
-		throw new RuntimeException("method not implemented");
-	}
-    
 }
