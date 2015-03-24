@@ -61,6 +61,9 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public Rectangle2D getRange( boolean page ) {
 		throw new RuntimeException("method not implemented");
+		// create box from points 
+		
+		
 	}
 
 	/**
@@ -72,6 +75,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
 		throw new RuntimeException("method not implemented");
+		// System.getCurrentTime();
 	}
 
 	/**
