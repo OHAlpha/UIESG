@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
  * by the browser window.
  * 
  * @author oalpha
- *
+ * 
  */
 public class MouseActionInputDataImp implements MouseActionInputData {
 
@@ -29,7 +29,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * @param rawData
 	 *            the collection to be used in place of the default.
 	 */
-	protected MouseActionInputDataImp( List<Point> rawData ) {
+	protected MouseActionInputDataImp(List<Point> rawData) {
 		this.rawData = rawData;
 	}
 
@@ -53,34 +53,36 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * Returns the box bounding the points in rawData.
 	 * 
 	 * @param page
-	 *            true if the box should bound pagePosition instead of browserLocation.
+	 *            true if the box should bound pagePosition instead of
+	 *            browserLocation.
 	 * 
 	 * @return the bounding box
 	 */
-	public Rectangle2D getRange( boolean page ) {
-				
-		// iterate through the arraylist to find the minimums and maximums to create the box
+	public Rectangle2D getRange(boolean page) {
+
+		// iterate through the arraylist to find the minimums and maximums to
+		// create the box
 		Point temp = rawData.get(0);
-		double minX = (page?temp.browserLocation:temp.pagePosition).getX();
-		double minY = (page?temp.browserLocation:temp.pagePosition).getY();
-		double maxX = (page?temp.browserLocation:temp.pagePosition).getX();
-		double maxY = (page?temp.browserLocation:temp.pagePosition).getY();
-		for (int i = 1; i < rawData.size(); i++){
+		double minX = (page ? temp.browserLocation : temp.pagePosition).getX();
+		double minY = (page ? temp.browserLocation : temp.pagePosition).getY();
+		double maxX = (page ? temp.browserLocation : temp.pagePosition).getX();
+		double maxY = (page ? temp.browserLocation : temp.pagePosition).getY();
+		for (int i = 1; i < rawData.size(); i++) {
 			Point tmp = rawData.get(i);
-			if ((page?tmp.browserLocation:tmp.pagePosition).getX() < minX) // find smallest
-				minX = (page?tmp.browserLocation:tmp.pagePosition).getX();
-			if ((maxX < (page?tmp.browserLocation:tmp.pagePosition).getX())) // find largest
-					maxX = (page?tmp.browserLocation:tmp.pagePosition).getX();
-			if ((page?tmp.browserLocation:tmp.pagePosition).getY() < minY)
-				minY = (page?tmp.browserLocation:tmp.pagePosition).getY();
-			if ((maxY < (page?tmp.browserLocation:tmp.pagePosition).getY()))
-				maxY = (page?tmp.browserLocation:tmp.pagePosition).getY();
+			if ((page ? tmp.browserLocation : tmp.pagePosition).getX() < minX) // find
+																				// smallest
+				minX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
+			if ((maxX < (page ? tmp.browserLocation : tmp.pagePosition).getX())) // find
+																					// largest
+				maxX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
+			if ((page ? tmp.browserLocation : tmp.pagePosition).getY() < minY)
+				minY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
+			if ((maxY < (page ? tmp.browserLocation : tmp.pagePosition).getY()))
+				maxY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
 		}
-		
-		
-		return new Rectangle2D.Double(minX, minY, maxX-minX, maxY-minY);
-		
-			
+
+		return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
+
 	}
 
 	/**
@@ -91,8 +93,15 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 *             if no points have been added.
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
-		throw new RuntimeException("method not implemented");
-		// System.getCurrentTime(); 
+		
+		
+		if (rawData == null)
+			throw new NoSuchElementException("No element");
+		else {
+			 Point item = rawData.get(rawData.size() - 1);
+			 return item.timestamp;
+		}
+
 	}
 
 	/**
@@ -112,8 +121,8 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 *             if type is not one of the allowed types specified in
 	 *             MouseEvent.
 	 */
-	public void addPoint( Point2D browserPoint, Point2D pagePoint,
-			long timestamp, int type ) throws IllegalArgumentException {
+	public void addPoint(Point2D browserPoint, Point2D pagePoint,
+			long timestamp, int type) throws IllegalArgumentException {
 		throw new RuntimeException("method not implemented");
 	}
 
