@@ -1,7 +1,11 @@
-package edu.fgcu.stesting.uiesg.data;
+package edu.fgcu.stesting.uiesg.data.imp;
 
 import java.awt.Shape;
 import java.util.Collection;
+
+import edu.fgcu.stesting.uiesg.data.MouseTarget;
+import edu.fgcu.stesting.uiesg.data.PageContext;
+import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 
 /**
  * This class is a container for structural information for pages. It holds data

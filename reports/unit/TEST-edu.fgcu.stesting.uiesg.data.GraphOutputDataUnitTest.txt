@@ -1,0 +1,30 @@
+Testsuite: edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.329 sec
+
+Testcase: testOrder took 0.031 sec
+	Caused an ERROR
+test not implemented
+java.lang.RuntimeException: test not implemented
+	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testOrder(GraphOutputDataUnitTest.java:30)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
+
+Testcase: testSize took 0 sec
+	Caused an ERROR
+test not implemented
+java.lang.RuntimeException: test not implemented
+	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testSize(GraphOutputDataUnitTest.java:35)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
+
+Testcase: testConstructor took 0.011 sec
+	Caused an ERROR
+test not implemented
+java.lang.RuntimeException: test not implemented
+	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testConstructor(GraphOutputDataUnitTest.java:25)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
+

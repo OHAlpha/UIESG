@@ -1,12 +1,15 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
- * SiteEfficiencyData (SED) is a container for all domain specific data generated and
- * used by the UIESG.
+ * SiteEfficiencyData (SED) is a container for all domain specific data
+ * generated and used by the UIESG.
  * 
  * @author oalpha
  *
@@ -16,6 +19,9 @@ public class SiteEfficiencyData {
 	/**
 	 * DuplicateDomainException signifies that the domain for which a SED is
 	 * being created for already is referenced by an existing SED.
+	 * 
+	 * Since the constructor has been made private, this exception is no longer
+	 * needed.
 	 * 
 	 * @author oalpha
 	 *
@@ -41,6 +47,11 @@ public class SiteEfficiencyData {
 	}
 
 	/**
+	 * The collection to map domains to SED instances.
+	 */
+	protected static Map<String, SiteEfficiencyData> domains = new TreeMap<>();
+
+	/**
 	 * Returns an SED for the specified domain if it exists. If none exists, one
 	 * will be created.
 	 * 
@@ -49,26 +60,45 @@ public class SiteEfficiencyData {
 	 * @return the SED for the specified domain
 	 */
 	public static SiteEfficiencyData getForDomain( String domain ) {
-		throw new RuntimeException("method not implemented");
-		// TODO
+		if (domains.containsKey(domain))
+			return domains.get(domain);
+		else {
+			SiteEfficiencyData sed = new SiteEfficiencyData(domain);
+			domains.put(domain, sed);
+			return sed;
+		}
 	}
 
 	/**
-	 * Constructs an instance for a specific domain. The instance of most each
-	 * represent a unique domain. If an instance already exists for a given
-	 * domain, an exception will be thrown.
-	 * 
-	 * @param domain
-	 *            the domain for which this SED will store data
-	 * 
-	 * @exception DuplicateDomainException
-	 *                thrown if a SED for the specified domain already exists
+	 * The folder to store and lookup data files.
 	 */
-	protected SiteEfficiencyData( String domain ) throws DuplicateDomainException {
-		this.domain = domain;
-		data = null;
-		pages = null;
-		// TODO
+	protected static File dataFileDir;
+
+	/**
+	 * Initializes the data file directory for loading and unloading of SED
+	 * instances.
+	 * 
+	 * @param directory
+	 *            the folder to store and lookup data files
+	 * @return if the supplied directory is valid
+	 */
+	public static boolean init( String directory ) {
+		dataFileDir = new File(directory);
+		if (dataFileDir.exists())
+			if (dataFileDir.isFile()) {
+				dataFileDir = null;
+				return false;
+			} else
+				return true;
+		else {
+			boolean success = dataFileDir.mkdirs();
+			if (success)
+				return true;
+			else {
+				dataFileDir = null;
+				return false;
+			}
+		}
 	}
 
 	/**
@@ -84,12 +114,12 @@ public class SiteEfficiencyData {
 		/**
 		 * The MAID of this set
 		 */
-		public MouseActionInputDataImp mouseData;
+		public MouseActionInputData mouseData;
 
 		/**
 		 * The GOD of this set
 		 */
-		public GraphOutputDataImp graphData;
+		public GraphOutputData graphData;
 
 		/**
 		 * The UIESs of this set
@@ -106,14 +136,50 @@ public class SiteEfficiencyData {
 	/**
 	 * The MAIDs, GODs and UIESs for this SED
 	 */
-	@SuppressWarnings( "unused" )
 	private Collection<DataSet> data;
 
 	/**
 	 * The contexts per page in the domain of this SED
 	 */
 	@SuppressWarnings( "unused" )
-	private Map<URL, PageContextImp> pages;
+	private Map<String, PageContext> pages;
+
+	/**
+	 * Constructs an instance for a specific domain. Each instance must each
+	 * represent a unique domain. The initial state of the SED is determined by
+	 * whether or not a data file already exists. If one does, the SED will not
+	 * be usable until explicitly loaded. Otherwise, the SED will be initialized
+	 * as an empty SED and calls to isLoaded will return true until unloaded.
+	 * Also, if the SED is initialized, a PageContext for the homepage, that is
+	 * the URL consisting solely of the domain, will be automatically created.
+	 * If it is not initialized, when it is loaded, a PageContext for the
+	 * homepage will be created if it does not already exist.
+	 * 
+	 * @param domain
+	 *            the domain for which this SED will store data
+	 */
+	protected SiteEfficiencyData( String domain ) {
+		this.domain = domain;
+		File df = dataFile();
+		if (df.exists()) {
+			data = null;
+			pages = null;
+		}
+		else {
+			data = new ArrayList<>();
+			pages = new TreeMap<>();
+		}
+	}
+
+	/**
+	 * Returns the file pointing to the ( possibly nonexistent ) data file for
+	 * this domain.
+	 * 
+	 * @return the File
+	 */
+	protected File dataFile() {
+		return new File(dataFileDir, domain + ".sed");
+	}
 
 	/**
 	 * Loads the data and pages from file and returns true if successful and
@@ -143,8 +209,7 @@ public class SiteEfficiencyData {
 	 * @return true if the data and pages reside in memory and false if on disk
 	 */
 	public boolean isLoaded() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+		return data != null;
 	}
 
 	/**
@@ -162,7 +227,7 @@ public class SiteEfficiencyData {
 	 * 
 	 * @return the newly created MAID instance
 	 */
-	public MouseActionInputDataImp newMouseData() {
+	public MouseActionInputData newMouseData() {
 		throw new RuntimeException("method not implemented");
 		// TODO
 	}
@@ -191,7 +256,7 @@ public class SiteEfficiencyData {
 	 *            the address of the desired PageContext
 	 * @return the PageContext instance or null if it does not exist.
 	 */
-	public PageContextImp getForURL( URL url ) {
+	public PageContext getForURL( URL url ) {
 		throw new RuntimeException("method not implemented");
 		// TODO
 
