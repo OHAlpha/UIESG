@@ -53,13 +53,24 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Before
 	public void before() throws IOException {
+		
+		// create fgcu
 		fgcu = SiteEfficiencyData.getForDomain("fgcu.edu");
+		
+		// file for wiki's prewritten data file
 		File wIn = new File(dir, "wikipedia.org.sed");
+		
+		// file where wiki's data file should reside
 		File wOut = new File(SiteEfficiencyData.dataFileDir,
 				"wikipedia.org.sed");
+		
+		// copy data file
 		Files.copy(wIn.toPath(), wOut.toPath(),
 				StandardCopyOption.REPLACE_EXISTING);
+		
+		// create wiki
 		wiki = SiteEfficiencyData.getForDomain("wikipedia.org");
+		
 	}
 
 	/**
@@ -67,10 +78,15 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@After
 	public void after() {
+		
+		// file for wiki's data file
 		File wDat = new File(SiteEfficiencyData.dataFileDir,
 				"wikipedia.org.sed");
+		
+		// delete file if it exists
 		if (wDat.exists())
 			wDat.delete();
+		
 	}
 
 	/**
@@ -78,12 +94,19 @@ public class SiteEfficiencyDataUnitTest {
 	 * not yet exist.
 	 */
 	@Test
-	public void testgetForDomainNotExists() {
+	public void testGetForDomainNotExists() {
+		
+		// create SED for google
 		SiteEfficiencyData sed = SiteEfficiencyData
 				.getForDomain("www.google.com");
+		
+		// check for existence
 		assertNotNull("getForDomain() must return a non-null value", sed);
+		
+		// check domain value
 		assertEquals("getForDomain( d ).getDomain() must equal d",
 				"www.google.com", sed.getDomain());
+		
 	}
 
 	/**
@@ -91,12 +114,21 @@ public class SiteEfficiencyDataUnitTest {
 	 * exist but the data file does not.
 	 */
 	@Test
-	public void testgetForDomainExistsNoFile() {
+	public void testGetForDomainExistsNoFile() {
+		
+		// create SED for fgcu
 		SiteEfficiencyData sed = SiteEfficiencyData.getForDomain("fgcu.edu");
+		
+		// check for existence
 		assertNotNull("getForDomain() must return a non-null value", sed);
+		
+		// check domain value
 		assertEquals("getForDomain(\"fgcu.edu\") must return fgcu", sed, fgcu);
+		
+		// make sure sed == fgcu
 		assertTrue("getForDomain(\"fgcu.edu\").isLoaded() must be true",
 				sed.isLoaded());
+		
 	}
 
 	/**
@@ -104,10 +136,15 @@ public class SiteEfficiencyDataUnitTest {
 	 * exist and the data file exists.
 	 */
 	@Test
-	public void testgetForDomainExistsWithFile() {
+	public void testGetForDomainExistsWithFile() {
+		
+		// make sure wiki, created in before, exists
 		assertNotNull("getForDomain() must return a non-null value", wiki);
+		
+		// make sure wiki was not loaded
 		assertFalse("getForDomain(\"wikipedia.org\").isLoaded() must be false",
 				wiki.isLoaded());
+		
 	}
 
 	/**
@@ -115,8 +152,13 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testLoadDataFileLoaded() {
+		
+		// attempt to load fgcu
 		boolean success = fgcu.loadData();
+		
+		// make sure call failed
 		assertFalse("fgcu.loadData() must return false", success);
+		
 	}
 
 	/**
@@ -124,10 +166,18 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testLoadDataFileExists() {
-		// TODO: load data
+		// TODO: testLoadDataFileExists
+		
+		// load wiki
 		boolean success = wiki.loadData();
+		
+		// make sure wiki is loaded
 		assertTrue("wiki.loadData() must return true", success);
+		assertTrue("wiki.isLoaded() must be true", wiki.isLoaded());
+		
 		// test if data is correct
+		// TODO: testLoadDataFileExists: test if wiki loaded correctly
+		
 		throw new RuntimeException("test not implemented");
 	}
 
@@ -136,13 +186,20 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testLoadDataFileNotExists() {
-		// TODO: load data file not exists
+		
+		// file for wiki's data file
 		File wDat = new File(SiteEfficiencyData.dataFileDir,
 				"wikipedia.org.sed");
+		
+		// delete data file
 		wDat.delete();
+		
+		// attempt to load wiki
 		boolean success = wiki.loadData();
+		
+		// make sure call failed
 		assertFalse("fgcu.loadData() must return false", success);
-		throw new RuntimeException("test not implemented");
+		
 	}
 
 	/**
@@ -150,7 +207,28 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testUnloadDataNotLoaded() {
-		// TODO: unload data
+		// TODO: testUnloadDataNotLoaded
+		
+		//  file for wiki's data file
+		File wDat = new File(SiteEfficiencyData.dataFileDir,
+				"wikipedia.org.sed");
+		
+		// delete data file
+		wDat.delete();
+		
+		// attempt to unload wiki
+		boolean success = wiki.unloadData();
+		
+		// verify success
+		assertTrue("wiki.unloadData() must return true",success);
+		assertFalse("wiki.isLoaded() must be false", wiki.isLoaded());
+		
+		// test for data file's existence
+		assertTrue("wiki's data file must exist",wDat.exists());
+		
+		// verify data file's content
+		// TODO: testUnloadDataNotLoaded: verify data file's content
+		
 		throw new RuntimeException("test not implemented");
 	}
 

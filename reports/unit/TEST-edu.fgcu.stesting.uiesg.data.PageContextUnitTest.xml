@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="oalpha-HP-2000-Notebook-PC" name="edu.fgcu.stesting.uiesg.data.PageContextUnitTest" skipped="0" tests="1" time="0.044" timestamp="2015-03-24T17:16:45">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="ant.file.UI Efficiency Statistics Generator" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="eclipse.pdebuild.templates" value="/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/templates//" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="os.name" value="Linux" />
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes" />
+    <property name="reports.unit.dir" value="reports/unit" />
+    <property name="sun.desktop" value="gnome" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502" />
+    <property name="java.runtime.version" value="1.8.0_40-b25" />
+    <property name="test.build.dir" value="bin/test/classes" />
+    <property name="user.name" value="oalpha" />
+    <property name="build.dir" value="bin/classes" />
+    <property name="user.language" value="en" />
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64" />
+    <property name="ant.project.default-target" value="build" />
+    <property name="doc.dir" value="doc" />
+    <property name="ant.project.name" value="UI Efficiency Statistics Generator" />
+    <property name="java.version" value="1.8.0_40" />
+    <property name="user.timezone" value="America/New_York" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="test.src.dir" value="src/test/java" />
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/endorsed" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="file.separator" value="/" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="52.0" />
+    <property name="user.country" value="US" />
+    <property name="java.home" value="/usr/lib/jvm/java-8-oracle/jre" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml" />
+    <property name="os.version" value="3.13.0-48-generic" />
+    <property name="path.separator" value=":" />
+    <property name="java.vm.version" value="25.40-b25" />
+    <property name="ant.library.dir" value="/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib" />
+    <property name="test.doc.dir" value="testdoc" />
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+    <property name="ant.file.type.UI Efficiency Statistics Generator" value="file" />
+    <property name="eclipse.pdebuild.scripts" value="/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/scripts//" />
+    <property name="user.home" value="/home/oalpha" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib:/home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/configuration/org.eclipse.osgi/333/0/.cp" />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="sun.java.command" value="org.eclipse.ant.internal.launching.remote.InternalAntRunner -Dorg.eclipse.ant.core.ANT_PROCESS_ID=1427217396296 -Declipse.connect.port=36577 -Declipse.pdebuild.home=/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/.// -Declipse.pdebuild.scripts=/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/scripts// -Declipse.pdebuild.templates=/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/templates// -Dant.home=/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502 -logger org.eclipse.ant.internal.launching.remote.logger.RemoteAntBuildLogger -inputhandler org.eclipse.ant.internal.ui.antsupport.inputhandler.ProxyInputHandler -buildfile /mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml unit-test" />
+    <property name="java.class.path" value="/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-antlr.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-bcel.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-bsf.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-log4j.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-oro.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-regexp.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-resolver.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-xalan2.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-commons-logging.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-commons-net.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-jai.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-javamail.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-jdepend.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-jmf.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-jsch.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit4.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-launcher.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-netrexx.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-swing.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-testutil.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant.jar:/home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/configuration/org.eclipse.osgi/56/0/.cp/lib/antdebug.jar:/home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/configuration/org.eclipse.osgi/56/0/.cp/lib/remote.jar:/home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/configuration/org.eclipse.osgi/57/0/.cp/lib/remoteAnt.jar:/usr/lib/jvm/java-8-oracle/lib/tools.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.eclipse.swt.gtk.linux.x86_64_3.103.1.v20140903-1947.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.2 compiled on July 8 2013" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="jars.dir" value="jars" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="eclipse.pdebuild.home" value="/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/.//" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/ext:/usr/java/packages/lib/ext" />
+    <property name="user.dir" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG" />
+    <property name="line.separator" value="&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="reports.int.dir" value="reports/integration" />
+    <property name="basedir" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="ant.core.lib" value="/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant.jar" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="src.dir" value="src/main/java" />
+    <property name="ant.project.invoked-targets" value="unit-test" />
+  </properties>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.PageContextUnitTest" name="initializationError" time="0.007">
+    <error message="No runnable methods" type="java.lang.Exception">java.lang.Exception: No runnable methods
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
+</error>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

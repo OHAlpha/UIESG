@@ -42,6 +42,7 @@
 				</fileset>
 				<pathelement location="${test.build.dir}" />
 			</classpath>
+			<formatter type="xml" />
 			<formatter type="plain" />
 			<batchtest todir="${reports.unit.dir}">
 				<fileset dir="${test.src.dir}">
