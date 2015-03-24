@@ -55,15 +55,34 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * Returns the box bounding the points in rawData.
 	 * 
 	 * @param page
-	 *            true if the box should bound position instead of location.
+	 *            true if the box should bound pagePosition instead of browserLocation.
 	 * 
 	 * @return the bounding box
 	 */
 	public Rectangle2D getRange( boolean page ) {
-		throw new RuntimeException("method not implemented");
-		// create box from points 
+				
+		// iterate through the arraylist to find the minimums and maximums to create the box
+		Point temp = rawData.get(0);
+		double minX = (page?temp.browserLocation:temp.pagePosition).getX();
+		double minY = (page?temp.browserLocation:temp.pagePosition).getY();
+		double maxX = (page?temp.browserLocation:temp.pagePosition).getX();
+		double maxY = (page?temp.browserLocation:temp.pagePosition).getY();
+		for (int i = 1; i < rawData.size(); i++){
+			Point tmp = rawData.get(i);
+			if ((page?tmp.browserLocation:tmp.pagePosition).getX() < minX) // find smallest
+				minX = (page?tmp.browserLocation:tmp.pagePosition).getX();
+			if ((maxX < (page?tmp.browserLocation:tmp.pagePosition).getX())) // find largest
+					maxX = (page?tmp.browserLocation:tmp.pagePosition).getX();
+			if ((page?tmp.browserLocation:tmp.pagePosition).getY() < minY)
+				minY = (page?tmp.browserLocation:tmp.pagePosition).getY();
+			if ((maxY < (page?tmp.browserLocation:tmp.pagePosition).getY()))
+				maxY = (page?tmp.browserLocation:tmp.pagePosition).getY();
+		}
 		
 		
+		return new Rectangle2D.Double(minX, minY, maxX-minX, maxY-minY);
+		
+			
 	}
 
 	/**
@@ -75,7 +94,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
 		throw new RuntimeException("method not implemented");
-		// System.getCurrentTime();
+		// System.getCurrentTime(); 
 	}
 
 	/**

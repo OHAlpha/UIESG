@@ -22,16 +22,16 @@ public interface MouseActionInputData {
 	 *
 	 */
 	public static class Point {
+		
+		/**
+		 * The location of the event on the browser window. x,y in the browser
+		 */
+		public Point2D browserLocation;
 
 		/**
-		 * The location of the event on the browser window. x,y of browser window
+		 * The location of the event on the page. This is effected by scrolling. x,y in the page
 		 */
-		public Point2D location;
-
-		/**
-		 * The location of the event on the page. This is effected by scrolling.
-		 */
-		public Point2D position;
+		public Point2D pagePosition;
 
 		/**
 		 * The time the event occurred.
