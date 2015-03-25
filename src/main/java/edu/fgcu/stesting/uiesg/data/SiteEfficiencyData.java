@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
+
 /**
  * SiteEfficiencyData (SED) is a container for all domain specific data
  * generated and used by the UIESG.
@@ -245,13 +247,14 @@ public class SiteEfficiencyData {
 	 * Creates a GOD instance for each MAID in the data.
 	 */
 	public void compileMouseData() {
-		//throw new RuntimeException("method not implemented");
-		// TODO
+		
 		// go through all the datasets if MAID is not null, but GOD is null then create a new GOD based on the MAID
 		for (Iterator<DataSet> it = data.iterator(); it.hasNext();){
 			DataSet d = it.next();
-			if (d.mouseData == null){
-				
+			if (d.mouseData != null){
+				if (d.graphData == null){
+					//GraphOutputDataImp GOD = new GraphOutputDataImp(d.mouseData); creates a new instance of GOD based on MAID
+				}				
 			}
 		}
 	}
@@ -261,9 +264,15 @@ public class SiteEfficiencyData {
 	 * in memory.
 	 */
 	public void calculateStatistics() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+		
 		// if there is a statistics that is null and a GOD that is not null then create a statistics based on the GOD
+		for (Iterator<DataSet> it = data.iterator(); it.hasNext();){
+			DataSet d = it.next();
+			if (d.statistics == null){
+				if (d.graphData != null)
+					
+			}
+		}
 	}
 	
 
