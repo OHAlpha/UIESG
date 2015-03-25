@@ -42,6 +42,7 @@
 				</fileset>
 				<pathelement location="${test.build.dir}" />
 			</classpath>
+			<formatter type="xml" />
 			<formatter type="plain" />
 			<batchtest todir="${reports.unit.dir}">
 				<fileset dir="${test.src.dir}">
@@ -49,6 +50,27 @@
 				</fileset>
 			</batchtest>
 		</junit>
+	</target>
+	<target name="integration-test" depends="build-test">
+		<mkdir dir="${reports.int.dir}" />
+		<junit haltonfailure="false" printsummary="on">
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<fileset dir="${jars.dir}">
+					<include name="*.jar" />
+				</fileset>
+				<pathelement location="${test.build.dir}" />
+			</classpath>
+			<formatter type="xml" />
+			<formatter type="plain" />
+			<batchtest todir="${reports.int.dir}">
+				<fileset dir="${test.src.dir}">
+					<include name="**/*integrationTest.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	<target name="test" depends="unit-test,integration-test">
 	</target>
 	<target name="gen-jdoc">
 		<mkdir dir="${doc.dir}" />

@@ -21,7 +21,7 @@ public class SiteEfficiencyData {
 	 * DuplicateDomainException signifies that the domain for which a SED is
 	 * being created for already is referenced by an existing SED.
 	 * 
-	 * Since the constructor has been made private, this exception is no longer
+	 * Since the constructor has been made protected, this exception is no longer
 	 * needed.
 	 * 
 	 * @author oalpha
@@ -110,7 +110,7 @@ public class SiteEfficiencyData {
 	 * @author oalpha
 	 *
 	 */
-	class DataSet {
+	protected static class DataSet {
 
 		/**
 		 * The MAID of this set
@@ -132,18 +132,18 @@ public class SiteEfficiencyData {
 	/**
 	 * The domain of this SED
 	 */
-	private final String domain;
+	protected final String domain;
 
 	/**
 	 * The MAIDs, GODs and UIESs for this SED
 	 */
-	private Collection<DataSet> data;
+	protected Collection<DataSet> data;
 
 	/**
 	 * The contexts per page in the domain of this SED
 	 */
 	@SuppressWarnings( "unused" )
-	private Map<String, PageContext> pages;
+	protected Map<String, PageContext> pages;
 
 	/**
 	 * Constructs an instance for a specific domain. Each instance must each
