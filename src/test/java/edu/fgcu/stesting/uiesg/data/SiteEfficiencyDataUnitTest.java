@@ -207,7 +207,32 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testUnloadDataNotLoaded() {
-		// TODO: testUnloadDataNotLoaded
+		
+		//  file for wiki's data file
+		File wDat = new File(SiteEfficiencyData.dataFileDir,
+				"wikipedia.org.sed");
+		
+		// delete data file
+		wDat.delete();
+		
+		// attempt to unload wiki
+		boolean success = wiki.unloadData();
+		
+		// verify success
+		assertFalse("wiki.unloadData() must return false",success);
+		assertFalse("wiki.isLoaded() must be false", wiki.isLoaded());
+		
+		// test for data file's existence
+		assertFalse("wiki's data file must not exist",wDat.exists());
+		
+	}
+
+	/**
+	 * Unloads fgcu after it is loaded.
+	 */
+	@Test
+	public void testUnloadDataLoaded() {
+		// TODO: testUnloadDataLoaded
 		
 		//  file for wiki's data file
 		File wDat = new File(SiteEfficiencyData.dataFileDir,
@@ -233,21 +258,14 @@ public class SiteEfficiencyDataUnitTest {
 	}
 
 	/**
-	 * Unloads fgcu after it is loaded.
-	 */
-	@Test
-	public void testUnloadDataLoaded() {
-		// TODO: unload data
-		throw new RuntimeException("test not implemented");
-	}
-
-	/**
 	 * Queries wiki.isLoaded before it is loaded
 	 */
 	@Test
 	public void testIsLoadedNotLoaded() {
-		// TODO: is loaded
-		throw new RuntimeException("test not implemented");
+		
+		// check if wiki is loaded
+		assertFalse("wiki.isLoaded() must return false",wiki.isLoaded());
+		
 	}
 
 	/**
@@ -255,15 +273,25 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testIsLoadedLoaded() {
-		// TODO: is loaded
-		throw new RuntimeException("test not implemented");
+
+		// check if fgcu is loaded
+		assertTrue("fgcu.isLoaded() must return true",fgcu.isLoaded());
+		
+		// load wiki
+		wiki.loadData();
+
+		// check if wiki is loaded
+		assertFalse("wiki.isLoaded() must return false",wiki.isLoaded());
+		
 	}
 
 	/**
-	 * Calls getDomainon wiki and fgcu
+	 * Calls getDomain on wiki and fgcu
 	 */
 	public void getDomain() {
-		throw new RuntimeException("test not implemented");
+		
+		assertEquals("fgcu.getDomain() must return fgcu",fgcu)
+		
 	}
 
 	/**

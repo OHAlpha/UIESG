@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="13" failures="0" hostname="oalpha-HP-2000-Notebook-PC" name="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" skipped="0" tests="16" time="0.317" timestamp="2015-03-24T17:16:45">
+<testsuite errors="13" failures="0" hostname="oalpha-HP-2000-Notebook-PC" name="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" skipped="0" tests="16" time="0.37" timestamp="2015-03-24T19:31:31">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="ant.file.UI Efficiency Statistics Generator" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml" />
@@ -52,7 +52,7 @@
     <property name="java.vendor.url" value="http://java.oracle.com/" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
-    <property name="sun.java.command" value="org.eclipse.ant.internal.launching.remote.InternalAntRunner -Dorg.eclipse.ant.core.ANT_PROCESS_ID=1427217396296 -Declipse.connect.port=36577 -Declipse.pdebuild.home=/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/.// -Declipse.pdebuild.scripts=/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/scripts// -Declipse.pdebuild.templates=/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/templates// -Dant.home=/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502 -logger org.eclipse.ant.internal.launching.remote.logger.RemoteAntBuildLogger -inputhandler org.eclipse.ant.internal.ui.antsupport.inputhandler.ProxyInputHandler -buildfile /mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml unit-test" />
+    <property name="sun.java.command" value="org.eclipse.ant.internal.launching.remote.InternalAntRunner -Dorg.eclipse.ant.core.ANT_PROCESS_ID=1427225481098 -Declipse.connect.port=60827 -Declipse.pdebuild.home=/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/.// -Declipse.pdebuild.scripts=/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/scripts// -Declipse.pdebuild.templates=/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/templates// -Dant.home=/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502 -logger org.eclipse.ant.internal.launching.remote.logger.RemoteAntBuildLogger -inputhandler org.eclipse.ant.internal.ui.antsupport.inputhandler.ProxyInputHandler -buildfile /mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml test" />
     <property name="java.class.path" value="/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-antlr.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-bcel.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-bsf.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-log4j.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-oro.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-regexp.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-resolver.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-apache-xalan2.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-commons-logging.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-commons-net.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-jai.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-javamail.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-jdepend.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-jmf.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-jsch.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit4.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-launcher.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-netrexx.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-swing.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-testutil.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant.jar:/home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/configuration/org.eclipse.osgi/56/0/.cp/lib/antdebug.jar:/home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/configuration/org.eclipse.osgi/56/0/.cp/lib/remote.jar:/home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/configuration/org.eclipse.osgi/57/0/.cp/lib/remoteAnt.jar:/usr/lib/jvm/java-8-oracle/lib/tools.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.eclipse.swt.gtk.linux.x86_64_3.103.1.v20140903-1947.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.2 compiled on July 8 2013" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
@@ -76,9 +76,9 @@
     <property name="file.encoding" value="UTF-8" />
     <property name="java.specification.version" value="1.8" />
     <property name="src.dir" value="src/main/java" />
-    <property name="ant.project.invoked-targets" value="unit-test" />
+    <property name="ant.project.invoked-targets" value="test" />
   </properties>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCalculateStatisticsLoaded" time="0.04">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCalculateStatisticsLoaded" time="0.132">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCalculateStatisticsLoaded(SiteEfficiencyDataUnitTest.java:293)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
@@ -86,7 +86,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCompileMouseDataLoaded" time="0.017">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCompileMouseDataLoaded" time="0.005">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataLoaded(SiteEfficiencyDataUnitTest.java:284)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
@@ -102,7 +102,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetForDomainExistsWithFile" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetForDomainExistsWithFile" time="0.002" />
   <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testIsLoadedNotLoaded" time="0.004">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testIsLoadedNotLoaded(SiteEfficiencyDataUnitTest.java:250)
@@ -111,8 +111,8 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetForDomainNotExists" time="0.001" />
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testLoadDataFileNotExists" time="0.014">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetForDomainNotExists" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testLoadDataFileNotExists" time="0.005">
     <error message="method not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: method not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:191)
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileNotExists(SiteEfficiencyDataUnitTest.java:198)
@@ -121,7 +121,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testUnloadDataLoaded" time="0.013">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testUnloadDataLoaded" time="0.005">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataLoaded(SiteEfficiencyDataUnitTest.java:241)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
@@ -129,7 +129,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testIsLoadedLoaded" time="0.067">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testIsLoadedLoaded" time="0.009">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testIsLoadedLoaded(SiteEfficiencyDataUnitTest.java:259)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
@@ -137,7 +137,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testNewMouseDataNotLoaded" time="0.004">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testNewMouseDataNotLoaded" time="0.006">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testNewMouseDataNotLoaded(SiteEfficiencyDataUnitTest.java:302)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
@@ -145,7 +145,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testLoadDataFileExists" time="0.023">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testLoadDataFileExists" time="0.01">
     <error message="method not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: method not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:191)
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileExists(SiteEfficiencyDataUnitTest.java:172)
@@ -154,7 +154,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testLoadDataFileLoaded" time="0.009">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testLoadDataFileLoaded" time="0.004">
     <error message="method not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: method not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:191)
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileLoaded(SiteEfficiencyDataUnitTest.java:157)
@@ -163,7 +163,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testUnloadDataNotLoaded" time="0.011">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testUnloadDataNotLoaded" time="0.009">
     <error message="method not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: method not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.unloadData(SiteEfficiencyData.java:202)
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataNotLoaded(SiteEfficiencyDataUnitTest.java:220)
@@ -172,7 +172,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCalculateStatisticsNotLoaded" time="0.016">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCalculateStatisticsNotLoaded" time="0.017">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCalculateStatisticsNotLoaded(SiteEfficiencyDataUnitTest.java:320)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
@@ -180,7 +180,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCompileMouseDataNotLoaded" time="0.004">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCompileMouseDataNotLoaded" time="0.047">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataNotLoaded(SiteEfficiencyDataUnitTest.java:311)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
@@ -188,7 +188,7 @@
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetForDomainExistsNoFile" time="0.015" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetForDomainExistsNoFile" time="0.005" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
