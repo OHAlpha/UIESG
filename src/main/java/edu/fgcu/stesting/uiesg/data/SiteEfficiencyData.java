@@ -220,6 +220,8 @@ public class SiteEfficiencyData {
 	public String getDomain() {
 		return domain;
 		// TODO
+		// 
+		
 	}
 
 	/**
@@ -230,6 +232,9 @@ public class SiteEfficiencyData {
 	public MouseActionInputData newMouseData() {
 		throw new RuntimeException("method not implemented");
 		// TODO
+		// create a new dataset and add it to the collection "data" and then in data create a new MAID in that dataset
+		//create new instance of dataset and then do data.add(someName)
+		
 	}
 
 	/**
@@ -238,6 +243,7 @@ public class SiteEfficiencyData {
 	public void compileMouseData() {
 		throw new RuntimeException("method not implemented");
 		// TODO
+		// go through all the datasets if MAID is not null, but GOD is null then create a new GOD based on the MAID
 	}
 
 	/**
@@ -247,7 +253,9 @@ public class SiteEfficiencyData {
 	public void calculateStatistics() {
 		throw new RuntimeException("method not implemented");
 		// TODO
+		// if there is a statistics that is null and a GOD that is not null then create a statistics based on the GOD
 	}
+	
 
 	/**
 	 * Returns a PageContext for the specified URL if it exists.
