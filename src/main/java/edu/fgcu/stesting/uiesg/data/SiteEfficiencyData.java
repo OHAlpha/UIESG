@@ -4,8 +4,11 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
+
+import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 
 /**
  * SiteEfficiencyData (SED) is a container for all domain specific data
@@ -213,7 +216,7 @@ public class SiteEfficiencyData {
 	}
 
 	/**
-	 * Returns th domain of this SED.
+	 * Returns the domain of this SED.
 	 * 
 	 * @return the domain
 	 */
@@ -231,7 +234,6 @@ public class SiteEfficiencyData {
 	 */
 	public MouseActionInputData newMouseData() {
 		// create a new dataset and add it to the collection "data" and then in data create a new MAID in that dataset
-		//create new instance of dataset and then do data.add(someName)
 		DataSet d = new DataSet();
 		// add mousedata to the dataset
 		//d.mouseData = new MAIDFactory.newInstance(); MAIDFactory isn't setup yet. 
@@ -244,10 +246,17 @@ public class SiteEfficiencyData {
 	 * Creates a GOD instance for each MAID in the data.
 	 */
 	public void compileMouseData() {
-		throw new RuntimeException("method not implemented");
-		// TODO
-		// go through all the datasets if MAID is not null, but GOD is null then create a new GOD based on the MAID
 		
+		// go through all the datasets if MAID is not null, but GOD is null then create a new GOD based on the MAID
+		for (Iterator<DataSet> it = data.iterator(); it.hasNext();){
+			DataSet d = it.next();
+			if (d.mouseData != null){
+				if (d.graphData == null){
+					GraphOutputDataImp GOD = new GraphOutputDataImp(d.mouseData.iterate());// creates a new instance of GOD based on MAID
+					d.graphData = GOD;
+				}				
+			}
+		}
 	}
 
 	/**
@@ -255,9 +264,17 @@ public class SiteEfficiencyData {
 	 * in memory.
 	 */
 	public void calculateStatistics() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+		
 		// if there is a statistics that is null and a GOD that is not null then create a statistics based on the GOD
+		for (Iterator<DataSet> it = data.iterator(); it.hasNext();){
+			DataSet d = it.next();
+			if (d.statistics == null){
+				if (d.graphData != null){
+					// statistics type will already exist. a static method calculate all satistics will be added
+				}
+					
+			}
+		}
 	}
 	
 
