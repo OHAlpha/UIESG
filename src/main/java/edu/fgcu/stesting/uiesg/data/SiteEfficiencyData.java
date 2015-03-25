@@ -216,7 +216,7 @@ public class SiteEfficiencyData {
 	}
 
 	/**
-	 * Returns th domain of this SED.
+	 * Returns the domain of this SED.
 	 * 
 	 * @return the domain
 	 */
@@ -234,7 +234,6 @@ public class SiteEfficiencyData {
 	 */
 	public MouseActionInputData newMouseData() {
 		// create a new dataset and add it to the collection "data" and then in data create a new MAID in that dataset
-		//create new instance of dataset and then do data.add(someName)
 		DataSet d = new DataSet();
 		// add mousedata to the dataset
 		//d.mouseData = new MAIDFactory.newInstance(); MAIDFactory isn't setup yet. 
