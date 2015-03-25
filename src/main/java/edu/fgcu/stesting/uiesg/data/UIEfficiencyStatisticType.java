@@ -1,5 +1,8 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 
 /**
@@ -38,6 +41,23 @@ public abstract class UIEfficiencyStatisticType {
 
 	}
 
+	public static class UIEfficiencyStatistics {
+		
+		protected static Map<String, UIEfficiencyStatisticType> types = new TreeMap<>();
+
+		public static Map<String, UIEfficiencyStatistic> calculateStatistics(
+				GraphOutputData graphData ) {
+			throw new RuntimeException("method not implemented");
+			// TODO
+		}
+		
+		public static void addType( UIEfficiencyStatisticType type ) {
+			throw new RuntimeException("method not implemented");
+			// TODO
+		}
+
+	}
+
 	/**
 	 * Returns an UIEST instance with the specified name if it exists.
 	 * 
@@ -45,7 +65,7 @@ public abstract class UIEfficiencyStatisticType {
 	 *            the name of UIEST requested
 	 * @return the UIEST with the specified name
 	 */
-	public static SiteEfficiencyData getForDomain(String name) {
+	public static SiteEfficiencyData getForDomain( String name ) {
 		throw new RuntimeException("method not implemented");
 		// TODO
 	}
@@ -65,7 +85,8 @@ public abstract class UIEfficiencyStatisticType {
 	 * @throws DuplicateTypeException
 	 *             if an instance with the specified name already exists
 	 */
-	protected UIEfficiencyStatisticType( String name ) throws DuplicateTypeException {
+	protected UIEfficiencyStatisticType( String name )
+			throws DuplicateTypeException {
 		throw new RuntimeException("constructor not implemented");
 	}
 
