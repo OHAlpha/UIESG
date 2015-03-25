@@ -2,10 +2,13 @@
 <project name="UI Efficiency Statistics Generator" default="build">
 	<property name="src.dir" value="src/main/java" />
 	<property name="build.dir" value="bin/classes" />
+	<property name="doc.dir" value="doc" />
 	<property name="test.src.dir" value="src/test/java" />
 	<property name="test.build.dir" value="bin/test/classes" />
+	<property name="test.doc.dir" value="testdoc" />
 	<property name="jars.dir" value="jars" />
-	<property name="doc.dir" value="doc" />
+	<property name="reports.unit.dir" value="reports/unit" />
+	<property name="reports.int.dir" value="reports/integration" />
 	<path id="master-classpath">
 		<fileset dir="${jars.dir}">
 			<include name="*.jar" />
@@ -13,29 +16,42 @@
 		<pathelement path="${build.dir}" />
 	</path>
 	<target name="j-dir">
-		<mkdir dir="${jars.dir}"/>
+		<mkdir dir="${jars.dir}" />
 	</target>
 	<target name="build" depends="j-dir">
-		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.dir}" />
 		<javac includeantruntime="false" destdir="${build.dir}" source="1.8" target="1.8">
 			<src path="${src.dir}" />
 			<classpath refid="master-classpath" />
 		</javac>
 	</target>
 	<target name="build-test" depends="build">
-		<mkdir dir="${test.build.dir}"/>
+		<mkdir dir="${test.build.dir}" />
 		<javac includeantruntime="false" destdir="${test.build.dir}" source="1.8" target="1.8">
 			<src path="${test.src.dir}" />
 			<classpath refid="master-classpath" />
 		</javac>
 	</target>
 	<target name="unit-test" depends="build-test">
-		<junit haltonfailure="false" printsummary="true">
-			<classpath refid="master-classpath" />
-			<test name="edu.fgcu.stesting.uiesg.data.unit.UnitTests"/>
+		<mkdir dir="${reports.unit.dir}" />
+		<junit haltonfailure="false" printsummary="on">
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<fileset dir="${jars.dir}">
+					<include name="*.jar" />
+				</fileset>
+				<pathelement location="${test.build.dir}" />
+			</classpath>
+			<formatter type="plain" />
+			<batchtest todir="${reports.unit.dir}">
+				<fileset dir="${test.src.dir}">
+					<include name="**/*UnitTest.java" />
+				</fileset>
+			</batchtest>
 		</junit>
 	</target>
 	<target name="gen-jdoc">
+		<mkdir dir="${doc.dir}" />
 		<javadoc packagenames="edu.fgcu.stesting.uiesg.*" sourcepath="${src.dir}" destdir="${doc.dir}" version="true" windowtitle="${ant.project.name}" Private="true">
 			<doctitle>
 				<![CDATA[= UI Efficiency Statistics Generator =]]>
@@ -46,7 +62,20 @@
 		</javadoc>
 		<echo message="java doc has been generated!" />
 	</target>
+	<target name="gen-test-jdoc">
+		<mkdir dir="${test.doc.dir}" />
+		<javadoc packagenames="edu.fgcu.stesting.uiesg.*" sourcepath="${test.src.dir}" destdir="${test.doc.dir}" version="true" windowtitle="${ant.project.name} - Tests" Private="true">
+			<classpath refid="master-classpath" />
+			<doctitle>
+				<![CDATA[= UI Efficiency Statistics Generator =]]>
+			</doctitle>
+			<bottom>
+				<![CDATA[Copyright © 2011. All Rights Reserved.]]>
+			</bottom>
+		</javadoc>
+		<echo message="java doc has been generated!" />
+	</target>
 	<target name="clean">
-		<delete dir="${build.dir}"/>
+		<delete dir="${build.dir}" />
 	</target>
 </project>

@@ -11,6 +11,9 @@ bin/*
 doc
 doc/
 doc/*
+testdoc
+testdoc/
+testdoc/*
 *.class
 bin/*.class
 

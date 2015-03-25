@@ -1,5 +1,7 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
+
 /**
  * UIEfficiencyStatisticType (UIEST) is a generator for a specific metric for
  * the efficiency of the user interface.
