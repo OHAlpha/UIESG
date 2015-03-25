@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData.MAIDFactory;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
 import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 
 /**
@@ -236,7 +238,7 @@ public class SiteEfficiencyData {
 		// create a new dataset and add it to the collection "data" and then in data create a new MAID in that dataset
 		DataSet d = new DataSet();
 		// add mousedata to the dataset
-		//d.mouseData = new MAIDFactory.newInstance(); MAIDFactory isn't setup yet. 
+		d.mouseData = MAIDFactory.newInstance();
 		data.add(d);
 		
 		return d.mouseData;
@@ -271,6 +273,8 @@ public class SiteEfficiencyData {
 			if (d.statistics == null){
 				if (d.graphData != null){
 					// statistics type will already exist. a static method calculate all satistics will be added
+					d.statistics = UIEfficiencyStatistics.calculateStatistics(d.graphData);
+					
 				}
 					
 			}
