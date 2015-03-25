@@ -20,7 +20,7 @@ public class SiteEfficiencyData {
 	 * DuplicateDomainException signifies that the domain for which a SED is
 	 * being created for already is referenced by an existing SED.
 	 * 
-	 * Since the constructor has been made private, this exception is no longer
+	 * Since the constructor has been made protected, this exception is no longer
 	 * needed.
 	 * 
 	 * @author oalpha
@@ -109,7 +109,7 @@ public class SiteEfficiencyData {
 	 * @author oalpha
 	 *
 	 */
-	class DataSet {
+	protected static class DataSet {
 
 		/**
 		 * The MAID of this set
@@ -131,18 +131,18 @@ public class SiteEfficiencyData {
 	/**
 	 * The domain of this SED
 	 */
-	private final String domain;
+	protected final String domain;
 
 	/**
 	 * The MAIDs, GODs and UIESs for this SED
 	 */
-	private Collection<DataSet> data;
+	protected Collection<DataSet> data;
 
 	/**
 	 * The contexts per page in the domain of this SED
 	 */
 	@SuppressWarnings( "unused" )
-	private Map<String, PageContext> pages;
+	protected Map<String, PageContext> pages;
 
 	/**
 	 * Constructs an instance for a specific domain. Each instance must each
@@ -220,6 +220,8 @@ public class SiteEfficiencyData {
 	public String getDomain() {
 		return domain;
 		// TODO
+		// 
+		
 	}
 
 	/**
@@ -228,8 +230,14 @@ public class SiteEfficiencyData {
 	 * @return the newly created MAID instance
 	 */
 	public MouseActionInputData newMouseData() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+		// create a new dataset and add it to the collection "data" and then in data create a new MAID in that dataset
+		//create new instance of dataset and then do data.add(someName)
+		DataSet d = new DataSet();
+		// add mousedata to the dataset
+		//d.mouseData = new MAIDFactory.newInstance(); MAIDFactory isn't setup yet. 
+		data.add(d);
+		
+		return d.mouseData;
 	}
 
 	/**
@@ -238,6 +246,8 @@ public class SiteEfficiencyData {
 	public void compileMouseData() {
 		throw new RuntimeException("method not implemented");
 		// TODO
+		// go through all the datasets if MAID is not null, but GOD is null then create a new GOD based on the MAID
+		
 	}
 
 	/**
@@ -247,7 +257,9 @@ public class SiteEfficiencyData {
 	public void calculateStatistics() {
 		throw new RuntimeException("method not implemented");
 		// TODO
+		// if there is a statistics that is null and a GOD that is not null then create a statistics based on the GOD
 	}
+	
 
 	/**
 	 * Returns a PageContext for the specified URL if it exists.

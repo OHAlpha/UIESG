@@ -4,12 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData.MAIDFactory;
+import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.DataSet;
 import static org.junit.Assert.*;
 
 /**
@@ -42,6 +45,7 @@ public class SiteEfficiencyDataUnitTest {
 	@BeforeClass
 	public static void setup() {
 		SiteEfficiencyData.init("tmp/datafiles");
+		MAIDFactory.init( MAIDFactory.IMPLEMENTATION);
 	}
 
 	/**
@@ -56,6 +60,13 @@ public class SiteEfficiencyDataUnitTest {
 		
 		// create fgcu
 		fgcu = SiteEfficiencyData.getForDomain("fgcu.edu");
+
+		// create some MAID instances
+		for( int i = 0; i < 5; i++ ) {
+			DataSet ds = new DataSet();
+			ds.mouseData = MAIDFactory.newInstance();
+			fgcu.data.add(ds);
+		}
 		
 		// file for wiki's prewritten data file
 		File wIn = new File(dir, "wikipedia.org.sed");
@@ -290,7 +301,11 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	public void getDomain() {
 		
-		assertEquals("fgcu.getDomain() must return fgcu",fgcu)
+		// check fgcu's domain
+		assertEquals("fgcu.getDomain() must return fgcu",fgcu.getDomain(),"fgcu.edu");
+		
+		// check wiji's domain
+		assertEquals("wiki.getDomain() must return wiki",wiki.getDomain(),"wikipedia.org");
 		
 	}
 
@@ -299,8 +314,22 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testNewMouseDataLoaded() {
-		// TODO: new mouse data
-		throw new RuntimeException("test not implemented");
+		
+		// record size of fgcu.data
+		int size = fgcu.data.size();
+		
+		// create MAID
+		MouseActionInputData maid = fgcu.newMouseData();
+		
+		// make sure it is non-null
+		assertNotNull("fgcu.newMouseData() must not return null",maid);
+		
+		// make sure fgcu.data is 1 larger than size
+		assertEquals("fgcu.data.size() must have incremented by one",size+1,fgcu.data.size());
+		
+		// make sure last DataSet contains maid
+		assertEquals("",((List<DataSet>)fgcu.data).get(size).mouseData,maid);
+		
 	}
 
 	/**
@@ -308,7 +337,11 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testCompileMouseDataLoaded() {
-		// TODO: compile mouse data
+		// TODO: testCompileMouseDataLoaded
+		
+		// compile mouse data
+		fgcu.compileMouseData();
+		
 		throw new RuntimeException("test not implemented");
 	}
 
