@@ -253,7 +253,8 @@ public class SiteEfficiencyData {
 			DataSet d = it.next();
 			if (d.mouseData != null){
 				if (d.graphData == null){
-					//GraphOutputDataImp GOD = new GraphOutputDataImp(d.mouseData); creates a new instance of GOD based on MAID
+					GraphOutputDataImp GOD = new GraphOutputDataImp(d.mouseData.iterate());// creates a new instance of GOD based on MAID
+					d.graphData = GOD;
 				}				
 			}
 		}
@@ -269,7 +270,9 @@ public class SiteEfficiencyData {
 		for (Iterator<DataSet> it = data.iterator(); it.hasNext();){
 			DataSet d = it.next();
 			if (d.statistics == null){
-				if (d.graphData != null)
+				if (d.graphData != null){
+					// statistics type will already exist. a static method calculate all satistics will be added
+				}
 					
 			}
 		}
