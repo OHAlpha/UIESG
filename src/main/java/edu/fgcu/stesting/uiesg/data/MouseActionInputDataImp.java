@@ -96,13 +96,12 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 *             if no points have been added.
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
-		
-		
+
 		if (rawData == null)
 			throw new NoSuchElementException("No element");
 		else {
-			 Point item = rawData.get(rawData.size() - 1);
-			 return item.timestamp;
+			Point item = rawData.get(rawData.size() - 1);
+			return item.timestamp;
 		}
 
 	}
@@ -126,24 +125,24 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public void addPoint(Point2D browserPoint, Point2D pagePoint,
 			long timestamp, int type) throws IllegalArgumentException {
-		//throw new RuntimeException("method not implemented");
+		// throw new RuntimeException("method not implemented");
 		if (browserPoint.getX() < 0 || browserPoint.getY() < 0)
 			throw new IllegalArgumentException();
-		if (pagePoint.getX() <0 || pagePoint.getY()  < 0 )
+		if (pagePoint.getX() < 0 || pagePoint.getY() < 0)
 			throw new IllegalArgumentException();
 		if (timestamp < latestTimestamp())
 			throw new IllegalArgumentException();
 		if (type < MOUSE_FIRST || type > MOUSE_LAST)
 			throw new IllegalArgumentException();
+
 		Point p = new Point();
 		p.browserLocation = browserPoint;
 		p.pagePosition = pagePoint;
 		p.timestamp = timestamp;
 		p.type = type;
-		
+
 		rawData.add(p);
-		
-		
+
 	}
 
 	/**

@@ -28,6 +28,7 @@ public class PageContextImp implements PageContext {
 	 */
 	public Shape getClickableRegion() {
 		throw new RuntimeException("method not implemented");
+		
 	}
 
 	/**
