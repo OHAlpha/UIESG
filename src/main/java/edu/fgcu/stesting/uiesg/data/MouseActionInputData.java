@@ -42,7 +42,7 @@ public interface MouseActionInputData {
 	public static class Point {
 		
 		/**
-		 * The location of the event on the browser window. x,y in the browser
+		 * The location of the event on the browser window. x,y in the browser 
 		 */
 		public Point2D browserLocation;
 

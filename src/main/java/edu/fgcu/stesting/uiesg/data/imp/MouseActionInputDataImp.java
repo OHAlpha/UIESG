@@ -55,7 +55,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * Returns the box bounding the points in rawData.
 	 * 
 	 * @param page
-	 *            true if the box should bound pagePosition instead of browserLocation.
+	 *            true if the box should bound position instead of location.
 	 * 
 	 * @return the bounding box
 	 */
@@ -82,7 +82,6 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		
 		return new Rectangle2D.Double(minX, minY, maxX-minX, maxY-minY);
 		
-			
 	}
 
 	/**
@@ -94,7 +93,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
 		throw new RuntimeException("method not implemented");
-		// System.getCurrentTime(); 
+		// System.getCurrentTime();
 	}
 
 	/**
