@@ -14,23 +14,24 @@ import java.util.NoSuchElementException;
  *
  */
 public interface MouseActionInputData {
-	
+
 	public static class MAIDFactory {
-		
+
 		public static final int MOCK = 0;
-		
+
 		public static final int IMPLEMENTATION = 1;
-		
+
+		protected static int mode;
+
 		public static MouseActionInputData newInstance() {
-			throw new RuntimeException("method not implemented");
-			// TODO
+			return mode == MOCK ? new MouseActionInputDataMock()
+					: new MouseActionInputDataImp();
 		}
-		
+
 		public static void init( int mode ) {
-			throw new RuntimeException("method not implemented");
-			// TODO
+			MAIDFactory.mode = mode;
 		}
-		
+
 	}
 
 	/**
@@ -40,14 +41,15 @@ public interface MouseActionInputData {
 	 *
 	 */
 	public static class Point {
-		
+
 		/**
-		 * The location of the event on the browser window. x,y in the browser 
+		 * The location of the event on the browser window. x,y in the browser
 		 */
 		public Point2D browserLocation;
 
 		/**
-		 * The location of the event on the page. This is effected by scrolling. x,y in the page
+		 * The location of the event on the page. This is effected by scrolling.
+		 * x,y in the page
 		 */
 		public Point2D pagePosition;
 
@@ -108,8 +110,8 @@ public interface MouseActionInputData {
 	 *             if type is not one of the allowed types specified in
 	 *             MouseEvent.
 	 */
-	void addPoint( Point2D browserPoint, Point2D pagePoint,
-			long timestamp, int type ) throws IllegalArgumentException;
+	void addPoint( Point2D browserPoint, Point2D pagePoint, long timestamp,
+			int type ) throws IllegalArgumentException;
 
 	/**
 	 * Iterates through rawData. Used by GODFactories to compile into graph

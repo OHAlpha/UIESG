@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData.MAIDFactory;
 import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 
 /**
@@ -144,7 +145,6 @@ public class SiteEfficiencyData {
 	/**
 	 * The contexts per page in the domain of this SED
 	 */
-	@SuppressWarnings( "unused" )
 	protected Map<String, PageContext> pages;
 
 	/**
@@ -236,7 +236,7 @@ public class SiteEfficiencyData {
 		// create a new dataset and add it to the collection "data" and then in data create a new MAID in that dataset
 		DataSet d = new DataSet();
 		// add mousedata to the dataset
-		//d.mouseData = new MAIDFactory.newInstance(); MAIDFactory isn't setup yet. 
+		d.mouseData = MAIDFactory.newInstance(); //MAIDFactory isn't setup yet. 
 		data.add(d);
 		
 		return d.mouseData;
