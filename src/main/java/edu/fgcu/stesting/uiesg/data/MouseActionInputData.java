@@ -14,6 +14,24 @@ import java.util.NoSuchElementException;
  *
  */
 public interface MouseActionInputData {
+	
+	public static class MAIDFactory {
+		
+		public static final int MOCK = 0;
+		
+		public static final int IMPLEMENTATION = 1;
+		
+		public static MouseActionInputData newInstance() {
+			throw new RuntimeException("method not implemented");
+			// TODO
+		}
+		
+		public static void init( int mode ) {
+			throw new RuntimeException("method not implemented");
+			// TODO
+		}
+		
+	}
 
 	/**
 	 * An encapsulation of the location timestamp and type of a mouse event.
