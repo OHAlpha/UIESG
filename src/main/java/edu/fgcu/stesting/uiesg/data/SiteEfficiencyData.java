@@ -1,6 +1,11 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,8 +29,8 @@ public class SiteEfficiencyData {
 	 * DuplicateDomainException signifies that the domain for which a SED is
 	 * being created for already is referenced by an existing SED.
 	 * 
-	 * Since the constructor has been made protected, this exception is no longer
-	 * needed.
+	 * Since the constructor has been made protected, this exception is no
+	 * longer needed.
 	 * 
 	 * @author oalpha
 	 *
@@ -167,8 +172,7 @@ public class SiteEfficiencyData {
 		if (df.exists()) {
 			data = null;
 			pages = null;
-		}
-		else {
+		} else {
 			data = new ArrayList<>();
 			pages = new TreeMap<>();
 		}
@@ -191,8 +195,65 @@ public class SiteEfficiencyData {
 	 * @return whether the load was successful
 	 */
 	public boolean loadData() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+		
+		// return false if SED is already loaded
+		if( data != null )
+			return false;
+
+		// datafile
+		File file = dataFile();
+
+		// check for existence
+		if (!file.exists())
+			return false;
+
+		// read in data
+		try (DataInputStream in = new DataInputStream(new BufferedInputStream(
+				new FileInputStream(file)))) {
+			
+			// read number of DataSets
+			int size = in.readInt();
+			
+			// read each DataSet
+			for( int i = 0; i < size; i++ ) {
+				
+				DataSet d = new DataSet();
+				
+				// mask is a bit vector
+				// bit 0 is on when a MAID object exists
+				// bit 1 is on when a GOD object exists
+				// bit 2 is on when UIES objects exist
+				int mask = in.readInt();
+				
+				// read MAID if it exists
+				if( ( mask & 0x01 ) > 0 ) {
+					
+					// 
+					d.mouseData = MAIDFactory.newInstance();
+					
+				}
+				
+				// read GOD if it exists
+				if( ( mask & 0x02 ) > 0 ) {
+					
+				}
+				
+				// read UIESs if they exist
+				if( ( mask & 0x04 ) > 0 ) {
+					
+				}
+				
+			}
+
+			return true;
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			
+			return false;
+			
+		}
+
 	}
 
 	/**
@@ -223,8 +284,8 @@ public class SiteEfficiencyData {
 	public String getDomain() {
 		return domain;
 		// TODO
-		// 
-		
+		//
+
 	}
 
 	/**
@@ -233,12 +294,13 @@ public class SiteEfficiencyData {
 	 * @return the newly created MAID instance
 	 */
 	public MouseActionInputData newMouseData() {
-		// create a new dataset and add it to the collection "data" and then in data create a new MAID in that dataset
+		// create a new dataset and add it to the collection "data" and then in
+		// data create a new MAID in that dataset
 		DataSet d = new DataSet();
 		// add mousedata to the dataset
-		d.mouseData = MAIDFactory.newInstance(); //MAIDFactory isn't setup yet. 
+		d.mouseData = MAIDFactory.newInstance(); // MAIDFactory isn't setup yet.
 		data.add(d);
-		
+
 		return d.mouseData;
 	}
 
@@ -246,15 +308,18 @@ public class SiteEfficiencyData {
 	 * Creates a GOD instance for each MAID in the data.
 	 */
 	public void compileMouseData() {
-		
-		// go through all the datasets if MAID is not null, but GOD is null then create a new GOD based on the MAID
-		for (Iterator<DataSet> it = data.iterator(); it.hasNext();){
+
+		// go through all the datasets if MAID is not null, but GOD is null then
+		// create a new GOD based on the MAID
+		for (Iterator<DataSet> it = data.iterator(); it.hasNext();) {
 			DataSet d = it.next();
-			if (d.mouseData != null){
-				if (d.graphData == null){
-					GraphOutputDataImp GOD = new GraphOutputDataImp(d.mouseData.iterate());// creates a new instance of GOD based on MAID
+			if (d.mouseData != null) {
+				if (d.graphData == null) {
+					GraphOutputDataImp GOD = new GraphOutputDataImp(
+							d.mouseData.iterate());// creates a new instance of
+													// GOD based on MAID
 					d.graphData = GOD;
-				}				
+				}
 			}
 		}
 	}
@@ -264,19 +329,20 @@ public class SiteEfficiencyData {
 	 * in memory.
 	 */
 	public void calculateStatistics() {
-		
-		// if there is a statistics that is null and a GOD that is not null then create a statistics based on the GOD
-		for (Iterator<DataSet> it = data.iterator(); it.hasNext();){
+
+		// if there is a statistics that is null and a GOD that is not null then
+		// create a statistics based on the GOD
+		for (Iterator<DataSet> it = data.iterator(); it.hasNext();) {
 			DataSet d = it.next();
-			if (d.statistics == null){
-				if (d.graphData != null){
-					// statistics type will already exist. a static method calculate all satistics will be added
+			if (d.statistics == null) {
+				if (d.graphData != null) {
+					// statistics type will already exist. a static method
+					// calculate all satistics will be added
 				}
-					
+
 			}
 		}
 	}
-	
 
 	/**
 	 * Returns a PageContext for the specified URL if it exists.
