@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -244,10 +245,15 @@ public class SiteEfficiencyData {
 	 * Creates a GOD instance for each MAID in the data.
 	 */
 	public void compileMouseData() {
-		throw new RuntimeException("method not implemented");
+		//throw new RuntimeException("method not implemented");
 		// TODO
 		// go through all the datasets if MAID is not null, but GOD is null then create a new GOD based on the MAID
-		
+		for (Iterator<DataSet> it = data.iterator(); it.hasNext();){
+			DataSet d = it.next();
+			if (d.mouseData == null){
+				
+			}
+		}
 	}
 
 	/**
