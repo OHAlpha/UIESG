@@ -230,11 +230,14 @@ public class SiteEfficiencyData {
 	 * @return the newly created MAID instance
 	 */
 	public MouseActionInputData newMouseData() {
-		throw new RuntimeException("method not implemented");
-		// TODO
 		// create a new dataset and add it to the collection "data" and then in data create a new MAID in that dataset
 		//create new instance of dataset and then do data.add(someName)
+		DataSet d = new DataSet();
+		// add mousedata to the dataset
+		//d.mouseData = new MAIDFactory.newInstance(); MAIDFactory isn't setup yet. 
+		data.add(d);
 		
+		return d.mouseData;
 	}
 
 	/**
@@ -244,6 +247,7 @@ public class SiteEfficiencyData {
 		throw new RuntimeException("method not implemented");
 		// TODO
 		// go through all the datasets if MAID is not null, but GOD is null then create a new GOD based on the MAID
+		
 	}
 
 	/**
