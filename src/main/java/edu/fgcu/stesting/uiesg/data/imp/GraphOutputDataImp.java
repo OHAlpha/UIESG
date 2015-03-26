@@ -29,9 +29,11 @@ public class GraphOutputDataImp implements GraphOutputData {
 	 */
 	@SuppressWarnings( "unused" )
 	private final List<MouseGraphEdge> edges;
-	
-	public GraphOutputDataImp()
-			throws NullPointerException {
+
+	/**
+	 * Creates an empty instance. Used by SED.loadData().
+	 */
+	public GraphOutputDataImp() {
 		throw new RuntimeException("constructor not implemented");
 	}
 
@@ -70,30 +72,35 @@ public class GraphOutputDataImp implements GraphOutputData {
 		throw new RuntimeException("method not implemented");
 	}
 
+	@SuppressWarnings( "javadoc" )
 	@Override
 	public void addAction( MouseGraphAction action ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@SuppressWarnings( "javadoc" )
 	@Override
 	public MouseGraphAction getAction( int index ) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@SuppressWarnings( "javadoc" )
 	@Override
 	public MouseGraphNode getNode( int index ) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@SuppressWarnings( "javadoc" )
 	@Override
 	public MouseGraphEdge getEdge( int index ) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@SuppressWarnings( "javadoc" )
 	@Override
 	public int indexOf( MouseGraphAction action ) {
 		// TODO Auto-generated method stub

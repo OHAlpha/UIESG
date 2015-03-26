@@ -5,6 +5,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
+
 /**
  * MouseActionInputData (MAID) is a container for the raw mouse data. Instances
  * will store the locations, timestamps and types of all MouseEvents generated
@@ -15,6 +17,8 @@ import java.util.NoSuchElementException;
  */
 public interface MouseActionInputData {
 
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	public static class MAIDFactory {
 
 		public static final int MOCK = 0;

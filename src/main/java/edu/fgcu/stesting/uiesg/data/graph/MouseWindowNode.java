@@ -62,6 +62,7 @@ public class MouseWindowNode extends AbstractMouseGraphAction implements MouseGr
 		throw new RuntimeException("method not implemented");
 	}
 
+	@SuppressWarnings( "javadoc" )
 	@Override
 	public void write( OutputStream out ) {
 		// TODO Auto-generated method stub

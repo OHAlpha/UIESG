@@ -5,6 +5,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+// TODO: javadoc
+@SuppressWarnings( "javadoc" )
 public class MouseActionInputDataMock implements MouseActionInputData {
 
 	@Override

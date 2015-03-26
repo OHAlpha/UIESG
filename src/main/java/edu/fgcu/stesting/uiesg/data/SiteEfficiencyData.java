@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -347,10 +346,6 @@ public class SiteEfficiencyData {
 
 		// datafile
 		File file = dataFile();
-
-		// check for existence
-		if (!file.exists())
-			return false;
 
 		// write in data
 		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(

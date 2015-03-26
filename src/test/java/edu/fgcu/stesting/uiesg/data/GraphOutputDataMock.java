@@ -7,6 +7,8 @@ import edu.fgcu.stesting.uiesg.data.graph.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.graph.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.graph.MouseGraphNode;
 
+// TODO: javadoc
+@SuppressWarnings( "javadoc" )
 public class GraphOutputDataMock implements GraphOutputData {
 
 	public GraphOutputDataMock( Iterator<Point> mouseData ) {

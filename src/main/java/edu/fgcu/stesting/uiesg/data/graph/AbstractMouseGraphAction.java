@@ -1,5 +1,7 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
+// TODO: javadoc
+@SuppressWarnings( "javadoc" )
 public abstract class AbstractMouseGraphAction implements MouseGraphAction {
 
 	@Override

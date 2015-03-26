@@ -1,5 +1,5 @@
 Testsuite: edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.027 sec
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.068 sec
 
 Testcase: initializationError took 0.002 sec
 	Caused an ERROR

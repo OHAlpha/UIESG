@@ -2,6 +2,8 @@ package edu.fgcu.stesting.uiesg.data;
 
 import org.junit.*;
 
+// TODO: javadoc
+@SuppressWarnings( "javadoc" )
 public class MouseActionInputDataUnitTest {
     
     public MouseActionInputDataUnitTest() {

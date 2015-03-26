@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+// TODO: javadoc
+@SuppressWarnings( "javadoc" )
 public class GraphOutputDataUnitTest {
     
     @BeforeClass

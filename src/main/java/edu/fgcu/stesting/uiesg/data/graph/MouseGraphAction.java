@@ -14,32 +14,44 @@ import java.io.OutputStream;
  */
 public interface MouseGraphAction {
 
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	public static class MouseGraphActionFactory {
 
+		// TODO: javadoc
 		public static final int MOCK = 0;
 
+		// TODO: javadoc
 		public static final int IMPLEMENTATION = 1;
 
+		// TODO: javadoc
 		protected static int mode;
-		
+
+		// TODO: javadoc
 		public static MouseGraphAction create( int type, Object... params ) {
 			throw new RuntimeException("method not implemented");
 			// TODO
 		}
-		
+
+		// TODO: javadoc
 		public static MouseGraphAction read( InputStream in ) {
 			throw new RuntimeException("method not implemented");
 			// TODO
 		}
 
+		// TODO: javadoc
 		public static void init( int mode ) {
 			MouseGraphActionFactory.mode = mode;
 		}
 
 	}
-	
+
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	public static final int NODE_TYPE_MASK = 0x00ff;
-	
+
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	public static final int EDGE_TYPE_MASK = 0xff00;
 
 	/**
@@ -75,14 +87,14 @@ public interface MouseGraphAction {
 	 * executing a complicated movement that the GOD instance breaks up into
 	 * multiple regressions.
 	 * 
-	 * @return the previous action
+	 * @param previous the previous action
 	 */
 	void setPrevious( MouseGraphAction previous );
 
 	/**
 	 * The action occurring immediately after this one.
 	 * 
-	 * @return the next action
+	 * @param next the next action
 	 */
 	void setNext( MouseGraphAction next );
 
@@ -117,7 +129,9 @@ public interface MouseGraphAction {
 	 * @return the bounds
 	 */
 	Shape getArea();
-	
+
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	void write( OutputStream out );
 
 }
