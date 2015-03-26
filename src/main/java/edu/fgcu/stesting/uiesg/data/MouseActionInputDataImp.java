@@ -66,22 +66,22 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		// iterate through the arraylist to find the minimums and maximums to
 		// create the box
 		Point temp = rawData.get(0);
-		double minX = (page ? temp.browserLocation : temp.pagePosition).getX();
-		double minY = (page ? temp.browserLocation : temp.pagePosition).getY();
-		double maxX = (page ? temp.browserLocation : temp.pagePosition).getX();
-		double maxY = (page ? temp.browserLocation : temp.pagePosition).getY();
+		double minX = (page ? temp.pagePosition : temp.browserLocation).getX();// had to switch browswerlocation and pageposition in if statement
+		double minY = (page ? temp.pagePosition : temp.browserLocation).getY();
+		double maxX = (page ? temp.pagePosition : temp.browserLocation).getX();
+		double maxY = (page ? temp.pagePosition : temp.browserLocation).getY();
 		for (int i = 1; i < rawData.size(); i++) {
 			Point tmp = rawData.get(i);
-			if ((page ? tmp.browserLocation : tmp.pagePosition).getX() < minX) // find
+			if ((page ? tmp.pagePosition : tmp.browserLocation).getX() < minX) // find
 																				// smallest
-				minX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
-			if ((maxX < (page ? tmp.browserLocation : tmp.pagePosition).getX())) // find
+				minX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
+			if ((maxX < (page ? tmp.pagePosition : tmp.browserLocation).getX())) // find
 																					// largest
-				maxX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
-			if ((page ? tmp.browserLocation : tmp.pagePosition).getY() < minY)
-				minY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
-			if ((maxY < (page ? tmp.browserLocation : tmp.pagePosition).getY()))
-				maxY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
+				maxX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
+			if ((page ? tmp.pagePosition : tmp.browserLocation).getY() < minY)
+				minY = (page ? tmp.pagePosition : tmp.browserLocation).getY();
+			if ((maxY < (page ? tmp.pagePosition : tmp.browserLocation).getY()))
+				maxY = (page ? tmp.pagePosition : tmp.browserLocation).getY();
 		}
 
 		return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
@@ -123,12 +123,12 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 *             if type is not one of the allowed types specified in
 	 *             MouseEvent.
 	 */
-	public void addPoint(Point2D browserPoint, Point2D pagePoint,
+	public void addPoint(Point2D browserLocation, Point2D pagePosition,
 			long timestamp, int type) throws IllegalArgumentException {
 		// throw new RuntimeException("method not implemented");
-		if (browserPoint.getX() < 0 || browserPoint.getY() < 0)
+		if (browserLocation.getX() < 0 || browserLocation.getY() < 0)
 			throw new IllegalArgumentException();
-		if (pagePoint.getX() < 0 || pagePoint.getY() < 0)
+		if (pagePosition.getX() < 0 || pagePosition.getY() < 0)
 			throw new IllegalArgumentException();
 		if (timestamp < latestTimestamp())
 			throw new IllegalArgumentException();
@@ -136,8 +136,8 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 			throw new IllegalArgumentException();
 
 		Point p = new Point();
-		p.browserLocation = browserPoint;
-		p.pagePosition = pagePoint;
+		p.browserLocation = browserLocation;
+		p.pagePosition = pagePosition;
 		p.timestamp = timestamp;
 		p.type = type;
 
