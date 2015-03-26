@@ -25,7 +25,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	/**
 	 * The rawData recorded by the browser.
 	 */
-	private List<Point> rawData;
+	public List<Point> rawData;
 
 	/**
 	 * Constructs a MAID instance with an existing collection. This is for
@@ -98,7 +98,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
 
-		if (rawData == null)
+		if (rawData.isEmpty())
 			throw new NoSuchElementException("No element");
 		else {
 			Point item = rawData.get(rawData.size() - 1);
@@ -131,8 +131,9 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 			throw new IllegalArgumentException();
 		if (pagePoint.getX() < 0 || pagePoint.getY() < 0)
 			throw new IllegalArgumentException();
-		if (timestamp < latestTimestamp())
-			throw new IllegalArgumentException();
+		if (rawData.size() > 0)
+			if (timestamp < latestTimestamp())
+				throw new IllegalArgumentException();
 		if (type < MOUSE_FIRST || type > MOUSE_LAST)
 			throw new IllegalArgumentException();
 

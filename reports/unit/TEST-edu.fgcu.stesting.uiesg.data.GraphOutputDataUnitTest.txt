@@ -1,19 +1,19 @@
 Testsuite: edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.372 sec
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.723 sec
 
-Testcase: testOrder took 0.039 sec
+Testcase: testOrder took 0.062 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testOrder(Unknown Source)
 
-Testcase: testSize took 0.003 sec
+Testcase: testSize took 0.018 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testSize(Unknown Source)
 
-Testcase: testConstructor took 0.003 sec
+Testcase: testConstructor took 0.004 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented

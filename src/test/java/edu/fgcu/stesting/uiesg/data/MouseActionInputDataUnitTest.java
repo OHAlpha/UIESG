@@ -2,15 +2,18 @@ package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-
 import java.awt.geom.Rectangle2D;
 
 import org.junit.*;
+
+import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
 import static org.junit.Assert.*;
 
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
 public class MouseActionInputDataUnitTest {
+	
+	MouseActionInputDataImp MAID;
 
 	public MouseActionInputDataUnitTest() {
 	}
@@ -22,6 +25,7 @@ public class MouseActionInputDataUnitTest {
 
 	@Before
 	public void before() {
+		MAID = new MouseActionInputDataImp();
 	}
 
 	@After
@@ -36,7 +40,6 @@ public class MouseActionInputDataUnitTest {
 	public void testSize() {
 		// throw new RuntimeException("test not implemented");
 		// add a bunch of points and see if the size is correct
-		MouseActionInputDataImp MAID = new MouseActionInputDataImp();
 		MAID.addPoint(new Point(0, 1), new Point(2, 0),
 				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 		MAID.addPoint(new Point(1, 2), new Point(4, 2),
@@ -54,8 +57,6 @@ public class MouseActionInputDataUnitTest {
 	@Test
 	public void testGetRange() {
 
-		// create a new MAID
-		MouseActionInputDataImp MAID = new MouseActionInputDataImp();
 		// add test points in a given range
 		MAID.addPoint(new Point(0, 1), new Point(2, 0),
 				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
@@ -82,7 +83,6 @@ public class MouseActionInputDataUnitTest {
 		
 		// add point to list and check last point to see if it is the one we
 		// added
-		MouseActionInputDataImp MAID = new MouseActionInputDataImp();
 		MAID.addPoint(new Point(0, 1), new Point(2, 0),
 				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 		// MAID.addPoint(new Point(1,2), new Point(4,2),
