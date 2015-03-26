@@ -57,7 +57,13 @@ public class MouseActionInputDataUnitTest {
     	MAID.addPoint(new Point(0,1), new Point(2,0), System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED); // browser location first and then page position
     	MAID.addPoint(new Point(1,2), new Point(4,2), System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
     	MAID.addPoint(new Point(2,3), new Point(6,4), System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-    	assertEquals(0, 1, 2, 2, MAID.getRange(false));
+    	Rectangle2D r = MAID.getRange(false);
+    	
+    	//assertEquals(0, 1, 2, 2, MAID.getRange(false));
+    	assertEquals(0, r.getX(), .01);
+    	assertEquals(1, r.getY(), .01);
+    	assertEquals(2, r.getWidth(), .01);
+    	assertEquals(2, r.getHeight(), .01);
     	// Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
     	
     }
