@@ -34,7 +34,7 @@
 	</target>
 	<target name="unit-test" depends="build-test">
 		<mkdir dir="${reports.unit.dir}" />
-		<junit haltonfailure="false" printsummary="on">
+		<junit fork="true" haltonfailure="false" printsummary="on">
 			<classpath>
 				<pathelement location="${build.dir}" />
 				<fileset dir="${jars.dir}">
@@ -53,7 +53,7 @@
 	</target>
 	<target name="integration-test" depends="build-test">
 		<mkdir dir="${reports.int.dir}" />
-		<junit haltonfailure="false" printsummary="on">
+		<junit fork="true" haltonfailure="false" printsummary="on">
 			<classpath>
 				<pathelement location="${build.dir}" />
 				<fileset dir="${jars.dir}">
