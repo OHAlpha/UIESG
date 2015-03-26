@@ -73,14 +73,16 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		double maxY = (page ? temp.browserLocation : temp.pagePosition).getY();
 		for (int i = 1; i < getRawData().size(); i++) {
 			Point tmp = getRawData().get(i);
-			if ((page ? tmp.browserLocation : tmp.pagePosition).getX() < minX) // find
-																				// smallest
+			// find the smallest x value
+			if ((page ? tmp.browserLocation : tmp.pagePosition).getX() < minX) 
 				minX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
-			if ((maxX < (page ? tmp.browserLocation : tmp.pagePosition).getX())) // find
-																					// largest
+			// find the largest x value
+			if ((maxX < (page ? tmp.browserLocation : tmp.pagePosition).getX())) 
 				maxX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
+			// find the smallest y value
 			if ((page ? tmp.browserLocation : tmp.pagePosition).getY() < minY)
 				minY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
+			// find the largest y value
 			if ((maxY < (page ? tmp.browserLocation : tmp.pagePosition).getY()))
 				maxY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
 		}
