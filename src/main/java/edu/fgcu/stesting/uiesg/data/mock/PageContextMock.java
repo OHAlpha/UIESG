@@ -1,8 +1,12 @@
-package edu.fgcu.stesting.uiesg.data;
+package edu.fgcu.stesting.uiesg.data.mock;
 
 import java.awt.Shape;
 import java.util.Arrays;
 import java.util.Collection;
+
+import edu.fgcu.stesting.uiesg.data.MouseTarget;
+import edu.fgcu.stesting.uiesg.data.PageContext;
+import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 
 /**
  * This mock simply holds predefined data instead of computing data. No data is

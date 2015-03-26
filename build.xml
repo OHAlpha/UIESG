@@ -99,5 +99,8 @@
 	</target>
 	<target name="clean">
 		<delete dir="${build.dir}" />
+		<delete dir="${test.build.dir}" />
+		<delete dir="${reports.unit.dir}" />
+		<delete dir="${reports.int.dir}" />
 	</target>
 </project>

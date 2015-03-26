@@ -1,9 +1,11 @@
-package edu.fgcu.stesting.uiesg.data;
+package edu.fgcu.stesting.uiesg.data.mock;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
 
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
