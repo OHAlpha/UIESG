@@ -1,5 +1,7 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.io.OutputStream;
+
 /**
  * UIEfficiencyStatistic (UIES) is a container for a specific metric for the
  * efficiency of the user interface.
@@ -18,13 +20,17 @@ public class UIEfficiencyStatistic {
 	 * The metric value.
 	 */
 	private final Object value;
-	
+
 	/**
 	 * Constructs a with the specified type and value.
-	 * @param type the type of the statistic
-	 * @param value the value of the statistic
+	 * 
+	 * @param type
+	 *            the type of the statistic
+	 * @param value
+	 *            the value of the statistic
 	 */
-	protected UIEfficiencyStatistic( UIEfficiencyStatisticType type, Object value ) {
+	protected UIEfficiencyStatistic( UIEfficiencyStatisticType type,
+			Object value ) {
 		throw new RuntimeException("constructor not implemented");
 	}
 
@@ -44,6 +50,17 @@ public class UIEfficiencyStatistic {
 	 */
 	public Object getValue() {
 		return value;
+	}
+
+	/**
+	 * Writes this statistic to a stream.
+	 * 
+	 * @param out
+	 *            the output stream
+	 */
+	public void write( OutputStream out ) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

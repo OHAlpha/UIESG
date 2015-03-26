@@ -1,12 +1,39 @@
 Testsuite: edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.03 sec
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.505 sec
 
-Testcase: initializationError took 0.008 sec
+Testcase: testCalculate took 0.047 sec
 	Caused an ERROR
-Test class should have exactly one public zero-argument constructor
-java.lang.Exception: Test class should have exactly one public zero-argument constructor
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
+method not implemented
+java.lang.RuntimeException: method not implemented
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest.testCalculate(Unknown Source)
+
+Testcase: testGetName took 0.002 sec
+	Caused an ERROR
+method not implemented
+java.lang.RuntimeException: method not implemented
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest.testGetName(Unknown Source)
+
+Testcase: testGetValueType took 0.009 sec
+	Caused an ERROR
+method not implemented
+java.lang.RuntimeException: method not implemented
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest.testGetValueType(Unknown Source)
+
+Testcase: testGetDescription took 0.01 sec
+	Caused an ERROR
+method not implemented
+java.lang.RuntimeException: method not implemented
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest.testGetDescription(Unknown Source)
+
+Testcase: testGetForDomain took 0.006 sec
+	Caused an ERROR
+method not implemented
+java.lang.RuntimeException: method not implemented
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest.testGetForDomain(Unknown Source)
+
+Testcase: testConstructor took 0.006 sec
+	Caused an ERROR
+constructor not implemented
+java.lang.RuntimeException: constructor not implemented
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest.testConstructor(Unknown Source)
 

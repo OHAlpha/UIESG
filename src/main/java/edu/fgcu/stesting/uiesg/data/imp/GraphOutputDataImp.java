@@ -4,8 +4,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphEdge;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphNode;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 /**
  * GraphOutputData (GOD) is a container for the graph data. Instances will store
@@ -28,6 +29,13 @@ public class GraphOutputDataImp implements GraphOutputData {
 	 */
 	@SuppressWarnings( "unused" )
 	private final List<MouseGraphEdge> edges;
+
+	/**
+	 * Creates an empty instance. Used by SED.loadData().
+	 */
+	public GraphOutputDataImp() {
+		throw new RuntimeException("constructor not implemented");
+	}
 
 	/**
 	 * Constructs a GOD instance from raw mouse data. The constructor will join
@@ -62,6 +70,41 @@ public class GraphOutputDataImp implements GraphOutputData {
 	 */
 	public int size() {
 		throw new RuntimeException("method not implemented");
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public void addAction( MouseGraphAction action ) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public MouseGraphAction getAction( int index ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public MouseGraphNode getNode( int index ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public MouseGraphEdge getEdge( int index ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public int indexOf( MouseGraphAction action ) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -1,9 +1,8 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.io.InputStream;
 import java.util.Map;
 import java.util.TreeMap;
-
-import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 
 /**
  * UIEfficiencyStatisticType (UIEST) is a generator for a specific metric for
@@ -21,7 +20,7 @@ public abstract class UIEfficiencyStatisticType {
 	 * @author oalpha
 	 *
 	 */
-	public class DuplicateTypeException extends Exception {
+	public static class DuplicateTypeException extends Exception {
 
 		/**
 		 * 
@@ -41,19 +40,28 @@ public abstract class UIEfficiencyStatisticType {
 
 	}
 
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	public static class UIEfficiencyStatistics {
 		
 		protected static Map<String, UIEfficiencyStatisticType> types = new TreeMap<>();
 
 		public static Map<String, UIEfficiencyStatistic> calculateStatistics(
 				GraphOutputData graphData ) {
-			throw new RuntimeException("method not implemented");
-			// TODO
+			Map<String, UIEfficiencyStatistic> statistics = new TreeMap<>();
+			for( String type : types.keySet() )
+				statistics.put(type, types.get(type).calculate(graphData));
+			return statistics;
 		}
 		
-		public static void addType( UIEfficiencyStatisticType type ) {
-			throw new RuntimeException("method not implemented");
-			// TODO
+		public static void addType( UIEfficiencyStatisticType type ) throws DuplicateTypeException {
+			if( types.containsKey(type.getName()))
+				throw new DuplicateTypeException(type.getName());
+			types.put(type.getName(), type);
+		}
+		
+		public static UIEfficiencyStatisticType getType( String type ) {
+			return types.get(type);
 		}
 
 	}
@@ -65,9 +73,8 @@ public abstract class UIEfficiencyStatisticType {
 	 *            the name of UIEST requested
 	 * @return the UIEST with the specified name
 	 */
-	public static SiteEfficiencyData getForDomain( String name ) {
-		throw new RuntimeException("method not implemented");
-		// TODO
+	public static UIEfficiencyStatisticType getByName( String name ) {
+		return UIEfficiencyStatistics.getType(name);
 	}
 
 	/**
@@ -87,7 +94,8 @@ public abstract class UIEfficiencyStatisticType {
 	 */
 	protected UIEfficiencyStatisticType( String name )
 			throws DuplicateTypeException {
-		throw new RuntimeException("constructor not implemented");
+		UIEfficiencyStatistics.addType(this);
+		this.name = name;
 	}
 
 	/**
@@ -111,7 +119,16 @@ public abstract class UIEfficiencyStatisticType {
 	 *            the graph data to analyze
 	 * @return the UIES instance
 	 */
-	public abstract UIEfficiencyStatistic calculate( GraphOutputDataImp graph );
+	public abstract UIEfficiencyStatistic calculate( GraphOutputData graph );
+
+	/**
+	 * Creates a UIES instance of this type from an input stream.
+	 * 
+	 * @param in
+	 *            the stream of data to read
+	 * @return the UIES instance
+	 */
+	public abstract UIEfficiencyStatistic create( InputStream in );
 
 	/**
 	 * The type of value this type creates.

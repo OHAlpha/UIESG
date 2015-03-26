@@ -1,5 +1,8 @@
 package edu.fgcu.stesting.uiesg.data.imp;
 
+import static java.awt.event.MouseEvent.MOUSE_FIRST;
+import static java.awt.event.MouseEvent.MOUSE_LAST;
+
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -60,28 +63,30 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * @return the bounding box
 	 */
 	public Rectangle2D getRange( boolean page ) {
-				
-		// iterate through the arraylist to find the minimums and maximums to create the box
+
+		// iterate through the arraylist to find the minimums and maximums to
+		// create the box
 		Point temp = rawData.get(0);
-		double minX = (page?temp.browserLocation:temp.pagePosition).getX();
-		double minY = (page?temp.browserLocation:temp.pagePosition).getY();
-		double maxX = (page?temp.browserLocation:temp.pagePosition).getX();
-		double maxY = (page?temp.browserLocation:temp.pagePosition).getY();
-		for (int i = 1; i < rawData.size(); i++){
+		double minX = (page ? temp.browserLocation : temp.pagePosition).getX();
+		double minY = (page ? temp.browserLocation : temp.pagePosition).getY();
+		double maxX = (page ? temp.browserLocation : temp.pagePosition).getX();
+		double maxY = (page ? temp.browserLocation : temp.pagePosition).getY();
+		for (int i = 1; i < rawData.size(); i++) {
 			Point tmp = rawData.get(i);
-			if ((page?tmp.browserLocation:tmp.pagePosition).getX() < minX) // find smallest
-				minX = (page?tmp.browserLocation:tmp.pagePosition).getX();
-			if ((maxX < (page?tmp.browserLocation:tmp.pagePosition).getX())) // find largest
-					maxX = (page?tmp.browserLocation:tmp.pagePosition).getX();
-			if ((page?tmp.browserLocation:tmp.pagePosition).getY() < minY)
-				minY = (page?tmp.browserLocation:tmp.pagePosition).getY();
-			if ((maxY < (page?tmp.browserLocation:tmp.pagePosition).getY()))
-				maxY = (page?tmp.browserLocation:tmp.pagePosition).getY();
+			if ((page ? tmp.browserLocation : tmp.pagePosition).getX() < minX) // find
+																				// smallest
+				minX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
+			if ((maxX < (page ? tmp.browserLocation : tmp.pagePosition).getX())) // find
+																					// largest
+				maxX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
+			if ((page ? tmp.browserLocation : tmp.pagePosition).getY() < minY)
+				minY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
+			if ((maxY < (page ? tmp.browserLocation : tmp.pagePosition).getY()))
+				maxY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
 		}
-		
-		
-		return new Rectangle2D.Double(minX, minY, maxX-minX, maxY-minY);
-		
+
+		return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
+
 	}
 
 	/**
@@ -92,8 +97,14 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 *             if no points have been added.
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
-		throw new RuntimeException("method not implemented");
-		// System.getCurrentTime();
+
+		if (rawData == null)
+			throw new NoSuchElementException("No element");
+		else {
+			Point item = rawData.get(rawData.size() - 1);
+			return item.timestamp;
+		}
+
 	}
 
 	/**
@@ -115,7 +126,24 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public void addPoint( Point2D browserPoint, Point2D pagePoint,
 			long timestamp, int type ) throws IllegalArgumentException {
-		throw new RuntimeException("method not implemented");
+		// throw new RuntimeException("method not implemented");
+		if (browserPoint.getX() < 0 || browserPoint.getY() < 0)
+			throw new IllegalArgumentException();
+		if (pagePoint.getX() < 0 || pagePoint.getY() < 0)
+			throw new IllegalArgumentException();
+		if (timestamp < latestTimestamp())
+			throw new IllegalArgumentException();
+		if (type < MOUSE_FIRST || type > MOUSE_LAST)
+			throw new IllegalArgumentException();
+
+		Point p = new Point();
+		p.browserLocation = browserPoint;
+		p.pagePosition = pagePoint;
+		p.timestamp = timestamp;
+		p.type = type;
+
+		rawData.add(p);
+
 	}
 
 	/**

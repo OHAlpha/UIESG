@@ -13,47 +13,48 @@ import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeExcep
  *
  */
 public class UIEfficiencyStatisticTypeUnitTest {
-	
-	private final Class<? extends UIEfficiencyStatisticType> type; 
 
-	/**
-	 * @param type
-	 */
-	public UIEfficiencyStatisticTypeUnitTest(
-			Class<? extends UIEfficiencyStatisticType> type ) {
-		super();
-		this.type = type;
-	}
-
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	@Test
 	public void testGetForDomain() {
 		throw new RuntimeException("method not implemented");
 		// TODO
 	}
 
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	@Test
 	public void testConstructor() throws DuplicateTypeException {
 		throw new RuntimeException("constructor not implemented");
 	}
 
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	@Test
 	public void testGetName() {
 		throw new RuntimeException("method not implemented");
 		// TODO
 	}
 
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	@Test
 	public void testGetDescription() {
 		throw new RuntimeException("method not implemented");
 		// TODO
 	}
 
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	@Test
 	public void testCalculate() {
 		throw new RuntimeException("method not implemented");
 		// TODO
 	}
 
+	// TODO: javadoc
+	@SuppressWarnings( "javadoc" )
 	@Test
 	public void testGetValueType() {
 		throw new RuntimeException("method not implemented");

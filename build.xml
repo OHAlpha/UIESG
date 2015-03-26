@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="UI Efficiency Statistics Generator" default="build">
+<project name="UI Efficiency Statistics Generator" default="build" xmlns:jacoco="antlib:org.jacoco.ant">
 	<property name="src.dir" value="src/main/java" />
 	<property name="build.dir" value="bin/classes" />
 	<property name="doc.dir" value="doc" />
@@ -9,6 +9,10 @@
 	<property name="jars.dir" value="jars" />
 	<property name="reports.unit.dir" value="reports/unit" />
 	<property name="reports.int.dir" value="reports/integration" />
+	<property name="reports.jacoco.dir" value="reports/coverage" />
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath path="${jars.dir}/jacocoant.jar" />
+	</taskdef>
 	<path id="master-classpath">
 		<fileset dir="${jars.dir}">
 			<include name="*.jar" />
@@ -34,43 +38,63 @@
 	</target>
 	<target name="unit-test" depends="build-test">
 		<mkdir dir="${reports.unit.dir}" />
-		<junit haltonfailure="false" printsummary="on">
-			<classpath>
-				<pathelement location="${build.dir}" />
-				<fileset dir="${jars.dir}">
-					<include name="*.jar" />
-				</fileset>
-				<pathelement location="${test.build.dir}" />
-			</classpath>
-			<formatter type="xml" />
-			<formatter type="plain" />
-			<batchtest todir="${reports.unit.dir}">
-				<fileset dir="${test.src.dir}">
-					<include name="**/*UnitTest.java" />
-				</fileset>
-			</batchtest>
-		</junit>
+		<jacoco:coverage destfile="jacoco.unit.exec">
+			<junit fork="true" haltonfailure="false" printsummary="on">
+				<classpath>
+					<pathelement location="${build.dir}" />
+					<fileset dir="${jars.dir}">
+						<include name="*.jar" />
+					</fileset>
+					<pathelement location="${test.build.dir}" />
+				</classpath>
+				<formatter type="xml" />
+				<formatter type="plain" />
+				<batchtest todir="${reports.unit.dir}">
+					<fileset dir="${test.src.dir}">
+						<include name="**/*UnitTest.java" />
+					</fileset>
+				</batchtest>
+			</junit>
+		</jacoco:coverage>
 	</target>
 	<target name="integration-test" depends="build-test">
 		<mkdir dir="${reports.int.dir}" />
-		<junit haltonfailure="false" printsummary="on">
-			<classpath>
-				<pathelement location="${build.dir}" />
-				<fileset dir="${jars.dir}">
-					<include name="*.jar" />
-				</fileset>
-				<pathelement location="${test.build.dir}" />
-			</classpath>
-			<formatter type="xml" />
-			<formatter type="plain" />
-			<batchtest todir="${reports.int.dir}">
-				<fileset dir="${test.src.dir}">
-					<include name="**/*integrationTest.java" />
-				</fileset>
-			</batchtest>
-		</junit>
+		<jacoco:coverage destfile="jacoco.int.exec">
+			<junit fork="true" haltonfailure="false" printsummary="on">
+				<classpath>
+					<pathelement location="${build.dir}" />
+					<fileset dir="${jars.dir}">
+						<include name="*.jar" />
+					</fileset>
+					<pathelement location="${test.build.dir}" />
+				</classpath>
+				<formatter type="xml" />
+				<formatter type="plain" />
+				<batchtest todir="${reports.int.dir}">
+					<fileset dir="${test.src.dir}">
+						<include name="**/*IntegrationTest.java" />
+					</fileset>
+				</batchtest>
+			</junit>
+		</jacoco:coverage>
 	</target>
 	<target name="test" depends="unit-test,integration-test">
+		<mkdir dir="${reports.jacoco.dir}" />
+		<jacoco:report>
+			<executiondata>
+				<file file="jacoco.unit.exec" />
+				<file file="jacoco.int.exec" />
+			</executiondata>
+			<structure name="UIESG">
+				<classfiles>
+					<fileset dir="${build.dir}" />
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="${src.dir}" />
+				</sourcefiles>
+			</structure>
+			<html destdir="${reports.jacoco.dir}" />
+		</jacoco:report>
 	</target>
 	<target name="gen-jdoc">
 		<mkdir dir="${doc.dir}" />
@@ -99,5 +123,8 @@
 	</target>
 	<target name="clean">
 		<delete dir="${build.dir}" />
+		<delete dir="${test.build.dir}" />
+		<delete dir="${reports.unit.dir}" />
+		<delete dir="${reports.int.dir}" />
 	</target>
 </project>

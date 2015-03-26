@@ -4,6 +4,10 @@ import java.awt.Shape;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.io.OutputStream;
+
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 /**
  * Represents an click event in the browser window.
@@ -11,7 +15,7 @@ import java.awt.geom.Rectangle2D;
  * @author oalpha
  *
  */
-public class MouseClickNode implements MouseGraphNode {
+public class MouseClickNode extends AbstractMouseGraphAction implements MouseGraphNode {
 
 	@SuppressWarnings( "javadoc" )
 	@Override
@@ -59,6 +63,13 @@ public class MouseClickNode implements MouseGraphNode {
 	@Override
 	public Dimension2D getVariance() {
 		throw new RuntimeException("method not implemented");
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public void write( OutputStream out ) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
