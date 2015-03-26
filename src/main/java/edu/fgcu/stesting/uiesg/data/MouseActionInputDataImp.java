@@ -23,7 +23,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	/**
 	 * The rawData recorded by the browser.
 	 */
-	private List<Point> rawData;
+	protected List<Point> rawData;
 
 	/**
 	 * Constructs a MAID instance with an existing collection. This is for
