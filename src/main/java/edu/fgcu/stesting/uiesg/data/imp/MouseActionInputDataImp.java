@@ -25,7 +25,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	/**
 	 * The rawData recorded by the browser.
 	 */
-	public List<Point> rawData;
+	private List<Point> rawData;
 
 	/**
 	 * Constructs a MAID instance with an existing collection. This is for
@@ -42,7 +42,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * Constructs a standard MAID instance.
 	 */
 	public MouseActionInputDataImp() {
-		rawData = new ArrayList<Point>();
+		this.rawData = new ArrayList<Point>();
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * @return the number of points
 	 */
 	public int size() {
-		return rawData.size();
+		return getRawData().size();
 	}
 
 	/**
@@ -66,13 +66,13 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 
 		// iterate through the arraylist to find the minimums and maximums to
 		// create the box
-		Point temp = rawData.get(0);
+		Point temp = getRawData().get(0);
 		double minX = (page ? temp.browserLocation : temp.pagePosition).getX();
 		double minY = (page ? temp.browserLocation : temp.pagePosition).getY();
 		double maxX = (page ? temp.browserLocation : temp.pagePosition).getX();
 		double maxY = (page ? temp.browserLocation : temp.pagePosition).getY();
-		for (int i = 1; i < rawData.size(); i++) {
-			Point tmp = rawData.get(i);
+		for (int i = 1; i < getRawData().size(); i++) {
+			Point tmp = getRawData().get(i);
 			if ((page ? tmp.browserLocation : tmp.pagePosition).getX() < minX) // find
 																				// smallest
 				minX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
@@ -101,7 +101,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		if (rawData.isEmpty())
 			throw new NoSuchElementException("No element");
 		else {
-			Point item = rawData.get(rawData.size() - 1);
+			Point item = getRawData().get(getRawData().size() - 1);
 			return item.timestamp;
 		}
 
@@ -143,7 +143,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		p.timestamp = timestamp;
 		p.type = type;
 
-		rawData.add(p);
+		getRawData().add(p);
 
 	}
 
@@ -155,6 +155,11 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public Iterator<Point> iterate() {
 		throw new RuntimeException("method not implemented");
+	}
+
+	@SuppressWarnings( "javadoc" )
+	public List<Point> getRawData() {
+		return rawData;
 	}
 
 }
