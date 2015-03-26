@@ -93,7 +93,7 @@
 					<fileset dir="${src.dir}" />
 				</sourcefiles>
 			</structure>
-			<xml destdir="${reports.jacoco.dir}" />
+			<html destdir="${reports.jacoco.dir}" />
 		</jacoco:report>
 	</target>
 	<target name="gen-jdoc">
