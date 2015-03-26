@@ -72,7 +72,7 @@
 				<formatter type="plain" />
 				<batchtest todir="${reports.int.dir}">
 					<fileset dir="${test.src.dir}">
-						<include name="**/*integrationTest.java" />
+						<include name="**/*IntegrationTest.java" />
 					</fileset>
 				</batchtest>
 			</junit>
