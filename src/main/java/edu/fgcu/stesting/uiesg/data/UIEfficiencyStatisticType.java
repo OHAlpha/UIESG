@@ -1,5 +1,6 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.io.InputStream;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -52,6 +53,11 @@ public abstract class UIEfficiencyStatisticType {
 		}
 		
 		public static void addType( UIEfficiencyStatisticType type ) {
+			throw new RuntimeException("method not implemented");
+			// TODO
+		}
+		
+		public static UIEfficiencyStatisticType getType( String type ) {
 			throw new RuntimeException("method not implemented");
 			// TODO
 		}
@@ -112,6 +118,15 @@ public abstract class UIEfficiencyStatisticType {
 	 * @return the UIES instance
 	 */
 	public abstract UIEfficiencyStatistic calculate( GraphOutputDataImp graph );
+
+	/**
+	 * Creates a UIES instance of this type from an input stream.
+	 * 
+	 * @param in
+	 *            the stream of data to read
+	 * @return the UIES instance
+	 */
+	public abstract UIEfficiencyStatistic create( InputStream in );
 
 	/**
 	 * The type of value this type creates.

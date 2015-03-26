@@ -1,107 +1,161 @@
 Testsuite: edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest
-Tests run: 16, Failures: 0, Errors: 10, Skipped: 0, Time elapsed: 0.456 sec
+Tests run: 16, Failures: 2, Errors: 4, Skipped: 0, Time elapsed: 0.458 sec
+------------- Standard Error -----------------
+java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:224)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testIsLoadedLoaded(SiteEfficiencyDataUnitTest.java:298)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:523)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1424)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:852)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1903)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:804)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:435)
+	at org.apache.tools.ant.Target.performTasks(Target.java:456)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1393)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1364)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1248)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
+java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:224)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileExists(SiteEfficiencyDataUnitTest.java:189)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:523)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1424)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:852)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1903)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:804)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:435)
+	at org.apache.tools.ant.Target.performTasks(Target.java:456)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1393)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1364)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1248)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
+------------- ---------------- ---------------
 
-Testcase: testCalculateStatisticsLoaded took 0.102 sec
-Testcase: testCompileMouseDataLoaded took 0.017 sec
+Testcase: testCalculateStatisticsLoaded took 0.07 sec
+Testcase: testCompileMouseDataLoaded took 0.024 sec
 	Caused an ERROR
-method not implemented
-java.lang.RuntimeException: method not implemented
-	at edu.fgcu.stesting.uiesg.data.MouseActionInputDataImp.iterate(MouseActionInputDataImp.java:155)
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.compileMouseData(SiteEfficiencyData.java:255)
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataLoaded(SiteEfficiencyDataUnitTest.java:348)
+constructor not implemented
+java.lang.RuntimeException: constructor not implemented
+	at edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp.<init>(GraphOutputDataImp.java:52)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.compileMouseData(SiteEfficiencyData.java:515)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataLoaded(SiteEfficiencyDataUnitTest.java:351)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 
-Testcase: testNewMouseDataLoaded took 0.008 sec
-Testcase: testGetForDomainExistsWithFile took 0.002 sec
-Testcase: testIsLoadedNotLoaded took 0.001 sec
-Testcase: testGetForDomainNotExists took 0.01 sec
-Testcase: testLoadDataFileNotExists took 0.008 sec
-	Caused an ERROR
-method not implemented
-java.lang.RuntimeException: method not implemented
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:194)
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileNotExists(SiteEfficiencyDataUnitTest.java:212)
+Testcase: testNewMouseDataLoaded took 0.007 sec
+Testcase: testGetForDomainExistsWithFile took 0.006 sec
+Testcase: testIsLoadedNotLoaded took 0.008 sec
+Testcase: testGetForDomainNotExists took 0.002 sec
+Testcase: testLoadDataFileNotExists took 0.005 sec
+Testcase: testUnloadDataLoaded took 0.075 sec
+	FAILED
+wiki.unloadData() must return true
+junit.framework.AssertionFailedError: wiki.unloadData() must return true
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataLoaded(SiteEfficiencyDataUnitTest.java:265)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 
-Testcase: testUnloadDataLoaded took 0.017 sec
-	Caused an ERROR
-method not implemented
-java.lang.RuntimeException: method not implemented
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.unloadData(SiteEfficiencyData.java:205)
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataLoaded(SiteEfficiencyDataUnitTest.java:259)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
-
-Testcase: testIsLoadedLoaded took 0.008 sec
-	Caused an ERROR
-method not implemented
-java.lang.RuntimeException: method not implemented
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:194)
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testIsLoadedLoaded(SiteEfficiencyDataUnitTest.java:295)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
-
-Testcase: testNewMouseDataNotLoaded took 0.008 sec
+Testcase: testIsLoadedLoaded took 0.034 sec
+Testcase: testNewMouseDataNotLoaded took 0.016 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testNewMouseDataNotLoaded(SiteEfficiencyDataUnitTest.java:389)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testNewMouseDataNotLoaded(SiteEfficiencyDataUnitTest.java:392)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 
-Testcase: testLoadDataFileExists took 0.01 sec
-	Caused an ERROR
-method not implemented
-java.lang.RuntimeException: method not implemented
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:194)
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileExists(SiteEfficiencyDataUnitTest.java:186)
+Testcase: testLoadDataFileExists took 0.038 sec
+	FAILED
+wiki.loadData() must return true
+junit.framework.AssertionFailedError: wiki.loadData() must return true
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileExists(SiteEfficiencyDataUnitTest.java:192)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 
-Testcase: testLoadDataFileLoaded took 0.01 sec
-	Caused an ERROR
-method not implemented
-java.lang.RuntimeException: method not implemented
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:194)
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileLoaded(SiteEfficiencyDataUnitTest.java:171)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
-
-Testcase: testUnloadDataNotLoaded took 0.008 sec
-	Caused an ERROR
-method not implemented
-java.lang.RuntimeException: method not implemented
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.unloadData(SiteEfficiencyData.java:205)
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataNotLoaded(SiteEfficiencyDataUnitTest.java:233)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
-
-Testcase: testCalculateStatisticsNotLoaded took 0.009 sec
+Testcase: testLoadDataFileLoaded took 0.006 sec
+Testcase: testUnloadDataNotLoaded took 0.002 sec
+Testcase: testCalculateStatisticsNotLoaded took 0.014 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCalculateStatisticsNotLoaded(SiteEfficiencyDataUnitTest.java:407)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCalculateStatisticsNotLoaded(SiteEfficiencyDataUnitTest.java:410)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 
-Testcase: testCompileMouseDataNotLoaded took 0.013 sec
+Testcase: testCompileMouseDataNotLoaded took 0.007 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
-	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataNotLoaded(SiteEfficiencyDataUnitTest.java:398)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataNotLoaded(SiteEfficiencyDataUnitTest.java:401)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 
-Testcase: testGetForDomainExistsNoFile took 0.012 sec
+Testcase: testGetForDomainExistsNoFile took 0.015 sec

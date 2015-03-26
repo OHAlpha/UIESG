@@ -7,15 +7,16 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Iterator;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import edu.fgcu.stesting.uiesg.data.GraphOutputData.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData.MAIDFactory;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.DataSet;
+import edu.fgcu.stesting.uiesg.data.graph.MouseGraphAction.MouseGraphActionFactory;
 import static org.junit.Assert.*;
 
 /**
@@ -48,7 +49,9 @@ public class SiteEfficiencyDataUnitTest {
 	@BeforeClass
 	public static void setup() {
 		SiteEfficiencyData.init("tmp/datafiles");
-		MAIDFactory.init(MAIDFactory.IMPLEMENTATION);
+		MAIDFactory.init(MAIDFactory.MOCK);
+		GODFactory.init(GODFactory.MOCK);
+		MouseGraphActionFactory.init(MouseGraphActionFactory.MOCK);
 	}
 
 	/**
@@ -334,7 +337,7 @@ public class SiteEfficiencyDataUnitTest {
 				fgcu.data.size());
 
 		// make sure last DataSet contains maid
-		assertEquals("", ((List<DataSet>) fgcu.data).get(size).mouseData, maid);
+		assertEquals("", fgcu.data.get(size).mouseData, maid);
 
 	}
 

@@ -3,6 +3,7 @@ package edu.fgcu.stesting.uiesg.data.graph;
 import java.awt.Shape;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Rectangle2D;
+import java.io.OutputStream;
 
 /**
  * Represents dragging of the mouse in the browser window. THe previous and next
@@ -11,7 +12,7 @@ import java.awt.geom.Rectangle2D;
  * @author oalpha
  *
  */
-public class MouseDragEdge implements MouseGraphEdge {
+public class MouseDragEdge extends AbstractMouseGraphAction implements MouseGraphEdge {
 
 	@SuppressWarnings( "javadoc" )
 	@Override
@@ -65,6 +66,12 @@ public class MouseDragEdge implements MouseGraphEdge {
 	@Override
 	public Object getPathParameters() {
 		throw new RuntimeException("method not implemented");
+	}
+
+	@Override
+	public void write( OutputStream out ) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

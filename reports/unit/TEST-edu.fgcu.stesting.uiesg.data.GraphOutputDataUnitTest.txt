@@ -1,7 +1,7 @@
 Testsuite: edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.307 sec
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.287 sec
 
-Testcase: testOrder took 0.052 sec
+Testcase: testOrder took 0.078 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
@@ -10,7 +10,7 @@ java.lang.RuntimeException: test not implemented
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 
-Testcase: testSize took 0.009 sec
+Testcase: testSize took 0.006 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
@@ -19,7 +19,7 @@ java.lang.RuntimeException: test not implemented
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:452)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:139)
 
-Testcase: testConstructor took 0.015 sec
+Testcase: testConstructor took 0.003 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented

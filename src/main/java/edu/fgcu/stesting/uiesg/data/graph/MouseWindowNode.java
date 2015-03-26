@@ -4,6 +4,7 @@ import java.awt.Shape;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.io.OutputStream;
 
 /**
  * Represents the mouse entering or exiting the browser window.
@@ -11,7 +12,7 @@ import java.awt.geom.Rectangle2D;
  * @author oalpha
  *
  */
-public class MouseWindowNode implements MouseGraphNode {
+public class MouseWindowNode extends AbstractMouseGraphAction implements MouseGraphNode {
 
 	@SuppressWarnings( "javadoc" )
 	@Override
@@ -59,6 +60,12 @@ public class MouseWindowNode implements MouseGraphNode {
 	@Override
 	public Dimension2D getVariance() {
 		throw new RuntimeException("method not implemented");
+	}
+
+	@Override
+	public void write( OutputStream out ) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

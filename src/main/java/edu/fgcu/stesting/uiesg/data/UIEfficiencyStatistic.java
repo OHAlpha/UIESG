@@ -1,5 +1,8 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.io.DataOutputStream;
+import java.io.OutputStream;
+
 /**
  * UIEfficiencyStatistic (UIES) is a container for a specific metric for the
  * efficiency of the user interface.
@@ -44,6 +47,11 @@ public class UIEfficiencyStatistic {
 	 */
 	public Object getValue() {
 		return value;
+	}
+
+	public void write( OutputStream out ) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
