@@ -2,10 +2,11 @@ package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-
 import java.awt.geom.Rectangle2D;
 
 import org.junit.*;
+
+import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
 import static org.junit.Assert.*;
 
 // TODO: javadoc
@@ -91,7 +92,7 @@ public class MouseActionInputDataUnitTest {
 		// System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 
 		// create new MAID
-		edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point p = MAID.rawData
+		edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point p = MAID.getRawData()
 				.get(MAID.size() - 1);
 		// test x value of broswer location
 		assertEquals(0, p.browserLocation.getX(), .01);
