@@ -1,9 +1,1 @@
 Testsuite: edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.542 sec
-
-Testcase: notAnActualTest took 0.057 sec
-	Caused an ERROR
-not a test
-java.lang.RuntimeException: not a test
-	at edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest.notAnActualTest(Unknown Source)
-

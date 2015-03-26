@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="oalpha-HP-2000-Notebook-PC" name="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" skipped="0" tests="3" time="0.535" timestamp="2015-03-26T19:06:34">
+<testsuite errors="0" failures="1" hostname="oalpha-HP-2000-Notebook-PC" name="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" skipped="0" tests="3" time="0.603" timestamp="2015-03-26T21:11:04">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="ant.file.UI Efficiency Statistics Generator" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml" />
@@ -44,7 +44,7 @@
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
-    <property name="_jacoco.agentFile" value="/tmp/jacocoagent842944897846212801.jar" />
+    <property name="_jacoco.agentFile" value="/tmp/jacocoagent5043555219999746646.jar" />
     <property name="ant.file.type.UI Efficiency Statistics Generator" value="file" />
     <property name="user.home" value="/home/oalpha" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
@@ -52,8 +52,8 @@
     <property name="java.vendor.url" value="http://java.oracle.com/" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/unit/TEST-edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest.xml formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/unit/TEST-edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest.txt crashfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junitvmwatcher6587468328457673177.properties propsfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junit5311850428083214507.properties" />
-    <property name="java.class.path" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/classes:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/hamcrest-all-1.3.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoagent.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoant.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/junit4.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.agent-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.ant-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.core-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.report-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/test/classes:/usr/share/ant/lib/junit.jar:/usr/share/java/ant-launcher-1.9.3.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar:/tmp/jacocoagent842944897846212801.jar" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/unit/TEST-edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest.xml formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/unit/TEST-edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest.txt crashfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junitvmwatcher7476434677560350094.properties propsfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junit5424115294571676935.properties" />
+    <property name="java.class.path" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/classes:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/hamcrest-all-1.3.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoagent.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoant.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/junit4.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.agent-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.ant-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.core-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.report-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/test/classes:/usr/share/ant/lib/junit.jar:/usr/share/java/ant-launcher-1.9.3.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar:/tmp/jacocoagent5043555219999746646.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.3 compiled on April 8 2014" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
     <property name="ant.file.type" value="file" />
@@ -76,14 +76,14 @@
     <property name="file.encoding" value="UTF-8" />
     <property name="java.specification.version" value="1.8" />
     <property name="src.dir" value="src/main/java" />
-    <property name="ant.project.invoked-targets" value="clean,test" />
+    <property name="ant.project.invoked-targets" value="clean,build,test" />
   </properties>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testGetRange" time="0.141">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testGetRange" time="0.122">
     <failure message="expected:&lt;0.0&gt; but was:&lt;2.0&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;0.0&gt; but was:&lt;2.0&gt;
 	at edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest.testGetRange(Unknown Source)
 </failure>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testSize" time="0.003" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testSize" time="0.001" />
   <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testAddPoint" time="0.001" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
