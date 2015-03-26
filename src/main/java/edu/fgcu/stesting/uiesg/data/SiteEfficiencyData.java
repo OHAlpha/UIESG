@@ -486,7 +486,7 @@ public class SiteEfficiencyData {
 		// data create a new MAID in that dataset
 		DataSet d = new DataSet();
 		// add mousedata to the dataset
-		d.mouseData = MAIDFactory.newInstance(); // MAIDFactory isn't setup yet.
+		d.mouseData = MAIDFactory.newInstance();
 		data.add(d);
 
 		return d.mouseData;
@@ -522,10 +522,10 @@ public class SiteEfficiencyData {
 		// create a statistics based on the GOD
 		for (Iterator<DataSet> it = data.iterator(); it.hasNext();) {
 			DataSet d = it.next();
-			if (d.statistics == null) {
-				if (d.graphData != null) {
-					// statistics type will already exist. a static method
-					// calculate all satistics will be added
+			if (d.statistics == null){
+				if (d.graphData != null){
+					// statistics type will already exist. a static method calculate all satistics will be added
+					d.statistics = UIEfficiencyStatistics.calculateStatistics(d.graphData);
 				}
 
 			}
