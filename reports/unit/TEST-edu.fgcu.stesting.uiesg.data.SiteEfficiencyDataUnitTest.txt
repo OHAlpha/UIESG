@@ -1,5 +1,5 @@
 Testsuite: edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest
-Tests run: 16, Failures: 1, Errors: 6, Skipped: 0, Time elapsed: 0.908 sec
+Tests run: 16, Failures: 1, Errors: 6, Skipped: 0, Time elapsed: 1.042 sec
 ------------- Standard Error -----------------
 java.io.EOFException
 	at java.io.DataInputStream.readInt(DataInputStream.java:392)
@@ -59,8 +59,8 @@ java.io.EOFException
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1016)
 ------------- ---------------- ---------------
 
-Testcase: testCalculateStatisticsLoaded took 0.067 sec
-Testcase: testCompileMouseDataLoaded took 0.066 sec
+Testcase: testCalculateStatisticsLoaded took 0.103 sec
+Testcase: testCompileMouseDataLoaded took 0.083 sec
 	Caused an ERROR
 constructor not implemented
 java.lang.RuntimeException: constructor not implemented
@@ -68,10 +68,10 @@ java.lang.RuntimeException: constructor not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.compileMouseData(Unknown Source)
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataLoaded(Unknown Source)
 
-Testcase: testNewMouseDataLoaded took 0.002 sec
+Testcase: testNewMouseDataLoaded took 0.006 sec
 Testcase: testGetForDomainExistsWithFile took 0.002 sec
 Testcase: testIsLoadedNotLoaded took 0.004 sec
-Testcase: testGetForDomainNotExists took 0.008 sec
+Testcase: testGetForDomainNotExists took 0.005 sec
 Testcase: testLoadDataFileNotExists took 0.002 sec
 Testcase: testUnloadDataLoaded took 0.011 sec
 	Caused an ERROR
@@ -80,37 +80,37 @@ java.lang.NullPointerException
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.unloadData(Unknown Source)
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataLoaded(Unknown Source)
 
-Testcase: testIsLoadedLoaded took 0.013 sec
-Testcase: testNewMouseDataNotLoaded took 0.006 sec
+Testcase: testIsLoadedLoaded took 0.017 sec
+Testcase: testNewMouseDataNotLoaded took 0.009 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testNewMouseDataNotLoaded(Unknown Source)
 
-Testcase: testLoadDataFileExists took 0.031 sec
+Testcase: testLoadDataFileExists took 0.032 sec
 	FAILED
 wiki.loadData() must return true
 junit.framework.AssertionFailedError: wiki.loadData() must return true
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileExists(Unknown Source)
 
 Testcase: testLoadDataFileLoaded took 0.002 sec
-Testcase: testUnloadDataNotLoaded took 0.004 sec
+Testcase: testUnloadDataNotLoaded took 0.01 sec
 	Caused an ERROR
 null
 java.lang.NullPointerException
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.unloadData(Unknown Source)
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataNotLoaded(Unknown Source)
 
-Testcase: testCalculateStatisticsNotLoaded took 0.01 sec
+Testcase: testCalculateStatisticsNotLoaded took 0.011 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCalculateStatisticsNotLoaded(Unknown Source)
 
-Testcase: testCompileMouseDataNotLoaded took 0.028 sec
+Testcase: testCompileMouseDataNotLoaded took 0.015 sec
 	Caused an ERROR
 test not implemented
 java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataNotLoaded(Unknown Source)
 
-Testcase: testGetForDomainExistsNoFile took 0.013 sec
+Testcase: testGetForDomainExistsNoFile took 0.009 sec

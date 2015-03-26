@@ -35,14 +35,14 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 *            the collection to be used in place of the default.
 	 */
 	protected MouseActionInputDataImp( List<Point> rawData ) {
-		this.setRawData(rawData);
+		this.rawData = rawData;
 	}
 
 	/**
 	 * Constructs a standard MAID instance.
 	 */
 	public MouseActionInputDataImp() {
-		setRawData(new ArrayList<Point>());
+		this.rawData = new ArrayList<Point>();
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
 
-		if (getRawData() == null)
+		if (rawData.isEmpty())
 			throw new NoSuchElementException("No element");
 		else {
 			Point item = getRawData().get(getRawData().size() - 1);
@@ -133,8 +133,9 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 			throw new IllegalArgumentException();
 		if (pagePoint.getX() < 0 || pagePoint.getY() < 0)
 			throw new IllegalArgumentException();
-		if (timestamp < latestTimestamp())
-			throw new IllegalArgumentException();
+		if (rawData.size() > 0)
+			if (timestamp < latestTimestamp())
+				throw new IllegalArgumentException();
 		if (type < MOUSE_FIRST || type > MOUSE_LAST)
 			throw new IllegalArgumentException();
 
@@ -158,12 +159,9 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		throw new RuntimeException("method not implemented");
 	}
 
+	@SuppressWarnings( "javadoc" )
 	public List<Point> getRawData() {
 		return rawData;
-	}
-
-	public void setRawData(List<Point> rawData) {
-		this.rawData = rawData;
 	}
 
 }
