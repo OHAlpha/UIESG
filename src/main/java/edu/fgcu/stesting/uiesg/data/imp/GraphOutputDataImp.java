@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphAction;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphEdge;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphNode;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 /**
  * GraphOutputData (GOD) is a container for the graph data. Instances will store

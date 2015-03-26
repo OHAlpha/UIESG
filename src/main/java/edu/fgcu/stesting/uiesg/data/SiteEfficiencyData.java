@@ -16,12 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import edu.fgcu.stesting.uiesg.data.GraphOutputData.GODFactory;
-import edu.fgcu.stesting.uiesg.data.MouseActionInputData.MAIDFactory;
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphAction;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphAction.MouseGraphActionFactory;
 import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 
 /**

@@ -1,5 +1,7 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
 public abstract class AbstractMouseGraphAction implements MouseGraphAction {

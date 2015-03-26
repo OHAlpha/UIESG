@@ -5,6 +5,10 @@ import java.awt.geom.Dimension2D;
 import java.awt.geom.Rectangle2D;
 import java.io.OutputStream;
 
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+
 /**
  * Represents dragging of the mouse in the browser window. THe previous and next
  * actions will be either other MouseDragEdges or MouseClickNodes.

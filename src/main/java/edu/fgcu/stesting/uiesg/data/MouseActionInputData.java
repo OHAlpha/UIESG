@@ -5,9 +5,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
-import edu.fgcu.stesting.uiesg.data.mock.MouseActionInputDataMock;
-
 /**
  * MouseActionInputData (MAID) is a container for the raw mouse data. Instances
  * will store the locations, timestamps and types of all MouseEvents generated
@@ -17,27 +14,6 @@ import edu.fgcu.stesting.uiesg.data.mock.MouseActionInputDataMock;
  *
  */
 public interface MouseActionInputData {
-
-	// TODO: javadoc
-	@SuppressWarnings( "javadoc" )
-	public static class MAIDFactory {
-
-		public static final int MOCK = 0;
-
-		public static final int IMPLEMENTATION = 1;
-
-		protected static int mode;
-
-		public static MouseActionInputData newInstance() {
-			return mode == MOCK ? new MouseActionInputDataMock()
-					: new MouseActionInputDataImp();
-		}
-
-		public static void init( int mode ) {
-			MAIDFactory.mode = mode;
-		}
-
-	}
 
 	/**
 	 * An encapsulation of the location timestamp and type of a mouse event.

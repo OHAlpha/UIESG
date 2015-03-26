@@ -13,10 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import edu.fgcu.stesting.uiesg.data.GraphOutputData.GODFactory;
-import edu.fgcu.stesting.uiesg.data.MouseActionInputData.MAIDFactory;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.DataSet;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphAction.MouseGraphActionFactory;
 import static org.junit.Assert.*;
 
 /**

@@ -3,10 +3,10 @@ package edu.fgcu.stesting.uiesg.data.mock;
 import java.util.Iterator;
 
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphAction;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphEdge;
-import edu.fgcu.stesting.uiesg.data.graph.MouseGraphNode;
 
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )

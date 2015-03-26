@@ -1,4 +1,4 @@
-package edu.fgcu.stesting.uiesg.data.graph;
+package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.geom.Dimension2D;
 

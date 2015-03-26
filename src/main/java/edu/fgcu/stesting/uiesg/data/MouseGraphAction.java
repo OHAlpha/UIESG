@@ -1,9 +1,8 @@
-package edu.fgcu.stesting.uiesg.data.graph;
+package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.Shape;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Rectangle2D;
-import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
@@ -13,38 +12,6 @@ import java.io.OutputStream;
  *
  */
 public interface MouseGraphAction {
-
-	// TODO: javadoc
-	@SuppressWarnings( "javadoc" )
-	public static class MouseGraphActionFactory {
-
-		// TODO: javadoc
-		public static final int MOCK = 0;
-
-		// TODO: javadoc
-		public static final int IMPLEMENTATION = 1;
-
-		// TODO: javadoc
-		protected static int mode;
-
-		// TODO: javadoc
-		public static MouseGraphAction create( int type, Object... params ) {
-			throw new RuntimeException("method not implemented");
-			// TODO
-		}
-
-		// TODO: javadoc
-		public static MouseGraphAction read( InputStream in ) {
-			throw new RuntimeException("method not implemented");
-			// TODO
-		}
-
-		// TODO: javadoc
-		public static void init( int mode ) {
-			MouseGraphActionFactory.mode = mode;
-		}
-
-	}
 
 	// TODO: javadoc
 	@SuppressWarnings( "javadoc" )

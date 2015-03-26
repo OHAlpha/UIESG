@@ -6,6 +6,9 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.OutputStream;
 
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+
 /**
  * Represents the mouse entering or exiting the browser window.
  * 
