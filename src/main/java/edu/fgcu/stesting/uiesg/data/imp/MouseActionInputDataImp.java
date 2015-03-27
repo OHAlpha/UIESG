@@ -67,24 +67,24 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		// iterate through the arraylist to find the minimums and maximums to
 		// create the box
 		Point temp = getRawData().get(0);
-		double minX = (page ? temp.browserLocation : temp.pagePosition).getX();
-		double minY = (page ? temp.browserLocation : temp.pagePosition).getY();
-		double maxX = (page ? temp.browserLocation : temp.pagePosition).getX();
-		double maxY = (page ? temp.browserLocation : temp.pagePosition).getY();
+		double minX = (page ? temp.pagePosition : temp.browserLocation).getX();
+		double minY = (page ? temp.pagePosition : temp.browserLocation).getY();
+		double maxX = (page ? temp.pagePosition : temp.browserLocation).getX();
+		double maxY = (page ? temp.pagePosition : temp.browserLocation).getY();
 		for (int i = 1; i < getRawData().size(); i++) {
 			Point tmp = getRawData().get(i);
 			// find the smallest x value
-			if ((page ? tmp.browserLocation : tmp.pagePosition).getX() < minX) 
-				minX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
+			if ((page ? tmp.pagePosition : tmp.browserLocation).getX() < minX) 
+				minX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
 			// find the largest x value
-			if ((maxX < (page ? tmp.browserLocation : tmp.pagePosition).getX())) 
-				maxX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
+			if ((maxX < (page ? tmp.pagePosition : tmp.browserLocation).getX())) 
+				maxX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
 			// find the smallest y value
-			if ((page ? tmp.browserLocation : tmp.pagePosition).getY() < minY)
-				minY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
+			if ((page ? tmp.pagePosition : tmp.browserLocation).getY() < minY)
+				minY = (page ? tmp.pagePosition : tmp.browserLocation).getY();
 			// find the largest y value
-			if ((maxY < (page ? tmp.browserLocation : tmp.pagePosition).getY()))
-				maxY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
+			if ((maxY < (page ? tmp.pagePosition : tmp.browserLocation).getY()))
+				maxY = (page ? tmp.pagePosition : tmp.browserLocation).getY();
 		}
 
 		return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
@@ -99,7 +99,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 *             if no points have been added.
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
-
+		
 		if (rawData.isEmpty())
 			throw new NoSuchElementException("No element");
 		else {

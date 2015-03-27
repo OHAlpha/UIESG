@@ -3,6 +3,7 @@ package edu.fgcu.stesting.uiesg.data;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
+import java.util.NoSuchElementException;
 
 import org.junit.*;
 
@@ -46,14 +47,35 @@ public class MouseActionInputDataUnitTest {
 				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 		MAID.addPoint(new Point(2, 3), new Point(6, 4),
 				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		
+		// test to see if there are three elements in the list
 		assertEquals(3, MAID.size());
 
 	}
 
-	// add method to test latest timestamp with null data
+	/***
+	 *   method to test latest timestamp with null data
+	 */
+	@Test (expected=NoSuchElementException.class)
+	public void testTimeStamp(){
+		
+		// rawData should be empty which will throw an error
+		MAID.latestTimestamp();
+		
+		
+	}
 
 	// add method to test negative x and y values
-
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddPointFault(){
+		// add a point with negative value to get the error exception
+		MAID.addPoint(new Point(-2, -6), new Point(1,2), System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		
+	}
+	/***
+	 *  test that adds points to the list and then gets the range based on the X and Y values
+	 *  
+	 */
 	@Test
 	public void testGetRange() {
 
@@ -73,11 +95,22 @@ public class MouseActionInputDataUnitTest {
 		assertEquals(1, r.getY(), .01);
 		assertEquals(2, r.getWidth(), .01);
 		assertEquals(2, r.getHeight(), .01);
-
+		
+		// test getRange with true which should return the pagePosition instead of the browserLocation
+		r = MAID.getRange(true);
+		assertEquals(2, r.getX(), .01);
+		assertEquals(0, r.getY(), .01);
+		assertEquals(4, r.getWidth(), .01);
+		assertEquals(4, r.getHeight(), .01);
+		
 		// Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
 
 	}
 
+	/***
+	 *  test that adds points for browserLocation and pagePosition, a time, and a mouse action
+	 *  
+	 */
 	@Test
 	public void testAddPoint() {
 		
