@@ -25,7 +25,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	/**
 	 * The rawData recorded by the browser.
 	 */
-	public List<Point> rawData;
+	private List<Point> rawData;
 
 	/**
 	 * Constructs a MAID instance with an existing collection. This is for
@@ -42,7 +42,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * Constructs a standard MAID instance.
 	 */
 	public MouseActionInputDataImp() {
-		rawData = new ArrayList<Point>();
+		this.rawData = new ArrayList<Point>();
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * @return the number of points
 	 */
 	public int size() {
-		return rawData.size();
+		return getRawData().size();
 	}
 
 	/**
@@ -66,23 +66,25 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 
 		// iterate through the arraylist to find the minimums and maximums to
 		// create the box
-		Point temp = rawData.get(0);
-		double minX = (page ? temp.browserLocation : temp.pagePosition).getX();
-		double minY = (page ? temp.browserLocation : temp.pagePosition).getY();
-		double maxX = (page ? temp.browserLocation : temp.pagePosition).getX();
-		double maxY = (page ? temp.browserLocation : temp.pagePosition).getY();
-		for (int i = 1; i < rawData.size(); i++) {
-			Point tmp = rawData.get(i);
-			if ((page ? tmp.browserLocation : tmp.pagePosition).getX() < minX) // find
-																				// smallest
-				minX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
-			if ((maxX < (page ? tmp.browserLocation : tmp.pagePosition).getX())) // find
-																					// largest
-				maxX = (page ? tmp.browserLocation : tmp.pagePosition).getX();
-			if ((page ? tmp.browserLocation : tmp.pagePosition).getY() < minY)
-				minY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
-			if ((maxY < (page ? tmp.browserLocation : tmp.pagePosition).getY()))
-				maxY = (page ? tmp.browserLocation : tmp.pagePosition).getY();
+		Point temp = getRawData().get(0);
+		double minX = (page ? temp.pagePosition : temp.browserLocation).getX();
+		double minY = (page ? temp.pagePosition : temp.browserLocation).getY();
+		double maxX = (page ? temp.pagePosition : temp.browserLocation).getX();
+		double maxY = (page ? temp.pagePosition : temp.browserLocation).getY();
+		for (int i = 1; i < getRawData().size(); i++) {
+			Point tmp = getRawData().get(i);
+			// find the smallest x value
+			if ((page ? tmp.pagePosition : tmp.browserLocation).getX() < minX) 
+				minX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
+			// find the largest x value
+			if ((maxX < (page ? tmp.pagePosition : tmp.browserLocation).getX())) 
+				maxX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
+			// find the smallest y value
+			if ((page ? tmp.pagePosition : tmp.browserLocation).getY() < minY)
+				minY = (page ? tmp.pagePosition : tmp.browserLocation).getY();
+			// find the largest y value
+			if ((maxY < (page ? tmp.pagePosition : tmp.browserLocation).getY()))
+				maxY = (page ? tmp.pagePosition : tmp.browserLocation).getY();
 		}
 
 		return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
@@ -97,11 +99,11 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 *             if no points have been added.
 	 */
 	public long latestTimestamp() throws NoSuchElementException {
-
+		
 		if (rawData.isEmpty())
 			throw new NoSuchElementException("No element");
 		else {
-			Point item = rawData.get(rawData.size() - 1);
+			Point item = getRawData().get(getRawData().size() - 1);
 			return item.timestamp;
 		}
 
@@ -143,7 +145,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		p.timestamp = timestamp;
 		p.type = type;
 
-		rawData.add(p);
+		getRawData().add(p);
 
 	}
 
@@ -155,6 +157,11 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public Iterator<Point> iterate() {
 		throw new RuntimeException("method not implemented");
+	}
+
+	@SuppressWarnings( "javadoc" )
+	public List<Point> getRawData() {
+		return rawData;
 	}
 
 }
