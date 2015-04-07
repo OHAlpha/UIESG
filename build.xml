@@ -24,14 +24,14 @@
 	</target>
 	<target name="build" depends="j-dir">
 		<mkdir dir="${build.dir}" />
-		<javac includeantruntime="false" destdir="${build.dir}" source="1.8" target="1.8">
+		<javac includeantruntime="false" destdir="${build.dir}" source="1.7" target="1.7">
 			<src path="${src.dir}" />
 			<classpath refid="master-classpath" />
 		</javac>
 	</target>
 	<target name="build-test" depends="build">
 		<mkdir dir="${test.build.dir}" />
-		<javac includeantruntime="false" destdir="${test.build.dir}" source="1.8" target="1.8">
+		<javac includeantruntime="false" destdir="${test.build.dir}" source="1.7" target="1.7">
 			<src path="${test.src.dir}" />
 			<classpath refid="master-classpath" />
 		</javac>
