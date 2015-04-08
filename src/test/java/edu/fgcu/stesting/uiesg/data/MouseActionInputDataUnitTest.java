@@ -54,7 +54,7 @@ public class MouseActionInputDataUnitTest {
 	}
 
 	/***
-	 *   method to test latest timestamp with null data
+	 *   method to test latest timestamp while rawData is empty
 	 */
 	@Test (expected=NoSuchElementException.class)
 	public void testTimeStamp(){
