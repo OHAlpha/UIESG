@@ -9,6 +9,11 @@ import java.awt.geom.Dimension2D;
  *
  */
 public interface MouseGraphEdge extends MouseGraphAction {
+	
+	/**
+	 * Represents that the movement can be generalized as a straight line.
+	 */
+	public static int PATH_TYPE_LINEAR = 0;
 
 	/**
 	 * Returns the type of regression the movement takes. Valid values are:

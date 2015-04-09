@@ -1,11 +1,14 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.awt.Point;
 import java.io.InputStream;
 import java.util.Iterator;
 
 import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
 import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;
+import edu.fgcu.stesting.uiesg.data.mock.MouseGraphEdgeMock;
+import edu.fgcu.stesting.uiesg.data.mock.MouseGraphNodeMock;
 
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
@@ -43,7 +46,7 @@ public class GODFactory {
 
 	// TODO: javadoc
 	protected static int godMode;
-	
+
 	// TODO: javadoc
 	protected static int actionMode;
 
@@ -72,9 +75,21 @@ public class GODFactory {
 		GODFactory.actionMode = actionMode;
 	}
 
-	public static MouseGraphAction newGraphAction( int type, int suType,
+	public static MouseGraphAction newGraphAction( int type, int subType,
 			Object... params ) {
-		// TODO Auto-generated method stub
+		if (actionMode == MOCK) {
+			if (type == NODE) {
+				return new MouseGraphNodeMock(new Point((int) params[0],
+						(int) params[1]));
+			} else if (type == EDGE) {
+				return new MouseGraphEdgeMock(new Point((int) params[0],
+						(int) params[1]), new Point((int) params[2],
+						(int) params[3]));
+			} else
+				return null;
+		} else if (actionMode == IMPLEMENTATION) {
+			return null;
+		}
 		return null;
 	}
 

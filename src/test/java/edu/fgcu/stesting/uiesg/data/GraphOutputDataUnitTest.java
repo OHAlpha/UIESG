@@ -32,36 +32,36 @@ public class GraphOutputDataUnitTest {
 		maid = MAIDFactory.newInstance();
 		maid.addPoint(new Point(30, 0), new Point(30, 0),
 				System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
-		maid.addPoint(new Point(30, 0), new Point(30, 10),
+		maid.addPoint(new Point(30, 10), new Point(30, 10),
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(30, 30),
+		maid.addPoint(new Point(30, 30), new Point(30, 30),
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(30, 50),
+		maid.addPoint(new Point(30, 50), new Point(30, 50),
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(30, 50),
+		maid.addPoint(new Point(30, 50), new Point(30, 50),
 				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		maid.addPoint(new Point(30, 0), new Point(40, 10),
+		maid.addPoint(new Point(40, 50), new Point(40, 50),
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(50, 30),
+		maid.addPoint(new Point(50, 50), new Point(50, 50),
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(60, 50),
+		maid.addPoint(new Point(60, 50), new Point(60, 50),
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(50, 50),
+		maid.addPoint(new Point(50, 30), new Point(50, 30),
 				System.currentTimeMillis()+2000, MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(40, 50),
+		maid.addPoint(new Point(40, 10), new Point(40, 10),
 				System.currentTimeMillis()+2000, MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(30, 50),
+		maid.addPoint(new Point(30, 0), new Point(30, 0),
 				System.currentTimeMillis()+2000, MouseEvent.MOUSE_MOVED);
 		maid.addPoint(new Point(30, 0), new Point(30, 0),
 				System.currentTimeMillis()+2000, MouseEvent.MOUSE_EXITED);
 		as = new MouseGraphAction[] {
-				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.ENTER),
-				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE),
-				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.CLICK),
-				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE),
-				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.HOVER),
-				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE),
-				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.EXIT) };
+				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.ENTER, 30, 0),
+				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE, 30, 0, 30, 50),
+				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.CLICK, 30, 50),
+				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE, 30, 50, 60, 50),
+				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.HOVER, 60, 50),
+				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE, 60, 50, 30, 0),
+				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.EXIT, 30, 0) };
 	}
 
 	private GraphOutputData godA, godB;
@@ -105,15 +105,19 @@ public class GraphOutputDataUnitTest {
 	}
 
 	@Test
-	public void testAddAction() {
+	public void testAddEdge() {
+		godA.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
+				GODFactory.MOVE, 2, 3, 4, 5));
+		assertEquals("godA.order() must be " + o, godA.order(), o);
+		assertEquals("godA.size() must be " + (s + 1), godA.size(), s + 1);
+	}
+
+	@Test
+	public void testAddNode() {
 		godA.addAction(GODFactory.newGraphAction(GODFactory.NODE,
-				GODFactory.ENTER));
+				GODFactory.ENTER, 3, 5));
 		assertEquals("godA.order() must be " + (o + 1), godA.order(), o + 1);
 		assertEquals("godA.size() must be " + s, godA.size(), s);
-		godA.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
-				GODFactory.MOVE));
-		assertEquals("godA.order() must be " + (o + 1), godA.order(), o + 1);
-		assertEquals("godA.size() must be " + (s + 1), godA.size(), s + 1);
 	}
 
 	@Test( expected = RuntimeException.class )

@@ -1,0 +1,173 @@
+Testsuite: edu.fgcu.stesting.uiesg.UnitTest
+Tests run: 36, Failures: 1, Errors: 10, Skipped: 0, Time elapsed: 1.4 sec
+------------- Standard Error -----------------
+java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:219)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testIsLoadedLoaded(SiteEfficiencyDataUnitTest.java:294)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:523)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1063)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:914)
+java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.loadData(SiteEfficiencyData.java:219)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileExists(SiteEfficiencyDataUnitTest.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:523)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1063)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:914)
+------------- ---------------- ---------------
+
+Testcase: testConstructorDefault took 0.057 sec
+Testcase: testGetNodeAsEdge took 0.002 sec
+Testcase: testAddEdge took 0.002 sec
+Testcase: testAddNode took 0.007 sec
+Testcase: testOrder took 0.069 sec
+	Caused an ERROR
+test not implemented
+java.lang.RuntimeException: test not implemented
+	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testOrder(GraphOutputDataUnitTest.java:98)
+
+Testcase: testLock took 0.004 sec
+Testcase: testSize took 0.01 sec
+	Caused an ERROR
+test not implemented
+java.lang.RuntimeException: test not implemented
+	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testSize(GraphOutputDataUnitTest.java:104)
+
+Testcase: testAddActionLocked took 0.002 sec
+Testcase: testGetEdgeAsNode took 0.004 sec
+Testcase: testGetEdge took 0.001 sec
+Testcase: testGetNode took 0.001 sec
+Testcase: testGetAction took 0.001 sec
+Testcase: testConstructorIterator took 0.007 sec
+	Caused an ERROR
+test not implemented
+java.lang.RuntimeException: test not implemented
+	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testConstructorIterator(GraphOutputDataUnitTest.java:92)
+
+Testcase: testIndexOf took 0.002 sec
+Testcase: testGetRange took 0.021 sec
+Testcase: testSize took 0.001 sec
+Testcase: testAddPointFault took 0.006 sec
+Testcase: testAddPoint took 0.003 sec
+Testcase: testTimeStamp took 0.001 sec
+Testcase: initializationError took 0.011 sec
+	Caused an ERROR
+No runnable methods
+java.lang.Exception: No runnable methods
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+
+Testcase: testCalculateStatisticsLoaded took 0.046 sec
+Testcase: testCompileMouseDataLoaded took 0.01 sec
+	Caused an ERROR
+constructor not implemented
+java.lang.RuntimeException: constructor not implemented
+	at edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp.<init>(GraphOutputDataImp.java:72)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.compileMouseData(SiteEfficiencyData.java:506)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataLoaded(SiteEfficiencyDataUnitTest.java:347)
+
+Testcase: testNewMouseDataLoaded took 0.006 sec
+Testcase: testGetForDomainExistsWithFile took 0.002 sec
+Testcase: testIsLoadedNotLoaded took 0.006 sec
+Testcase: testGetForDomainNotExists took 0.007 sec
+Testcase: testLoadDataFileNotExists took 0.01 sec
+Testcase: testUnloadDataLoaded took 0.004 sec
+	Caused an ERROR
+null
+java.lang.NullPointerException
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.unloadData(SiteEfficiencyData.java:351)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataLoaded(SiteEfficiencyDataUnitTest.java:258)
+
+Testcase: testIsLoadedLoaded took 0.015 sec
+Testcase: testNewMouseDataNotLoaded took 0.01 sec
+	Caused an ERROR
+test not implemented
+java.lang.RuntimeException: test not implemented
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testNewMouseDataNotLoaded(SiteEfficiencyDataUnitTest.java:388)
+
+Testcase: testLoadDataFileExists took 0.029 sec
+	FAILED
+wiki.loadData() must return true
+junit.framework.AssertionFailedError: wiki.loadData() must return true
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testLoadDataFileExists(SiteEfficiencyDataUnitTest.java:188)
+
+Testcase: testLoadDataFileLoaded took 0.005 sec
+Testcase: testUnloadDataNotLoaded took 0.061 sec
+	Caused an ERROR
+null
+java.lang.NullPointerException
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.unloadData(SiteEfficiencyData.java:351)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataNotLoaded(SiteEfficiencyDataUnitTest.java:232)
+
+Testcase: testCalculateStatisticsNotLoaded took 0.009 sec
+	Caused an ERROR
+test not implemented
+java.lang.RuntimeException: test not implemented
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCalculateStatisticsNotLoaded(SiteEfficiencyDataUnitTest.java:406)
+
+Testcase: testCompileMouseDataNotLoaded took 0.06 sec
+	Caused an ERROR
+test not implemented
+java.lang.RuntimeException: test not implemented
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testCompileMouseDataNotLoaded(SiteEfficiencyDataUnitTest.java:397)
+
+Testcase: testGetForDomainExistsNoFile took 0.016 sec
