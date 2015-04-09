@@ -197,8 +197,8 @@ public class Browser extends Application {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		grid.setPadding(new Insets(0));
-		Scene scene = new Scene(grid, 300, 275);
-		primaryStage.setTitle("Hello World!");
+		Scene scene = new Scene(grid, 600, 550);
+		primaryStage.setTitle("You're Being Monitored!");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
