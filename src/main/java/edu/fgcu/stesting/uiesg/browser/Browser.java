@@ -152,7 +152,7 @@ public class Browser extends Application {
 		GridPane grid = new GridPane();
 		HBox toolbar = new HBox();
 		Label addrL = new Label("Address:");
-		TextField addrT = new TextField();
+		final TextField addrT = new TextField();
 		Button btn = new Button();
 		btn.setText("Go");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
