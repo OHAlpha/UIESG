@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GraphOutputDataImp.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.imp</a> &gt; <span class="el_source">GraphOutputDataImp.java</span></div><h1>GraphOutputDataImp.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.imp;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import edu.fgcu.stesting.uiesg.data.GraphOutputData;
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+
+/**
+ * GraphOutputData (GOD) is a container for the graph data. Instances will store
+ * nodes and edges representing the various events that occur in the browser
+ * window.
+ * 
+ * @author oalpha
+ *
+ */
+public class GraphOutputDataImp implements GraphOutputData {
+	
+	/**
+	 * Whether this instance has been locked.
+	 */
+	private boolean locked;
+
+	/**
+	 * The collection of actions in this graph.
+	 */
+	@SuppressWarnings( &quot;unused&quot; )
+	private final List&lt;MouseGraphAction&gt; actions;
+
+	/**
+	 * The collection of node indices in this graph.
+	 */
+	@SuppressWarnings( &quot;unused&quot; )
+	private final List&lt;Integer&gt; nodes;
+
+	/**
+	 * The collection of edge indices in this graph.
+	 */
+	@SuppressWarnings( &quot;unused&quot; )
+	private final List&lt;Integer&gt; edges;
+	
+	{
+<span class="fc" id="L47">		actions = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L48">		nodes = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L49">		edges = new LinkedList&lt;&gt;();</span>
+	}
+
+	/**
+	 * Creates an empty instance. Used by SED.loadData().
+	 */
+<span class="fc" id="L55">	public GraphOutputDataImp() {</span>
+<span class="fc" id="L56">		locked = false;</span>
+<span class="fc" id="L57">	}</span>
+
+	/**
+	 * Constructs a GOD instance from raw mouse data. The constructor will join
+	 * multiple move events into fewer, longer MouseMoveEdges and
+	 * MouseDragEdges, filter small movements into MouseHoverNodes, create
+	 * MouseClickNodes for click events, etc.. This constructor shall not throw
+	 * any exceptions except NullPointerException for null input.
+	 * 
+	 * @param mouseData
+	 *            an iterator for the raw data
+	 * @throws NullPointerException
+	 *             if mouseData is null
+	 */
+<span class="fc" id="L71">	public GraphOutputDataImp( Iterator&lt;MouseActionInputData.Point&gt; mouseData )</span>
+			throws NullPointerException {
+		// TODO: compile data
+<span class="fc" id="L74">		locked = true;</span>
+<span class="fc" id="L75">		throw new RuntimeException(&quot;constructor not implemented&quot;);</span>
+	}
+
+	/**
+	 * The number of nodes in the graph.
+	 * 
+	 * @return the number of nodes
+	 */
+	public int order() {
+<span class="nc" id="L84">		return nodes.size();</span>
+	}
+
+	/**
+	 * The number of edges in the graph.
+	 * 
+	 * @return the number of edges
+	 */
+	public int size() {
+<span class="nc" id="L93">		return edges.size();</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public void addAction( MouseGraphAction action ) {
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">		if (locked)</span>
+<span class="nc" id="L100">			throw new RuntimeException(&quot;GOD has been locked&quot;);</span>
+<span class="fc" id="L101">		int i = actions.size();</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">		if (action instanceof MouseGraphNode)</span>
+<span class="nc" id="L103">			nodes.add(i);</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">		else if (action instanceof MouseGraphEdge)</span>
+<span class="nc" id="L105">			edges.add(i);</span>
+		else
+<span class="fc" id="L107">			return;</span>
+<span class="nc" id="L108">		actions.add(action);</span>
+<span class="nc" id="L109">	}</span>
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public MouseGraphAction getAction( int index ) {
+<span class="nc" id="L114">		return actions.get(index);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public MouseGraphNode getNode( int index ) {
+<span class="nc" id="L120">		MouseGraphAction a = actions.get(index);</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">		if (a instanceof MouseGraphNode)</span>
+<span class="nc" id="L122">			return (MouseGraphNode) a;</span>
+<span class="nc" id="L123">		throw new IllegalArgumentException(&quot;Action is an edge&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public MouseGraphEdge getEdge( int index ) {
+<span class="nc" id="L129">		MouseGraphAction a = actions.get(index);</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">		if (a instanceof MouseGraphEdge)</span>
+<span class="nc" id="L131">			return (MouseGraphEdge) a;</span>
+<span class="nc" id="L132">		throw new IllegalArgumentException(&quot;Action is a node&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public int indexOf( MouseGraphAction action ) {
+<span class="nc" id="L138">		return actions.indexOf(action);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public void lock() {
+<span class="nc" id="L144">		locked = true;</span>
+<span class="nc" id="L145">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

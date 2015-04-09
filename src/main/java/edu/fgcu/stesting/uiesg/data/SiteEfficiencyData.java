@@ -273,7 +273,7 @@ public class SiteEfficiencyData {
 					for (int j = 0; j < actions; j++) {
 
 						// read action
-						MouseGraphAction action = MouseGraphActionFactory
+						MouseGraphAction action = GODFactory
 								.read(in);
 
 						// read previous

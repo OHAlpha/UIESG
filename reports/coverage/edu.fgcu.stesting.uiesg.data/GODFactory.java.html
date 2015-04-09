@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GODFactory.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data</a> &gt; <span class="el_source">GODFactory.java</span></div><h1>GODFactory.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data;
+
+import java.io.InputStream;
+import java.util.Iterator;
+
+import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
+import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
+import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;
+
+// TODO: javadoc
+@SuppressWarnings( &quot;javadoc&quot; )
+<span class="nc" id="L12">public class GODFactory {</span>
+
+	// TODO: javadoc=
+	public static final int MOCK = 0;
+
+	// TODO: javadoc
+	public static final int IMPLEMENTATION = 1;
+
+	// TODO: javadoc
+	public static final int NODE = 0;
+
+	// TODO: javadoc
+	public static final int EDGE = 1;
+
+	// TODO: javadoc
+	public static final int ENTER = 0;
+
+	// TODO: javadoc
+	public static final int HOVER = 1;
+
+	// TODO: javadoc
+	public static final int CLICK = 2;
+
+	// TODO: javadoc
+	public static final int EXIT = 3;
+
+	// TODO: javadoc
+	public static final int MOVE = 0;
+
+	// TODO: javadoc
+	public static final int DRAG = 1;
+
+	// TODO: javadoc
+	protected static int godMode;
+	
+	// TODO: javadoc
+	protected static int actionMode;
+
+	// TODO: javadoc
+	public static GraphOutputData newInstance() {
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">		return godMode == MOCK ? new GraphOutputDataMock()</span>
+<span class="fc" id="L53">				: new GraphOutputDataImp();</span>
+	}
+
+	// TODO: javadoc
+	public static GraphOutputData newInstance(
+			Iterator&lt;MouseActionInputDataImp.Point&gt; mouseData ) {
+<span class="nc bnc" id="L59" title="All 2 branches missed.">		return godMode == MOCK ? new GraphOutputDataMock(mouseData)</span>
+<span class="nc" id="L60">				: new GraphOutputDataImp(mouseData);</span>
+	}
+
+	// TODO: javadoc
+	public static void init( int mode ) {
+<span class="fc" id="L65">		GODFactory.godMode = mode;</span>
+<span class="fc" id="L66">		GODFactory.actionMode = mode;</span>
+<span class="fc" id="L67">	}</span>
+
+	// TODO: javadoc
+	public static void init( int godMode, int actionMode ) {
+<span class="fc" id="L71">		GODFactory.godMode = godMode;</span>
+<span class="fc" id="L72">		GODFactory.actionMode = actionMode;</span>
+<span class="fc" id="L73">	}</span>
+
+	public static MouseGraphAction newGraphAction( int type, int suType,
+			Object... params ) {
+		// TODO Auto-generated method stub
+<span class="fc" id="L78">		return null;</span>
+	}
+
+	// TODO: javadoc
+	public static MouseGraphAction read( InputStream in ) {
+<span class="nc" id="L83">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+		// TODO
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

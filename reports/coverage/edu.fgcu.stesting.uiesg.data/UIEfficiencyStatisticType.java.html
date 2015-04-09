@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>UIEfficiencyStatisticType.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data</a> &gt; <span class="el_source">UIEfficiencyStatisticType.java</span></div><h1>UIEfficiencyStatisticType.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data;
+
+import java.io.InputStream;
+import java.util.Map;
+import java.util.TreeMap;
+
+/**
+ * UIEfficiencyStatisticType (UIEST) is a generator for a specific metric for
+ * the efficiency of the user interface.
+ * 
+ * @author oalpha
+ *
+ */
+public abstract class UIEfficiencyStatisticType {
+
+	/**
+	 * DuplicateTypeException signifies that a UIEST instance with the specified
+	 * name already exists.
+	 * 
+	 * @author oalpha
+	 *
+	 */
+	public static class DuplicateTypeException extends Exception {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -7294874443006338512L;
+
+		/**
+		 * Constructs an instance for the given name
+		 * 
+		 * @param name
+		 *            the name to which the exception refers
+		 */
+		public DuplicateTypeException( String name ) {
+<span class="nc" id="L37">			super(name);</span>
+			// TODO Auto-generated constructor stub
+<span class="nc" id="L39">		}</span>
+
+	}
+
+	// TODO: javadoc
+	@SuppressWarnings( &quot;javadoc&quot; )
+<span class="nc" id="L45">	public static class UIEfficiencyStatistics {</span>
+		
+<span class="nc" id="L47">		protected static Map&lt;String, UIEfficiencyStatisticType&gt; types = new TreeMap&lt;&gt;();</span>
+
+		public static Map&lt;String, UIEfficiencyStatistic&gt; calculateStatistics(
+				GraphOutputData graphData ) {
+<span class="nc" id="L51">			Map&lt;String, UIEfficiencyStatistic&gt; statistics = new TreeMap&lt;&gt;();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">			for( String type : types.keySet() )</span>
+<span class="nc" id="L53">				statistics.put(type, types.get(type).calculate(graphData));</span>
+<span class="nc" id="L54">			return statistics;</span>
+		}
+		
+		public static void addType( UIEfficiencyStatisticType type ) throws DuplicateTypeException {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">			if( types.containsKey(type.getName()))</span>
+<span class="nc" id="L59">				throw new DuplicateTypeException(type.getName());</span>
+<span class="nc" id="L60">			types.put(type.getName(), type);</span>
+<span class="nc" id="L61">		}</span>
+		
+		public static UIEfficiencyStatisticType getType( String type ) {
+<span class="nc" id="L64">			return types.get(type);</span>
+		}
+
+	}
+
+	/**
+	 * Returns an UIEST instance with the specified name if it exists.
+	 * 
+	 * @param name
+	 *            the name of UIEST requested
+	 * @return the UIEST with the specified name
+	 */
+	public static UIEfficiencyStatisticType getByName( String name ) {
+<span class="nc" id="L77">		return UIEfficiencyStatistics.getType(name);</span>
+	}
+
+	/**
+	 * The name of this type of metric.
+	 */
+	@SuppressWarnings( &quot;unused&quot; )
+	private final String name;
+
+	/**
+	 * Constructs a UIEST instance of the specified name. This method should not
+	 * complete if a UIEST instance already exists with the specified name.
+	 * 
+	 * @param name
+	 *            the name of this type
+	 * @throws DuplicateTypeException
+	 *             if an instance with the specified name already exists
+	 */
+<span class="nc" id="L95">	protected UIEfficiencyStatisticType( String name )</span>
+			throws DuplicateTypeException {
+<span class="nc" id="L97">		UIEfficiencyStatistics.addType(this);</span>
+<span class="nc" id="L98">		this.name = name;</span>
+<span class="nc" id="L99">	}</span>
+
+	/**
+	 * Returns the name of this type of metric.
+	 * 
+	 * @return the name
+	 */
+	public abstract String getName();
+
+	/**
+	 * Returns the description of this type of metric.
+	 * 
+	 * @return the description
+	 */
+	public abstract String getDescription();
+
+	/**
+	 * Creates a UIES instance of this type from the given graph.
+	 * 
+	 * @param graph
+	 *            the graph data to analyze
+	 * @return the UIES instance
+	 */
+	public abstract UIEfficiencyStatistic calculate( GraphOutputData graph );
+
+	/**
+	 * Creates a UIES instance of this type from an input stream.
+	 * 
+	 * @param in
+	 *            the stream of data to read
+	 * @return the UIES instance
+	 */
+	public abstract UIEfficiencyStatistic create( InputStream in );
+
+	/**
+	 * The type of value this type creates.
+	 * 
+	 * @return the class type
+	 */
+	public abstract Class&lt;?&gt; getValueType();
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

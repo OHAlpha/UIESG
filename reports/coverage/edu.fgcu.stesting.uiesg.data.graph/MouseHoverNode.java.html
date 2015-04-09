@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MouseHoverNode.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.graph</a> &gt; <span class="el_source">MouseHoverNode.java</span></div><h1>MouseHoverNode.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.graph;
+
+import java.awt.Shape;
+import java.awt.geom.Dimension2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.io.OutputStream;
+
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+
+/**
+ * Represents the user's inactivity in the browser window.
+ * 
+ * @author oalpha
+ *
+ */
+<span class="nc" id="L18">public class MouseHoverNode extends AbstractMouseGraphAction implements MouseGraphNode {</span>
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public long getTimestamp() {
+<span class="nc" id="L23">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public MouseGraphNode getNext() {
+<span class="nc" id="L29">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public Rectangle2D getRange() {
+<span class="nc" id="L35">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public Shape getArea() {
+<span class="nc" id="L41">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public Point2D getLocation() {
+<span class="nc" id="L47">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public MouseGraphAction getPrevious() {
+<span class="nc" id="L53">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public double getError() {
+<span class="nc" id="L59">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public Dimension2D getVariance() {
+<span class="nc" id="L65">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public void write( OutputStream out ) {
+		// TODO Auto-generated method stub
+		
+<span class="nc" id="L73">	}</span>
+
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

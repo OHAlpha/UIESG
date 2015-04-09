@@ -48,7 +48,6 @@ public class SiteEfficiencyDataUnitTest {
 		SiteEfficiencyData.init("tmp/datafiles");
 		MAIDFactory.init(MAIDFactory.MOCK);
 		GODFactory.init(GODFactory.MOCK);
-		MouseGraphActionFactory.init(MouseGraphActionFactory.MOCK);
 	}
 
 	/**

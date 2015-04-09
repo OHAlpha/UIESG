@@ -49,11 +49,7 @@
 				</classpath>
 				<formatter type="xml" />
 				<formatter type="plain" />
-				<batchtest todir="${reports.unit.dir}">
-					<fileset dir="${test.src.dir}">
-						<include name="**/*UnitTest.java" />
-					</fileset>
-				</batchtest>
+				<test name="edu.fgcu.stesting.uiesg.UnitTest" todir="${reports.unit.dir}"></test>
 			</junit>
 		</jacoco:coverage>
 	</target>
@@ -70,11 +66,7 @@
 				</classpath>
 				<formatter type="xml" />
 				<formatter type="plain" />
-				<batchtest todir="${reports.int.dir}">
-					<fileset dir="${test.src.dir}">
-						<include name="**/*IntegrationTest.java" />
-					</fileset>
-				</batchtest>
+				<test name="edu.fgcu.stesting.uiesg.IntegrationTest" todir="${reports.int.dir}"></test>
 			</junit>
 		</jacoco:coverage>
 	</target>
