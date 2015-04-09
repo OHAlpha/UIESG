@@ -163,5 +163,10 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	public List<Point> getRawData() {
 		return rawData;
 	}
+	
+	@SuppressWarnings( "javadoc" )
+	public String toString() {
+		return "MAID( #points: " + rawData.size() + " )";
+	}
 
 }

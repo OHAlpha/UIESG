@@ -2,7 +2,6 @@ package edu.fgcu.stesting.uiesg.data;
 
 import java.util.Iterator;
 
-import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
 import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
 import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;

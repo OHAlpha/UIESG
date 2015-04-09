@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="3" failures="0" hostname="oalpha-HP-2000-Notebook-PC" name="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" skipped="0" tests="3" time="0.723" timestamp="2015-03-26T19:06:26">
+<testsuite errors="3" failures="0" hostname="oalpha-HP-2000-Notebook-PC" name="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" skipped="0" tests="3" time="0.621" timestamp="2015-03-26T21:10:58">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="ant.file.UI Efficiency Statistics Generator" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml" />
@@ -44,7 +44,7 @@
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
-    <property name="_jacoco.agentFile" value="/tmp/jacocoagent842944897846212801.jar" />
+    <property name="_jacoco.agentFile" value="/tmp/jacocoagent5043555219999746646.jar" />
     <property name="ant.file.type.UI Efficiency Statistics Generator" value="file" />
     <property name="user.home" value="/home/oalpha" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
@@ -52,8 +52,8 @@
     <property name="java.vendor.url" value="http://java.oracle.com/" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/unit/TEST-edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.xml formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/unit/TEST-edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.txt crashfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junitvmwatcher2766402435119990986.properties propsfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junit4464387215922010387.properties" />
-    <property name="java.class.path" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/classes:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/hamcrest-all-1.3.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoagent.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoant.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/junit4.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.agent-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.ant-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.core-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.report-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/test/classes:/usr/share/ant/lib/junit.jar:/usr/share/java/ant-launcher-1.9.3.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar:/tmp/jacocoagent842944897846212801.jar" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/unit/TEST-edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.xml formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/unit/TEST-edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.txt crashfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junitvmwatcher3900351674193967910.properties propsfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junit7117863648921119759.properties" />
+    <property name="java.class.path" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/classes:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/hamcrest-all-1.3.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoagent.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoant.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/junit4.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.agent-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.ant-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.core-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.report-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/test/classes:/usr/share/ant/lib/junit.jar:/usr/share/java/ant-launcher-1.9.3.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar:/tmp/jacocoagent5043555219999746646.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.3 compiled on April 8 2014" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
     <property name="ant.file.type" value="file" />
@@ -76,19 +76,19 @@
     <property name="file.encoding" value="UTF-8" />
     <property name="java.specification.version" value="1.8" />
     <property name="src.dir" value="src/main/java" />
-    <property name="ant.project.invoked-targets" value="clean,test" />
+    <property name="ant.project.invoked-targets" value="clean,build,test" />
   </properties>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testOrder" time="0.101">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testOrder" time="0.08">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testOrder(Unknown Source)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testSize" time="0.02">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testSize" time="0.004">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testSize(Unknown Source)
 </error>
   </testcase>
-  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testConstructor" time="0.009">
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testConstructor" time="0.008">
     <error message="test not implemented" type="java.lang.RuntimeException">java.lang.RuntimeException: test not implemented
 	at edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest.testConstructor(Unknown Source)
 </error>

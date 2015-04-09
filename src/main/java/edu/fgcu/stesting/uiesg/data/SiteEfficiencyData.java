@@ -544,5 +544,10 @@ public class SiteEfficiencyData {
 		// TODO
 
 	}
+	
+	@SuppressWarnings( "javadoc" )
+	public String toString() {
+		return "SED( domain: " + domain + ", #datasets: " + data.size() + " )";
+	}
 
 }
