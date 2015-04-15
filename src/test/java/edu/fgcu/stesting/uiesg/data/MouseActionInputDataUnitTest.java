@@ -161,6 +161,7 @@ public class MouseActionInputDataUnitTest {
 		// throw error for pagepoint being less than 0
 		MAID.addPoint(new Point(1,10), new Point(-1, 2), System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 		// create a legitimate point and then throw error for timestamp being less than current timestamp of point
+		MAID.addPoint(new Point(1,1), new Point(1,1), System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 		MAID.addPoint(new Point(0, 1), new Point(2, 0),	0, MouseEvent.MOUSE_CLICKED);
 		// throw an error for the type being less than mouse_first
 		MAID.addPoint(new Point(1,1), new Point(1,1), System.currentTimeMillis(), 0);
