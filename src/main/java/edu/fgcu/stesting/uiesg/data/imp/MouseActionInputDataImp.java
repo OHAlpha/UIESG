@@ -129,7 +129,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	public void addPoint( Point2D browserPoint, Point2D pagePoint,
 			long timestamp, int type ) throws IllegalArgumentException {
-		// throw new RuntimeException("method not implemented");
+
 		if (type != MOUSE_EXITED && (browserPoint.getX() < 0 || browserPoint.getY() < 0))
 			throw new IllegalArgumentException();
 		if (pagePoint.getX() < 0 || pagePoint.getY() < 0)

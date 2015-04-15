@@ -2,12 +2,16 @@ package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.NoSuchElementException;
 
 import org.junit.*;
 
 import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
+import static java.awt.event.MouseEvent.MOUSE_EXITED;
+import static java.awt.event.MouseEvent.MOUSE_FIRST;
+import static java.awt.event.MouseEvent.MOUSE_LAST;
 import static org.junit.Assert.*;
 
 // TODO: javadoc
@@ -134,7 +138,35 @@ public class MouseActionInputDataUnitTest {
 		assertEquals(2, p.pagePosition.getX(), .01);
 		// test y value of pageposition
 		assertEquals(0, p.pagePosition.getY(), .01);
-
+	
 	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void TestAddPointFault(){
+		// the errors that this is testing for
+		/*
+		if (type != MOUSE_EXITED && (browserPoint.getX() < 0 || browserPoint.getY() < 0))
+			throw new IllegalArgumentException();
+		if (pagePoint.getX() < 0 || pagePoint.getY() < 0)
+			throw new IllegalArgumentException();
+		if (rawData.size() > 0)
+			if (timestamp < latestTimestamp())
+				throw new IllegalArgumentException();
+		if (type < MOUSE_FIRST || type > MOUSE_LAST)
+			throw new IllegalArgumentException();
+		*/
+		//addPoint( Point2D browserPoint, Point2D pagePoint, long timestamp, int type )
+		// throw error for wrong type, x < 0, and y < 0
+		MAID.addPoint(new Point(-1,9), new Point (0,0), System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		// throw error for pagepoint being less than 0
+		MAID.addPoint(new Point(1,10), new Point(-1, 2), System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		// create a legitimate point and then throw error for timestamp being less than current timestamp of point
+		MAID.addPoint(new Point(0, 1), new Point(2, 0),	0, MouseEvent.MOUSE_CLICKED);
+		// throw an error for the type being less than mouse_first
+		MAID.addPoint(new Point(1,1), new Point(1,1), System.currentTimeMillis(), 0);
+		
+	}
+	
+	
 
 }
