@@ -71,7 +71,7 @@ public class GraphOutputDataUnitTest {
 		godA = GODFactory.newInstance();
 		for (int i = 0; i < n; i++)
 			godA.addAction(as[i]);
-		// godB = GODFactory.newInstance(maid.iterate());
+		godB = GODFactory.newInstance(maid.iterate());
 	}
 
 	@After
@@ -89,19 +89,21 @@ public class GraphOutputDataUnitTest {
 
 	@Test
 	public void testConstructorIterator() {
-		throw new RuntimeException("test not implemented");
+		for (int i = 0; i < n; i++)
+			assertEquals("indexof returned incorrect value", godB.getAction(i).getType(),
+					as[i].getType());
 	}
 
 	@Test
 	public void testOrder() {
 		assertEquals("godA.order() must be " + o, godA.order(), o);
-		throw new RuntimeException("test not implemented");
+		assertEquals("godB.order() must be " + o, godB.order(), o);
 	}
 
 	@Test
 	public void testSize() {
 		assertEquals("godA.size() must be " + s, godA.size(), s);
-		throw new RuntimeException("test not implemented");
+		assertEquals("godB.size() must be " + s, godB.size(), s);
 	}
 
 	@Test

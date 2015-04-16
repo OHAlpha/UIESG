@@ -79,12 +79,15 @@ public class GODFactory {
 			Object... params ) {
 		if (actionMode == MOCK) {
 			if (type == NODE) {
-				return new MouseGraphNodeMock(new Point((int) params[0],
-						(int) params[1]));
+				return new MouseGraphNodeMock(type,subType,new Point(
+						((Number) params[0]).intValue(),
+						((Number) params[1]).intValue()));
 			} else if (type == EDGE) {
-				return new MouseGraphEdgeMock(new Point((int) params[0],
-						(int) params[1]), new Point((int) params[2],
-						(int) params[3]));
+				return new MouseGraphEdgeMock(type,subType,new Point(
+						((Number) params[0]).intValue(),
+						((Number) params[1]).intValue()), new Point(
+						((Number) params[2]).intValue(),
+						((Number) params[3]).intValue()));
 			} else
 				return null;
 		} else if (actionMode == IMPLEMENTATION) {

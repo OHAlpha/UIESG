@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 @SuppressWarnings( "javadoc" )
 public class MouseGraphEdgeMock extends AbstractMouseGraphActionMock implements
@@ -14,7 +15,8 @@ public class MouseGraphEdgeMock extends AbstractMouseGraphActionMock implements
 	
 	private Line2D line;
 	
-	public MouseGraphEdgeMock( Point s, Point d ) {
+	public MouseGraphEdgeMock( int t, int st, Point s, Point d ) {
+		super( t, st );
 		line = new Line2D.Double(s, d);
 	}
 
@@ -36,6 +38,16 @@ public class MouseGraphEdgeMock extends AbstractMouseGraphActionMock implements
 	@Override
 	public Object getPathParameters() {
 		return new Point2D[] { line.getP1(), line.getP2() };
+	}
+
+	@Override
+	public MouseGraphNode asNode() {
+		throw new IllegalArgumentException();
+	}
+
+	@Override
+	public MouseGraphEdge asEdge() {
+		return this;
 	}
 
 }

@@ -5,8 +5,8 @@ import java.awt.geom.Dimension2D;
 import java.awt.geom.Rectangle2D;
 import java.io.OutputStream;
 
+import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
-import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 /**
@@ -15,7 +15,7 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  * @author oalpha
  *
  */
-public class MouseMoveEdge extends AbstractMouseGraphAction implements MouseGraphEdge {
+public class MouseMoveEdge extends AbstractMouseGraphEdge {
 
 	@SuppressWarnings( "javadoc" )
 	@Override
@@ -76,6 +76,14 @@ public class MouseMoveEdge extends AbstractMouseGraphAction implements MouseGrap
 	public void write( OutputStream out ) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	/* (non-Javadoc)
+	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
+	 */
+	@SuppressWarnings( "javadoc" )
+	public int getSubType() {
+		return GODFactory.MOVE;
 	}
 
 }

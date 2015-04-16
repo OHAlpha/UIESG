@@ -8,6 +8,20 @@ import edu.fgcu.stesting.uiesg.data.graph.AbstractMouseGraphAction;
 
 @SuppressWarnings( "javadoc" )
 public abstract class AbstractMouseGraphActionMock extends AbstractMouseGraphAction {
+	
+	private int type;
+	
+	private int subType;
+
+	/**
+	 * @param type
+	 * @param subType
+	 */
+	protected AbstractMouseGraphActionMock( int type, int subType ) {
+		super();
+		this.type = type;
+		this.subType = subType;
+	}
 
 	@Override
 	public double getError() {
@@ -24,5 +38,15 @@ public abstract class AbstractMouseGraphActionMock extends AbstractMouseGraphAct
 	 */
 	@Override
 	public void write( OutputStream out ) {}
+
+	@Override
+	public int getType() {
+		return type;
+	}
+
+	@Override
+	public int getSubType() {
+		return subType;
+	}
 
 }

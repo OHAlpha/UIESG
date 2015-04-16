@@ -7,6 +7,7 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 @SuppressWarnings( "javadoc" )
@@ -15,7 +16,8 @@ public class MouseGraphNodeMock extends AbstractMouseGraphActionMock implements
 	
 	private Rectangle range;
 	
-	public MouseGraphNodeMock( Point p ) {
+	public MouseGraphNodeMock( int t, int st, Point p ) {
+		super( t, st );
 		range = new Rectangle(p, new Dimension(0,0));
 	}
 
@@ -32,6 +34,16 @@ public class MouseGraphNodeMock extends AbstractMouseGraphActionMock implements
 	@Override
 	public Point2D getLocation() {
 		return range.getLocation();
+	}
+
+	@Override
+	public MouseGraphNode asNode() {
+		return this;
+	}
+
+	@Override
+	public MouseGraphEdge asEdge() {
+		throw new IllegalArgumentException();
 	}
 
 }

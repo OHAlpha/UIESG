@@ -1,14 +1,19 @@
 package edu.fgcu.stesting.uiesg.data.imp;
 
+import java.awt.geom.Point2D;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+
+import static java.awt.event.MouseEvent.*;
 
 /**
  * GraphOutputData (GOD) is a container for the graph data. Instances will store
@@ -19,7 +24,7 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  *
  */
 public class GraphOutputDataImp implements GraphOutputData {
-	
+
 	/**
 	 * Whether this instance has been locked.
 	 */
@@ -39,7 +44,7 @@ public class GraphOutputDataImp implements GraphOutputData {
 	 * The collection of edge indices in this graph.
 	 */
 	private final List<Integer> edges;
-	
+
 	{
 		actions = new LinkedList<>();
 		nodes = new LinkedList<>();
@@ -67,9 +72,73 @@ public class GraphOutputDataImp implements GraphOutputData {
 	 */
 	public GraphOutputDataImp( Iterator<MouseActionInputData.Point> mouseData )
 			throws NullPointerException {
-		// TODO: compile data
+		int lastType = MOUSE_FIRST - 1;
+		Point2D a = null, b = null;
+		for (; mouseData.hasNext();) {
+			Point c = mouseData.next();
+			int t = c.type;
+			Point2D p = c.browserLocation;
+			switch (t) {
+			case MOUSE_ENTERED:
+				if (lastType == MOUSE_MOVED)
+					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
+							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
+							b.getY()));
+				else if (lastType == MOUSE_DRAGGED)
+					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
+							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
+							b.getY()));
+				this.addAction(GODFactory.newGraphAction(GODFactory.NODE,
+						GODFactory.ENTER, p.getX(), p.getY()));
+				a = p;
+				break;
+			case MOUSE_MOVED:
+				b = p;
+				break;
+			case MOUSE_PRESSED:
+				if (lastType == MOUSE_MOVED)
+					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
+							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
+							b.getY()));
+				a = p;
+				break;
+			case MOUSE_DRAGGED:
+				b = p;
+				break;
+			case MOUSE_RELEASED:
+				if (lastType == MOUSE_DRAGGED)
+					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
+							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
+							b.getY()));
+				break;
+			case MOUSE_CLICKED:
+				if (lastType == MOUSE_MOVED)
+					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
+							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
+							b.getY()));
+				else if (lastType == MOUSE_DRAGGED)
+					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
+							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
+							b.getY()));
+				this.addAction(GODFactory.newGraphAction(GODFactory.NODE,
+						GODFactory.CLICK, p.getX(), p.getY()));
+				a = p;
+			case MOUSE_EXITED:
+				if (lastType == MOUSE_MOVED)
+					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
+							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
+							b.getY()));
+				else if (lastType == MOUSE_DRAGGED)
+					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
+							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
+							b.getY()));
+				this.addAction(GODFactory.newGraphAction(GODFactory.NODE,
+						GODFactory.EXIT, p.getX(), p.getY()));
+				a = p;
+			}
+			lastType = t;
+		}
 		locked = true;
-		throw new RuntimeException("constructor not implemented");
 	}
 
 	/**
