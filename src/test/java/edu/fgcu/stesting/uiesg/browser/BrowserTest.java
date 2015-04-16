@@ -7,6 +7,8 @@ import java.net.URL;
 
 import org.junit.*;
 
+import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
+
 /***
  * 
  * Performs unit tests for the browser class
@@ -55,7 +57,7 @@ public class BrowserTest {
 	@Test
 	public void testUpdatePage() {
 		// code to test updatePage returns boolean btw
-		
+		// test if (sed == null || !sed.getDomain().equalsIgnoreCase(domain)) 
 		browser.sed = null;
 		boolean tst = true;
 		URL url;
@@ -67,7 +69,12 @@ public class BrowserTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// test if (sed == null || !sed.getDomain().equalsIgnoreCase(domain)) 
+		// now test for the other if statements
+		browser.sed = SiteEfficiencyData.getForDomain("https://www.google.com");
+		
+		
+		
+		
 		
 		
 		
