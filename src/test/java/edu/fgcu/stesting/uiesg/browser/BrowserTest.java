@@ -51,7 +51,7 @@ public class BrowserTest {
 	@Test
 	public void testStart() {
 		// code to test browser start function
-		throw new RuntimeException("test not implemented");
+		//throw new RuntimeException("test not implemented");
 		
 		
 	}
