@@ -3,6 +3,8 @@ package edu.fgcu.stesting.uiesg.data.mock;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
@@ -10,36 +12,44 @@ import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
 public class MouseActionInputDataMock implements MouseActionInputData {
+	
+	List<Point> points;
+	
+	{
+		points = new LinkedList<>();
+	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return points.size();
 	}
 
 	@Override
 	public Rectangle2D getRange( boolean page ) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public long latestTimestamp() throws NoSuchElementException {
-		// TODO Auto-generated method stub
-		return 0;
+		if( points.isEmpty() )
+			throw new NoSuchElementException();
+		return points.get(points.size()-1).timestamp;
 	}
 
 	@Override
 	public void addPoint( Point2D browserPoint, Point2D pagePoint,
 			long timestamp, int type ) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-
+		Point p = new Point();
+		p.browserLocation = browserPoint;
+		p.pagePosition = pagePoint;
+		p.timestamp = timestamp;
+		p.type = type;
+		points.add(p);
 	}
 
 	@Override
 	public Iterator<Point> iterate() {
-		// TODO Auto-generated method stub
-		return null;
+		return points.iterator();
 	}
 
 }

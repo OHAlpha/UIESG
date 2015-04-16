@@ -6,6 +6,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.OutputStream;
 
+import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
@@ -15,7 +16,7 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  * @author oalpha
  *
  */
-public class MouseWindowNode extends AbstractMouseGraphAction implements MouseGraphNode {
+public class MouseWindowNode extends AbstractMouseGraphNode {
 
 	@SuppressWarnings( "javadoc" )
 	@Override
@@ -71,7 +72,13 @@ public class MouseWindowNode extends AbstractMouseGraphAction implements MouseGr
 		// TODO Auto-generated method stub
 		
 	}
-
-
+	
+	/* (non-Javadoc)
+	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
+	 */
+	@SuppressWarnings( "javadoc" )
+	public int getSubType() {
+		return GODFactory.ENTER;
+	}
     
 }

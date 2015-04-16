@@ -54,14 +54,16 @@ public interface MouseGraphAction {
 	 * executing a complicated movement that the GOD instance breaks up into
 	 * multiple regressions.
 	 * 
-	 * @param previous the previous action
+	 * @param previous
+	 *            the previous action
 	 */
 	void setPrevious( MouseGraphAction previous );
 
 	/**
 	 * The action occurring immediately after this one.
 	 * 
-	 * @param next the next action
+	 * @param next
+	 *            the next action
 	 */
 	void setNext( MouseGraphAction next );
 
@@ -100,5 +102,35 @@ public interface MouseGraphAction {
 	// TODO: javadoc
 	@SuppressWarnings( "javadoc" )
 	void write( OutputStream out );
+
+	/**
+	 * Returns this action cast to a node. If this action is an edge, an
+	 * IllegalArgumentException will be thrown.
+	 * 
+	 * @return this action as a node
+	 */
+	MouseGraphNode asNode();
+
+	/**
+	 * Returns this action cast to a edge. If this action is an node, an
+	 * IllegalArgumentException will be thrown.
+	 * 
+	 * @return this action as a edge
+	 */
+	MouseGraphEdge asEdge();
+
+	/**
+	 * Returns the integral type of this action.
+	 * 
+	 * @return the type
+	 */
+	int getType();
+
+	/**
+	 * Returns the integral sub type of this action.
+	 * 
+	 * @return the sub type
+	 */
+	int getSubType();
 
 }
