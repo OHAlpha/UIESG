@@ -73,7 +73,8 @@ public class MouseActionInputDataUnitTest {
 	@Test (expected = IllegalArgumentException.class)
 	public void testAddPointFault(){
 		// add a point with negative value to get the error exception
-		MAID.addPoint(new Point(-2, -6), new Point(1,2), System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		MAID.addPoint(new Point(-2, -6), new Point(1,2), 
+				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 		
 	}
 	/***
