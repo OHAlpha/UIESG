@@ -336,7 +336,7 @@ public class SiteEfficiencyData {
 	 */
 	public boolean unloadData() {
 
-		// return false if SED is alwritey loaded
+		// return false if SED is already loaded
 		if (data != null)
 			return false;
 
