@@ -20,6 +20,7 @@ import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 public class BrowserTest {
 
 	Browser browser;
+	SiteEfficiencyData sed;
 
 	public BrowserTest() {
 
@@ -33,6 +34,7 @@ public class BrowserTest {
 	@Before
 	public void before() {
 		browser = new Browser();
+		
 
 	}
 
@@ -51,7 +53,7 @@ public class BrowserTest {
 	@Test
 	public void testStart() {
 		// code to test browser start function
-		//throw new RuntimeException("test not implemented");
+		throw new RuntimeException("test not implemented");
 		
 		
 	}
@@ -60,18 +62,17 @@ public class BrowserTest {
 	public void testUpdatePage() {
 		// code to test updatePage returns boolean btw
 		// test if (sed == null || !sed.getDomain().equalsIgnoreCase(domain)) 
+		
 		browser.sed = null;
 		boolean tst = true;
 		URL url;
 		try {
 			url = new URL("https://www.google.com");
+			
 			boolean bool = browser.updatePage(url);
 			assertEquals(tst, bool);
-			// put in a generic domain for the SED
-			browser.sed = SiteEfficiencyData.getForDomain("https://www.google.com");
-			tst = true;
-			bool = browser.updatePage(url);
-			assertEquals(tst, bool);
+			assertEquals(url.getHost(), browser.sed.getDomain());
+			
 			
 			
 		} catch (MalformedURLException e) {
