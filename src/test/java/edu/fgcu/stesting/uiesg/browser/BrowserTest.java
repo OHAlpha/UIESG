@@ -52,6 +52,8 @@ public class BrowserTest {
 	public void testStart() {
 		// code to test browser start function
 		throw new RuntimeException("test not implemented");
+		
+		
 	}
 
 	@Test
@@ -65,12 +67,19 @@ public class BrowserTest {
 			url = new URL("https://www.google.com");
 			boolean bool = browser.updatePage(url);
 			assertEquals(tst, bool);
+			// put in a generic domain for the SED
+			browser.sed = SiteEfficiencyData.getForDomain("https://www.google.com");
+			tst = true;
+			bool = browser.updatePage(url);
+			assertEquals(tst, bool);
+			
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// now test for the other if statements
-		browser.sed = SiteEfficiencyData.getForDomain("https://www.google.com");
+		
+		
 		
 		
 		
