@@ -17,11 +17,11 @@ import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
  *
  */
 public class PageContextImp implements PageContext {
-	
+
 	/**
 	 * The collection of MouseTargets contained in this instance.
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings( "unused" )
 	private Collection<MouseTarget> targets;
 
 	/**
@@ -30,6 +30,7 @@ public class PageContextImp implements PageContext {
 	 * 
 	 * @return the clickable region
 	 */
+	@Override
 	public Shape getClickableRegion() {
 		throw new RuntimeException("method not implemented");
 	}
@@ -39,6 +40,7 @@ public class PageContextImp implements PageContext {
 	 * 
 	 * @return the targets
 	 */
+	@Override
 	public Collection<MouseTarget> getTargets() {
 		throw new RuntimeException("method not implemented");
 	}
@@ -48,8 +50,9 @@ public class PageContextImp implements PageContext {
 	 * 
 	 * @return the SED instance
 	 */
+	@Override
 	public SiteEfficiencyData getDomain() {
 		throw new RuntimeException("method not implemented");
 	}
-    
+
 }

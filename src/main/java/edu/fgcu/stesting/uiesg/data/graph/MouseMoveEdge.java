@@ -2,6 +2,7 @@ package edu.fgcu.stesting.uiesg.data.graph;
 
 import java.awt.Shape;
 import java.awt.geom.Dimension2D;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.OutputStream;
 
@@ -75,15 +76,30 @@ public class MouseMoveEdge extends AbstractMouseGraphEdge {
 	@Override
 	public void write( OutputStream out ) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
 	 */
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public int getSubType() {
 		return GODFactory.MOVE;
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public Point2D getSource() {
+		throw new RuntimeException("method not implemented");
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public Point2D getDest() {
+		throw new RuntimeException("method not implemented");
 	}
 
 }

@@ -51,6 +51,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * 
 	 * @return the number of points
 	 */
+	@Override
 	public int size() {
 		return getRawData().size();
 	}
@@ -63,6 +64,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * 
 	 * @return the bounding box
 	 */
+	@Override
 	public Rectangle2D getRange( boolean page ) {
 
 		// iterate through the arraylist to find the minimums and maximums to
@@ -75,10 +77,10 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		for (int i = 1; i < getRawData().size(); i++) {
 			Point tmp = getRawData().get(i);
 			// find the smallest x value
-			if ((page ? tmp.pagePosition : tmp.browserLocation).getX() < minX) 
+			if ((page ? tmp.pagePosition : tmp.browserLocation).getX() < minX)
 				minX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
 			// find the largest x value
-			if ((maxX < (page ? tmp.pagePosition : tmp.browserLocation).getX())) 
+			if ((maxX < (page ? tmp.pagePosition : tmp.browserLocation).getX()))
 				maxX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
 			// find the smallest y value
 			if ((page ? tmp.pagePosition : tmp.browserLocation).getY() < minY)
@@ -99,8 +101,9 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * @throws NoSuchElementException
 	 *             if no points have been added.
 	 */
+	@Override
 	public long latestTimestamp() throws NoSuchElementException {
-		
+
 		if (rawData.isEmpty())
 			throw new NoSuchElementException("No element");
 		else {
@@ -127,10 +130,12 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 *             if type is not one of the allowed types specified in
 	 *             MouseEvent.
 	 */
+	@Override
 	public void addPoint( Point2D browserPoint, Point2D pagePoint,
 			long timestamp, int type ) throws IllegalArgumentException {
 
-		if (type != MOUSE_EXITED && (browserPoint.getX() < 0 || browserPoint.getY() < 0))
+		if (type != MOUSE_EXITED
+				&& (browserPoint.getX() < 0 || browserPoint.getY() < 0))
 			throw new IllegalArgumentException();
 		if (pagePoint.getX() < 0 || pagePoint.getY() < 0)
 			throw new IllegalArgumentException();
@@ -156,6 +161,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 * 
 	 * @return the iterator
 	 */
+	@Override
 	public Iterator<Point> iterate() {
 		throw new RuntimeException("method not implemented");
 	}
@@ -164,7 +170,8 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	public List<Point> getRawData() {
 		return rawData;
 	}
-	
+
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public String toString() {
 		return "MAID( #points: " + rawData.size() + " )";

@@ -21,6 +21,9 @@ public class GraphOutputDataUnitTest {
 
 	private static MouseGraphAction[] as;
 
+	private static String[] types = { "Node", "Edge" }, subTypes = { "ENTER",
+			"HOVER", "CLICK", "EXIT", "MOVE", "DRAG" };
+
 	/**
 	 * Initializes SiteEfficiencyData.
 	 */
@@ -47,21 +50,33 @@ public class GraphOutputDataUnitTest {
 		maid.addPoint(new Point(60, 50), new Point(60, 50),
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
 		maid.addPoint(new Point(50, 30), new Point(50, 30),
-				System.currentTimeMillis()+2000, MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
 		maid.addPoint(new Point(40, 10), new Point(40, 10),
-				System.currentTimeMillis()+2000, MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
 		maid.addPoint(new Point(30, 0), new Point(30, 0),
-				System.currentTimeMillis()+2000, MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
 		maid.addPoint(new Point(30, 0), new Point(30, 0),
-				System.currentTimeMillis()+2000, MouseEvent.MOUSE_EXITED);
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_EXITED);
 		as = new MouseGraphAction[] {
-				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.ENTER, 30, 0),
-				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE, 30, 0, 30, 50),
-				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.CLICK, 30, 50),
-				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE, 30, 50, 60, 50),
-				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.HOVER, 60, 50),
-				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE, 60, 50, 30, 0),
-				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.EXIT, 30, 0) };
+				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.ENTER,
+						30, 0),
+				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE, 30,
+						0, 30, 50),
+				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.CLICK,
+						30, 50),
+				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE, 30,
+						50, 60, 50),
+				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.HOVER,
+						60, 50),
+				GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE, 60,
+						50, 30, 0),
+				GODFactory.newGraphAction(GODFactory.NODE, GODFactory.EXIT, 30,
+						0) };
+		for (int i = 0; i < as.length; i++) {
+			MouseGraphAction a = as[i];
+			System.out.printf("\t%d: ( type, subType ) = ( %s, %s )\n", i,
+					types[a.getType()], subTypes[a.getSubType()]);
+		}
 	}
 
 	private GraphOutputData godA, godB;
@@ -89,9 +104,25 @@ public class GraphOutputDataUnitTest {
 
 	@Test
 	public void testConstructorIterator() {
-		for (int i = 0; i < n; i++)
-			assertEquals("indexof returned incorrect value", godB.getAction(i).getType(),
-					as[i].getType());
+		int rn = godB.order() + godB.size();
+		for (int i = 0; i < rn; i++) {
+			MouseGraphAction a = godB.getAction(i);
+			System.out.printf("\t%d: ( type, subType ) = ( %s, %s )\n", i,
+					types[a.getType()], subTypes[a.getSubType()]);
+		}
+		assertEquals("godB.order() + godB.size() must be " + n, rn, n);
+		for (int i = 0; i < n; i++) {
+			int et = as[i].getType();
+			int rt = godB.getAction(i).getType();
+			int es = as[i].getSubType();
+			int rs = godB.getAction(i).getSubType();
+			assertEquals("type returned incorrect value at index " + i
+					+ ", returned " + types[rt] + ", expected " + types[et],
+					rt, et);
+			assertEquals("subType returned incorrect value at index " + i
+					+ ", returned " + subTypes[rs] + ", expected "
+					+ subTypes[es], rs, es);
+		}
 	}
 
 	@Test

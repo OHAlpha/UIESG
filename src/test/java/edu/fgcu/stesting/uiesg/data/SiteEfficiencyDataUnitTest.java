@@ -1,6 +1,10 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -9,11 +13,17 @@ import java.nio.file.StandardCopyOption;
 import java.util.Iterator;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.DataSet;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
+import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;
+import edu.fgcu.stesting.uiesg.data.mock.MouseActionInputDataMock;
+import edu.fgcu.stesting.uiesg.data.mock.UIEfficiencyStatisticTypeMock;
 import static org.junit.Assert.*;
 
 /**
@@ -48,6 +58,48 @@ public class SiteEfficiencyDataUnitTest {
 		SiteEfficiencyData.init("tmp/datafiles");
 		MAIDFactory.init(MAIDFactory.MOCK);
 		GODFactory.init(GODFactory.MOCK);
+		try {
+			new UIEfficiencyStatisticTypeMock();
+		} catch (DuplicateTypeException e) {
+			e.printStackTrace();
+		}
+		
+		// write data to data folder
+		File file = new File(dir, "wikipedia.org.sed");
+		try (DataOutputStream out = new DataOutputStream(
+				new BufferedOutputStream(new FileOutputStream(file)));) {
+			out.writeInt(1);
+			out.writeInt(0x07);
+			MouseActionInputData mm = new MouseActionInputDataMock();
+			out.writeInt(mm.size());
+			for (Iterator<MouseActionInputData.Point> it = mm.iterate(); it
+					.hasNext();) {
+				MouseActionInputData.Point p = it.next();
+				out.writeDouble(p.browserLocation.getX());
+				out.writeDouble(p.browserLocation.getY());
+				out.writeDouble(p.pagePosition.getX());
+				out.writeDouble(p.pagePosition.getY());
+				out.writeLong(p.timestamp);
+				out.writeInt(p.type);
+			}
+			GraphOutputData mg = new GraphOutputDataMock(mm.iterate());
+			out.writeInt(mg.order() + mg.size());
+			for (int i = 0; i < mg.order() + mg.size(); i++) {
+				MouseGraphAction ma = mg.getAction(i);
+				GODFactory.write(ma, out);
+				out.writeInt(mg.indexOf(ma.getPrevious()));
+			}
+			out.writeInt(1);
+			UIEfficiencyStatisticType mt = UIEfficiencyStatistics
+					.getType("Mock");
+			UIEfficiencyStatistic ms = mt.calculate(mg);
+			out.writeUTF(mt.getName());
+			ms.write(out);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -100,6 +152,15 @@ public class SiteEfficiencyDataUnitTest {
 		if (wDat.exists())
 			wDat.delete();
 
+	}
+
+	/**
+	 * Delete the test data file
+	 */
+	@AfterClass
+	public static void tearDown() {
+		File file = new File(dir, "wikipedia.org.sed");
+		file.delete();
 	}
 
 	/**
@@ -179,7 +240,6 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testLoadDataFileExists() {
-		// TODO: testLoadDataFileExists
 
 		// load wiki
 		boolean success = wiki.loadData();
@@ -189,7 +249,13 @@ public class SiteEfficiencyDataUnitTest {
 		assertTrue("wiki.isLoaded() must be true", wiki.isLoaded());
 
 		// test if data is correct
-		// TODO: testLoadDataFileExists: test if wiki loaded correctly
+		assertEquals("wiki.size() must return 1", wiki.size(), 1);
+
+		DataSet ds = wiki.getSet(0);
+		assertNotNull("mouse data should not be null",ds.mouseData);
+		assertNotNull("graph data should not be null",ds.graphData);
+		assertNotNull("statistics should not be null",ds.statistics);
+		assertEquals("statistics should have 1 statistic", ds.statistics.size(), 1);
 
 		throw new RuntimeException("test not implemented");
 	}
@@ -246,6 +312,8 @@ public class SiteEfficiencyDataUnitTest {
 	@Test
 	public void testUnloadDataLoaded() {
 		// TODO: testUnloadDataLoaded
+		
+		wiki.loadData();
 
 		// file for wiki's data file
 		File wDat = new File(SiteEfficiencyData.dataFileDir,
@@ -416,9 +484,9 @@ public class SiteEfficiencyDataUnitTest {
 
 		// request page
 		PageContext p = fgcu.getForURL(new URL("fgcu.edu/sucks"));
-		
+
 		// check for existence
-		assertNull("fgcu.getForURL() must return null",p);
+		assertNull("fgcu.getForURL() must return null", p);
 
 	}
 
@@ -432,9 +500,9 @@ public class SiteEfficiencyDataUnitTest {
 
 		// request page
 		PageContext p = fgcu.getForURL(new URL("fgcu.edu"));
-		
+
 		// check for existence
-		assertNotNull("fgcu.getForURL() must return non-null",p);
+		assertNotNull("fgcu.getForURL() must return non-null", p);
 
 	}
 

@@ -1,6 +1,7 @@
 package edu.fgcu.stesting.uiesg.data;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -43,23 +44,24 @@ public abstract class UIEfficiencyStatisticType {
 	// TODO: javadoc
 	@SuppressWarnings( "javadoc" )
 	public static class UIEfficiencyStatistics {
-		
+
 		protected static Map<String, UIEfficiencyStatisticType> types = new TreeMap<>();
 
 		public static Map<String, UIEfficiencyStatistic> calculateStatistics(
 				GraphOutputData graphData ) {
 			Map<String, UIEfficiencyStatistic> statistics = new TreeMap<>();
-			for( String type : types.keySet() )
+			for (String type : types.keySet())
 				statistics.put(type, types.get(type).calculate(graphData));
 			return statistics;
 		}
-		
-		public static void addType( UIEfficiencyStatisticType type ) throws DuplicateTypeException {
-			if( types.containsKey(type.getName()))
+
+		public static void addType( UIEfficiencyStatisticType type )
+				throws DuplicateTypeException {
+			if (types.containsKey(type.getName()))
 				throw new DuplicateTypeException(type.getName());
 			types.put(type.getName(), type);
 		}
-		
+
 		public static UIEfficiencyStatisticType getType( String type ) {
 			return types.get(type);
 		}
@@ -78,24 +80,30 @@ public abstract class UIEfficiencyStatisticType {
 	}
 
 	/**
-	 * The name of this type of metric.
-	 */
-	@SuppressWarnings( "unused" )
-	private final String name;
-
-	/**
 	 * Constructs a UIEST instance of the specified name. This method should not
 	 * complete if a UIEST instance already exists with the specified name.
 	 * 
-	 * @param name
-	 *            the name of this type
 	 * @throws DuplicateTypeException
 	 *             if an instance with the specified name already exists
 	 */
-	protected UIEfficiencyStatisticType( String name )
-			throws DuplicateTypeException {
+	protected UIEfficiencyStatisticType() throws DuplicateTypeException {
 		UIEfficiencyStatistics.addType(this);
-		this.name = name;
+	}
+
+	/**
+	 * Creates a statistic using the supplied parameters. This must be used by
+	 * statistic types not in this package due to the constructor of UIES being
+	 * protected.
+	 * 
+	 * @param type
+	 *            the UIES Type
+	 * @param value
+	 *            the statistic value
+	 * @return the statistic constructed with the parameters
+	 */
+	protected UIEfficiencyStatistic createStatistic(
+			UIEfficiencyStatisticType type, Object value ) {
+		return new UIEfficiencyStatistic(type, value);
 	}
 
 	/**
@@ -136,5 +144,16 @@ public abstract class UIEfficiencyStatisticType {
 	 * @return the class type
 	 */
 	public abstract Class<?> getValueType();
+
+	/**
+	 * Writes a UIES instance of this type to an output stream.
+	 * 
+	 * @param out
+	 *            the stream of data to write to
+	 * @param statistic
+	 *            the UIES instance
+	 */
+	public abstract void write( UIEfficiencyStatistic statistic,
+			OutputStream out );
 
 }

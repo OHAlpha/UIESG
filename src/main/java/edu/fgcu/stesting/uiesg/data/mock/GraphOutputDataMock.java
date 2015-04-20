@@ -26,13 +26,13 @@ public class GraphOutputDataMock implements GraphOutputData {
 		order = 4;
 		size = 3;
 		list = new LinkedList<>();
-		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.ENTER));
-		list.add(GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE));
-		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.CLICK));
-		list.add(GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE));
-		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.HOVER));
-		list.add(GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE));
-		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.EXIT));
+		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.ENTER,0,0));
+		list.add(GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE,0,0,0,0));
+		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.CLICK,0,0));
+		list.add(GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE,0,0,0,0));
+		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.HOVER,0,0));
+		list.add(GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE,0,0,0,0));
+		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.EXIT,0,0));
 	}
 
 	public GraphOutputDataMock() {

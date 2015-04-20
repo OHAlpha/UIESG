@@ -7,10 +7,11 @@ import java.io.OutputStream;
 import edu.fgcu.stesting.uiesg.data.graph.AbstractMouseGraphAction;
 
 @SuppressWarnings( "javadoc" )
-public abstract class AbstractMouseGraphActionMock extends AbstractMouseGraphAction {
-	
+public abstract class AbstractMouseGraphActionMock extends
+		AbstractMouseGraphAction {
+
 	private int type;
-	
+
 	private int subType;
 
 	/**
@@ -30,14 +31,18 @@ public abstract class AbstractMouseGraphActionMock extends AbstractMouseGraphAct
 
 	@Override
 	public Dimension2D getVariance() {
-		return new Dimension(0,0);
+		return new Dimension(0, 0);
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#write(java.io.OutputStream)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * edu.fgcu.stesting.uiesg.data.MouseGraphAction#write(java.io.OutputStream)
 	 */
 	@Override
-	public void write( OutputStream out ) {}
+	public void write( OutputStream out ) {
+	}
 
 	@Override
 	public int getType() {

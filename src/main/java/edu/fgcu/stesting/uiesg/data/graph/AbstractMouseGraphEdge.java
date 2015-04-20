@@ -10,14 +10,15 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  * @author oalpha
  *
  */
-public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction implements
-		MouseGraphEdge {
+public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
+		implements MouseGraphEdge {
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#asNode()
 	 */
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public MouseGraphNode asNode() {
 		throw new IllegalArgumentException("This action is an edge");
@@ -28,14 +29,18 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction im
 	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#asEdge()
 	 */
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public MouseGraphEdge asEdge() {
 		return this;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
 	 */
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public int getType() {
 		return GODFactory.EDGE;

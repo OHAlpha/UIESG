@@ -5,11 +5,11 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
 public abstract class AbstractMouseGraphAction implements MouseGraphAction {
-	
+
 	private MouseGraphAction previous;
-	
+
 	private MouseGraphAction next;
-	
+
 	private long timestamp;
 
 	@Override
@@ -31,6 +31,7 @@ public abstract class AbstractMouseGraphAction implements MouseGraphAction {
 	public void setNext( MouseGraphAction next ) {
 		this.next = next;
 	}
+
 	@Override
 	public long getTimestamp() {
 		return timestamp;

@@ -12,9 +12,9 @@ import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
 public class MouseActionInputDataMock implements MouseActionInputData {
-	
+
 	List<Point> points;
-	
+
 	{
 		points = new LinkedList<>();
 	}
@@ -31,9 +31,9 @@ public class MouseActionInputDataMock implements MouseActionInputData {
 
 	@Override
 	public long latestTimestamp() throws NoSuchElementException {
-		if( points.isEmpty() )
+		if (points.isEmpty())
 			throw new NoSuchElementException();
-		return points.get(points.size()-1).timestamp;
+		return points.get(points.size() - 1).timestamp;
 	}
 
 	@Override

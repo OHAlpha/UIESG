@@ -273,16 +273,18 @@ public class SiteEfficiencyData {
 					for (int j = 0; j < actions; j++) {
 
 						// read action
-						MouseGraphAction action = GODFactory
-								.read(in);
+						MouseGraphAction action = GODFactory.read(in);
 
 						// read previous
 						int prev = in.readInt();
 
 						// set previous
-						MouseGraphAction previous = d.graphData.getAction(prev);
-						previous.setNext(action);
-						action.setPrevious(previous);
+						if (prev > -1) {
+							MouseGraphAction previous = d.graphData
+									.getAction(prev);
+							previous.setNext(action);
+							action.setPrevious(previous);
+						}
 
 						// add action to graph
 						d.graphData.addAction(action);
@@ -335,6 +337,9 @@ public class SiteEfficiencyData {
 	 * @return whether the save was successful
 	 */
 	public boolean unloadData() {
+		
+		if( !isLoaded() )
+			return false;
 
 		// return false if SED is already loaded
 		if (data != null)
@@ -344,18 +349,18 @@ public class SiteEfficiencyData {
 		File file = dataFile();
 
 		// write in data
-		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(
-				new FileOutputStream(file)))) {
+		try (DataOutputStream out = new DataOutputStream(
+				new BufferedOutputStream(new FileOutputStream(file)))) {
 
 			// write number of DataSets
 			int size = data.size();
-			out.writeInt( size );
+			out.writeInt(size);
 
 			// write each DataSet
 			for (int i = 0; i < size; i++) {
 
 				// create DataSet
-				DataSet d = data.get( i );
+				DataSet d = data.get(i);
 
 				// mask is a bit vector
 				// bit 0 is on when a MAID object exists
@@ -364,32 +369,33 @@ public class SiteEfficiencyData {
 				int mask = d.mouseData == null ? 0 : 1;
 				mask |= d.graphData == null ? 0 : 2;
 				mask |= d.statistics == null ? 0 : 4;
-				out.writeInt( mask );
+				out.writeInt(mask);
 
 				// write MAID if it exists
-				if (d.mouseData != null ) {
+				if (d.mouseData != null) {
 
 					// write number of Points
 					int points = d.mouseData.size();
-					out.writeInt( points );
+					out.writeInt(points);
 
 					// write each Point
-					for (Iterator<Point> it = d.mouseData.iterate(); it.hasNext(); ) {
-						
+					for (Iterator<Point> it = d.mouseData.iterate(); it
+							.hasNext();) {
+
 						// get Point
 						Point p = it.next();
 
 						// write positions
-						out.writeDouble( p.browserLocation.getX() );
-						out.writeDouble( p.browserLocation.getY() );
-						out.writeDouble( p.pagePosition.getX() );
-						out.writeDouble( p.pagePosition.getY() );
+						out.writeDouble(p.browserLocation.getX());
+						out.writeDouble(p.browserLocation.getY());
+						out.writeDouble(p.pagePosition.getX());
+						out.writeDouble(p.pagePosition.getY());
 
 						// write timestamp
-						out.writeLong( p.timestamp );
+						out.writeLong(p.timestamp);
 
 						// write type
-						out.writeInt( p.type );
+						out.writeInt(p.type);
 
 					}
 
@@ -403,18 +409,18 @@ public class SiteEfficiencyData {
 
 					// write number of actions
 					int actions = d.graphData.order() + d.graphData.size();
-					out.writeInt( actions );
+					out.writeInt(actions);
 
 					// write actions
 					for (int j = 0; j < actions; j++) {
 
 						// write action
-						MouseGraphAction action = d.graphData.getAction( j );
+						MouseGraphAction action = d.graphData.getAction(j);
 						action.write(out);
 
 						// write previous
-						int prev = d.graphData.indexOf( action.getPrevious() );
-						out.writeInt( prev );
+						int prev = d.graphData.indexOf(action.getPrevious());
+						out.writeInt(prev);
 
 					}
 
@@ -425,18 +431,18 @@ public class SiteEfficiencyData {
 
 					// write number of statistics
 					int stats = d.statistics.size();
-					out.writeInt( stats );
+					out.writeInt(stats);
 
 					// write statistics
-					for (Iterator<String> it = d.statistics.keySet().iterator(); it.hasNext();) {
+					for (Iterator<String> it = d.statistics.keySet().iterator(); it
+							.hasNext();) {
 
 						// write type
 						String type = it.next();
-						out.writeUTF( type );
+						out.writeUTF(type);
 
 						// write statistic
-						d.statistics
-								.get(type).write( out );
+						d.statistics.get(type).write(out);
 
 					}
 
@@ -522,10 +528,12 @@ public class SiteEfficiencyData {
 		// create a statistics based on the GOD
 		for (Iterator<DataSet> it = data.iterator(); it.hasNext();) {
 			DataSet d = it.next();
-			if (d.statistics == null){
-				if (d.graphData != null){
-					// statistics type will already exist. a static method calculate all satistics will be added
-					d.statistics = UIEfficiencyStatistics.calculateStatistics(d.graphData);
+			if (d.statistics == null) {
+				if (d.graphData != null) {
+					// statistics type will already exist. a static method
+					// calculate all satistics will be added
+					d.statistics = UIEfficiencyStatistics
+							.calculateStatistics(d.graphData);
 				}
 
 			}
@@ -544,10 +552,31 @@ public class SiteEfficiencyData {
 		// TODO
 
 	}
-	
+
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public String toString() {
 		return "SED( domain: " + domain + ", #datasets: " + data.size() + " )";
+	}
+
+	/**
+	 * Returns the number of data sets.
+	 * 
+	 * @return the number of sets
+	 */
+	protected int size() {
+		return data.size();
+	}
+
+	/**
+	 * Returns the data set at the given index.
+	 * 
+	 * @param i
+	 *            the index of the desired data set
+	 * @return the number of data set
+	 */
+	protected DataSet getSet( int i ) {
+		return data.get(i);
 	}
 
 }

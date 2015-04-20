@@ -1,7 +1,11 @@
 package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Iterator;
 
 import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
@@ -39,10 +43,10 @@ public class GODFactory {
 	public static final int EXIT = 3;
 
 	// TODO: javadoc
-	public static final int MOVE = 0;
+	public static final int MOVE = 4;
 
 	// TODO: javadoc
-	public static final int DRAG = 1;
+	public static final int DRAG = 5;
 
 	// TODO: javadoc
 	protected static int godMode;
@@ -79,11 +83,11 @@ public class GODFactory {
 			Object... params ) {
 		if (actionMode == MOCK) {
 			if (type == NODE) {
-				return new MouseGraphNodeMock(type,subType,new Point(
+				return new MouseGraphNodeMock(type, subType, new Point(
 						((Number) params[0]).intValue(),
 						((Number) params[1]).intValue()));
 			} else if (type == EDGE) {
-				return new MouseGraphEdgeMock(type,subType,new Point(
+				return new MouseGraphEdgeMock(type, subType, new Point(
 						((Number) params[0]).intValue(),
 						((Number) params[1]).intValue()), new Point(
 						((Number) params[2]).intValue(),
@@ -100,6 +104,32 @@ public class GODFactory {
 	public static MouseGraphAction read( InputStream in ) {
 		throw new RuntimeException("method not implemented");
 		// TODO
+	}
+
+	// TODO: javadoc
+	public static void write( MouseGraphAction action, OutputStream o ) {
+		DataOutputStream out = new DataOutputStream( o );
+		if( actionMode == IMPLEMENTATION ) {
+			try {
+				out.write(action.getType());
+				out.write(action.getSubType());
+				if( action.getType() == NODE ) {
+					Point2D a = ((MouseGraphNode)action).getLocation();
+					out.writeDouble(a.getX());
+					out.writeDouble(a.getY());
+				}
+				else {
+					Point2D a = ((MouseGraphEdge)action).getSource();
+					Point2D b = ((MouseGraphEdge)action).getDest();
+					out.writeDouble(a.getX());
+					out.writeDouble(a.getY());
+					out.writeDouble(b.getX());
+					out.writeDouble(b.getY());
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

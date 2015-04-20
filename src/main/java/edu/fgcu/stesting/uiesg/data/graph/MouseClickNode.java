@@ -70,12 +70,15 @@ public class MouseClickNode extends AbstractMouseGraphNode {
 	@Override
 	public void write( OutputStream out ) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
 	 */
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public int getSubType() {
 		return GODFactory.CLICK;

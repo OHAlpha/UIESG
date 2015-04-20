@@ -1,6 +1,7 @@
 package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.geom.Dimension2D;
+import java.awt.geom.Point2D;
 
 /**
  * Represents movement of the mouse in the browser window.
@@ -9,16 +10,30 @@ import java.awt.geom.Dimension2D;
  *
  */
 public interface MouseGraphEdge extends MouseGraphAction {
-	
+
 	/**
 	 * Represents that the movement can be generalized as a straight line.
 	 */
 	public static int PATH_TYPE_ANY = 0;
-	
+
 	/**
 	 * Represents that the movement can be generalized as a straight line.
 	 */
 	public static int PATH_TYPE_LINEAR = 1;
+
+	/**
+	 * Returns the location this event started.
+	 * 
+	 * @return the location
+	 */
+	Point2D getSource();
+
+	/**
+	 * Returns the location this event ended.
+	 * 
+	 * @return the location
+	 */
+	Point2D getDest();
 
 	/**
 	 * Returns the type of regression the movement takes. Valid values are:

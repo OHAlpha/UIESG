@@ -31,7 +31,8 @@ public class UIEfficiencyStatistic {
 	 */
 	protected UIEfficiencyStatistic( UIEfficiencyStatisticType type,
 			Object value ) {
-		throw new RuntimeException("constructor not implemented");
+		this.type = type;
+		this.value = value;
 	}
 
 	/**
@@ -59,8 +60,7 @@ public class UIEfficiencyStatistic {
 	 *            the output stream
 	 */
 	public void write( OutputStream out ) {
-		// TODO Auto-generated method stub
-
+		type.write(this, out);
 	}
 
 }
