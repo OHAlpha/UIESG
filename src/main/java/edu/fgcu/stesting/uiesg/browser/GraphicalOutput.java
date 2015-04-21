@@ -1,6 +1,7 @@
 package edu.fgcu.stesting.uiesg.browser;
 
 
+import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -21,7 +22,7 @@ public class GraphicalOutput {
 	 */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Scene setup(){
+	public Scene setup(SiteEfficiencyData sed){
 		
 		
 		final LineChart<Number, Number> lc = new LineChart<>(new NumberAxis(),
@@ -30,19 +31,29 @@ public class GraphicalOutput {
 		// set the title of the graph
 		lc.setTitle("UIESG Data");
 		
-		// series1 will consist of the points that
+		// series1 will consist of just points that
 		// are considered an "event"
 		XYChart.Series series1 = new XYChart.Series();
 		series1.setName("Mouse events");
-		
+		//
+		//SiteEfficiencyData.getForDomain(domain);
 		// test points for mouse events
 		series1.getData().add(new XYChart.Data(4.2, 193.2));
 		series1.getData().add(new XYChart.Data(2.8, 33.6));
 		series1.getData().add(new XYChart.Data(6.8, 23.6));
+		// multiple GODs for each SED...get the SED by calling SiteEffiencyData.getForDomain()...that'll give
+		// me the domain and then use the domain to get the GODs...by calling getGraphData()...
 
-		// series2 will have the mouse x,y data
+		// series2 will have the mouse x,y data and be a line 
+		// graph
+		
 		XYChart.Series series2 = new XYChart.Series();
 		series2.setName("Mouse movement");
+		
+		// call compile on the SED which will create the GODs.
+		// retrieve the GOD
+		// god = sed.getGraphData(i);
+		
 		
 		// test points for mouse movements
 		series2.getData().add(new XYChart.Data(5.2, 229.2));
