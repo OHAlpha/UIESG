@@ -40,7 +40,7 @@
 	</target>
 	<target name="unit-test" depends="build-test">
 		<mkdir dir="${reports.unit.dir}" />
-		<jacoco:coverage destfile="jacoco.unit.exec" excludes="${jacoco.exc}">
+		<jacoco:coverage destfile="jacoco.unit.exec">
 			<junit fork="true" haltonfailure="false" printsummary="on">
 				<classpath>
 					<pathelement location="${build.dir}" />
@@ -51,13 +51,14 @@
 				</classpath>
 				<formatter type="xml" />
 				<formatter type="plain" />
-				<test name="edu.fgcu.stesting.uiesg.UnitTest" todir="${reports.unit.dir}"></test>
+				<test name="edu.fgcu.stesting.uiesg.UnitTest" todir="${reports.unit.dir}">
+				</test>
 			</junit>
 		</jacoco:coverage>
 	</target>
 	<target name="integration-test" depends="build-test">
 		<mkdir dir="${reports.int.dir}" />
-		<jacoco:coverage destfile="jacoco.int.exec" excludes="${jacoco.exc}">
+		<jacoco:coverage destfile="jacoco.int.exec">
 			<junit fork="true" haltonfailure="false" printsummary="on">
 				<classpath>
 					<pathelement location="${build.dir}" />
@@ -68,7 +69,8 @@
 				</classpath>
 				<formatter type="xml" />
 				<formatter type="plain" />
-				<test name="edu.fgcu.stesting.uiesg.IntegrationTest" todir="${reports.int.dir}"></test>
+				<test name="edu.fgcu.stesting.uiesg.IntegrationTest" todir="${reports.int.dir}">
+				</test>
 			</junit>
 		</jacoco:coverage>
 	</target>
