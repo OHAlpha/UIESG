@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MouseGraphEdgeMock.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.mock</a> &gt; <span class="el_source">MouseGraphEdgeMock.java</span></div><h1>MouseGraphEdgeMock.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.mock;
+
+import java.awt.Point;
+import java.awt.Shape;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+
+@SuppressWarnings( &quot;javadoc&quot; )
+public class MouseGraphEdgeMock extends AbstractMouseGraphActionMock implements
+		MouseGraphEdge {
+
+	private Line2D line;
+
+	public MouseGraphEdgeMock( long timestamp, int t, int st, Point s, Point d ) {
+<span class="fc" id="L19">		super(timestamp,t, st);</span>
+<span class="fc" id="L20">		line = new Line2D.Double(s, d);</span>
+<span class="fc" id="L21">	}</span>
+
+	@Override
+	public Rectangle2D getRange() {
+<span class="nc" id="L25">		return line.getBounds2D();</span>
+	}
+
+	@Override
+	public Shape getArea() {
+<span class="nc" id="L30">		return line;</span>
+	}
+
+	@Override
+	public int getPathType() {
+<span class="nc" id="L35">		return PATH_TYPE_LINEAR;</span>
+	}
+
+	@Override
+	public Object getPathParameters() {
+<span class="nc" id="L40">		return new Point2D[] { line.getP1(), line.getP2() };</span>
+	}
+
+	@Override
+	public MouseGraphNode asNode() {
+<span class="nc" id="L45">		throw new IllegalArgumentException();</span>
+	}
+
+	@Override
+	public MouseGraphEdge asEdge() {
+<span class="nc" id="L50">		return this;</span>
+	}
+
+	@Override
+	public Point2D getSource() {
+<span class="fc" id="L55">		return line.getP1();</span>
+	}
+
+	@Override
+	public Point2D getDest() {
+<span class="fc" id="L60">		return line.getP2();</span>
+	}
+
+	public boolean equals( Object o ) {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">		if (super.equals(o)) {</span>
+<span class="fc" id="L65">			MouseGraphEdgeMock mge = (MouseGraphEdgeMock) o;</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">			return mge.getSource().equals(line.getP1())</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">					&amp;&amp; mge.getDest().equals(line.getP2());</span>
+		} else
+<span class="fc" id="L69">			return false;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

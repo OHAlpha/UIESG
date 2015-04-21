@@ -9,6 +9,7 @@ import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeExcep
 
 /**
  * A test for implementations of UIEfficiencyStatisticType.
+ * 
  * @author oalpha
  *
  */

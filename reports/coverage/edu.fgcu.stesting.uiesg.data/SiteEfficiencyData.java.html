@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SiteEfficiencyData.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data</a> &gt; <span class="el_source">SiteEfficiencyData.java</span></div><h1>SiteEfficiencyData.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data;
+
+import java.awt.geom.Point2D;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
+import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
+
+/**
+ * SiteEfficiencyData (SED) is a container for all domain specific data
+ * generated and used by the UIESG.
+ * 
+ * @author oalpha
+ *
+ */
+public class SiteEfficiencyData {
+
+	/**
+	 * DuplicateDomainException signifies that the domain for which a SED is
+	 * being created for already is referenced by an existing SED.
+	 * 
+	 * Since the constructor has been made protected, this exception is no
+	 * longer needed.
+	 * 
+	 * @author oalpha
+	 *
+	 */
+	public class DuplicateDomainException extends Exception {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -7294874443006338512L;
+
+		/**
+		 * Constructs an instance for the given domain
+		 * 
+		 * @param domain
+		 *            the domain to which the exception refers
+		 */
+<span class="nc" id="L55">		public DuplicateDomainException( String domain ) {</span>
+<span class="nc" id="L56">			super(domain);</span>
+			// TODO Auto-generated constructor stub
+<span class="nc" id="L58">		}</span>
+
+	}
+
+	/**
+	 * The collection to map domains to SED instances.
+	 */
+<span class="fc" id="L65">	protected static Map&lt;String, SiteEfficiencyData&gt; domains = new TreeMap&lt;&gt;();</span>
+
+	/**
+	 * Returns an SED for the specified domain if it exists. If none exists, one
+	 * will be created.
+	 * 
+	 * @param domain
+	 *            the domain for which a SED is requested
+	 * @return the SED for the specified domain
+	 */
+	public static SiteEfficiencyData getForDomain( String domain ) {
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">		if (domains.containsKey(domain))</span>
+<span class="nc" id="L77">			return domains.get(domain);</span>
+		else {
+<span class="fc" id="L79">			SiteEfficiencyData sed = new SiteEfficiencyData(domain);</span>
+<span class="fc" id="L80">			domains.put(domain, sed);</span>
+<span class="fc" id="L81">			return sed;</span>
+		}
+	}
+
+	/**
+	 * Removes all domains from the collection.
+	 */
+	protected static void clean() {
+<span class="fc" id="L89">		domains.clear();</span>
+<span class="fc" id="L90">	}</span>
+
+	/**
+	 * The folder to store and lookup data files.
+	 */
+<span class="fc" id="L95">	protected static File dataFileDir;</span>
+
+	/**
+	 * Initializes the data file directory for loading and unloading of SED
+	 * instances.
+	 * 
+	 * @param directory
+	 *            the folder to store and lookup data files
+	 * @return if the supplied directory is valid
+	 */
+	public static boolean init( String directory ) {
+<span class="fc" id="L106">		dataFileDir = new File(directory);</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">		if (dataFileDir.exists())</span>
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">			if (dataFileDir.isFile()) {</span>
+<span class="nc" id="L109">				dataFileDir = null;</span>
+<span class="nc" id="L110">				return false;</span>
+			} else
+<span class="fc" id="L112">				return true;</span>
+		else {
+<span class="nc" id="L114">			boolean success = dataFileDir.mkdirs();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">			if (success)</span>
+<span class="nc" id="L116">				return true;</span>
+			else {
+<span class="nc" id="L118">				dataFileDir = null;</span>
+<span class="nc" id="L119">				return false;</span>
+			}
+		}
+	}
+
+	/**
+	 * A wrapper for a MAID, GOD and a map of UIESs. It is solely for the
+	 * simplification of manipulation the data collections so there is no need
+	 * for any functionality.
+	 * 
+	 * @author oalpha
+	 *
+	 */
+<span class="fc" id="L132">	protected static class DataSet {</span>
+
+		/**
+		 * The MAID of this set
+		 */
+		public MouseActionInputData mouseData;
+
+		/**
+		 * The GOD of this set
+		 */
+		public GraphOutputData graphData;
+
+		/**
+		 * The UIESs of this set
+		 */
+		public Map&lt;String, UIEfficiencyStatistic&gt; statistics;
+
+	}
+
+	/**
+	 * The domain of this SED
+	 */
+	protected final String domain;
+
+	/**
+	 * The MAIDs, GODs and UIESs for this SED
+	 */
+	protected List&lt;DataSet&gt; data;
+
+	/**
+	 * The contexts per page in the domain of this SED
+	 */
+	protected Map&lt;String, PageContext&gt; pages;
+
+	/**
+	 * Constructs an instance for a specific domain. Each instance must each
+	 * represent a unique domain. The initial state of the SED is determined by
+	 * whether or not a data file already exists. If one does, the SED will not
+	 * be usable until explicitly loaded. Otherwise, the SED will be initialized
+	 * as an empty SED and calls to isLoaded will return true until unloaded.
+	 * Also, if the SED is initialized, a PageContext for the homepage, that is
+	 * the URL consisting solely of the domain, will be automatically created.
+	 * If it is not initialized, when it is loaded, a PageContext for the
+	 * homepage will be created if it does not already exist.
+	 * 
+	 * @param domain
+	 *            the domain for which this SED will store data
+	 */
+<span class="fc" id="L180">	protected SiteEfficiencyData( String domain ) {</span>
+<span class="fc" id="L181">		this.domain = domain;</span>
+<span class="fc" id="L182">		File df = dataFile();</span>
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">		if (df.exists()) {</span>
+<span class="nc" id="L184">			data = null;</span>
+<span class="nc" id="L185">			pages = null;</span>
+<span class="nc" id="L186">		} else {</span>
+<span class="fc" id="L187">			data = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L188">			pages = new TreeMap&lt;&gt;();</span>
+		}
+		// System.out.println(&quot;\t\t\t&quot; + domain + &quot;.isLoaded() = &quot; +
+		// isLoaded());
+<span class="fc" id="L192">	}</span>
+
+	/**
+	 * Returns the file pointing to the ( possibly nonexistent ) data file for
+	 * this domain.
+	 * 
+	 * @return the File
+	 */
+	protected File dataFile() {
+<span class="fc" id="L201">		return new File(dataFileDir, domain + &quot;.sed&quot;);</span>
+	}
+
+	/**
+	 * Loads the data and pages from file and returns true if successful and
+	 * false otherwise.
+	 * 
+	 * @return whether the load was successful
+	 */
+	public boolean loadData() {
+
+		// return false if SED is already loaded
+<span class="nc bnc" id="L213" title="All 2 branches missed.">		if (isLoaded()) {</span>
+			;
+			// System.out.println(&quot;\t\talready loaded&quot;);
+<span class="nc" id="L216">			return false;</span>
+		}
+
+		// datafile
+<span class="nc" id="L220">		File file = dataFile();</span>
+
+		// check for existence
+<span class="nc bnc" id="L223" title="All 2 branches missed.">		if (!file.exists()) {</span>
+			;
+			// System.out.println(&quot;\t\t&quot;+file.getAbsolutePath()+&quot;\n\t&quot;+file.getName()+&quot; does not exist&quot;);
+<span class="nc" id="L226">			return false;</span>
+		}
+
+<span class="nc" id="L229">		data = new ArrayList&lt;&gt;();</span>
+
+		// read in data
+<span class="nc" id="L232">		try (DataInputStream in = new DataInputStream(new BufferedInputStream(</span>
+<span class="nc" id="L233">				new FileInputStream(file)))) {</span>
+
+			// read number of DataSets
+<span class="nc" id="L236">			int size = in.readInt();</span>
+
+			// read each DataSet
+<span class="nc bnc" id="L239" title="All 2 branches missed.">			for (int i = 0; i &lt; size; i++) {</span>
+
+				// create DataSet
+<span class="nc" id="L242">				DataSet d = new DataSet();</span>
+
+				// mask is a bit vector
+				// bit 0 is on when a MAID object exists
+				// bit 1 is on when a GOD object exists
+				// bit 2 is on when UIES objects exist
+<span class="nc" id="L248">				int mask = in.readInt();</span>
+
+				// read MAID if it exists
+<span class="nc bnc" id="L251" title="All 2 branches missed.">				if ((mask &amp; 0x01) &gt; 0) {</span>
+
+					// create MAID
+<span class="nc" id="L254">					d.mouseData = MAIDFactory.newInstance();</span>
+
+					// read number of Points
+<span class="nc" id="L257">					int points = in.readInt();</span>
+
+					// read each Point
+<span class="nc bnc" id="L260" title="All 2 branches missed.">					for (int j = 0; j &lt; points; j++) {</span>
+
+						// read positions
+<span class="nc" id="L263">						double bx = in.readDouble(), by = in.readDouble(), px = in</span>
+<span class="nc" id="L264">								.readDouble(), py = in.readDouble();</span>
+
+						// read timestamp
+<span class="nc" id="L267">						long time = in.readLong();</span>
+
+						// read type
+<span class="nc" id="L270">						int type = in.readInt();</span>
+
+						// add Point
+<span class="nc" id="L273">						d.mouseData.addPoint(new Point2D.Double(bx, by),</span>
+<span class="nc" id="L274">								new Point2D.Double(px, py), time, type);</span>
+
+					}
+
+				}
+
+				// read GOD if it exists
+<span class="nc bnc" id="L281" title="All 2 branches missed.">				if ((mask &amp; 0x02) &gt; 0) {</span>
+
+					// create GOD
+<span class="nc" id="L284">					d.graphData = GODFactory.newInstance();</span>
+
+					// read number of actions
+<span class="nc" id="L287">					int actions = in.readInt();</span>
+<span class="nc" id="L288">					System.out.println(actions + &quot; actions&quot;);</span>
+
+					// read actions
+<span class="nc bnc" id="L291" title="All 2 branches missed.">					for (int j = 0; j &lt; actions; j++) {</span>
+
+						// read action
+<span class="nc" id="L294">						MouseGraphAction action = GODFactory.read(in);</span>
+						// System.out.println(&quot;\t&quot; + action);
+
+						// read previous
+<span class="nc" id="L298">						int prev = in.readInt();</span>
+
+						// set previous
+<span class="nc bnc" id="L301" title="All 4 branches missed.">						if (prev &gt; -1 &amp;&amp; j &gt; 0) {</span>
+<span class="nc" id="L302">							MouseGraphAction previous = d.graphData</span>
+<span class="nc" id="L303">									.getAction(prev);</span>
+<span class="nc bnc" id="L304" title="All 2 branches missed.">							if (previous != null) {</span>
+<span class="nc" id="L305">								previous.setNext(action);</span>
+<span class="nc" id="L306">								action.setPrevious(previous);</span>
+							}
+						}
+
+						// add action to graph
+<span class="nc" id="L311">						d.graphData.addAction(action);</span>
+						// System.out.println(&quot;\t&quot;
+						// + (d.graphData.order() + d.graphData.size())
+						// + &quot; actions read&quot;);
+
+					}
+					// System.out.println((d.graphData.order() + d.graphData
+					// .size()) + &quot; actions read&quot;);
+
+				}
+
+				// read UIESs if they exist
+<span class="nc bnc" id="L323" title="All 2 branches missed.">				if ((mask &amp; 0x04) &gt; 0) {</span>
+
+					// create map
+<span class="nc" id="L326">					d.statistics = new TreeMap&lt;&gt;();</span>
+
+					// read number of statistics
+<span class="nc" id="L329">					int stats = in.readInt();</span>
+
+					// read statistics
+<span class="nc bnc" id="L332" title="All 2 branches missed.">					for (int j = 0; j &lt; stats; j++) {</span>
+
+						// read type
+<span class="nc" id="L335">						String type = in.readUTF();</span>
+
+						// read statistic
+<span class="nc" id="L338">						d.statistics</span>
+<span class="nc" id="L339">								.put(type, UIEfficiencyStatistics.getType(type)</span>
+<span class="nc" id="L340">										.create(in));</span>
+
+					}
+
+				}
+
+<span class="nc" id="L346">				data.add(d);</span>
+
+			}
+
+<span class="nc" id="L350">			return true;</span>
+<span class="nc bnc" id="L351" title="All 8 branches missed.">		} catch (IOException e) {</span>
+
+<span class="nc" id="L353">			e.printStackTrace();</span>
+
+			// System.err.println(&quot;error loading&quot;);
+<span class="nc" id="L356">			data = null;</span>
+<span class="nc" id="L357">			return false;</span>
+
+		}
+
+	}
+
+	/**
+	 * Saves the data and pages to file and returns true if successful and false
+	 * otherwise.
+	 * 
+	 * @return whether the save was successful
+	 */
+	public boolean unloadData() {
+
+		// return false if SED is not loaded
+<span class="nc bnc" id="L372" title="All 2 branches missed.">		if (!isLoaded()) {</span>
+			;
+			// System.out.println(&quot;\t\tnot loaded&quot;);
+<span class="nc" id="L375">			return false;</span>
+		}
+
+		// datafile
+<span class="nc" id="L379">		File file = dataFile();</span>
+
+		// write in data
+<span class="nc" id="L382">		try (DataOutputStream out = new DataOutputStream(</span>
+<span class="nc" id="L383">				new BufferedOutputStream(new FileOutputStream(file)))) {</span>
+
+			// write number of DataSets
+<span class="nc" id="L386">			int size = data.size();</span>
+<span class="nc" id="L387">			out.writeInt(size);</span>
+
+			// write each DataSet
+<span class="nc bnc" id="L390" title="All 2 branches missed.">			for (int i = 0; i &lt; size; i++) {</span>
+
+				// create DataSet
+<span class="nc" id="L393">				DataSet d = data.get(i);</span>
+
+				// mask is a bit vector
+				// bit 0 is on when a MAID object exists
+				// bit 1 is on when a GOD object exists
+				// bit 2 is on when UIES objects exist
+<span class="nc bnc" id="L399" title="All 2 branches missed.">				int mask = d.mouseData == null ? 0 : 1;</span>
+<span class="nc bnc" id="L400" title="All 2 branches missed.">				mask |= d.graphData == null ? 0 : 2;</span>
+<span class="nc bnc" id="L401" title="All 2 branches missed.">				mask |= d.statistics == null ? 0 : 4;</span>
+<span class="nc" id="L402">				out.writeInt(mask);</span>
+
+				// write MAID if it exists
+<span class="nc bnc" id="L405" title="All 2 branches missed.">				if (d.mouseData != null) {</span>
+
+					// write number of Points
+<span class="nc" id="L408">					int points = d.mouseData.size();</span>
+<span class="nc" id="L409">					out.writeInt(points);</span>
+
+					// write each Point
+<span class="nc" id="L412">					for (Iterator&lt;Point&gt; it = d.mouseData.iterate(); it</span>
+<span class="nc bnc" id="L413" title="All 2 branches missed.">							.hasNext();) {</span>
+
+						// get Point
+<span class="nc" id="L416">						Point p = it.next();</span>
+
+						// write positions
+<span class="nc" id="L419">						out.writeDouble(p.browserLocation.getX());</span>
+<span class="nc" id="L420">						out.writeDouble(p.browserLocation.getY());</span>
+<span class="nc" id="L421">						out.writeDouble(p.pagePosition.getX());</span>
+<span class="nc" id="L422">						out.writeDouble(p.pagePosition.getY());</span>
+
+						// write timestamp
+<span class="nc" id="L425">						out.writeLong(p.timestamp);</span>
+
+						// write type
+<span class="nc" id="L428">						out.writeInt(p.type);</span>
+
+					}
+
+				}
+
+				// write GOD if it exists
+<span class="nc bnc" id="L435" title="All 2 branches missed.">				if (d.graphData != null) {</span>
+
+					// create GOD
+<span class="nc" id="L438">					d.graphData = GODFactory.newInstance();</span>
+
+					// write number of actions
+<span class="nc" id="L441">					int actions = d.graphData.order() + d.graphData.size();</span>
+<span class="nc" id="L442">					out.writeInt(actions);</span>
+
+					// write actions
+<span class="nc bnc" id="L445" title="All 2 branches missed.">					for (int j = 0; j &lt; actions; j++) {</span>
+
+						// write action
+<span class="nc" id="L448">						MouseGraphAction action = d.graphData.getAction(j);</span>
+<span class="nc" id="L449">						action.write(out);</span>
+
+						// write previous
+<span class="nc" id="L452">						int prev = d.graphData.indexOf(action.getPrevious());</span>
+<span class="nc" id="L453">						out.writeInt(prev);</span>
+
+					}
+
+				}
+
+				// write UIESs if they exist
+<span class="nc bnc" id="L460" title="All 2 branches missed.">				if (d.statistics != null) {</span>
+
+					// write number of statistics
+<span class="nc" id="L463">					int stats = d.statistics.size();</span>
+<span class="nc" id="L464">					out.writeInt(stats);</span>
+
+					// write statistics
+<span class="nc" id="L467">					for (Iterator&lt;String&gt; it = d.statistics.keySet().iterator(); it</span>
+<span class="nc bnc" id="L468" title="All 2 branches missed.">							.hasNext();) {</span>
+
+						// write type
+<span class="nc" id="L471">						String type = it.next();</span>
+<span class="nc" id="L472">						out.writeUTF(type);</span>
+
+						// write statistic
+<span class="nc" id="L475">						d.statistics.get(type).write(out);</span>
+
+					}
+
+				}
+
+			}
+
+<span class="nc" id="L483">			data = null;</span>
+
+<span class="nc" id="L485">			return true;</span>
+<span class="nc bnc" id="L486" title="All 8 branches missed.">		} catch (IOException e) {</span>
+
+<span class="nc" id="L488">			e.printStackTrace();</span>
+
+<span class="nc" id="L490">			return false;</span>
+
+		}
+
+	}
+
+	/**
+	 * Whether the data and pages resides in memory or on disk.
+	 * 
+	 * @return true if the data and pages reside in memory and false if on disk
+	 */
+	public boolean isLoaded() {
+<span class="nc bnc" id="L502" title="All 2 branches missed.">		return data != null;</span>
+	}
+
+	/**
+	 * Returns the domain of this SED.
+	 * 
+	 * @return the domain
+	 */
+	public String getDomain() {
+<span class="nc" id="L511">		return domain;</span>
+		// TODO
+		//
+
+	}
+
+	/**
+	 * Creates and returns a new MAID instance.
+	 * 
+	 * @return the newly created MAID instance
+	 */
+	public MouseActionInputData newMouseData() {
+		// create a new dataset and add it to the collection &quot;data&quot; and then in
+		// data create a new MAID in that dataset
+<span class="nc bnc" id="L525" title="All 2 branches missed.">		if( data == null )</span>
+<span class="nc" id="L526">			return null;</span>
+<span class="nc" id="L527">		DataSet d = new DataSet();</span>
+		// add mousedata to the dataset
+<span class="nc" id="L529">		d.mouseData = MAIDFactory.newInstance();</span>
+<span class="nc" id="L530">		data.add(d);</span>
+
+<span class="nc" id="L532">		return d.mouseData;</span>
+	}
+
+	/**
+	 * Creates a GOD instance for each MAID in the data.
+	 */
+	public void compileMouseData() {
+<span class="nc bnc" id="L539" title="All 2 branches missed.">		if( data == null )</span>
+<span class="nc" id="L540">			throw new RuntimeException(&quot;sed is not loaded&quot;);</span>
+
+		// go through all the datasets if MAID is not null, but GOD is null then
+		// create a new GOD based on the MAID
+<span class="nc bnc" id="L544" title="All 2 branches missed.">		for (Iterator&lt;DataSet&gt; it = data.iterator(); it.hasNext();) {</span>
+<span class="nc" id="L545">			DataSet d = it.next();</span>
+<span class="nc bnc" id="L546" title="All 2 branches missed.">			if (d.mouseData != null) {</span>
+<span class="nc bnc" id="L547" title="All 2 branches missed.">				if (d.graphData == null) {</span>
+<span class="nc" id="L548">					GraphOutputDataImp GOD = new GraphOutputDataImp(</span>
+<span class="nc" id="L549">							d.mouseData.iterate());// creates a new instance of</span>
+													// GOD based on MAID
+<span class="nc" id="L551">					d.graphData = GOD;</span>
+				}
+			}
+		}
+<span class="nc" id="L555">	}</span>
+
+	/**
+	 * Creates UIESs for each GOD in the data and each UIEfficiencyStatisticType
+	 * in memory.
+	 */
+	public void calculateStatistics() {
+<span class="nc bnc" id="L562" title="All 2 branches missed.">		if( data == null )</span>
+<span class="nc" id="L563">			throw new RuntimeException(&quot;sed is not loaded&quot;);</span>
+
+		// if there is a statistics that is null and a GOD that is not null then
+		// create a statistics based on the GOD
+<span class="nc bnc" id="L567" title="All 2 branches missed.">		for (Iterator&lt;DataSet&gt; it = data.iterator(); it.hasNext();) {</span>
+<span class="nc" id="L568">			DataSet d = it.next();</span>
+<span class="nc bnc" id="L569" title="All 2 branches missed.">			if (d.statistics == null) {</span>
+<span class="nc bnc" id="L570" title="All 2 branches missed.">				if (d.graphData != null) {</span>
+					// statistics type will already exist. a static method
+					// calculate all satistics will be added
+<span class="nc" id="L573">					d.statistics = UIEfficiencyStatistics</span>
+<span class="nc" id="L574">							.calculateStatistics(d.graphData);</span>
+				}
+
+			}
+		}
+<span class="nc" id="L579">	}</span>
+
+	/**
+	 * Returns a PageContext for the specified URL if it exists.
+	 * 
+	 * @param url
+	 *            the address of the desired PageContext
+	 * @return the PageContext instance or null if it does not exist.
+	 */
+	public PageContext getForURL( URL url ) {
+<span class="nc" id="L589">		throw new RuntimeException(&quot;method not implemented&quot;);</span>
+		// TODO
+
+	}
+
+	@Override
+	@SuppressWarnings( &quot;javadoc&quot; )
+	public String toString() {
+<span class="nc" id="L597">		return &quot;SED( domain: &quot; + domain + &quot;, #datasets: &quot; + data.size() + &quot; )&quot;;</span>
+	}
+
+	/**
+	 * Returns the number of data sets.
+	 * 
+	 * @return the number of sets
+	 */
+	protected int size() {
+<span class="nc" id="L606">		return data.size();</span>
+	}
+
+	/**
+	 * Returns the data set at the given index.
+	 * 
+	 * @param i
+	 *            the index of the desired data set
+	 * @return the number of data set
+	 */
+	protected DataSet getSet( int i ) {
+<span class="nc" id="L617">		return data.get(i);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

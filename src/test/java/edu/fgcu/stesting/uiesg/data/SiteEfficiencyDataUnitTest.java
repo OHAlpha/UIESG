@@ -1,19 +1,30 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.DataSet;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
+import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;
+import edu.fgcu.stesting.uiesg.data.mock.MouseActionInputDataMock;
+import edu.fgcu.stesting.uiesg.data.mock.UIEfficiencyStatisticTypeMock;
 import static org.junit.Assert.*;
 
 /**
@@ -31,6 +42,26 @@ public class SiteEfficiencyDataUnitTest {
 			"src/test/java/edu/fgcu/stesting/uiesg/data/datafiles");
 
 	/**
+	 * The mock maid to use for testing.
+	 */
+	static MouseActionInputData mm;
+
+	/**
+	 * The mock god to use for testing.
+	 */
+	static GraphOutputData mg;
+
+	/**
+	 * The mock uiest to use for testing.
+	 */
+	static UIEfficiencyStatisticType mt;
+
+	/**
+	 * The mock uies to use for testing.
+	 */
+	static UIEfficiencyStatistic ms;
+
+	/**
 	 * A SED for "fgcu.edu".
 	 */
 	SiteEfficiencyData fgcu;
@@ -45,9 +76,53 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@BeforeClass
 	public static void setup() {
+		if (!dir.exists())
+			dir.mkdirs();
 		SiteEfficiencyData.init("tmp/datafiles");
 		MAIDFactory.init(MAIDFactory.MOCK);
 		GODFactory.init(GODFactory.MOCK);
+		try {
+			new UIEfficiencyStatisticTypeMock();
+		} catch (DuplicateTypeException e) {
+			e.printStackTrace();
+		}
+
+		// write data to data folder
+		File file = new File(dir, "wikipedia.org.sed");
+		try (DataOutputStream out = new DataOutputStream(
+				new BufferedOutputStream(new FileOutputStream(file)));) {
+			out.writeInt(1);
+			out.writeInt(0x07);
+			mm = new MouseActionInputDataMock();
+			out.writeInt(mm.size());
+			for (Iterator<MouseActionInputData.Point> it = mm.iterate(); it
+					.hasNext();) {
+				MouseActionInputData.Point p = it.next();
+				out.writeDouble(p.browserLocation.getX());
+				out.writeDouble(p.browserLocation.getY());
+				out.writeDouble(p.pagePosition.getX());
+				out.writeDouble(p.pagePosition.getY());
+				out.writeLong(p.timestamp);
+				out.writeInt(p.type);
+			}
+			mg = new GraphOutputDataMock(mm.iterate());
+			out.writeInt(mg.order() + mg.size());
+			for (int i = 0; i < mg.order() + mg.size(); i++) {
+				MouseGraphAction ma = mg.getAction(i);
+				GODFactory.write(ma, out);
+				out.writeInt(mg.indexOf(ma.getPrevious()));
+			}
+			out.writeInt(1);
+			mt = UIEfficiencyStatistics.getType("Mock");
+			ms = mt.calculate(mg);
+			out.writeUTF(mt.getName());
+			ms.write(out);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(file.length());
 	}
 
 	/**
@@ -76,10 +151,12 @@ public class SiteEfficiencyDataUnitTest {
 		// file where wiki's data file should reside
 		File wOut = new File(SiteEfficiencyData.dataFileDir,
 				"wikipedia.org.sed");
+		// System.out.println(wOut.getAbsolutePath());
 
 		// copy data file
 		Files.copy(wIn.toPath(), wOut.toPath(),
 				StandardCopyOption.REPLACE_EXISTING);
+		// System.out.println(wOut.exists());
 
 		// create wiki
 		wiki = SiteEfficiencyData.getForDomain("wikipedia.org");
@@ -100,6 +177,18 @@ public class SiteEfficiencyDataUnitTest {
 		if (wDat.exists())
 			wDat.delete();
 
+		// remove all domains
+		SiteEfficiencyData.clean();
+
+	}
+
+	/**
+	 * Delete the test data file
+	 */
+	@AfterClass
+	public static void tearDown() {
+		File file = new File(dir, "wikipedia.org.sed");
+		file.delete();
 	}
 
 	/**
@@ -179,7 +268,6 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testLoadDataFileExists() {
-		// TODO: testLoadDataFileExists
 
 		// load wiki
 		boolean success = wiki.loadData();
@@ -189,9 +277,21 @@ public class SiteEfficiencyDataUnitTest {
 		assertTrue("wiki.isLoaded() must be true", wiki.isLoaded());
 
 		// test if data is correct
-		// TODO: testLoadDataFileExists: test if wiki loaded correctly
+		assertEquals("wiki.size() must return 1", wiki.size(), 1);
 
-		throw new RuntimeException("test not implemented");
+		DataSet ds = wiki.getSet(0);
+		assertNotNull("mouse data should not be null", ds.mouseData);
+		assertEquals(ds.mouseData, mm);
+		assertNotNull("graph data should not be null", ds.graphData);
+		assertEquals(ds.graphData.order(), mg.order());
+		assertEquals(ds.graphData.size(), mg.size());
+		assertEquals(ds.graphData, mg);
+		assertNotNull("statistics should not be null", ds.statistics);
+		assertEquals("statistics should have 1 statistic",
+				ds.statistics.size(), 1);
+		assertTrue(ds.statistics.containsKey(mt.getName()));
+		assertEquals(ds.statistics.get(mt.getName()), ms);
+
 	}
 
 	/**
@@ -245,7 +345,8 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testUnloadDataLoaded() {
-		// TODO: testUnloadDataLoaded
+
+		assertTrue(wiki.loadData());
 
 		// file for wiki's data file
 		File wDat = new File(SiteEfficiencyData.dataFileDir,
@@ -265,9 +366,21 @@ public class SiteEfficiencyDataUnitTest {
 		assertTrue("wiki's data file must exist", wDat.exists());
 
 		// verify data file's content
-		// TODO: testUnloadDataNotLoaded: verify data file's content
-
-		throw new RuntimeException("test not implemented");
+		File exp = new File(dir, "wikipedia.org.sed");
+		assertEquals(exp.length(), wDat.length());
+		try (BufferedInputStream inE = new BufferedInputStream(
+				new FileInputStream(exp));
+				BufferedInputStream inA = new BufferedInputStream(
+						new FileInputStream(wDat));) {
+			byte[] e = new byte[1024], a = new byte[1024];
+			while (inE.read(e) > 0) {
+				inA.read(a);
+				assertTrue(Arrays.equals(e, a));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 
 	/**
@@ -294,7 +407,7 @@ public class SiteEfficiencyDataUnitTest {
 		wiki.loadData();
 
 		// check if wiki is loaded
-		assertFalse("wiki.isLoaded() must return false", wiki.isLoaded());
+		assertTrue("wiki.isLoaded() must return true", wiki.isLoaded());
 
 	}
 
@@ -384,57 +497,28 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testNewMouseDataNotLoaded() {
-		// TODO: new mouse data
-		throw new RuntimeException("test not implemented");
+
+		assertNull("wiki.newMouseData must return null", wiki.newMouseData());
+
 	}
 
 	/**
 	 * Calls compileMouseData on wiki( not loaded ).
 	 */
-	@Test
+	@Test( expected = RuntimeException.class )
 	public void testCompileMouseDataNotLoaded() {
-		// TODO: compile mouse data
-		throw new RuntimeException("test not implemented");
+
+		wiki.compileMouseData();
+
 	}
 
 	/**
 	 * Calls calculateStatistics on wiki( not loaded ).
 	 */
-	@Test
+	@Test( expected = RuntimeException.class )
 	public void testCalculateStatisticsNotLoaded() {
-		// TODO: calculate statistics
-		throw new RuntimeException("test not implemented");
-	}
 
-	/**
-	 * Requests a page that does not exist.
-	 * 
-	 * @throws MalformedURLException
-	 *             if URL creation fails
-	 */
-	public void testGetForURLPageNotExists() throws MalformedURLException {
-
-		// request page
-		PageContext p = fgcu.getForURL(new URL("fgcu.edu/sucks"));
-		
-		// check for existence
-		assertNull("fgcu.getForURL() must return null",p);
-
-	}
-
-	/**
-	 * Requests a page that exists.
-	 * 
-	 * @throws MalformedURLException
-	 *             if URL creation fails
-	 */
-	public void testGetForURLPageExists() throws MalformedURLException {
-
-		// request page
-		PageContext p = fgcu.getForURL(new URL("fgcu.edu"));
-		
-		// check for existence
-		assertNotNull("fgcu.getForURL() must return non-null",p);
+		wiki.calculateStatistics();
 
 	}
 

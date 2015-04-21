@@ -2,21 +2,39 @@ package edu.fgcu.stesting.uiesg.data.graph;
 
 import java.awt.Shape;
 import java.awt.geom.Dimension2D;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.io.OutputStream;
-
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 /**
- * Represents dragging of the mouse in the browser window. THe previous and next
+ * Represents dragging of the mouse in the browser window. The previous and next
  * actions will be either other MouseDragEdges or MouseClickNodes.
  * 
  * @author oalpha
  *
  */
 public class MouseDragEdge extends AbstractMouseGraphEdge {
+
+	/**
+	 * @param timestamp
+	 * @param previous
+	 * @param next
+	 */
+	protected MouseDragEdge( long timestamp, MouseGraphAction previous,
+			MouseGraphAction next ) {
+		super(timestamp, previous, next);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param timestamp
+	 */
+	protected MouseDragEdge( long timestamp ) {
+		super(timestamp);
+		// TODO Auto-generated constructor stub
+	}
 
 	@SuppressWarnings( "javadoc" )
 	@Override
@@ -72,19 +90,27 @@ public class MouseDragEdge extends AbstractMouseGraphEdge {
 		throw new RuntimeException("method not implemented");
 	}
 
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public void write( OutputStream out ) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
 	 */
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public int getSubType() {
 		return GODFactory.DRAG;
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public Point2D getSource() {
+		throw new RuntimeException("method not implemented");
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public Point2D getDest() {
+		throw new RuntimeException("method not implemented");
 	}
 
 }

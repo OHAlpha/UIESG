@@ -26,6 +26,23 @@ import static java.awt.event.MouseEvent.*;
 public class GraphOutputDataImp implements GraphOutputData {
 
 	/**
+	 * The minimum speed ( in pixels per second ) that will be considered
+	 * movement.
+	 */
+	private static final double SPEED_THRESHHOLD = 5;
+
+	/**
+	 * The maximum time ( in seconds ) between events that will be considered
+	 * movement.
+	 */
+	private static final long TIME_THRESHHOLD = 200;
+
+	/**
+	 * Signifies the hovering of the mouse.
+	 */
+	private static final int MOUSE_HOVER = MOUSE_LAST + 1;
+
+	/**
 	 * Whether this instance has been locked.
 	 */
 	private boolean locked;
@@ -73,33 +90,55 @@ public class GraphOutputDataImp implements GraphOutputData {
 	public GraphOutputDataImp( Iterator<MouseActionInputData.Point> mouseData )
 			throws NullPointerException {
 		int lastType = MOUSE_FIRST - 1;
+		long lastTime = -1;
 		Point2D a = null, b = null;
 		for (; mouseData.hasNext();) {
 			Point c = mouseData.next();
 			int t = c.type;
 			Point2D p = c.browserLocation;
+			long s = c.timestamp;
 			switch (t) {
 			case MOUSE_ENTERED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
-							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
-							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
-							b.getY()));
-				this.addAction(GODFactory.newGraphAction(GODFactory.NODE,
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				else if (lastType == MOUSE_HOVER)
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				this.addAction(GODFactory.newGraphAction(s, GODFactory.NODE,
 						GODFactory.ENTER, p.getX(), p.getY()));
 				a = p;
 				break;
 			case MOUSE_MOVED:
+				double d = p.distance(b == null ? a : b);
+				long r = s - lastTime;
+				if (d * 1000. / r < SPEED_THRESHHOLD || r > TIME_THRESHHOLD) {
+					if (lastType == MOUSE_MOVED)
+						this.addAction(GODFactory.newGraphAction(s,
+								GODFactory.EDGE, GODFactory.MOVE, a.getX(),
+								a.getY(), b.getX(), b.getY()));
+					t = MOUSE_HOVER;
+				} else if (lastType == MOUSE_HOVER)
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				b = p;
 				break;
 			case MOUSE_PRESSED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
-							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				else if (lastType == MOUSE_HOVER)
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				a = p;
 				break;
 			case MOUSE_DRAGGED:
@@ -107,36 +146,46 @@ public class GraphOutputDataImp implements GraphOutputData {
 				break;
 			case MOUSE_RELEASED:
 				if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
-							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				break;
 			case MOUSE_CLICKED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
-							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
-							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
-							b.getY()));
-				this.addAction(GODFactory.newGraphAction(GODFactory.NODE,
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				else if (lastType == MOUSE_HOVER)
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				this.addAction(GODFactory.newGraphAction(s, GODFactory.NODE,
 						GODFactory.CLICK, p.getX(), p.getY()));
 				a = p;
+				break;
 			case MOUSE_EXITED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
-							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(GODFactory.EDGE,
-							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
-							b.getY()));
-				this.addAction(GODFactory.newGraphAction(GODFactory.NODE,
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				else if (lastType == MOUSE_HOVER)
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				this.addAction(GODFactory.newGraphAction(s, GODFactory.NODE,
 						GODFactory.EXIT, p.getX(), p.getY()));
 				a = p;
 			}
 			lastType = t;
+			lastTime = s;
 		}
 		locked = true;
 	}
@@ -146,6 +195,7 @@ public class GraphOutputDataImp implements GraphOutputData {
 	 * 
 	 * @return the number of nodes
 	 */
+	@Override
 	public int order() {
 		return nodes.size();
 	}
@@ -155,8 +205,19 @@ public class GraphOutputDataImp implements GraphOutputData {
 	 * 
 	 * @return the number of edges
 	 */
+	@Override
 	public int size() {
 		return edges.size();
+	}
+
+	/**
+	 * The number of actions in the graph.
+	 * 
+	 * @return the number of edges
+	 */
+	@Override
+	public int numActions() {
+		return nodes.size() + edges.size();
 	}
 
 	@SuppressWarnings( "javadoc" )

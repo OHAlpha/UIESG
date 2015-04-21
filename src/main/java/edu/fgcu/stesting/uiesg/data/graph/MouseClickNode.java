@@ -4,11 +4,8 @@ import java.awt.Shape;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.io.OutputStream;
-
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
-import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 /**
  * Represents an click event in the browser window.
@@ -18,64 +15,78 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  */
 public class MouseClickNode extends AbstractMouseGraphNode {
 
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public long getTimestamp() {
-		throw new RuntimeException("method not implemented");
+	/**
+	 * The point clicked.
+	 */
+	private Rectangle2D range;
+
+	/**
+	 * @param timestamp
+	 *            the time of the action
+	 * @param previous
+	 *            the previous action
+	 * @param next
+	 *            the next action
+	 * @param x
+	 *            the x value of the click point
+	 * @param y
+	 *            the y value of the click point
+	 */
+	public MouseClickNode( long timestamp, MouseGraphAction previous,
+			MouseGraphAction next, double x, double y ) {
+		super(timestamp, previous, next);
+		range = new Rectangle2D.Double(x, y, 0, 0);
 	}
 
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public MouseGraphNode getNext() {
-		throw new RuntimeException("method not implemented");
+	/**
+	 * @param timestamp
+	 *            the time of the action
+	 * @param x
+	 *            the x value of the click point
+	 * @param y
+	 *            the y value of the click point
+	 */
+	public MouseClickNode( long timestamp, double x, double y ) {
+		super(timestamp);
+		range = new Rectangle2D.Double(x, y, 0, 0);
 	}
 
 	@SuppressWarnings( "javadoc" )
 	@Override
 	public Rectangle2D getRange() {
-		throw new RuntimeException("method not implemented");
+		return range;
 	}
 
 	@SuppressWarnings( "javadoc" )
 	@Override
 	public Shape getArea() {
-		throw new RuntimeException("method not implemented");
+		return range;
 	}
 
 	@SuppressWarnings( "javadoc" )
 	@Override
 	public Point2D getLocation() {
-		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public MouseGraphAction getPrevious() {
-		throw new RuntimeException("method not implemented");
+		return new Point2D.Double(range.getX(), range.getY());
 	}
 
 	@SuppressWarnings( "javadoc" )
 	@Override
 	public double getError() {
-		throw new RuntimeException("method not implemented");
+		return 0;
 	}
 
 	@SuppressWarnings( "javadoc" )
 	@Override
 	public Dimension2D getVariance() {
-		throw new RuntimeException("method not implemented");
+		return new Dim();
 	}
 
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public void write( OutputStream out ) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
 	 */
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public int getSubType() {
 		return GODFactory.CLICK;

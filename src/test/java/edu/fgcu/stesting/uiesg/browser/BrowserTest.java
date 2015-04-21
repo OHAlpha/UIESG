@@ -17,6 +17,7 @@ import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
  * @author beoliver
  *
  */
+@SuppressWarnings( "javadoc" )
 public class BrowserTest {
 
 	Browser browser;
@@ -34,7 +35,6 @@ public class BrowserTest {
 	@Before
 	public void before() {
 		browser = new Browser();
-		
 
 	}
 
@@ -54,51 +54,28 @@ public class BrowserTest {
 	public void testStart() {
 		// code to test browser start function
 		throw new RuntimeException("test not implemented");
-		
-		
+
 	}
 
 	@Test
 	public void testUpdatePage() {
 		// code to test updatePage returns boolean btw
-		// test if (sed == null || !sed.getDomain().equalsIgnoreCase(domain)) 
-		
+		// test if (sed == null || !sed.getDomain().equalsIgnoreCase(domain))
+
 		browser.sed = null;
 		boolean tst = true;
 		URL url;
 		try {
 			url = new URL("https://www.google.com");
-			
+
 			boolean bool = browser.updatePage(url);
 			assertEquals(tst, bool);
 			assertEquals(url.getHost(), browser.sed.getDomain());
-			
-			
-			
+
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
 	}
 

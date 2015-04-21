@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GraphOutputDataMock.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.mock</a> &gt; <span class="el_source">GraphOutputDataMock.java</span></div><h1>GraphOutputDataMock.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.mock;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import edu.fgcu.stesting.uiesg.data.GODFactory;
+import edu.fgcu.stesting.uiesg.data.GraphOutputData;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
+
+// TODO: javadoc
+@SuppressWarnings( &quot;javadoc&quot; )
+public class GraphOutputDataMock implements GraphOutputData {
+
+	private boolean locked;
+
+	private int order, size;
+
+	private List&lt;MouseGraphAction&gt; list;
+
+<span class="nc" id="L24">	public GraphOutputDataMock( Iterator&lt;Point&gt; mouseData ) {</span>
+<span class="nc" id="L25">		locked = true;</span>
+<span class="nc" id="L26">		order = 4;</span>
+<span class="nc" id="L27">		size = 3;</span>
+<span class="nc" id="L28">		list = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L29">		list.add(GODFactory.newGraphAction(0, GODFactory.NODE,</span>
+<span class="nc" id="L30">				GODFactory.ENTER, 0, 0));</span>
+<span class="nc" id="L31">		list.add(GODFactory.newGraphAction(1, GODFactory.EDGE, GODFactory.MOVE,</span>
+<span class="nc" id="L32">				0, 0, 0, 0));</span>
+<span class="nc" id="L33">		list.add(GODFactory.newGraphAction(2, GODFactory.NODE,</span>
+<span class="nc" id="L34">				GODFactory.CLICK, 0, 0));</span>
+<span class="nc" id="L35">		list.add(GODFactory.newGraphAction(3, GODFactory.EDGE, GODFactory.MOVE,</span>
+<span class="nc" id="L36">				0, 0, 0, 0));</span>
+<span class="nc" id="L37">		list.add(GODFactory.newGraphAction(4, GODFactory.NODE,</span>
+<span class="nc" id="L38">				GODFactory.HOVER, 0, 0));</span>
+<span class="nc" id="L39">		list.add(GODFactory.newGraphAction(5, GODFactory.EDGE, GODFactory.MOVE,</span>
+<span class="nc" id="L40">				0, 0, 0, 0));</span>
+<span class="nc" id="L41">		list.add(GODFactory.newGraphAction(6, GODFactory.NODE, GODFactory.EXIT,</span>
+<span class="nc" id="L42">				0, 0));</span>
+<span class="nc" id="L43">	}</span>
+
+<span class="nc" id="L45">	public GraphOutputDataMock() {</span>
+<span class="nc" id="L46">		locked = false;</span>
+<span class="nc" id="L47">		order = size = 0;</span>
+<span class="nc" id="L48">		list = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L49">	}</span>
+
+	@Override
+	public int order() {
+<span class="nc" id="L53">		return order;</span>
+	}
+
+	@Override
+	public int size() {
+<span class="nc" id="L58">		return size;</span>
+	}
+
+	@Override
+	public void addAction( MouseGraphAction action ) {
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		if (locked)</span>
+<span class="nc" id="L64">			throw new RuntimeException(&quot;GOD has been locked&quot;);</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">		if (action instanceof MouseGraphNode)</span>
+<span class="nc" id="L66">			order++;</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">		else if (action instanceof MouseGraphEdge)</span>
+<span class="nc" id="L68">			size++;</span>
+		else
+<span class="nc" id="L70">			return;</span>
+<span class="nc" id="L71">		list.add(action);</span>
+<span class="nc" id="L72">	}</span>
+
+	@Override
+	public MouseGraphAction getAction( int index ) {
+		try {
+<span class="nc" id="L77">			return list.get(index);</span>
+<span class="nc" id="L78">		} catch (Exception e) {</span>
+<span class="nc" id="L79">			throw new RuntimeException(&quot;index: &quot; + index + &quot;;&quot;, e);</span>
+		}
+	}
+
+	@Override
+	public MouseGraphNode getNode( int index ) {
+<span class="nc" id="L85">		MouseGraphAction a = list.get(index);</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">		if (a instanceof MouseGraphNode)</span>
+<span class="nc" id="L87">			return (MouseGraphNode) a;</span>
+<span class="nc" id="L88">		throw new IllegalArgumentException(&quot;Action is an edge&quot;);</span>
+	}
+
+	@Override
+	public MouseGraphEdge getEdge( int index ) {
+<span class="nc" id="L93">		MouseGraphAction a = list.get(index);</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (a instanceof MouseGraphEdge)</span>
+<span class="nc" id="L95">			return (MouseGraphEdge) a;</span>
+<span class="nc" id="L96">		throw new IllegalArgumentException(&quot;Action is a node&quot;);</span>
+	}
+
+	@Override
+	public int indexOf( MouseGraphAction action ) {
+<span class="nc" id="L101">		return list.indexOf(action);</span>
+	}
+
+	@Override
+	public void lock() {
+<span class="nc" id="L106">		locked = true;</span>
+<span class="nc" id="L107">	}</span>
+
+	public boolean equals( Object o ) {
+<span class="nc bnc" id="L110" title="All 2 branches missed.">		if (o instanceof GraphOutputDataMock) {</span>
+<span class="nc" id="L111">			GraphOutputDataMock god = (GraphOutputDataMock) o;</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">			if (god.list.size() != list.size())</span>
+<span class="nc" id="L113">				return false;</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">			for (int i = 0; i &lt; list.size(); i++)</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">				if (!god.list.get(i).equals(list.get(i)))</span>
+<span class="nc" id="L116">					return false;</span>
+<span class="nc" id="L117">			return true;</span>
+		} else
+<span class="nc" id="L119">			return false;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

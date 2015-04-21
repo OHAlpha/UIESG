@@ -1,6 +1,7 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
 import edu.fgcu.stesting.uiesg.data.GODFactory;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
@@ -10,15 +11,35 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  * @author oalpha
  *
  */
+@SuppressWarnings( "javadoc" )
 public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 		implements MouseGraphNode {
+
+	/**
+	 * @param timestamp
+	 * @param previous
+	 * @param next
+	 */
+	protected AbstractMouseGraphNode( long timestamp,
+			MouseGraphAction previous, MouseGraphAction next ) {
+		super(timestamp, previous, next);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param timestamp
+	 */
+	protected AbstractMouseGraphNode( long timestamp ) {
+		super(timestamp);
+		// TODO Auto-generated constructor stub
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#asNode()
 	 */
-	@SuppressWarnings( "javadoc" )
+	@Override
 	public MouseGraphNode asNode() {
 		return this;
 	}
@@ -28,15 +49,17 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#asEdge()
 	 */
-	@SuppressWarnings( "javadoc" )
+	@Override
 	public MouseGraphEdge asEdge() {
 		throw new IllegalArgumentException("This action is a node");
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
 	 */
-	@SuppressWarnings( "javadoc" )
+	@Override
 	public int getType() {
 		return GODFactory.NODE;
 	}

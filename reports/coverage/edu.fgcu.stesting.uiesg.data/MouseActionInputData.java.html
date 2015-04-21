@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MouseActionInputData.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data</a> &gt; <span class="el_source">MouseActionInputData.java</span></div><h1>MouseActionInputData.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data;
+
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+/**
+ * MouseActionInputData (MAID) is a container for the raw mouse data. Instances
+ * will store the locations, timestamps and types of all MouseEvents generated
+ * by the browser window.
+ * 
+ * @author oalpha
+ *
+ */
+public interface MouseActionInputData {
+
+	/**
+	 * An encapsulation of the location timestamp and type of a mouse event.
+	 * 
+	 * @author oalpha
+	 *
+	 */
+<span class="fc" id="L24">	public static class Point {</span>
+
+		/**
+		 * The location of the event on the browser window. x,y in the browser
+		 */
+		public Point2D browserLocation;
+
+		/**
+		 * The location of the event on the page. This is effected by scrolling.
+		 * x,y in the page
+		 */
+		public Point2D pagePosition;
+
+		/**
+		 * The time the event occurred.
+		 */
+		public long timestamp;
+
+		/**
+		 * The type of event. Can be any of types specified in MouseEvent.
+		 * 
+		 * @see java.awt.event.MouseEvent
+		 */
+		public int type;
+
+		/* (non-Javadoc)
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@SuppressWarnings( &quot;javadoc&quot; )
+		public boolean equals( Object o ) {
+<span class="nc bnc" id="L54" title="All 2 branches missed.">			if (o instanceof Point) {</span>
+<span class="nc" id="L55">				Point p = (Point) o;</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">				return p.browserLocation.equals(browserLocation)</span>
+<span class="nc bnc" id="L57" title="All 4 branches missed.">						&amp;&amp; p.equals(pagePosition) &amp;&amp; p.timestamp == timestamp</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">						&amp;&amp; p.type == type;</span>
+			} else
+<span class="nc" id="L60">				return false;</span>
+		}
+
+	}
+
+	/**
+	 * Returns the number of points recorder.
+	 * 
+	 * @return the number of points
+	 */
+	int size();
+
+	/**
+	 * Returns the box bounding the points in rawData.
+	 * 
+	 * @param page
+	 *            true if the box should bound position instead of location.
+	 * 
+	 * @return the bounding box
+	 */
+	Rectangle2D getRange( boolean page );
+
+	/**
+	 * Returns the timestamp of the latest point added if any exist.
+	 * 
+	 * @return the latest timestamp
+	 * @throws NoSuchElementException
+	 *             if no points have been added.
+	 */
+	long latestTimestamp() throws NoSuchElementException;
+
+	/**
+	 * Records a mouse event.
+	 * 
+	 * @param browserPoint
+	 *            the point on the browser
+	 * @param pagePoint
+	 *            the point on the page
+	 * @param timestamp
+	 *            the time of the event
+	 * @param type
+	 *            the type of event
+	 * @throws IllegalArgumentException
+	 *             if either pagePoint or browserPoint contains negative values,
+	 *             if timestamp is younger than the current latest timestamp or
+	 *             if type is not one of the allowed types specified in
+	 *             MouseEvent.
+	 */
+	void addPoint( Point2D browserPoint, Point2D pagePoint, long timestamp,
+			int type ) throws IllegalArgumentException;
+
+	/**
+	 * Iterates through rawData. Used by GODFactories to compile into graph
+	 * data.
+	 * 
+	 * @return the iterator
+	 */
+	Iterator&lt;Point&gt; iterate();
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

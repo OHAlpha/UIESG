@@ -23,6 +23,13 @@ public interface GraphOutputData {
 	 * @return the number of edges
 	 */
 	int size();
+	
+	/**
+	 * The number of actions in the graph.
+	 * 
+	 * @return the number of edges
+	 */
+	int numActions();
 
 	/**
 	 * Adds the action to the graph. Used by SED.loadData().

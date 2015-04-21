@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -83,6 +82,13 @@ public class SiteEfficiencyData {
 	}
 
 	/**
+	 * Removes all domains from the collection.
+	 */
+	protected static void clean() {
+		domains.clear();
+	}
+
+	/**
 	 * The folder to store and lookup data files.
 	 */
 	protected static File dataFileDir;
@@ -152,11 +158,6 @@ public class SiteEfficiencyData {
 	protected List<DataSet> data;
 
 	/**
-	 * The contexts per page in the domain of this SED
-	 */
-	protected Map<String, PageContext> pages;
-
-	/**
 	 * Constructs an instance for a specific domain. Each instance must each
 	 * represent a unique domain. The initial state of the SED is determined by
 	 * whether or not a data file already exists. If one does, the SED will not
@@ -175,11 +176,11 @@ public class SiteEfficiencyData {
 		File df = dataFile();
 		if (df.exists()) {
 			data = null;
-			pages = null;
 		} else {
 			data = new ArrayList<>();
-			pages = new TreeMap<>();
 		}
+		// System.out.println("\t\t\t" + domain + ".isLoaded() = " +
+		// isLoaded());
 	}
 
 	/**
@@ -201,15 +202,23 @@ public class SiteEfficiencyData {
 	public boolean loadData() {
 
 		// return false if SED is already loaded
-		if (data != null)
+		if (isLoaded()) {
+			;
+			// System.out.println("\t\talready loaded");
 			return false;
+		}
 
 		// datafile
 		File file = dataFile();
 
 		// check for existence
-		if (!file.exists())
+		if (!file.exists()) {
+			;
+			// System.out.println("\t\t"+file.getAbsolutePath()+"\n\t"+file.getName()+" does not exist");
 			return false;
+		}
+
+		data = new ArrayList<>();
 
 		// read in data
 		try (DataInputStream in = new DataInputStream(new BufferedInputStream(
@@ -268,26 +277,37 @@ public class SiteEfficiencyData {
 
 					// read number of actions
 					int actions = in.readInt();
+					// System.out.println(actions + " actions");
 
 					// read actions
 					for (int j = 0; j < actions; j++) {
 
 						// read action
-						MouseGraphAction action = GODFactory
-								.read(in);
+						MouseGraphAction action = GODFactory.read(in);
+						// System.out.println("\t" + action);
 
 						// read previous
 						int prev = in.readInt();
 
 						// set previous
-						MouseGraphAction previous = d.graphData.getAction(prev);
-						previous.setNext(action);
-						action.setPrevious(previous);
+						if (prev > -1 && j > 0) {
+							MouseGraphAction previous = d.graphData
+									.getAction(prev);
+							if (previous != null) {
+								previous.setNext(action);
+								action.setPrevious(previous);
+							}
+						}
 
 						// add action to graph
 						d.graphData.addAction(action);
+						// System.out.println("\t"
+						// + (d.graphData.order() + d.graphData.size())
+						// + " actions read");
 
 					}
+					// System.out.println((d.graphData.order() + d.graphData
+					// .size()) + " actions read");
 
 				}
 
@@ -315,6 +335,8 @@ public class SiteEfficiencyData {
 
 				}
 
+				data.add(d);
+
 			}
 
 			return true;
@@ -322,6 +344,8 @@ public class SiteEfficiencyData {
 
 			e.printStackTrace();
 
+			// System.err.println("error loading");
+			data = null;
 			return false;
 
 		}
@@ -336,26 +360,29 @@ public class SiteEfficiencyData {
 	 */
 	public boolean unloadData() {
 
-		// return false if SED is already loaded
-		if (data != null)
+		// return false if SED is not loaded
+		if (!isLoaded()) {
+			;
+			// System.out.println("\t\tnot loaded");
 			return false;
+		}
 
 		// datafile
 		File file = dataFile();
 
 		// write in data
-		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(
-				new FileOutputStream(file)))) {
+		try (DataOutputStream out = new DataOutputStream(
+				new BufferedOutputStream(new FileOutputStream(file)))) {
 
 			// write number of DataSets
 			int size = data.size();
-			out.writeInt( size );
+			out.writeInt(size);
 
 			// write each DataSet
 			for (int i = 0; i < size; i++) {
 
 				// create DataSet
-				DataSet d = data.get( i );
+				DataSet d = data.get(i);
 
 				// mask is a bit vector
 				// bit 0 is on when a MAID object exists
@@ -364,32 +391,33 @@ public class SiteEfficiencyData {
 				int mask = d.mouseData == null ? 0 : 1;
 				mask |= d.graphData == null ? 0 : 2;
 				mask |= d.statistics == null ? 0 : 4;
-				out.writeInt( mask );
+				out.writeInt(mask);
 
 				// write MAID if it exists
-				if (d.mouseData != null ) {
+				if (d.mouseData != null) {
 
 					// write number of Points
 					int points = d.mouseData.size();
-					out.writeInt( points );
+					out.writeInt(points);
 
 					// write each Point
-					for (Iterator<Point> it = d.mouseData.iterate(); it.hasNext(); ) {
-						
+					for (Iterator<Point> it = d.mouseData.iterate(); it
+							.hasNext();) {
+
 						// get Point
 						Point p = it.next();
 
 						// write positions
-						out.writeDouble( p.browserLocation.getX() );
-						out.writeDouble( p.browserLocation.getY() );
-						out.writeDouble( p.pagePosition.getX() );
-						out.writeDouble( p.pagePosition.getY() );
+						out.writeDouble(p.browserLocation.getX());
+						out.writeDouble(p.browserLocation.getY());
+						out.writeDouble(p.pagePosition.getX());
+						out.writeDouble(p.pagePosition.getY());
 
 						// write timestamp
-						out.writeLong( p.timestamp );
+						out.writeLong(p.timestamp);
 
 						// write type
-						out.writeInt( p.type );
+						out.writeInt(p.type);
 
 					}
 
@@ -403,18 +431,18 @@ public class SiteEfficiencyData {
 
 					// write number of actions
 					int actions = d.graphData.order() + d.graphData.size();
-					out.writeInt( actions );
+					out.writeInt(actions);
 
 					// write actions
 					for (int j = 0; j < actions; j++) {
 
 						// write action
-						MouseGraphAction action = d.graphData.getAction( j );
+						MouseGraphAction action = d.graphData.getAction(j);
 						action.write(out);
 
 						// write previous
-						int prev = d.graphData.indexOf( action.getPrevious() );
-						out.writeInt( prev );
+						int prev = d.graphData.indexOf(action.getPrevious());
+						out.writeInt(prev);
 
 					}
 
@@ -425,24 +453,26 @@ public class SiteEfficiencyData {
 
 					// write number of statistics
 					int stats = d.statistics.size();
-					out.writeInt( stats );
+					out.writeInt(stats);
 
 					// write statistics
-					for (Iterator<String> it = d.statistics.keySet().iterator(); it.hasNext();) {
+					for (Iterator<String> it = d.statistics.keySet().iterator(); it
+							.hasNext();) {
 
 						// write type
 						String type = it.next();
-						out.writeUTF( type );
+						out.writeUTF(type);
 
 						// write statistic
-						d.statistics
-								.get(type).write( out );
+						d.statistics.get(type).write(out);
 
 					}
 
 				}
 
 			}
+
+			data = null;
 
 			return true;
 		} catch (IOException e) {
@@ -484,6 +514,8 @@ public class SiteEfficiencyData {
 	public MouseActionInputData newMouseData() {
 		// create a new dataset and add it to the collection "data" and then in
 		// data create a new MAID in that dataset
+		if (data == null)
+			return null;
 		DataSet d = new DataSet();
 		// add mousedata to the dataset
 		d.mouseData = MAIDFactory.newInstance();
@@ -496,6 +528,8 @@ public class SiteEfficiencyData {
 	 * Creates a GOD instance for each MAID in the data.
 	 */
 	public void compileMouseData() {
+		if (data == null)
+			throw new RuntimeException("sed is not loaded");
 
 		// go through all the datasets if MAID is not null, but GOD is null then
 		// create a new GOD based on the MAID
@@ -517,37 +551,49 @@ public class SiteEfficiencyData {
 	 * in memory.
 	 */
 	public void calculateStatistics() {
+		if (data == null)
+			throw new RuntimeException("sed is not loaded");
 
 		// if there is a statistics that is null and a GOD that is not null then
 		// create a statistics based on the GOD
 		for (Iterator<DataSet> it = data.iterator(); it.hasNext();) {
 			DataSet d = it.next();
-			if (d.statistics == null){
-				if (d.graphData != null){
-					// statistics type will already exist. a static method calculate all satistics will be added
-					d.statistics = UIEfficiencyStatistics.calculateStatistics(d.graphData);
+			if (d.statistics == null) {
+				if (d.graphData != null) {
+					// statistics type will already exist. a static method
+					// calculate all satistics will be added
+					d.statistics = UIEfficiencyStatistics
+							.calculateStatistics(d.graphData);
 				}
 
 			}
 		}
 	}
 
-	/**
-	 * Returns a PageContext for the specified URL if it exists.
-	 * 
-	 * @param url
-	 *            the address of the desired PageContext
-	 * @return the PageContext instance or null if it does not exist.
-	 */
-	public PageContext getForURL( URL url ) {
-		throw new RuntimeException("method not implemented");
-		// TODO
-
-	}
-	
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public String toString() {
 		return "SED( domain: " + domain + ", #datasets: " + data.size() + " )";
+	}
+
+	/**
+	 * Returns the number of data sets.
+	 * 
+	 * @return the number of sets
+	 */
+	protected int size() {
+		return data.size();
+	}
+
+	/**
+	 * Returns the data set at the given index.
+	 * 
+	 * @param i
+	 *            the index of the desired data set
+	 * @return the number of data set
+	 */
+	protected DataSet getSet( int i ) {
+		return data.get(i);
 	}
 
 }

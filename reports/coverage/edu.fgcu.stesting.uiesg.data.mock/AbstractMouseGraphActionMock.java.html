@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AbstractMouseGraphActionMock.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.mock</a> &gt; <span class="el_source">AbstractMouseGraphActionMock.java</span></div><h1>AbstractMouseGraphActionMock.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.mock;
+
+import java.awt.Dimension;
+import java.awt.geom.Dimension2D;
+
+import edu.fgcu.stesting.uiesg.data.graph.AbstractMouseGraphAction;
+
+@SuppressWarnings( &quot;javadoc&quot; )
+public abstract class AbstractMouseGraphActionMock extends
+		AbstractMouseGraphAction {
+
+	private int type;
+
+	private int subType;
+
+	/**
+	 * @param type
+	 * @param subType
+	 */
+	protected AbstractMouseGraphActionMock( long timestamp, int type,
+			int subType ) {
+<span class="fc" id="L22">		super(timestamp);</span>
+<span class="fc" id="L23">		this.type = type;</span>
+<span class="fc" id="L24">		this.subType = subType;</span>
+<span class="fc" id="L25">	}</span>
+
+	@Override
+	public double getError() {
+<span class="nc" id="L29">		return 0;</span>
+	}
+
+	@Override
+	public Dimension2D getVariance() {
+<span class="nc" id="L34">		return new Dimension(0, 0);</span>
+	}
+
+	@Override
+	public int getType() {
+<span class="fc" id="L39">		return type;</span>
+	}
+
+	@Override
+	public int getSubType() {
+<span class="fc" id="L44">		return subType;</span>
+	}
+
+	public boolean equals( Object o ) {
+<span class="fc bfc" id="L48" title="All 2 branches covered.">		return getClass().isInstance(o)</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">				&amp;&amp; ((AbstractMouseGraphAction) o).getTimestamp() == getTimestamp();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

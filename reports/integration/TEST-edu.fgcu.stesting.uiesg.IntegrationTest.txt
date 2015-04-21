@@ -1,0 +1,9 @@
+Testsuite: edu.fgcu.stesting.uiesg.IntegrationTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 sec
+
+Testcase: BeforeFirstTest took 0 sec
+	Caused an ERROR
+Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
+junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
+	at org.jacoco.ant.CoverageTask.execute(CoverageTask.java:102)
+

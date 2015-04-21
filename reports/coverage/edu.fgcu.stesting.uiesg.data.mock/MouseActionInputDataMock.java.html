@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MouseActionInputDataMock.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.mock</a> &gt; <span class="el_source">MouseActionInputDataMock.java</span></div><h1>MouseActionInputDataMock.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.mock;
+
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
+
+// TODO: javadoc
+@SuppressWarnings( &quot;javadoc&quot; )
+<span class="fc" id="L14">public class MouseActionInputDataMock implements MouseActionInputData {</span>
+
+	List&lt;Point&gt; points;
+
+	{
+<span class="fc" id="L19">		points = new LinkedList&lt;&gt;();</span>
+	}
+
+	@Override
+	public int size() {
+<span class="nc" id="L24">		return points.size();</span>
+	}
+
+	@Override
+	public Rectangle2D getRange( boolean page ) {
+<span class="nc" id="L29">		return null;</span>
+	}
+
+	@Override
+	public long latestTimestamp() throws NoSuchElementException {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">		if (points.isEmpty())</span>
+<span class="nc" id="L35">			throw new NoSuchElementException();</span>
+<span class="nc" id="L36">		return points.get(points.size() - 1).timestamp;</span>
+	}
+
+	@Override
+	public void addPoint( Point2D browserPoint, Point2D pagePoint,
+			long timestamp, int type ) throws IllegalArgumentException {
+<span class="fc" id="L42">		Point p = new Point();</span>
+<span class="fc" id="L43">		p.browserLocation = browserPoint;</span>
+<span class="fc" id="L44">		p.pagePosition = pagePoint;</span>
+<span class="fc" id="L45">		p.timestamp = timestamp;</span>
+<span class="fc" id="L46">		p.type = type;</span>
+<span class="fc" id="L47">		points.add(p);</span>
+<span class="fc" id="L48">	}</span>
+
+	@Override
+	public Iterator&lt;Point&gt; iterate() {
+<span class="fc" id="L52">		return points.iterator();</span>
+	}
+
+	public boolean equals( Object o ) {
+<span class="nc bnc" id="L56" title="All 2 branches missed.">		if (o instanceof MouseActionInputDataMock) {</span>
+<span class="nc" id="L57">			MouseActionInputDataMock maid = (MouseActionInputDataMock) o;</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">			if( maid.points.size() != points.size() )</span>
+<span class="nc" id="L59">				return false;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">			for( int i = 0; i &lt; points.size(); i++ )</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">				if( !maid.points.get(i).equals(points.get(i)) )</span>
+<span class="nc" id="L62">					return false;</span>
+<span class="nc" id="L63">			return true;</span>
+		} else
+<span class="nc" id="L65">			return false;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

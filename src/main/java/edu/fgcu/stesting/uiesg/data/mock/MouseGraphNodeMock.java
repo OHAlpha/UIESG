@@ -13,12 +13,12 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 @SuppressWarnings( "javadoc" )
 public class MouseGraphNodeMock extends AbstractMouseGraphActionMock implements
 		MouseGraphNode {
-	
+
 	private Rectangle range;
-	
-	public MouseGraphNodeMock( int t, int st, Point p ) {
-		super( t, st );
-		range = new Rectangle(p, new Dimension(0,0));
+
+	public MouseGraphNodeMock( long timestamp, int t, int st, Point p ) {
+		super(timestamp, t, st);
+		range = new Rectangle(p, new Dimension(0, 0));
 	}
 
 	@Override
@@ -44,6 +44,15 @@ public class MouseGraphNodeMock extends AbstractMouseGraphActionMock implements
 	@Override
 	public MouseGraphEdge asEdge() {
 		throw new IllegalArgumentException();
+	}
+
+	@Override
+	public boolean equals( Object o ) {
+		if (super.equals(o)) {
+			MouseGraphNodeMock mge = (MouseGraphNodeMock) o;
+			return mge.getLocation().equals(range.getLocation());
+		} else
+			return false;
 	}
 
 }

@@ -4,8 +4,6 @@ import java.awt.Shape;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.io.OutputStream;
-
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
@@ -17,6 +15,25 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  *
  */
 public class MouseWindowNode extends AbstractMouseGraphNode {
+
+	/**
+	 * @param timestamp
+	 * @param previous
+	 * @param next
+	 */
+	protected MouseWindowNode( long timestamp, MouseGraphAction previous,
+			MouseGraphAction next ) {
+		super(timestamp, previous, next);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param timestamp
+	 */
+	protected MouseWindowNode( long timestamp ) {
+		super(timestamp);
+		// TODO Auto-generated constructor stub
+	}
 
 	@SuppressWarnings( "javadoc" )
 	@Override
@@ -66,19 +83,15 @@ public class MouseWindowNode extends AbstractMouseGraphNode {
 		throw new RuntimeException("method not implemented");
 	}
 
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public void write( OutputStream out ) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
 	 */
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public int getSubType() {
 		return GODFactory.ENTER;
 	}
-    
+
 }
