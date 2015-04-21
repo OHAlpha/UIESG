@@ -1,5 +1,10 @@
 package edu.fgcu.stesting.uiesg.browser;
 
+
+// in this package put the classes to show the graphical output to the user....add a button to the web browser to 
+// end the session and output a graphical interface....develop GI in javafx...
+
+
 import java.awt.geom.Point2D;
 import java.net.MalformedURLException;
 import java.net.URL;
