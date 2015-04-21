@@ -24,7 +24,7 @@ public class GraphicalOutput extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		// TODO Auto-generated method stub
+		
 		final LineChart<Number, Number> lc = new LineChart<>(new NumberAxis(),
 				new NumberAxis());
 		
@@ -35,6 +35,7 @@ public class GraphicalOutput extends Application {
 		// are considered an "event"
 		XYChart.Series series1 = new XYChart.Series();
 		series1.setName("Mouse events");
+		
 		// test points for mouse events
 		series1.getData().add(new XYChart.Data(4.2, 193.2));
 		series1.getData().add(new XYChart.Data(2.8, 33.6));
@@ -43,6 +44,7 @@ public class GraphicalOutput extends Application {
 		// series2 will have the mouse x,y data
 		XYChart.Series series2 = new XYChart.Series();
 		series2.setName("Mouse movement");
+		
 		// test points for mouse movements
 		series2.getData().add(new XYChart.Data(5.2, 229.2));
 		series2.getData().add(new XYChart.Data(2.4, 37.6));
