@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -159,11 +158,6 @@ public class SiteEfficiencyData {
 	protected List<DataSet> data;
 
 	/**
-	 * The contexts per page in the domain of this SED
-	 */
-	protected Map<String, PageContext> pages;
-
-	/**
 	 * Constructs an instance for a specific domain. Each instance must each
 	 * represent a unique domain. The initial state of the SED is determined by
 	 * whether or not a data file already exists. If one does, the SED will not
@@ -182,10 +176,8 @@ public class SiteEfficiencyData {
 		File df = dataFile();
 		if (df.exists()) {
 			data = null;
-			pages = null;
 		} else {
 			data = new ArrayList<>();
-			pages = new TreeMap<>();
 		}
 		// System.out.println("\t\t\t" + domain + ".isLoaded() = " +
 		// isLoaded());
@@ -285,7 +277,7 @@ public class SiteEfficiencyData {
 
 					// read number of actions
 					int actions = in.readInt();
-					System.out.println(actions + " actions");
+					// System.out.println(actions + " actions");
 
 					// read actions
 					for (int j = 0; j < actions; j++) {
@@ -522,7 +514,7 @@ public class SiteEfficiencyData {
 	public MouseActionInputData newMouseData() {
 		// create a new dataset and add it to the collection "data" and then in
 		// data create a new MAID in that dataset
-		if( data == null )
+		if (data == null)
 			return null;
 		DataSet d = new DataSet();
 		// add mousedata to the dataset
@@ -536,7 +528,7 @@ public class SiteEfficiencyData {
 	 * Creates a GOD instance for each MAID in the data.
 	 */
 	public void compileMouseData() {
-		if( data == null )
+		if (data == null)
 			throw new RuntimeException("sed is not loaded");
 
 		// go through all the datasets if MAID is not null, but GOD is null then
@@ -559,7 +551,7 @@ public class SiteEfficiencyData {
 	 * in memory.
 	 */
 	public void calculateStatistics() {
-		if( data == null )
+		if (data == null)
 			throw new RuntimeException("sed is not loaded");
 
 		// if there is a statistics that is null and a GOD that is not null then
@@ -576,19 +568,6 @@ public class SiteEfficiencyData {
 
 			}
 		}
-	}
-
-	/**
-	 * Returns a PageContext for the specified URL if it exists.
-	 * 
-	 * @param url
-	 *            the address of the desired PageContext
-	 * @return the PageContext instance or null if it does not exist.
-	 */
-	public PageContext getForURL( URL url ) {
-		throw new RuntimeException("method not implemented");
-		// TODO
-
 	}
 
 	@Override

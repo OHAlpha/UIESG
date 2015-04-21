@@ -17,7 +17,7 @@ public class MouseGraphNodeMock extends AbstractMouseGraphActionMock implements
 	private Rectangle range;
 
 	public MouseGraphNodeMock( long timestamp, int t, int st, Point p ) {
-		super(timestamp,t, st);
+		super(timestamp, t, st);
 		range = new Rectangle(p, new Dimension(0, 0));
 	}
 
@@ -46,6 +46,7 @@ public class MouseGraphNodeMock extends AbstractMouseGraphActionMock implements
 		throw new IllegalArgumentException();
 	}
 
+	@Override
 	public boolean equals( Object o ) {
 		if (super.equals(o)) {
 			MouseGraphNodeMock mge = (MouseGraphNodeMock) o;

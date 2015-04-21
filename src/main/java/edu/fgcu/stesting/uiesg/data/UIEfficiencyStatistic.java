@@ -62,17 +62,19 @@ public class UIEfficiencyStatistic {
 	public void write( OutputStream out ) {
 		type.write(this, out);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
+	@Override
 	@SuppressWarnings( "javadoc" )
 	public boolean equals( Object o ) {
-		if( o instanceof UIEfficiencyStatistic ) {
-			UIEfficiencyStatistic uies = ( UIEfficiencyStatistic ) o;
-			return uies.type == type && uies.getValue().equals( value );
-		}
-		else
+		if (o instanceof UIEfficiencyStatistic) {
+			UIEfficiencyStatistic uies = (UIEfficiencyStatistic) o;
+			return uies.type == type && uies.getValue().equals(value);
+		} else
 			return false;
 	}
 

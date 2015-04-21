@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GODFactory.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data</a> &gt; <span class="el_source">GODFactory.java</span></div><h1>GODFactory.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data;
+
+import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Iterator;
+
+import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
+import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
+import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;
+import edu.fgcu.stesting.uiesg.data.mock.MouseGraphEdgeMock;
+import edu.fgcu.stesting.uiesg.data.mock.MouseGraphNodeMock;
+
+// TODO: javadoc
+@SuppressWarnings( &quot;javadoc&quot; )
+<span class="nc" id="L20">public class GODFactory {</span>
+
+	// TODO: javadoc=
+	public static final int MOCK = 0;
+
+	// TODO: javadoc
+	public static final int IMPLEMENTATION = 1;
+
+	// TODO: javadoc
+	public static final int NODE = 0;
+
+	// TODO: javadoc
+	public static final int EDGE = 1;
+
+	// TODO: javadoc
+	public static final int ENTER = 0;
+
+	// TODO: javadoc
+	public static final int HOVER = 1;
+
+	// TODO: javadoc
+	public static final int CLICK = 2;
+
+	// TODO: javadoc
+	public static final int EXIT = 3;
+
+	// TODO: javadoc
+	public static final int MOVE = 4;
+
+	// TODO: javadoc
+	public static final int DRAG = 5;
+
+	// TODO: javadoc
+	protected static int godMode;
+
+	// TODO: javadoc
+	protected static int actionMode;
+
+	// TODO: javadoc
+	public static GraphOutputData newInstance() {
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">		return godMode == MOCK ? new GraphOutputDataMock()</span>
+<span class="fc" id="L61">				: new GraphOutputDataImp();</span>
+	}
+
+	// TODO: javadoc
+	public static GraphOutputData newInstance(
+			Iterator&lt;MouseActionInputDataImp.Point&gt; mouseData ) {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">		return godMode == MOCK ? new GraphOutputDataMock(mouseData)</span>
+<span class="fc" id="L68">				: new GraphOutputDataImp(mouseData);</span>
+	}
+
+	// TODO: javadoc
+	public static void init( int mode ) {
+<span class="fc" id="L73">		GODFactory.godMode = mode;</span>
+<span class="fc" id="L74">		GODFactory.actionMode = mode;</span>
+<span class="fc" id="L75">	}</span>
+
+	// TODO: javadoc
+	public static void init( int godMode, int actionMode ) {
+<span class="fc" id="L79">		GODFactory.godMode = godMode;</span>
+<span class="fc" id="L80">		GODFactory.actionMode = actionMode;</span>
+<span class="fc" id="L81">	}</span>
+
+	public static MouseGraphAction newGraphAction( long timestamp, int type,
+			int subType, Object... params ) {
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">		if (actionMode == MOCK) {</span>
+			;
+			// System.out.println(&quot;action type is &quot;+type);
+<span class="fc bfc" id="L88" title="All 2 branches covered.">			if (type == NODE) {</span>
+<span class="fc" id="L89">				return new MouseGraphNodeMock(timestamp, type, subType,</span>
+<span class="fc" id="L90">						new Point(((Number) params[0]).intValue(),</span>
+<span class="fc" id="L91">								((Number) params[1]).intValue()));</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">			} else if (type == EDGE) {</span>
+<span class="fc" id="L93">				return new MouseGraphEdgeMock(timestamp, type, subType,</span>
+<span class="fc" id="L94">						new Point(((Number) params[0]).intValue(),</span>
+<span class="fc" id="L95">								((Number) params[1]).intValue()), new Point(</span>
+<span class="fc" id="L96">								((Number) params[2]).intValue(),</span>
+<span class="fc" id="L97">								((Number) params[3]).intValue()));</span>
+			} else {
+				;
+				// System.out.println(&quot;action type cannot be &quot;+type);
+<span class="nc" id="L101">				return null;</span>
+			}
+<span class="nc bnc" id="L103" title="All 2 branches missed.">		} else if (actionMode == IMPLEMENTATION) {</span>
+<span class="nc" id="L104">			return null;</span>
+		}
+<span class="nc" id="L106">		return null;</span>
+	}
+
+	// TODO: javadoc
+	public static MouseGraphAction read( InputStream i ) throws IOException {
+<span class="nc" id="L111">		DataInputStream in = new DataInputStream(i);</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">		if (actionMode == MOCK) {</span>
+<span class="nc" id="L113">			long l = in.readLong();</span>
+<span class="nc" id="L114">			int t = in.readInt(), s = in.readInt();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">			if (t == NODE)</span>
+<span class="nc" id="L116">				return newGraphAction(l, t, s, in.readDouble(), in.readDouble());</span>
+			else
+<span class="nc" id="L118">				return newGraphAction(l, t, s, in.readDouble(),</span>
+<span class="nc" id="L119">						in.readDouble(), in.readDouble(), in.readDouble());</span>
+		} else
+<span class="nc" id="L121">			return null;</span>
+	}
+
+	// TODO: javadoc
+	public static void write( MouseGraphAction action, OutputStream o )
+			throws IOException {
+<span class="nc" id="L127">		DataOutputStream out = new DataOutputStream(o);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">		if (actionMode == MOCK) {</span>
+<span class="nc" id="L129">			out.writeLong(action.getTimestamp());</span>
+<span class="nc" id="L130">			out.writeInt(action.getType());</span>
+<span class="nc" id="L131">			out.writeInt(action.getSubType());</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">			if (action.getType() == NODE) {</span>
+<span class="nc" id="L133">				Point2D a = ((MouseGraphNode) action).getLocation();</span>
+<span class="nc" id="L134">				out.writeDouble(a.getX());</span>
+<span class="nc" id="L135">				out.writeDouble(a.getY());</span>
+<span class="nc" id="L136">			} else {</span>
+<span class="nc" id="L137">				Point2D a = ((MouseGraphEdge) action).getSource();</span>
+<span class="nc" id="L138">				Point2D b = ((MouseGraphEdge) action).getDest();</span>
+<span class="nc" id="L139">				out.writeDouble(a.getX());</span>
+<span class="nc" id="L140">				out.writeDouble(a.getY());</span>
+<span class="nc" id="L141">				out.writeDouble(b.getX());</span>
+<span class="nc" id="L142">				out.writeDouble(b.getY());</span>
+			}
+		}
+<span class="nc" id="L145">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

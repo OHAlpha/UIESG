@@ -95,15 +95,12 @@ public abstract class UIEfficiencyStatisticType {
 	 * statistic types not in this package due to the constructor of UIES being
 	 * protected.
 	 * 
-	 * @param type
-	 *            the UIES Type
 	 * @param value
 	 *            the statistic value
 	 * @return the statistic constructed with the parameters
 	 */
-	protected UIEfficiencyStatistic createStatistic(
-			UIEfficiencyStatisticType type, Object value ) {
-		return new UIEfficiencyStatistic(type, value);
+	protected UIEfficiencyStatistic createStatistic( Object value ) {
+		return new UIEfficiencyStatistic(this, value);
 	}
 
 	/**

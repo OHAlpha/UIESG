@@ -46,9 +46,12 @@ public interface MouseActionInputData {
 		 */
 		public int type;
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see java.lang.Object#equals(java.lang.Object)
 		 */
+		@Override
 		@SuppressWarnings( "javadoc" )
 		public boolean equals( Object o ) {
 			if (o instanceof Point) {

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MouseGraphNodeMock.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.mock</a> &gt; <span class="el_source">MouseGraphNodeMock.java</span></div><h1>MouseGraphNodeMock.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.mock;
+
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+
+@SuppressWarnings( &quot;javadoc&quot; )
+public class MouseGraphNodeMock extends AbstractMouseGraphActionMock implements
+		MouseGraphNode {
+
+	private Rectangle range;
+
+	public MouseGraphNodeMock( long timestamp, int t, int st, Point p ) {
+<span class="fc" id="L20">		super(timestamp,t, st);</span>
+<span class="fc" id="L21">		range = new Rectangle(p, new Dimension(0, 0));</span>
+<span class="fc" id="L22">	}</span>
+
+	@Override
+	public Rectangle2D getRange() {
+<span class="nc" id="L26">		return range;</span>
+	}
+
+	@Override
+	public Shape getArea() {
+<span class="nc" id="L31">		return range;</span>
+	}
+
+	@Override
+	public Point2D getLocation() {
+<span class="fc" id="L36">		return range.getLocation();</span>
+	}
+
+	@Override
+	public MouseGraphNode asNode() {
+<span class="nc" id="L41">		return this;</span>
+	}
+
+	@Override
+	public MouseGraphEdge asEdge() {
+<span class="nc" id="L46">		throw new IllegalArgumentException();</span>
+	}
+
+	public boolean equals( Object o ) {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">		if (super.equals(o)) {</span>
+<span class="fc" id="L51">			MouseGraphNodeMock mge = (MouseGraphNodeMock) o;</span>
+<span class="fc" id="L52">			return mge.getLocation().equals(range.getLocation());</span>
+		} else
+<span class="fc" id="L54">			return false;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GraphOutputDataImp.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.imp</a> &gt; <span class="el_source">GraphOutputDataImp.java</span></div><h1>GraphOutputDataImp.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.imp;
+
+import java.awt.geom.Point2D;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import edu.fgcu.stesting.uiesg.data.GODFactory;
+import edu.fgcu.stesting.uiesg.data.GraphOutputData;
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+
+import static java.awt.event.MouseEvent.*;
+
+/**
+ * GraphOutputData (GOD) is a container for the graph data. Instances will store
+ * nodes and edges representing the various events that occur in the browser
+ * window.
+ * 
+ * @author oalpha
+ *
+ */
+public class GraphOutputDataImp implements GraphOutputData {
+
+	/**
+	 * The minimum speed ( in pixels per second ) that will be considered
+	 * movement.
+	 */
+	private static final double SPEED_THRESHHOLD = 5;
+
+	/**
+	 * The maximum time ( in seconds ) between events that will be considered
+	 * movement.
+	 */
+	private static final long TIME_THRESHHOLD = 200;
+
+	/**
+	 * Signifies the hovering of the mouse.
+	 */
+	private static final int MOUSE_HOVER = MOUSE_LAST + 1;
+
+	/**
+	 * Whether this instance has been locked.
+	 */
+	private boolean locked;
+
+	/**
+	 * The collection of actions in this graph.
+	 */
+	private final List&lt;MouseGraphAction&gt; actions;
+
+	/**
+	 * The collection of node indices in this graph.
+	 */
+	private final List&lt;Integer&gt; nodes;
+
+	/**
+	 * The collection of edge indices in this graph.
+	 */
+	private final List&lt;Integer&gt; edges;
+
+	{
+<span class="fc" id="L66">		actions = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L67">		nodes = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L68">		edges = new LinkedList&lt;&gt;();</span>
+	}
+
+	/**
+	 * Creates an empty instance. Used by SED.loadData().
+	 */
+<span class="fc" id="L74">	public GraphOutputDataImp() {</span>
+<span class="fc" id="L75">		locked = false;</span>
+<span class="fc" id="L76">	}</span>
+
+	/**
+	 * Constructs a GOD instance from raw mouse data. The constructor will join
+	 * multiple move events into fewer, longer MouseMoveEdges and
+	 * MouseDragEdges, filter small movements into MouseHoverNodes, create
+	 * MouseClickNodes for click events, etc.. This constructor shall not throw
+	 * any exceptions except NullPointerException for null input.
+	 * 
+	 * @param mouseData
+	 *            an iterator for the raw data
+	 * @throws NullPointerException
+	 *             if mouseData is null
+	 */
+<span class="fc" id="L90">	public GraphOutputDataImp( Iterator&lt;MouseActionInputData.Point&gt; mouseData )</span>
+			throws NullPointerException {
+<span class="fc" id="L92">		int lastType = MOUSE_FIRST - 1;</span>
+<span class="fc" id="L93">		long lastTime = -1;</span>
+<span class="fc" id="L94">		Point2D a = null, b = null;</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">		for (; mouseData.hasNext();) {</span>
+<span class="fc" id="L96">			Point c = mouseData.next();</span>
+<span class="fc" id="L97">			int t = c.type;</span>
+<span class="fc" id="L98">			Point2D p = c.browserLocation;</span>
+<span class="fc" id="L99">			long s = c.timestamp;</span>
+<span class="pc bpc" id="L100" title="4 of 8 branches missed.">			switch (t) {</span>
+			case MOUSE_ENTERED:
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">				if (lastType == MOUSE_MOVED)</span>
+<span class="nc" id="L103">					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,</span>
+<span class="nc" id="L104">							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L105">							b.getY()));</span>
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">				else if (lastType == MOUSE_DRAGGED)</span>
+<span class="nc" id="L107">					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,</span>
+<span class="nc" id="L108">							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L109">							b.getY()));</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">				else if (lastType == MOUSE_HOVER)</span>
+<span class="nc" id="L111">					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,</span>
+<span class="nc" id="L112">							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L113">							b.getY()));</span>
+<span class="fc" id="L114">				this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,</span>
+<span class="fc" id="L115">						GODFactory.ENTER, p.getX(), p.getY()));</span>
+<span class="fc" id="L116">				a = p;</span>
+<span class="fc" id="L117">				break;</span>
+			case MOUSE_MOVED:
+<span class="fc bfc" id="L119" title="All 2 branches covered.">				double d = p.distance(b == null ? a : b);</span>
+<span class="fc" id="L120">				long r = s - lastTime;</span>
+<span class="pc bpc" id="L121" title="1 of 4 branches missed.">				if (d * 1000. / r &lt; SPEED_THRESHHOLD || r &gt; TIME_THRESHHOLD) {</span>
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">					if (lastType == MOUSE_MOVED)</span>
+<span class="fc" id="L123">						this.addAction(GODFactory.newGraphAction(s,</span>
+<span class="fc" id="L124">								GODFactory.EDGE, GODFactory.MOVE, a.getX(),</span>
+<span class="fc" id="L125">								a.getY(), b.getX(), b.getY()));</span>
+<span class="fc" id="L126">					t = MOUSE_HOVER;</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">				} else if (lastType == MOUSE_HOVER)</span>
+<span class="fc" id="L128">					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,</span>
+<span class="fc" id="L129">							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),</span>
+<span class="fc" id="L130">							b.getY()));</span>
+<span class="fc" id="L131">				b = p;</span>
+<span class="fc" id="L132">				break;</span>
+			case MOUSE_PRESSED:
+<span class="nc bnc" id="L134" title="All 2 branches missed.">				if (lastType == MOUSE_MOVED)</span>
+<span class="nc" id="L135">					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,</span>
+<span class="nc" id="L136">							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L137">							b.getY()));</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">				else if (lastType == MOUSE_HOVER)</span>
+<span class="nc" id="L139">					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,</span>
+<span class="nc" id="L140">							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L141">							b.getY()));</span>
+<span class="nc" id="L142">				a = p;</span>
+<span class="nc" id="L143">				break;</span>
+			case MOUSE_DRAGGED:
+<span class="nc" id="L145">				b = p;</span>
+<span class="nc" id="L146">				break;</span>
+			case MOUSE_RELEASED:
+<span class="nc bnc" id="L148" title="All 2 branches missed.">				if (lastType == MOUSE_DRAGGED)</span>
+<span class="nc" id="L149">					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,</span>
+<span class="nc" id="L150">							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L151">							b.getY()));</span>
+<span class="nc" id="L152">				break;</span>
+			case MOUSE_CLICKED:
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">				if (lastType == MOUSE_MOVED)</span>
+<span class="fc" id="L155">					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,</span>
+<span class="fc" id="L156">							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),</span>
+<span class="fc" id="L157">							b.getY()));</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">				else if (lastType == MOUSE_DRAGGED)</span>
+<span class="nc" id="L159">					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,</span>
+<span class="nc" id="L160">							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L161">							b.getY()));</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">				else if (lastType == MOUSE_HOVER)</span>
+<span class="nc" id="L163">					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,</span>
+<span class="nc" id="L164">							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L165">							b.getY()));</span>
+<span class="fc" id="L166">				this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,</span>
+<span class="fc" id="L167">						GODFactory.CLICK, p.getX(), p.getY()));</span>
+<span class="fc" id="L168">				a = p;</span>
+<span class="fc" id="L169">				break;</span>
+			case MOUSE_EXITED:
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">				if (lastType == MOUSE_MOVED)</span>
+<span class="fc" id="L172">					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,</span>
+<span class="fc" id="L173">							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),</span>
+<span class="fc" id="L174">							b.getY()));</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">				else if (lastType == MOUSE_DRAGGED)</span>
+<span class="nc" id="L176">					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,</span>
+<span class="nc" id="L177">							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L178">							b.getY()));</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">				else if (lastType == MOUSE_HOVER)</span>
+<span class="nc" id="L180">					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,</span>
+<span class="nc" id="L181">							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),</span>
+<span class="nc" id="L182">							b.getY()));</span>
+<span class="fc" id="L183">				this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,</span>
+<span class="fc" id="L184">						GODFactory.EXIT, p.getX(), p.getY()));</span>
+<span class="fc" id="L185">				a = p;</span>
+			}
+<span class="fc" id="L187">			lastType = t;</span>
+<span class="fc" id="L188">			lastTime = s;</span>
+		}
+<span class="fc" id="L190">		locked = true;</span>
+<span class="fc" id="L191">	}</span>
+
+	/**
+	 * The number of nodes in the graph.
+	 * 
+	 * @return the number of nodes
+	 */
+	@Override
+	public int order() {
+<span class="fc" id="L200">		return nodes.size();</span>
+	}
+
+	/**
+	 * The number of edges in the graph.
+	 * 
+	 * @return the number of edges
+	 */
+	@Override
+	public int size() {
+<span class="fc" id="L210">		return edges.size();</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public void addAction( MouseGraphAction action ) {
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">		if (locked)</span>
+<span class="nc" id="L217">			throw new RuntimeException(&quot;GOD has been locked&quot;);</span>
+<span class="fc" id="L218">		int i = actions.size();</span>
+<span class="fc bfc" id="L219" title="All 2 branches covered.">		if (action instanceof MouseGraphNode)</span>
+<span class="fc" id="L220">			nodes.add(i);</span>
+<span class="pc bpc" id="L221" title="1 of 2 branches missed.">		else if (action instanceof MouseGraphEdge)</span>
+<span class="fc" id="L222">			edges.add(i);</span>
+		else
+<span class="nc" id="L224">			return;</span>
+<span class="fc" id="L225">		actions.add(action);</span>
+<span class="fc" id="L226">	}</span>
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public MouseGraphAction getAction( int index ) {
+<span class="fc" id="L231">		return actions.get(index);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public MouseGraphNode getNode( int index ) {
+<span class="fc" id="L237">		MouseGraphAction a = actions.get(index);</span>
+<span class="pc bpc" id="L238" title="1 of 2 branches missed.">		if (a instanceof MouseGraphNode)</span>
+<span class="nc" id="L239">			return (MouseGraphNode) a;</span>
+<span class="fc" id="L240">		throw new IllegalArgumentException(&quot;Action is an edge&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public MouseGraphEdge getEdge( int index ) {
+<span class="fc" id="L246">		MouseGraphAction a = actions.get(index);</span>
+<span class="pc bpc" id="L247" title="1 of 2 branches missed.">		if (a instanceof MouseGraphEdge)</span>
+<span class="nc" id="L248">			return (MouseGraphEdge) a;</span>
+<span class="fc" id="L249">		throw new IllegalArgumentException(&quot;Action is a node&quot;);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public int indexOf( MouseGraphAction action ) {
+<span class="fc" id="L255">		return actions.indexOf(action);</span>
+	}
+
+	@SuppressWarnings( &quot;javadoc&quot; )
+	@Override
+	public void lock() {
+<span class="fc" id="L261">		locked = true;</span>
+<span class="fc" id="L262">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

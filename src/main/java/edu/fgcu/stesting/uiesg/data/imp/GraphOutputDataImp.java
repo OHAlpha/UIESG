@@ -100,18 +100,18 @@ public class GraphOutputDataImp implements GraphOutputData {
 			switch (t) {
 			case MOUSE_ENTERED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,
-							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,
-							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,
-							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),
-							b.getY()));
-				this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				this.addAction(GODFactory.newGraphAction(s, GODFactory.NODE,
 						GODFactory.ENTER, p.getX(), p.getY()));
 				a = p;
 				break;
@@ -125,20 +125,20 @@ public class GraphOutputDataImp implements GraphOutputData {
 								a.getY(), b.getX(), b.getY()));
 					t = MOUSE_HOVER;
 				} else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,
-							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				b = p;
 				break;
 			case MOUSE_PRESSED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,
-							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,
-							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				a = p;
 				break;
 			case MOUSE_DRAGGED:
@@ -146,41 +146,41 @@ public class GraphOutputDataImp implements GraphOutputData {
 				break;
 			case MOUSE_RELEASED:
 				if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,
-							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				break;
 			case MOUSE_CLICKED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,
-							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,
-							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,
-							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),
-							b.getY()));
-				this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				this.addAction(GODFactory.newGraphAction(s, GODFactory.NODE,
 						GODFactory.CLICK, p.getX(), p.getY()));
 				a = p;
 				break;
 			case MOUSE_EXITED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,
-							GODFactory.MOVE, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.EDGE,
-							GODFactory.DRAG, a.getX(), a.getY(), b.getX(),
-							b.getY()));
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
+							a.getY(), b.getX(), b.getY()));
 				else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,
-							GODFactory.HOVER, a.getX(), a.getY(), b.getX(),
-							b.getY()));
-				this.addAction(GODFactory.newGraphAction(s,GODFactory.NODE,
+					this.addAction(GODFactory.newGraphAction(s,
+							GODFactory.NODE, GODFactory.HOVER, a.getX(),
+							a.getY(), b.getX(), b.getY()));
+				this.addAction(GODFactory.newGraphAction(s, GODFactory.NODE,
 						GODFactory.EXIT, p.getX(), p.getY()));
 				a = p;
 			}

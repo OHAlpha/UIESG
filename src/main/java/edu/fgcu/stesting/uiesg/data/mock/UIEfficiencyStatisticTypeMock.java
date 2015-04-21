@@ -27,7 +27,7 @@ public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
 
 	@Override
 	public UIEfficiencyStatistic calculate( GraphOutputData graph ) {
-		return createStatistic(this, "mock statistic");
+		return createStatistic("mock statistic");
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return createStatistic(this, "mock statistic");
+		return createStatistic("mock statistic");
 	}
 
 	@Override

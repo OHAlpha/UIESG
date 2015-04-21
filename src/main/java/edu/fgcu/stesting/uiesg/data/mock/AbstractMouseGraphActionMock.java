@@ -44,6 +44,7 @@ public abstract class AbstractMouseGraphActionMock extends
 		return subType;
 	}
 
+	@Override
 	public boolean equals( Object o ) {
 		return getClass().isInstance(o)
 				&& ((AbstractMouseGraphAction) o).getTimestamp() == getTimestamp();

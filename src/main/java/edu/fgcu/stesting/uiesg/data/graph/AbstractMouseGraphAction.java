@@ -15,12 +15,13 @@ public abstract class AbstractMouseGraphAction implements MouseGraphAction {
 	private MouseGraphAction next;
 
 	private long timestamp;
-	
+
 	protected AbstractMouseGraphAction( long timestamp ) {
 		this.timestamp = timestamp;
 	}
-	
-	protected AbstractMouseGraphAction( long timestamp, MouseGraphAction previous, MouseGraphAction next ) {
+
+	protected AbstractMouseGraphAction( long timestamp,
+			MouseGraphAction previous, MouseGraphAction next ) {
 		this.timestamp = timestamp;
 		this.previous = previous;
 		this.next = next;

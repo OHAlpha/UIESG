@@ -58,26 +58,26 @@ public class GraphOutputDataUnitTest {
 		maid.addPoint(new Point(30, 0), new Point(30, 0),
 				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_EXITED);
 		as = new MouseGraphAction[] {
-				GODFactory.newGraphAction(System.currentTimeMillis(), GODFactory.NODE, GODFactory.ENTER,
-						30, 0),
-				GODFactory.newGraphAction(System.currentTimeMillis(), GODFactory.EDGE, GODFactory.MOVE, 30,
-						0, 30, 50),
-				GODFactory.newGraphAction(System.currentTimeMillis(), GODFactory.NODE, GODFactory.CLICK,
-						30, 50),
-				GODFactory.newGraphAction(System.currentTimeMillis(), GODFactory.EDGE, GODFactory.MOVE, 30,
-						50, 60, 50),
-				GODFactory.newGraphAction(System.currentTimeMillis(), GODFactory.NODE, GODFactory.HOVER,
-						60, 50),
-				GODFactory.newGraphAction(System.currentTimeMillis(), GODFactory.EDGE, GODFactory.MOVE, 60,
-						50, 30, 0),
-				GODFactory.newGraphAction(System.currentTimeMillis(), GODFactory.NODE, GODFactory.EXIT, 30,
-						0) };
+				GODFactory.newGraphAction(System.currentTimeMillis(),
+						GODFactory.NODE, GODFactory.ENTER, 30, 0),
+				GODFactory.newGraphAction(System.currentTimeMillis(),
+						GODFactory.EDGE, GODFactory.MOVE, 30, 0, 30, 50),
+				GODFactory.newGraphAction(System.currentTimeMillis(),
+						GODFactory.NODE, GODFactory.CLICK, 30, 50),
+				GODFactory.newGraphAction(System.currentTimeMillis(),
+						GODFactory.EDGE, GODFactory.MOVE, 30, 50, 60, 50),
+				GODFactory.newGraphAction(System.currentTimeMillis(),
+						GODFactory.NODE, GODFactory.HOVER, 60, 50),
+				GODFactory.newGraphAction(System.currentTimeMillis(),
+						GODFactory.EDGE, GODFactory.MOVE, 60, 50, 30, 0),
+				GODFactory.newGraphAction(System.currentTimeMillis(),
+						GODFactory.NODE, GODFactory.EXIT, 30, 0) };
 		for (int i = 0; i < as.length; i++) {
 			@SuppressWarnings( "unused" )
 			MouseGraphAction a = as[i];
 			;
-//			System.out.printf("\t%d: ( type, subType ) = ( %s, %s )\n", i,
-//					types[a.getType()], subTypes[a.getSubType()]);
+			// System.out.printf("\t%d: ( type, subType ) = ( %s, %s )\n", i,
+			// types[a.getType()], subTypes[a.getSubType()]);
 		}
 	}
 
@@ -143,31 +143,31 @@ public class GraphOutputDataUnitTest {
 
 	@Test
 	public void testAddEdge() {
-		godA.addAction(GODFactory.newGraphAction(System.currentTimeMillis(), GODFactory.EDGE,
-				GODFactory.MOVE, 2, 3, 4, 5));
+		godA.addAction(GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.EDGE, GODFactory.MOVE, 2, 3, 4, 5));
 		assertEquals("godA.order() must be " + o, godA.order(), o);
 		assertEquals("godA.size() must be " + (s + 1), godA.size(), s + 1);
 	}
 
 	@Test
 	public void testAddNode() {
-		godA.addAction(GODFactory.newGraphAction(System.currentTimeMillis(), GODFactory.NODE,
-				GODFactory.ENTER, 3, 5));
+		godA.addAction(GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.NODE, GODFactory.ENTER, 3, 5));
 		assertEquals("godA.order() must be " + (o + 1), godA.order(), o + 1);
 		assertEquals("godA.size() must be " + s, godA.size(), s);
 	}
 
 	@Test( expected = RuntimeException.class )
 	public void testAddActionLocked() {
-		godB.addAction(GODFactory.newGraphAction(System.currentTimeMillis(),GODFactory.NODE,
-				GODFactory.ENTER));
+		godB.addAction(GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.NODE, GODFactory.ENTER));
 	}
 
 	@Test( expected = RuntimeException.class )
 	public void testLock() {
 		godA.lock();
-		godA.addAction(GODFactory.newGraphAction(System.currentTimeMillis(),GODFactory.NODE,
-				GODFactory.ENTER));
+		godA.addAction(GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.NODE, GODFactory.ENTER));
 	}
 
 	@Test

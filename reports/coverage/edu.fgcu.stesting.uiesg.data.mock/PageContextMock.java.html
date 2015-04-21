@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>PageContextMock.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.mock</a> &gt; <span class="el_source">PageContextMock.java</span></div><h1>PageContextMock.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.mock;
+
+import java.awt.Shape;
+import java.util.Arrays;
+import java.util.Collection;
+
+<span class="nc" id="L7">import edu.fgcu.stesting.uiesg.data.MouseTarget;</span>
+import edu.fgcu.stesting.uiesg.data.PageContext;
+import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
+
+/**
+ * This mock simply holds predefined data instead of computing data. No data is
+ * mutable.
+ * 
+ * @author oalpha
+ *
+ */
+public class PageContextMock implements PageContext {
+
+	/**
+	 * The clickable region defined by the constructor.
+	 */
+	private final Shape clickableRegion;
+
+	/**
+	 * The mouse targets defined by the constructor.
+	 */
+	private final MouseTarget[] targets;
+
+	/**
+	 * The SED defined by the constructor.
+	 */
+	private final SiteEfficiencyData domain;
+
+	/**
+	 * Constructs a mock with predefined data.
+	 * 
+	 * @param clickableRegion
+	 *            the clickable region
+	 * @param targets
+	 *            the array of targets
+	 * @param domain
+	 *            the SED
+	 */
+	public PageContextMock( Shape clickableRegion, MouseTarget[] targets,
+			SiteEfficiencyData domain ) {
+		super();
+		this.clickableRegion = clickableRegion;
+		this.targets = targets;
+		this.domain = domain;
+	}
+
+	/**
+	 * Returns the field, clickableRegion, supplied by constructor.
+	 */
+	@Override
+<span class="nc" id="L57">	public Shape getClickableRegion() {</span>
+		return clickableRegion;
+	}
+
+	/**
+	 * Returns the field, targets, supplied by constructor, as a list.
+	 */
+	@Override
+<span class="nc" id="L65">	public Collection&lt;MouseTarget&gt; getTargets() {</span>
+		return Arrays.asList(targets);
+	}
+
+	/**
+	 * Returns the field, domain, supplied by constructor.
+	 */
+	@Override
+<span class="nc" id="L73">	public SiteEfficiencyData getDomain() {</span>
+		return domain;
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

@@ -8,8 +8,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
@@ -42,22 +40,22 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	static File dir = new File(
 			"src/test/java/edu/fgcu/stesting/uiesg/data/datafiles");
-	
+
 	/**
 	 * The mock maid to use for testing.
 	 */
 	static MouseActionInputData mm;
-	
+
 	/**
 	 * The mock god to use for testing.
 	 */
 	static GraphOutputData mg;
-	
+
 	/**
 	 * The mock uiest to use for testing.
 	 */
 	static UIEfficiencyStatisticType mt;
-	
+
 	/**
 	 * The mock uies to use for testing.
 	 */
@@ -78,6 +76,8 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@BeforeClass
 	public static void setup() {
+		if (!dir.exists())
+			dir.mkdirs();
 		SiteEfficiencyData.init("tmp/datafiles");
 		MAIDFactory.init(MAIDFactory.MOCK);
 		GODFactory.init(GODFactory.MOCK);
@@ -113,8 +113,7 @@ public class SiteEfficiencyDataUnitTest {
 				out.writeInt(mg.indexOf(ma.getPrevious()));
 			}
 			out.writeInt(1);
-			mt = UIEfficiencyStatistics
-					.getType("Mock");
+			mt = UIEfficiencyStatistics.getType("Mock");
 			ms = mt.calculate(mg);
 			out.writeUTF(mt.getName());
 			ms.write(out);
@@ -498,9 +497,9 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testNewMouseDataNotLoaded() {
-		
-		assertNull("wiki.newMouseData must return null",wiki.newMouseData());
-		
+
+		assertNull("wiki.newMouseData must return null", wiki.newMouseData());
+
 	}
 
 	/**
@@ -510,7 +509,7 @@ public class SiteEfficiencyDataUnitTest {
 	public void testCompileMouseDataNotLoaded() {
 
 		wiki.compileMouseData();
-		
+
 	}
 
 	/**
@@ -520,38 +519,6 @@ public class SiteEfficiencyDataUnitTest {
 	public void testCalculateStatisticsNotLoaded() {
 
 		wiki.calculateStatistics();
-		
-	}
-
-	/**
-	 * Requests a page that does not exist.
-	 * 
-	 * @throws MalformedURLException
-	 *             if URL creation fails
-	 */
-	public void testGetForURLPageNotExists() throws MalformedURLException {
-
-		// request page
-		PageContext p = fgcu.getForURL(new URL("fgcu.edu/sucks"));
-
-		// check for existence
-		assertNull("fgcu.getForURL() must return null", p);
-
-	}
-
-	/**
-	 * Requests a page that exists.
-	 * 
-	 * @throws MalformedURLException
-	 *             if URL creation fails
-	 */
-	public void testGetForURLPageExists() throws MalformedURLException {
-
-		// request page
-		PageContext p = fgcu.getForURL(new URL("fgcu.edu"));
-
-		// check for existence
-		assertNotNull("fgcu.getForURL() must return non-null", p);
 
 	}
 

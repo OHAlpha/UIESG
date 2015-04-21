@@ -106,6 +106,7 @@ public class GraphOutputDataMock implements GraphOutputData {
 		locked = true;
 	}
 
+	@Override
 	public boolean equals( Object o ) {
 		if (o instanceof GraphOutputDataMock) {
 			GraphOutputDataMock god = (GraphOutputDataMock) o;

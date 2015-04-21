@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AbstractMouseGraphNode.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UIESG</a> &gt; <a href="index.source.html" class="el_package">edu.fgcu.stesting.uiesg.data.graph</a> &gt; <span class="el_source">AbstractMouseGraphNode.java</span></div><h1>AbstractMouseGraphNode.java</h1><pre class="source lang-java linenums">package edu.fgcu.stesting.uiesg.data.graph;
+
+import edu.fgcu.stesting.uiesg.data.GODFactory;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
+
+/**
+ * Provides the casting functions' implementations for nodes.
+ * 
+ * @author oalpha
+ *
+ */
+public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
+		implements MouseGraphNode {
+
+	/**
+	 * @param timestamp
+	 * @param previous
+	 * @param next
+	 */
+	protected AbstractMouseGraphNode( long timestamp,
+			MouseGraphAction previous, MouseGraphAction next ) {
+<span class="nc" id="L24">		super(timestamp, previous, next);</span>
+		// TODO Auto-generated constructor stub
+<span class="nc" id="L26">	}</span>
+
+	/**
+	 * @param timestamp
+	 */
+	protected AbstractMouseGraphNode( long timestamp ) {
+<span class="nc" id="L32">		super(timestamp);</span>
+		// TODO Auto-generated constructor stub
+<span class="nc" id="L34">	}</span>
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#asNode()
+	 */
+	@Override
+	@SuppressWarnings( &quot;javadoc&quot; )
+	public MouseGraphNode asNode() {
+<span class="nc" id="L44">		return this;</span>
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#asEdge()
+	 */
+	@Override
+	@SuppressWarnings( &quot;javadoc&quot; )
+	public MouseGraphEdge asEdge() {
+<span class="nc" id="L55">		throw new IllegalArgumentException(&quot;This action is a node&quot;);</span>
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#getType()
+	 */
+	@Override
+	@SuppressWarnings( &quot;javadoc&quot; )
+	public int getType() {
+<span class="nc" id="L66">		return GODFactory.NODE;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>
