@@ -36,7 +36,6 @@ public abstract class UIEfficiencyStatisticType {
 		 */
 		public DuplicateTypeException( String name ) {
 			super(name);
-			// TODO Auto-generated constructor stub
 		}
 
 	}
