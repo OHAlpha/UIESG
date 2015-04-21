@@ -2,7 +2,6 @@ package edu.fgcu.stesting.uiesg.data.mock;
 
 import java.awt.Dimension;
 import java.awt.geom.Dimension2D;
-import java.io.OutputStream;
 
 import edu.fgcu.stesting.uiesg.data.graph.AbstractMouseGraphAction;
 
@@ -18,8 +17,9 @@ public abstract class AbstractMouseGraphActionMock extends
 	 * @param type
 	 * @param subType
 	 */
-	protected AbstractMouseGraphActionMock( int type, int subType ) {
-		super();
+	protected AbstractMouseGraphActionMock( long timestamp, int type,
+			int subType ) {
+		super(timestamp);
 		this.type = type;
 		this.subType = subType;
 	}
@@ -34,16 +34,6 @@ public abstract class AbstractMouseGraphActionMock extends
 		return new Dimension(0, 0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * edu.fgcu.stesting.uiesg.data.MouseGraphAction#write(java.io.OutputStream)
-	 */
-	@Override
-	public void write( OutputStream out ) {
-	}
-
 	@Override
 	public int getType() {
 		return type;
@@ -52,6 +42,11 @@ public abstract class AbstractMouseGraphActionMock extends
 	@Override
 	public int getSubType() {
 		return subType;
+	}
+
+	public boolean equals( Object o ) {
+		return getClass().isInstance(o)
+				&& ((AbstractMouseGraphAction) o).getTimestamp() == getTimestamp();
 	}
 
 }

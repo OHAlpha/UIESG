@@ -46,6 +46,20 @@ public interface MouseActionInputData {
 		 */
 		public int type;
 
+		/* (non-Javadoc)
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@SuppressWarnings( "javadoc" )
+		public boolean equals( Object o ) {
+			if (o instanceof Point) {
+				Point p = (Point) o;
+				return p.browserLocation.equals(browserLocation)
+						&& p.equals(pagePosition) && p.timestamp == timestamp
+						&& p.type == type;
+			} else
+				return false;
+		}
+
 	}
 
 	/**

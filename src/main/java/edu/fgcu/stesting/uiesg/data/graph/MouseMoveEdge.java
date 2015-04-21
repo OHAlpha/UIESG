@@ -18,6 +18,25 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  */
 public class MouseMoveEdge extends AbstractMouseGraphEdge {
 
+	/**
+	 * @param timestamp
+	 * @param previous
+	 * @param next
+	 */
+	protected MouseMoveEdge( long timestamp, MouseGraphAction previous,
+			MouseGraphAction next ) {
+		super(timestamp, previous, next);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param timestamp
+	 */
+	protected MouseMoveEdge( long timestamp ) {
+		super(timestamp);
+		// TODO Auto-generated constructor stub
+	}
+
 	@SuppressWarnings( "javadoc" )
 	@Override
 	public long getTimestamp() {
@@ -70,13 +89,6 @@ public class MouseMoveEdge extends AbstractMouseGraphEdge {
 	@Override
 	public Object getPathParameters() {
 		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public void write( OutputStream out ) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/*

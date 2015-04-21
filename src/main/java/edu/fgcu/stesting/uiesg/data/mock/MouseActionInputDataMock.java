@@ -52,4 +52,17 @@ public class MouseActionInputDataMock implements MouseActionInputData {
 		return points.iterator();
 	}
 
+	public boolean equals( Object o ) {
+		if (o instanceof MouseActionInputDataMock) {
+			MouseActionInputDataMock maid = (MouseActionInputDataMock) o;
+			if( maid.points.size() != points.size() )
+				return false;
+			for( int i = 0; i < points.size(); i++ )
+				if( !maid.points.get(i).equals(points.get(i)) )
+					return false;
+			return true;
+		} else
+			return false;
+	}
+
 }

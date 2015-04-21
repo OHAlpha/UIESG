@@ -26,13 +26,20 @@ public class GraphOutputDataMock implements GraphOutputData {
 		order = 4;
 		size = 3;
 		list = new LinkedList<>();
-		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.ENTER,0,0));
-		list.add(GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE,0,0,0,0));
-		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.CLICK,0,0));
-		list.add(GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE,0,0,0,0));
-		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.HOVER,0,0));
-		list.add(GODFactory.newGraphAction(GODFactory.EDGE, GODFactory.MOVE,0,0,0,0));
-		list.add(GODFactory.newGraphAction(GODFactory.NODE, GODFactory.EXIT,0,0));
+		list.add(GODFactory.newGraphAction(0, GODFactory.NODE,
+				GODFactory.ENTER, 0, 0));
+		list.add(GODFactory.newGraphAction(1, GODFactory.EDGE, GODFactory.MOVE,
+				0, 0, 0, 0));
+		list.add(GODFactory.newGraphAction(2, GODFactory.NODE,
+				GODFactory.CLICK, 0, 0));
+		list.add(GODFactory.newGraphAction(3, GODFactory.EDGE, GODFactory.MOVE,
+				0, 0, 0, 0));
+		list.add(GODFactory.newGraphAction(4, GODFactory.NODE,
+				GODFactory.HOVER, 0, 0));
+		list.add(GODFactory.newGraphAction(5, GODFactory.EDGE, GODFactory.MOVE,
+				0, 0, 0, 0));
+		list.add(GODFactory.newGraphAction(6, GODFactory.NODE, GODFactory.EXIT,
+				0, 0));
 	}
 
 	public GraphOutputDataMock() {
@@ -57,14 +64,20 @@ public class GraphOutputDataMock implements GraphOutputData {
 			throw new RuntimeException("GOD has been locked");
 		if (action instanceof MouseGraphNode)
 			order++;
-		if (action instanceof MouseGraphEdge)
+		else if (action instanceof MouseGraphEdge)
 			size++;
+		else
+			return;
 		list.add(action);
 	}
 
 	@Override
 	public MouseGraphAction getAction( int index ) {
-		return list.get(index);
+		try {
+			return list.get(index);
+		} catch (Exception e) {
+			throw new RuntimeException("index: " + index + ";", e);
+		}
 	}
 
 	@Override
@@ -91,6 +104,19 @@ public class GraphOutputDataMock implements GraphOutputData {
 	@Override
 	public void lock() {
 		locked = true;
+	}
+
+	public boolean equals( Object o ) {
+		if (o instanceof GraphOutputDataMock) {
+			GraphOutputDataMock god = (GraphOutputDataMock) o;
+			if (god.list.size() != list.size())
+				return false;
+			for (int i = 0; i < list.size(); i++)
+				if (!god.list.get(i).equals(list.get(i)))
+					return false;
+			return true;
+		} else
+			return false;
 	}
 
 }

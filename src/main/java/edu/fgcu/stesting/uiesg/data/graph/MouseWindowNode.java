@@ -18,6 +18,25 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  */
 public class MouseWindowNode extends AbstractMouseGraphNode {
 
+	/**
+	 * @param timestamp
+	 * @param previous
+	 * @param next
+	 */
+	protected MouseWindowNode( long timestamp, MouseGraphAction previous,
+			MouseGraphAction next ) {
+		super(timestamp, previous, next);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param timestamp
+	 */
+	protected MouseWindowNode( long timestamp ) {
+		super(timestamp);
+		// TODO Auto-generated constructor stub
+	}
+
 	@SuppressWarnings( "javadoc" )
 	@Override
 	public long getTimestamp() {
@@ -64,13 +83,6 @@ public class MouseWindowNode extends AbstractMouseGraphNode {
 	@Override
 	public Dimension2D getVariance() {
 		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public void write( OutputStream out ) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/*

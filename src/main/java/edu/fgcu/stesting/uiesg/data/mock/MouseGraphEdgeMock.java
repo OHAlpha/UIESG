@@ -15,8 +15,8 @@ public class MouseGraphEdgeMock extends AbstractMouseGraphActionMock implements
 
 	private Line2D line;
 
-	public MouseGraphEdgeMock( int t, int st, Point s, Point d ) {
-		super(t, st);
+	public MouseGraphEdgeMock( long timestamp, int t, int st, Point s, Point d ) {
+		super(timestamp,t, st);
 		line = new Line2D.Double(s, d);
 	}
 
@@ -58,6 +58,15 @@ public class MouseGraphEdgeMock extends AbstractMouseGraphActionMock implements
 	@Override
 	public Point2D getDest() {
 		return line.getP2();
+	}
+
+	public boolean equals( Object o ) {
+		if (super.equals(o)) {
+			MouseGraphEdgeMock mge = (MouseGraphEdgeMock) o;
+			return mge.getSource().equals(line.getP1())
+					&& mge.getDest().equals(line.getP2());
+		} else
+			return false;
 	}
 
 }

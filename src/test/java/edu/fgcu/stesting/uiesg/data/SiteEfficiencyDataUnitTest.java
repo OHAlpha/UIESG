@@ -1,8 +1,10 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.junit.After;
@@ -39,6 +42,26 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	static File dir = new File(
 			"src/test/java/edu/fgcu/stesting/uiesg/data/datafiles");
+	
+	/**
+	 * The mock maid to use for testing.
+	 */
+	static MouseActionInputData mm;
+	
+	/**
+	 * The mock god to use for testing.
+	 */
+	static GraphOutputData mg;
+	
+	/**
+	 * The mock uiest to use for testing.
+	 */
+	static UIEfficiencyStatisticType mt;
+	
+	/**
+	 * The mock uies to use for testing.
+	 */
+	static UIEfficiencyStatistic ms;
 
 	/**
 	 * A SED for "fgcu.edu".
@@ -63,14 +86,14 @@ public class SiteEfficiencyDataUnitTest {
 		} catch (DuplicateTypeException e) {
 			e.printStackTrace();
 		}
-		
+
 		// write data to data folder
 		File file = new File(dir, "wikipedia.org.sed");
 		try (DataOutputStream out = new DataOutputStream(
 				new BufferedOutputStream(new FileOutputStream(file)));) {
 			out.writeInt(1);
 			out.writeInt(0x07);
-			MouseActionInputData mm = new MouseActionInputDataMock();
+			mm = new MouseActionInputDataMock();
 			out.writeInt(mm.size());
 			for (Iterator<MouseActionInputData.Point> it = mm.iterate(); it
 					.hasNext();) {
@@ -82,7 +105,7 @@ public class SiteEfficiencyDataUnitTest {
 				out.writeLong(p.timestamp);
 				out.writeInt(p.type);
 			}
-			GraphOutputData mg = new GraphOutputDataMock(mm.iterate());
+			mg = new GraphOutputDataMock(mm.iterate());
 			out.writeInt(mg.order() + mg.size());
 			for (int i = 0; i < mg.order() + mg.size(); i++) {
 				MouseGraphAction ma = mg.getAction(i);
@@ -90,9 +113,9 @@ public class SiteEfficiencyDataUnitTest {
 				out.writeInt(mg.indexOf(ma.getPrevious()));
 			}
 			out.writeInt(1);
-			UIEfficiencyStatisticType mt = UIEfficiencyStatistics
+			mt = UIEfficiencyStatistics
 					.getType("Mock");
-			UIEfficiencyStatistic ms = mt.calculate(mg);
+			ms = mt.calculate(mg);
 			out.writeUTF(mt.getName());
 			ms.write(out);
 		} catch (FileNotFoundException e) {
@@ -100,6 +123,7 @@ public class SiteEfficiencyDataUnitTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(file.length());
 	}
 
 	/**
@@ -128,10 +152,12 @@ public class SiteEfficiencyDataUnitTest {
 		// file where wiki's data file should reside
 		File wOut = new File(SiteEfficiencyData.dataFileDir,
 				"wikipedia.org.sed");
+		// System.out.println(wOut.getAbsolutePath());
 
 		// copy data file
 		Files.copy(wIn.toPath(), wOut.toPath(),
 				StandardCopyOption.REPLACE_EXISTING);
+		// System.out.println(wOut.exists());
 
 		// create wiki
 		wiki = SiteEfficiencyData.getForDomain("wikipedia.org");
@@ -151,6 +177,9 @@ public class SiteEfficiencyDataUnitTest {
 		// delete file if it exists
 		if (wDat.exists())
 			wDat.delete();
+
+		// remove all domains
+		SiteEfficiencyData.clean();
 
 	}
 
@@ -252,12 +281,18 @@ public class SiteEfficiencyDataUnitTest {
 		assertEquals("wiki.size() must return 1", wiki.size(), 1);
 
 		DataSet ds = wiki.getSet(0);
-		assertNotNull("mouse data should not be null",ds.mouseData);
-		assertNotNull("graph data should not be null",ds.graphData);
-		assertNotNull("statistics should not be null",ds.statistics);
-		assertEquals("statistics should have 1 statistic", ds.statistics.size(), 1);
+		assertNotNull("mouse data should not be null", ds.mouseData);
+		assertEquals(ds.mouseData, mm);
+		assertNotNull("graph data should not be null", ds.graphData);
+		assertEquals(ds.graphData.order(), mg.order());
+		assertEquals(ds.graphData.size(), mg.size());
+		assertEquals(ds.graphData, mg);
+		assertNotNull("statistics should not be null", ds.statistics);
+		assertEquals("statistics should have 1 statistic",
+				ds.statistics.size(), 1);
+		assertTrue(ds.statistics.containsKey(mt.getName()));
+		assertEquals(ds.statistics.get(mt.getName()), ms);
 
-		throw new RuntimeException("test not implemented");
 	}
 
 	/**
@@ -311,9 +346,8 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testUnloadDataLoaded() {
-		// TODO: testUnloadDataLoaded
-		
-		wiki.loadData();
+
+		assertTrue(wiki.loadData());
 
 		// file for wiki's data file
 		File wDat = new File(SiteEfficiencyData.dataFileDir,
@@ -333,9 +367,21 @@ public class SiteEfficiencyDataUnitTest {
 		assertTrue("wiki's data file must exist", wDat.exists());
 
 		// verify data file's content
-		// TODO: testUnloadDataNotLoaded: verify data file's content
-
-		throw new RuntimeException("test not implemented");
+		File exp = new File(dir, "wikipedia.org.sed");
+		assertEquals(exp.length(), wDat.length());
+		try (BufferedInputStream inE = new BufferedInputStream(
+				new FileInputStream(exp));
+				BufferedInputStream inA = new BufferedInputStream(
+						new FileInputStream(wDat));) {
+			byte[] e = new byte[1024], a = new byte[1024];
+			while (inE.read(e) > 0) {
+				inA.read(a);
+				assertTrue(Arrays.equals(e, a));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 
 	/**
@@ -362,7 +408,7 @@ public class SiteEfficiencyDataUnitTest {
 		wiki.loadData();
 
 		// check if wiki is loaded
-		assertFalse("wiki.isLoaded() must return false", wiki.isLoaded());
+		assertTrue("wiki.isLoaded() must return true", wiki.isLoaded());
 
 	}
 
@@ -452,26 +498,29 @@ public class SiteEfficiencyDataUnitTest {
 	 */
 	@Test
 	public void testNewMouseDataNotLoaded() {
-		// TODO: new mouse data
-		throw new RuntimeException("test not implemented");
+		
+		assertNull("wiki.newMouseData must return null",wiki.newMouseData());
+		
 	}
 
 	/**
 	 * Calls compileMouseData on wiki( not loaded ).
 	 */
-	@Test
+	@Test( expected = RuntimeException.class )
 	public void testCompileMouseDataNotLoaded() {
-		// TODO: compile mouse data
-		throw new RuntimeException("test not implemented");
+
+		wiki.compileMouseData();
+		
 	}
 
 	/**
 	 * Calls calculateStatistics on wiki( not loaded ).
 	 */
-	@Test
+	@Test( expected = RuntimeException.class )
 	public void testCalculateStatisticsNotLoaded() {
-		// TODO: calculate statistics
-		throw new RuntimeException("test not implemented");
+
+		wiki.calculateStatistics();
+		
 	}
 
 	/**

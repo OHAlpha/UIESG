@@ -83,6 +83,13 @@ public class SiteEfficiencyData {
 	}
 
 	/**
+	 * Removes all domains from the collection.
+	 */
+	protected static void clean() {
+		domains.clear();
+	}
+
+	/**
 	 * The folder to store and lookup data files.
 	 */
 	protected static File dataFileDir;
@@ -180,6 +187,8 @@ public class SiteEfficiencyData {
 			data = new ArrayList<>();
 			pages = new TreeMap<>();
 		}
+		// System.out.println("\t\t\t" + domain + ".isLoaded() = " +
+		// isLoaded());
 	}
 
 	/**
@@ -201,15 +210,23 @@ public class SiteEfficiencyData {
 	public boolean loadData() {
 
 		// return false if SED is already loaded
-		if (data != null)
+		if (isLoaded()) {
+			;
+			// System.out.println("\t\talready loaded");
 			return false;
+		}
 
 		// datafile
 		File file = dataFile();
 
 		// check for existence
-		if (!file.exists())
+		if (!file.exists()) {
+			;
+			// System.out.println("\t\t"+file.getAbsolutePath()+"\n\t"+file.getName()+" does not exist");
 			return false;
+		}
+
+		data = new ArrayList<>();
 
 		// read in data
 		try (DataInputStream in = new DataInputStream(new BufferedInputStream(
@@ -268,28 +285,37 @@ public class SiteEfficiencyData {
 
 					// read number of actions
 					int actions = in.readInt();
+					System.out.println(actions + " actions");
 
 					// read actions
 					for (int j = 0; j < actions; j++) {
 
 						// read action
 						MouseGraphAction action = GODFactory.read(in);
+						// System.out.println("\t" + action);
 
 						// read previous
 						int prev = in.readInt();
 
 						// set previous
-						if (prev > -1) {
+						if (prev > -1 && j > 0) {
 							MouseGraphAction previous = d.graphData
 									.getAction(prev);
-							previous.setNext(action);
-							action.setPrevious(previous);
+							if (previous != null) {
+								previous.setNext(action);
+								action.setPrevious(previous);
+							}
 						}
 
 						// add action to graph
 						d.graphData.addAction(action);
+						// System.out.println("\t"
+						// + (d.graphData.order() + d.graphData.size())
+						// + " actions read");
 
 					}
+					// System.out.println((d.graphData.order() + d.graphData
+					// .size()) + " actions read");
 
 				}
 
@@ -317,6 +343,8 @@ public class SiteEfficiencyData {
 
 				}
 
+				data.add(d);
+
 			}
 
 			return true;
@@ -324,6 +352,8 @@ public class SiteEfficiencyData {
 
 			e.printStackTrace();
 
+			// System.err.println("error loading");
+			data = null;
 			return false;
 
 		}
@@ -337,13 +367,13 @@ public class SiteEfficiencyData {
 	 * @return whether the save was successful
 	 */
 	public boolean unloadData() {
-		
-		if( !isLoaded() )
-			return false;
 
-		// return false if SED is already loaded
-		if (data != null)
+		// return false if SED is not loaded
+		if (!isLoaded()) {
+			;
+			// System.out.println("\t\tnot loaded");
 			return false;
+		}
 
 		// datafile
 		File file = dataFile();
@@ -450,6 +480,8 @@ public class SiteEfficiencyData {
 
 			}
 
+			data = null;
+
 			return true;
 		} catch (IOException e) {
 
@@ -490,6 +522,8 @@ public class SiteEfficiencyData {
 	public MouseActionInputData newMouseData() {
 		// create a new dataset and add it to the collection "data" and then in
 		// data create a new MAID in that dataset
+		if( data == null )
+			return null;
 		DataSet d = new DataSet();
 		// add mousedata to the dataset
 		d.mouseData = MAIDFactory.newInstance();
@@ -502,6 +536,8 @@ public class SiteEfficiencyData {
 	 * Creates a GOD instance for each MAID in the data.
 	 */
 	public void compileMouseData() {
+		if( data == null )
+			throw new RuntimeException("sed is not loaded");
 
 		// go through all the datasets if MAID is not null, but GOD is null then
 		// create a new GOD based on the MAID
@@ -523,6 +559,8 @@ public class SiteEfficiencyData {
 	 * in memory.
 	 */
 	public void calculateStatistics() {
+		if( data == null )
+			throw new RuntimeException("sed is not loaded");
 
 		// if there is a statistics that is null and a GOD that is not null then
 		// create a statistics based on the GOD

@@ -11,13 +11,32 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 /**
- * Represents dragging of the mouse in the browser window. THe previous and next
+ * Represents dragging of the mouse in the browser window. The previous and next
  * actions will be either other MouseDragEdges or MouseClickNodes.
  * 
  * @author oalpha
  *
  */
 public class MouseDragEdge extends AbstractMouseGraphEdge {
+
+	/**
+	 * @param timestamp
+	 * @param previous
+	 * @param next
+	 */
+	protected MouseDragEdge( long timestamp, MouseGraphAction previous,
+			MouseGraphAction next ) {
+		super(timestamp, previous, next);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param timestamp
+	 */
+	protected MouseDragEdge( long timestamp ) {
+		super(timestamp);
+		// TODO Auto-generated constructor stub
+	}
 
 	@SuppressWarnings( "javadoc" )
 	@Override
@@ -71,13 +90,6 @@ public class MouseDragEdge extends AbstractMouseGraphEdge {
 	@Override
 	public Object getPathParameters() {
 		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public void write( OutputStream out ) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/*

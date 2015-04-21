@@ -1,6 +1,7 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
 import edu.fgcu.stesting.uiesg.data.GODFactory;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
@@ -12,6 +13,25 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  */
 public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 		implements MouseGraphEdge {
+
+	/**
+	 * @param timestamp
+	 * @param previous
+	 * @param next
+	 */
+	protected AbstractMouseGraphEdge( long timestamp,
+			MouseGraphAction previous, MouseGraphAction next ) {
+		super(timestamp, previous, next);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param timestamp
+	 */
+	protected AbstractMouseGraphEdge( long timestamp ) {
+		super(timestamp);
+		// TODO Auto-generated constructor stub
+	}
 
 	/*
 	 * (non-Javadoc)
