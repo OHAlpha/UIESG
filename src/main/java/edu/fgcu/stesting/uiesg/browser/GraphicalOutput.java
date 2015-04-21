@@ -27,8 +27,12 @@ public class GraphicalOutput extends Application {
 		// TODO Auto-generated method stub
 		final LineChart<Number, Number> lc = new LineChart<>(new NumberAxis(),
 				new NumberAxis());
+		
+		// set the title of the graph
 		lc.setTitle("UIESG Data");
+		
 		// series1 will consist of the points that
+		// are considered an "event"
 		XYChart.Series series1 = new XYChart.Series();
 		series1.setName("Mouse events");
 		// test points for mouse events
@@ -46,12 +50,19 @@ public class GraphicalOutput extends Application {
 
 		lc.setAnimated(false);
 		lc.setCreateSymbols(true);
-
+		
+		// add points to the LineChart
 		lc.getData().addAll(series1, series2);
-
+		
+		// initialize the Scene with points and specify size
 		Scene scene = new Scene(lc, 500, 400);
+		
+		// use custom .css to hide one of the lines so that only the
+		// points are visible
 		scene.getStylesheets().add(
 				getClass().getResource("chart.css").toExternalForm());
+		
+		// display graph
 		stage.setScene(scene);
 		stage.show();
 		
