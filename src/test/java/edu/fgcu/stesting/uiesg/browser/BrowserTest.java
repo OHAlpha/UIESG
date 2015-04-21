@@ -20,7 +20,7 @@ import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 public class BrowserTest {
 
 	Browser browser;
-	SiteEfficiencyData sed;
+	
 
 	public BrowserTest() {
 
