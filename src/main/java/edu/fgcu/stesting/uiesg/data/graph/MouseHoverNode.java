@@ -17,22 +17,41 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 public class MouseHoverNode extends AbstractMouseGraphNode {
 
 	/**
+	 * The area hovered over.
+	 */
+	private Rectangle2D range;
+
+	/**
 	 * @param timestamp
+	 *            the time of the action
 	 * @param previous
+	 *            the previous action
 	 * @param next
+	 *            the next action
+	 * @param x
+	 *            the x value of the click point
+	 * @param y
+	 *            the y value of the click point
 	 */
 	protected MouseHoverNode( long timestamp, MouseGraphAction previous,
-			MouseGraphAction next ) {
+			MouseGraphAction next, double[] data ) {
 		super(timestamp, previous, next);
-		// TODO Auto-generated constructor stub
+		double nx = data[0], ny = data[1], xx = data[0], xy = data[1];
+		range = new Rectangle2D.Double(nx, ny, xx - nx, xy - ny);
 	}
 
 	/**
 	 * @param timestamp
+	 *            the time of the action
+	 * @param x
+	 *            the x value of the click point
+	 * @param y
+	 *            the y value of the click point
 	 */
-	protected MouseHoverNode( long timestamp ) {
+	protected MouseHoverNode( long timestamp, double[] data ) {
 		super(timestamp);
-		// TODO Auto-generated constructor stub
+		double nx = data[0], ny = data[1], xx = data[0], xy = data[1];
+		range = new Rectangle2D.Double(nx, ny, xx - nx, xy - ny);
 	}
 
 	@SuppressWarnings( "javadoc" )

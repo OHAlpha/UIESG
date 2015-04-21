@@ -59,6 +59,11 @@ public class GraphOutputDataMock implements GraphOutputData {
 	}
 
 	@Override
+	public int numActions() {
+		return order + size;
+	}
+
+	@Override
 	public void addAction( MouseGraphAction action ) {
 		if (locked)
 			throw new RuntimeException("GOD has been locked");

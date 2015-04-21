@@ -210,6 +210,16 @@ public class GraphOutputDataImp implements GraphOutputData {
 		return edges.size();
 	}
 
+	/**
+	 * The number of actions in the graph.
+	 * 
+	 * @return the number of edges
+	 */
+	@Override
+	public int numActions() {
+		return nodes.size() + edges.size();
+	}
+
 	@SuppressWarnings( "javadoc" )
 	@Override
 	public void addAction( MouseGraphAction action ) {
