@@ -91,15 +91,22 @@ public class GODFactory {
 			;
 			// System.out.println("action type is "+type);
 			if (type == NODE) {
-				return new MouseGraphNodeMock(timestamp, type, subType,
-						new Point(((Number) params[0]).intValue(),
-								((Number) params[1]).intValue()));
+				if (subType == HOVER) {
+					double[] p = (double[]) params[0];
+					int l = p.length;
+					return new MouseGraphNodeMock(timestamp, type, subType,
+							new Point((int) (p[0] + p[l - 2]) / 2,
+									(int) (p[1] + p[l - 1]) / 2));
+				} else
+					return new MouseGraphNodeMock(timestamp, type, subType,
+							new Point(((Number) params[0]).intValue(),
+									((Number) params[1]).intValue()));
 			} else if (type == EDGE) {
+				double[] p = (double[]) params[0];
+				int l = p.length;
 				return new MouseGraphEdgeMock(timestamp, type, subType,
-						new Point(((Number) params[0]).intValue(),
-								((Number) params[1]).intValue()), new Point(
-								((Number) params[2]).intValue(),
-								((Number) params[3]).intValue()));
+						new Point((int) p[0], (int) p[1]), new Point(
+								(int) p[l - 2], (int) p[l - 1]));
 			} else {
 				;
 				// System.out.println("action type cannot be "+type);
@@ -142,10 +149,18 @@ public class GODFactory {
 			long l = in.readLong();
 			int t = in.readInt(), s = in.readInt();
 			if (t == NODE)
-				return newGraphAction(l, t, s, in.readDouble(), in.readDouble());
+				if (s == HOVER)
+					return newGraphAction(
+							l,
+							t,
+							s,
+							new double[] { in.readDouble(), in.readDouble() });
+				else
+					return newGraphAction(l, t, s, in.readDouble(),
+							in.readDouble());
 			else
-				return newGraphAction(l, t, s, in.readDouble(),
-						in.readDouble(), in.readDouble(), in.readDouble());
+				return newGraphAction(l, t, s, new double[] { in.readDouble(),
+						in.readDouble(), in.readDouble(), in.readDouble() });
 		} else
 			return null;
 	}

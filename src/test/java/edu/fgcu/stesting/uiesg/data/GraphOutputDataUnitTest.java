@@ -61,15 +61,15 @@ public class GraphOutputDataUnitTest {
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.ENTER, 30, 0),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, 30, 0, 30, 50),
+						GODFactory.EDGE, GODFactory.MOVE, new double[] {30, 0, 30, 50}),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.CLICK, 30, 50),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, 30, 50, 60, 50),
+						GODFactory.EDGE, GODFactory.MOVE, new double[] {30, 50, 60, 50}),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.NODE, GODFactory.HOVER, 60, 50),
+						GODFactory.NODE, GODFactory.HOVER, new double[] {60, 50}),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, 60, 50, 30, 0),
+						GODFactory.EDGE, GODFactory.MOVE, new double[] {60, 50, 30, 0}),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.EXIT, 30, 0) };
 		for (int i = 0; i < as.length; i++) {
@@ -144,7 +144,7 @@ public class GraphOutputDataUnitTest {
 	@Test
 	public void testAddEdge() {
 		godA.addAction(GODFactory.newGraphAction(System.currentTimeMillis(),
-				GODFactory.EDGE, GODFactory.MOVE, 2, 3, 4, 5));
+				GODFactory.EDGE, GODFactory.MOVE, new double[] {2, 3, 4, 5}));
 		assertEquals("godA.order() must be " + o, godA.order(), o);
 		assertEquals("godA.size() must be " + (s + 1), godA.size(), s + 1);
 	}

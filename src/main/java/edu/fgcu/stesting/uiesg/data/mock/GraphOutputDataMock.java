@@ -29,15 +29,15 @@ public class GraphOutputDataMock implements GraphOutputData {
 		list.add(GODFactory.newGraphAction(0, GODFactory.NODE,
 				GODFactory.ENTER, 0, 0));
 		list.add(GODFactory.newGraphAction(1, GODFactory.EDGE, GODFactory.MOVE,
-				0, 0, 0, 0));
+				new double[] {0, 0, 0, 0}));
 		list.add(GODFactory.newGraphAction(2, GODFactory.NODE,
 				GODFactory.CLICK, 0, 0));
 		list.add(GODFactory.newGraphAction(3, GODFactory.EDGE, GODFactory.MOVE,
-				0, 0, 0, 0));
+				new double[] {0, 0, 0, 0}));
 		list.add(GODFactory.newGraphAction(4, GODFactory.NODE,
-				GODFactory.HOVER, 0, 0));
+				GODFactory.HOVER, new double[] {0, 0}));
 		list.add(GODFactory.newGraphAction(5, GODFactory.EDGE, GODFactory.MOVE,
-				0, 0, 0, 0));
+				new double[] {0, 0, 0, 0}));
 		list.add(GODFactory.newGraphAction(6, GODFactory.NODE, GODFactory.EXIT,
 				0, 0));
 	}

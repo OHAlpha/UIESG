@@ -12,7 +12,6 @@ import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
-
 import static java.awt.event.MouseEvent.*;
 
 /**
@@ -91,103 +90,106 @@ public class GraphOutputDataImp implements GraphOutputData {
 			throws NullPointerException {
 		int lastType = MOUSE_FIRST - 1;
 		long lastTime = -1;
-		Point2D a = null, b = null;
+		List<Point2D> h = new LinkedList<>();
 		for (; mouseData.hasNext();) {
 			Point c = mouseData.next();
 			int t = c.type;
-			Point2D p = c.browserLocation;
-			long s = c.timestamp;
 			switch (t) {
 			case MOUSE_ENTERED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
-							a.getY(), b.getX(), b.getY()));
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.EDGE, GODFactory.MOVE, toDouble(h)));
 				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
-							a.getY(), b.getX(), b.getY()));
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.EDGE, GODFactory.DRAG, toDouble(h)));
 				else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.NODE, GODFactory.HOVER, a.getX(),
-							a.getY(), b.getX(), b.getY()));
-				this.addAction(GODFactory.newGraphAction(s, GODFactory.NODE,
-						GODFactory.ENTER, p.getX(), p.getY()));
-				a = p;
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.NODE, GODFactory.HOVER, toDouble(h)));
+				h.clear();
+				this.addAction(GODFactory.newGraphAction(c.timestamp,
+						GODFactory.NODE, GODFactory.ENTER,
+						c.browserLocation.getX(), c.browserLocation.getY()));
 				break;
 			case MOUSE_MOVED:
-				double d = p.distance(b == null ? a : b);
-				long r = s - lastTime;
+				double d = h.isEmpty() ? 0 : c.browserLocation.distance(h.get(h
+						.size() - 1));
+				long r = c.timestamp - lastTime;
 				if (d * 1000. / r < SPEED_THRESHHOLD || r > TIME_THRESHHOLD) {
 					if (lastType == MOUSE_MOVED)
-						this.addAction(GODFactory.newGraphAction(s,
-								GODFactory.EDGE, GODFactory.MOVE, a.getX(),
-								a.getY(), b.getX(), b.getY()));
+						this.addAction(GODFactory.newGraphAction(lastTime,
+								GODFactory.EDGE, GODFactory.MOVE, toDouble(h)));
 					t = MOUSE_HOVER;
-				} else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.NODE, GODFactory.HOVER, a.getX(),
-							a.getY(), b.getX(), b.getY()));
-				b = p;
+				} else if (lastType == MOUSE_HOVER) {
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.NODE, GODFactory.HOVER, toDouble(h)));
+				}
+				Point2D l = h.get(h.size() - 1);
+				h.clear();
+				h.add(l);
 				break;
 			case MOUSE_PRESSED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
-							a.getY(), b.getX(), b.getY()));
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.EDGE, GODFactory.MOVE, toDouble(h)));
 				else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.NODE, GODFactory.HOVER, a.getX(),
-							a.getY(), b.getX(), b.getY()));
-				a = p;
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.NODE, GODFactory.HOVER, toDouble(h)));
+				h.clear();
 				break;
 			case MOUSE_DRAGGED:
-				b = p;
 				break;
 			case MOUSE_RELEASED:
 				if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
-							a.getY(), b.getX(), b.getY()));
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.EDGE, GODFactory.DRAG, toDouble(h)));
+				h.clear();
 				break;
 			case MOUSE_CLICKED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
-							a.getY(), b.getX(), b.getY()));
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.EDGE, GODFactory.MOVE, toDouble(h)));
 				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
-							a.getY(), b.getX(), b.getY()));
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.EDGE, GODFactory.DRAG, toDouble(h)));
 				else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.NODE, GODFactory.HOVER, a.getX(),
-							a.getY(), b.getX(), b.getY()));
-				this.addAction(GODFactory.newGraphAction(s, GODFactory.NODE,
-						GODFactory.CLICK, p.getX(), p.getY()));
-				a = p;
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.NODE, GODFactory.HOVER, toDouble(h)));
+				this.addAction(GODFactory.newGraphAction(c.timestamp,
+						GODFactory.NODE, GODFactory.CLICK,
+						c.browserLocation.getX(), c.browserLocation.getY()));
+				h.clear();
 				break;
 			case MOUSE_EXITED:
 				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.EDGE, GODFactory.MOVE, a.getX(),
-							a.getY(), b.getX(), b.getY()));
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.EDGE, GODFactory.MOVE, toDouble(h)));
 				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.EDGE, GODFactory.DRAG, a.getX(),
-							a.getY(), b.getX(), b.getY()));
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.EDGE, GODFactory.DRAG, toDouble(h)));
 				else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(s,
-							GODFactory.NODE, GODFactory.HOVER, a.getX(),
-							a.getY(), b.getX(), b.getY()));
-				this.addAction(GODFactory.newGraphAction(s, GODFactory.NODE,
-						GODFactory.EXIT, p.getX(), p.getY()));
-				a = p;
+					this.addAction(GODFactory.newGraphAction(lastTime,
+							GODFactory.NODE, GODFactory.HOVER, toDouble(h)));
+				this.addAction(GODFactory.newGraphAction(c.timestamp,
+						GODFactory.NODE, GODFactory.EXIT,
+						c.browserLocation.getX(), c.browserLocation.getY()));
+				h.clear();
 			}
+			h.add(c.browserLocation);
 			lastType = t;
-			lastTime = s;
+			lastTime = c.timestamp;
 		}
 		locked = true;
+	}
+
+	@SuppressWarnings( "javadoc" )
+	private double[] toDouble( List<Point2D> h ) {
+		double[] out = new double[h.size() * 2];
+		for (int i = 0; i < h.size(); i++) {
+			Point2D p = h.get(i);
+			out[i * 2] = p.getX();
+			out[i * 2 + 1] = p.getY();
+		}
+		return out;
 	}
 
 	/**

@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.Point;
+import java.awt.event.MouseEvent;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
@@ -100,6 +102,30 @@ public class SiteEfficiencyDataIntegrationTest {
 			out.writeInt(1);
 			out.writeInt(0x07);
 			mm = new MouseActionInputDataImp();
+			mm.addPoint(new Point(30, 0), new Point(30, 0),
+					System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
+			mm.addPoint(new Point(30, 10), new Point(30, 10),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 30), new Point(30, 30),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 50), new Point(30, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 50), new Point(30, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+			mm.addPoint(new Point(40, 50), new Point(40, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(50, 50), new Point(50, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(60, 50), new Point(60, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(50, 30), new Point(50, 30),
+					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(40, 10), new Point(40, 10),
+					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 0), new Point(30, 0),
+					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 0), new Point(30, 0),
+					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_EXITED);
 			out.writeInt(mm.size());
 			for (Iterator<MouseActionInputData.Point> it = mm.iterate(); it
 					.hasNext();) {
