@@ -1,18 +1,18 @@
 package edu.fgcu.stesting.uiesg.browser;
 
-import javafx.application.Application;
+
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.stage.Stage;
+
 
 
 
 // class to output to the user the graphical information 
 // gathered from the web browser
 
-public class GraphicalOutput extends Application {
+public class GraphicalOutput {
 
 	/*
 	 * The types are: click, hover, enter, and exit (non-Javadoc)
@@ -21,8 +21,7 @@ public class GraphicalOutput extends Application {
 	 */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public void start(Stage stage) throws Exception {
+	public Scene setup(){
 		
 		
 		final LineChart<Number, Number> lc = new LineChart<>(new NumberAxis(),
@@ -65,14 +64,12 @@ public class GraphicalOutput extends Application {
 				getClass().getResource("chart.css").toExternalForm());
 		
 		// display graph
-		stage.setScene(scene);
-		stage.show();
-		
+		//stage.setScene(scene);
+		//stage.show();
+		return scene;
 	}
+	
 
-	public static void main(String[] args) {
-		// run linechart
-		launch(args);
-		
-	}
+
+
 }

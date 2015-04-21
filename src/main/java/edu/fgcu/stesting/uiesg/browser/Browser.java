@@ -22,6 +22,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -158,7 +160,7 @@ public class Browser extends Application {
 		HBox toolbar = new HBox();
 		Label addrL = new Label("Address:");
 		final TextField addrT = new TextField();
-		Button btn = new Button();
+		Button btn = new Button();		
 		btn.setText("Go");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -193,9 +195,27 @@ public class Browser extends Application {
 				}
 			}
 		});
+		Button b = new Button();
+		b.setText("Graph");
+		b.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				// code here to call GraphicalOutput
+				GraphicalOutput go = new GraphicalOutput();
+				Stage stage = new Stage();
+				stage.setScene(go.setup());
+				stage.show();
+							
+			}
+			
+		});
+		
+		
 		toolbar.getChildren().add(addrL);
 		toolbar.getChildren().add(addrT);
 		toolbar.getChildren().add(btn);
+		toolbar.getChildren().add(b);
 		grid.add(toolbar, 0, 0, 1, 1);
 		grid.add(browser, 0, 1, 1, 1);
 		grid.setAlignment(Pos.CENTER);
