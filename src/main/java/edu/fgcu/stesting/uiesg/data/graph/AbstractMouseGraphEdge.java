@@ -1,5 +1,10 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
+import java.awt.Shape;
+import java.awt.geom.Dimension2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
@@ -16,6 +21,31 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 		implements MouseGraphEdge {
 
 	/**
+	 * The area hovered over.
+	 */
+	protected Rectangle2D range;
+
+	/**
+	 * The starting point.
+	 */
+	protected Point2D source;
+
+	/**
+	 * The ending point.
+	 */
+	protected Point2D dest;
+
+	/**
+	 * The error calculation.
+	 */
+	protected double error;
+
+	/**
+	 * The variance calculation.
+	 */
+	protected Dimension2D variance;
+
+	/**
 	 * @param timestamp
 	 * @param previous
 	 * @param next
@@ -23,7 +53,6 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 	protected AbstractMouseGraphEdge( long timestamp,
 			MouseGraphAction previous, MouseGraphAction next ) {
 		super(timestamp, previous, next);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -31,7 +60,46 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 	 */
 	protected AbstractMouseGraphEdge( long timestamp ) {
 		super(timestamp);
-		// TODO Auto-generated constructor stub
+	}
+
+	protected void calc( double[] data ) {
+		double nx = data[0], ny = data[1], xx = data[0], xy = data[1];
+		error = 0;
+		double lx = nx, ly = ny;
+		double sx = nx, sy = ny;
+		double[] ds = new double[data.length - 2];
+		for (int i = 2; i < data.length; i += 2) {
+			double tx = data[i], ty = data[i + 1];
+			nx = tx < nx ? tx : nx;
+			ny = ty < ny ? ty : ny;
+			xx = tx > xx ? tx : xx;
+			xy = ty > xy ? ty : xy;
+			double dx = tx - lx, dy = ty - ly;
+			ds[i - 2] = dx;
+			ds[i - 1] = dy;
+			error += Math.sqrt(dx * dx + dy * dy);
+			sx += dx;
+			sy += xy;
+			lx = tx;
+			ly = ty;
+		}
+		double Dx = data[data.length - 2] - data[0], Dy = data[data.length - 1]
+				- data[1];
+		error = Math.abs(error - Math.sqrt(Dx * Dx + Dy * Dy));
+		// TODO: calculate error based on area instead of difference of length
+		range = new Rectangle2D.Double(nx, ny, xx - nx, xy - ny);
+		sx /= data.length / 2;
+		sy /= data.length / 2;
+		double vx = 0, vy = 0;
+		for (int i = 0; i < ds.length; i += 2) {
+			double tx = ds[i], ty = ds[i + 1];
+			double dx = tx - sx, dy = ty - sy;
+			vx += dx * dx;
+			vy += dy * dy;
+		}
+		variance = new Dim(vx / (data.length / 2 - 1), vy
+				/ (data.length / 2 - 1));
+		range = new Rectangle2D.Double(nx, ny, xx - nx, xy - ny);
 	}
 
 	/*
@@ -62,6 +130,36 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 	@Override
 	public int getType() {
 		return GODFactory.EDGE;
+	}
+
+	@Override
+	public Rectangle2D getRange() {
+		return range;
+	}
+
+	@Override
+	public Shape getArea() {
+		return range;
+	}
+
+	@Override
+	public Point2D getSource() {
+		return source;
+	}
+
+	@Override
+	public Point2D getDest() {
+		return dest;
+	}
+
+	@Override
+	public double getError() {
+		return error;
+	}
+
+	@Override
+	public Dimension2D getVariance() {
+		return variance;
 	}
 
 }

@@ -9,6 +9,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 
+import edu.fgcu.stesting.uiesg.data.graph.MouseClickNode;
+import edu.fgcu.stesting.uiesg.data.graph.MouseDragEdge;
+import edu.fgcu.stesting.uiesg.data.graph.MouseHoverNode;
+import edu.fgcu.stesting.uiesg.data.graph.MouseMoveEdge;
+import edu.fgcu.stesting.uiesg.data.graph.MouseWindowNode;
 import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
 import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;
@@ -101,7 +106,31 @@ public class GODFactory {
 				return null;
 			}
 		} else if (actionMode == IMPLEMENTATION) {
-			return null;
+			if (type == NODE) {
+				if (subType == CLICK) {
+					return new MouseClickNode(timestamp,
+							((Number) params[0]).doubleValue(),
+							((Number) params[1]).doubleValue());
+				} else if (subType == HOVER) {
+					return new MouseHoverNode(timestamp, (double[]) params[0]);
+				} else if (subType == ENTER || subType == EXIT) {
+					return new MouseWindowNode(timestamp, subType == ENTER,
+							((Number) params[0]).doubleValue(),
+							((Number) params[1]).doubleValue());
+				} else
+					return null;
+			} else if (type == EDGE) {
+				if (subType == MOVE)
+					return new MouseMoveEdge(timestamp, (double[]) params[0]);
+				else if (subType == DRAG)
+					return new MouseDragEdge(timestamp, (double[]) params[0]);
+				else
+					return null;
+			} else {
+				;
+				// System.out.println("action type cannot be "+type);
+				return null;
+			}
 		}
 		return null;
 	}
