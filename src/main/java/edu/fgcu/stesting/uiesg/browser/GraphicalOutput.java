@@ -28,16 +28,17 @@ public class GraphicalOutput extends Application {
 		final LineChart<Number, Number> sc = new LineChart<>(new NumberAxis(),
 				new NumberAxis());
 		
-		// series1 will have the mouse x,y data
+		
+		// series1 will consist of the points that 
 		XYChart.Series series1 = new XYChart.Series();
-		series1.setName("Mouse Movement");
+		series1.setName("Mouse events");
 		series1.getData().add(new XYChart.Data(4.2, 193.2));
 		series1.getData().add(new XYChart.Data(2.8, 33.6));
 		series1.getData().add(new XYChart.Data(6.8, 23.6));
 
-		// series2 will consist of the points that 
+		// series2 will have the mouse x,y data
 		XYChart.Series series2 = new XYChart.Series();
-		series2.setName("Mouse Events");
+		series2.setName("Mouse movement");
 		series2.getData().add(new XYChart.Data(5.2, 229.2));
 		series2.getData().add(new XYChart.Data(2.4, 37.6));
 		series2.getData().add(new XYChart.Data(6.4, 15.6));
@@ -54,4 +55,8 @@ public class GraphicalOutput extends Application {
 		stage.show();
 	}
 
+	
+	 public static void main(String[] args) {
+	        launch(args);
+	    }
 }
