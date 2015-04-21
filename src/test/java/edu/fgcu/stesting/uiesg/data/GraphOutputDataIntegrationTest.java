@@ -38,7 +38,7 @@ public class GraphOutputDataIntegrationTest {
 	public static void setup() {
 		SiteEfficiencyData.init("tmp/datafiles");
 		MAIDFactory.init(MAIDFactory.IMPLEMENTATION);
-		GODFactory.init(GODFactory.IMPLEMENTATION, GODFactory.IMPLEMENTATION);
+		GODFactory.init(GODFactory.IMPLEMENTATION);
 		maid = MAIDFactory.newInstance();
 		maid.addPoint(new Point(30, 0), new Point(30, 0),
 				System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);

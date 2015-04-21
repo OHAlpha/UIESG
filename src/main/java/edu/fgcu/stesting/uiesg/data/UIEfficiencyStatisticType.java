@@ -79,14 +79,19 @@ public abstract class UIEfficiencyStatisticType {
 	}
 
 	/**
-	 * Constructs a UIEST instance of the specified name. This method should not
-	 * complete if a UIEST instance already exists with the specified name.
+	 * Registers this UIEST instance using getName(). This method should return
+	 * false if a UIEST instance already exists with the specified name.
 	 * 
-	 * @throws DuplicateTypeException
-	 *             if an instance with the specified name already exists
+	 * @return if this type successfully registered
 	 */
-	protected UIEfficiencyStatisticType() throws DuplicateTypeException {
-		UIEfficiencyStatistics.addType(this);
+	public boolean register() {
+		try {
+			UIEfficiencyStatistics.addType(this);
+			return true;
+		} catch (DuplicateTypeException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	/**

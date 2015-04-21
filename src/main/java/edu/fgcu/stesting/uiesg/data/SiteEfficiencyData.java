@@ -531,13 +531,25 @@ public class SiteEfficiencyData {
 			if (d.statistics == null) {
 				if (d.graphData != null) {
 					// statistics type will already exist. a static method
-					// calculate all satistics will be added
+					// calculate all statistics will be added
 					d.statistics = UIEfficiencyStatistics
 							.calculateStatistics(d.graphData);
 				}
 
 			}
 		}
+	}
+	
+	public MouseActionInputData getMouseData( int i ) {
+		return data.get(i).mouseData;
+	}
+	
+	public GraphOutputData getGraphData( int i ) {
+		return data.get(i).graphData;
+	}
+	
+	public Map<String,UIEfficiencyStatistic> getStatistics( int i ) {
+		return data.get(i).statistics;
 	}
 
 	@Override
