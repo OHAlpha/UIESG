@@ -15,12 +15,13 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
+import edu.fgcu.stesting.uiesg.data.statistic.MouseArea;
 import edu.fgcu.stesting.uiesg.data.statistic.NodesPerMinute;
 
 @SuppressWarnings( "javadoc" )
 @RunWith( value = Parameterized.class )
 public class UIEfficiencyStatisticTypeUnitTest {
-	
+
 	static GraphOutputData god;
 
 	@Parameters
@@ -29,42 +30,44 @@ public class UIEfficiencyStatisticTypeUnitTest {
 		try {
 			List<Object[]> params = new LinkedList<>();
 			params.add(new Object[] { "NodesPerMinute", new NodesPerMinute() });
+			params.add(new Object[] { "MouseArea", new MouseArea() });
 			return params;
 		} catch (DuplicateTypeException e) {
 			return null;
 		}
 	}
-	
+
 	String name;
-	
+
 	UIEfficiencyStatisticType type;
 
-	public UIEfficiencyStatisticTypeUnitTest( String name, UIEfficiencyStatisticType type ) {
+	public UIEfficiencyStatisticTypeUnitTest( String name,
+			UIEfficiencyStatisticType type ) {
 		this.type = type;
 		this.name = name;
 	}
-	
+
 	@Test
 	public void testGetName() {
-		assertEquals("name should be " + name,name,type.getName());
+		assertEquals("name should be " + name, name, type.getName());
 	}
-	
+
 	@Test
 	public void testGetDescription() {
-		assertNotNull("description should not be null",type.getDescription());
+		assertNotNull("description should not be null", type.getDescription());
 	}
-	
+
 	@Test
 	public void testRegister() {
-		assertTrue("register should succeed",type.register());
-		assertFalse("register should fail",type.register());
+		assertTrue("register should succeed", type.register());
+		assertFalse("register should fail", type.register());
 	}
-	
+
 	@Test
 	public void testCalculate() {
 		UIEfficiencyStatistic s = type.calculate(god);
-		assertNotNull("description should not be null",s);
-		assertEquals("type should equal stat.type",type, s.getType());
+		assertNotNull("description should not be null", s);
+		assertEquals("type should equal stat.type", type, s.getType());
 	}
 
 }

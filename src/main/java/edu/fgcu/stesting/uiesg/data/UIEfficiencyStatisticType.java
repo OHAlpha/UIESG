@@ -112,7 +112,9 @@ public abstract class UIEfficiencyStatisticType {
 	 * 
 	 * @return the name
 	 */
-	public abstract String getName();
+	public String getName() {
+		return getClass().getSimpleName();
+	}
 
 	/**
 	 * Returns the description of this type of metric.

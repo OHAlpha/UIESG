@@ -18,11 +18,6 @@ public class NodesPerMinute extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public String getName() {
-		return "NodesPerMinute";
-	}
-
-	@Override
 	public String getDescription() {
 		return "Calculates the average number of nodes ( clicks and hovers ) "
 				+ "per minute. A high value indicates a lot of movement and "
