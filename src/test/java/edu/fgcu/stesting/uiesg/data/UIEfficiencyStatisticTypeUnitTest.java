@@ -1,6 +1,9 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -22,25 +25,37 @@ public class UIEfficiencyStatisticTypeUnitTest {
 	@Parameters
 	public static Collection<Object[]> dataParameters() {
 		try {
-			new NodesPerMinute().register();
 			List<Object[]> params = new LinkedList<>();
-			for (String t : UIEfficiencyStatistics.types.keySet())
-				params.add(new Object[] { UIEfficiencyStatistics.getType(t) });
+			params.add(new Object[] { new NodesPerMinute() });
 			return params;
 		} catch (DuplicateTypeException e) {
 			return null;
 		}
 	}
 	
+	String name;
+	
 	UIEfficiencyStatisticType type;
 
-	public UIEfficiencyStatisticTypeUnitTest( UIEfficiencyStatisticType type ) {
+	public UIEfficiencyStatisticTypeUnitTest( String name, UIEfficiencyStatisticType type ) {
 		this.type = type;
+		this.name = name;
+	}
+	
+	@Test
+	public void testGetName() {
+		assertEquals("description should not be null",name,type.getName());
 	}
 	
 	@Test
 	public void testGetDescription() {
 		assertNotNull("description should not be null",type.getDescription());
+	}
+	
+	@Test
+	public void testRegister() {
+		assertTrue("description should not be null",type.register());
+		assertFalse("description should not be null",type.register());
 	}
 
 }

@@ -411,7 +411,8 @@ public class SiteEfficiencyDataUnitTest {
 	/**
 	 * Calls getDomain on wiki and fgcu
 	 */
-	public void getDomain() {
+	@Test
+	public void testGetDomain() {
 
 		// check fgcu's domain
 		assertEquals("fgcu.getDomain() must return fgcu", fgcu.getDomain(),

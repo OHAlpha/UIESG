@@ -64,14 +64,14 @@ public class MouseActionInputDataUnitTest {
 
 	}
 
-	// add method to test negative x and y values
-	@Test( expected = IllegalArgumentException.class )
-	public void testAddPointFault() {
-		// add a point with negative value to get the error exception
-		MAID.addPoint(new Point(-2, -6), new Point(1, 2),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-
-	}
+	// // add method to test negative x and y values
+	// @Test( expected = IllegalArgumentException.class )
+	// public void testAddPointFault() {
+	// // add a point with negative value to get the error exception
+	// MAID.addPoint(new Point(-2, -6), new Point(1, 2),
+	// System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+	//
+	// }
 
 	/***
 	 * test that adds points to the list and then gets the range based on the X
@@ -142,7 +142,7 @@ public class MouseActionInputDataUnitTest {
 	}
 
 	@Test( expected = IllegalArgumentException.class )
-	public void TestAddPointFault() {
+	public void testAddPointFault() {
 		// the errors that this is testing for
 		/*
 		 * if (type != MOUSE_EXITED && (browserPoint.getX() < 0 ||
