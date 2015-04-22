@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 // class to output to the user the graphical information 
 // gathered from the web browser
 
+@SuppressWarnings( "javadoc" )
 public class GraphicalOutput extends Application {
 
 	/*

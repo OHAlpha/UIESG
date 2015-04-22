@@ -7,8 +7,6 @@ import java.net.URL;
 
 import org.junit.*;
 
-import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
-
 /***
  * 
  * Performs unit tests for the browser class
