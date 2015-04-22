@@ -48,16 +48,29 @@ public abstract class AbstractMouseGraphActionMock extends
 	@Override
 	public boolean equals( Object o ) {
 		return getClass().isInstance(o)
-				&& ((AbstractMouseGraphAction) o).getTimestamp() == getTimestamp();
+				&& ((AbstractMouseGraphAction) o).getTimestamp() == getTimestamp()
+				&& ((AbstractMouseGraphAction) o).getType() == getType()
+				&& ((AbstractMouseGraphAction) o).getSubType() == getSubType();
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#assertEquals(edu.fgcu.stesting.uiesg.data.MouseGraphAction)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * edu.fgcu.stesting.uiesg.data.MouseGraphAction#assertEquals(edu.fgcu.stesting
+	 * .uiesg.data.MouseGraphAction)
 	 */
 	@Override
 	public void assertEquals( MouseGraphAction action ) throws AssertionError {
-		if( !equals( action ) )
-			throw new AssertionError( "not equal" );
+		if (!equals(action))
+			throw new AssertionError("not equal");
+	}
+
+	public String toString() {
+		return types[getType()] + "-" + subTypes[getSubType()] + "( range: "
+				+ getRange() + ", error: " + getError() + ", variance: ("
+				+ getVariance().getWidth() + "," + getVariance().getHeight()
+				+ ") )";
 	}
 
 }

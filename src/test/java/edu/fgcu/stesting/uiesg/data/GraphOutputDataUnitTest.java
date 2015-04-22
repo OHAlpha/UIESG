@@ -173,7 +173,7 @@ public class GraphOutputDataUnitTest {
 	@Test
 	public void testIndexOf() {
 		for (int i = 0; i < n; i++)
-			assertEquals("indexof returned incorrect value", i,
+			assertEquals(as[i]+".indexof should return "+i, i,
 					godA.indexOf(as[i]));
 	}
 

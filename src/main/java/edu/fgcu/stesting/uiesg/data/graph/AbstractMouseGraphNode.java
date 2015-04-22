@@ -157,6 +157,8 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 	public boolean equals( Object o ) {
 		if (getClass().isInstance(o)) {
 			AbstractMouseGraphNode n = (AbstractMouseGraphNode) o;
+			if (getTimestamp() != n.getTimestamp())
+				return false;
 			if (getType() != n.getType())
 				return false;
 			if (getSubType() != n.getSubType())
@@ -173,6 +175,8 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 	}
 
 	public void assertEquals( MouseGraphAction action ) throws AssertionError {
+		if (getTimestamp() != action.getTimestamp())
+			throw new AssertionError("not the same time");
 		if (getType() != action.getType())
 			throw new AssertionError("not the same type");
 		if (getSubType() != action.getSubType())
