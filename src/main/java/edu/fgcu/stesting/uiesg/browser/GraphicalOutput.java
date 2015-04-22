@@ -29,7 +29,8 @@ import javafx.scene.control.cell.ComboBoxListCell;
 // gathered from the web browser
 
 public class GraphicalOutput {
-
+	
+	SiteEfficiencyData pick;
 	/*
 	 * The types are: click, hover, enter, and exit (non-Javadoc)
 	 * 
@@ -107,7 +108,7 @@ public class GraphicalOutput {
 
 	public Scene sites(final SiteEfficiencyData sed) {
 		// Scene scene = null;
-
+		
 		// get the domains
 		NavigableSet<String> keySet = SiteEfficiencyData.getAvailableDomains();
 		ArrayList<String> doms = new ArrayList<String>();
@@ -131,8 +132,9 @@ public class GraphicalOutput {
 						
 						for (int i = 0; i < data.size(); i++) {
 							if(change.getList().contains(i)) {
+								pick = SiteEfficiencyData.getForDomain(data.get(i));
 								Stage stage = new Stage();
-								stage.setScene(graph(sed));
+								stage.setScene(graph(pick));
 								stage.show();
 							}
 						}
