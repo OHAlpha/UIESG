@@ -205,11 +205,14 @@ public class Browser extends Application {
 					Stage stage = new Stage();
 					
 					// set the stage with the graph scene
-					stage.setScene(go.graph(sed));
+					//stage.setScene(go.graph(sed));
+					stage.setScene(go.sites(sed));
 					
 					// show the stage
 					stage.show();
 				}
+				else
+					System.out.println("sed is null...");
 			}
 
 		});
