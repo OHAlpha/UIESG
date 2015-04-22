@@ -14,6 +14,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 // class to output to the user the graphical information 
 // gathered from the web browser
@@ -95,35 +96,33 @@ public class GraphicalOutput {
 	 * @return
 	 */
 
-	public Scene sites(SiteEfficiencyData sed) {
+	public Scene sites(final SiteEfficiencyData sed) {
 
-		ArrayList<Button> buttonArr = new ArrayList<Button>();
-		Iterator<Button> it = buttonArr.iterator();
+		//ArrayList<Button> buttonArr = new ArrayList<Button>();
+		//Iterator<Button> it = buttonArr.iterator();
 		Object[] arr = SiteEfficiencyData.getAvailableDomains().toArray();
-		int count = 0;
-		while (count < arr.length) {
-			buttonArr.add(new Button());
-			buttonArr.get(count).setText(arr[count].toString());
-			count++;
-		}
+		
+		Button b1 = new Button();
+		b1.setText(arr[1].toString());
+		
 
-		while (it.hasNext()) {
-			it.next().setOnAction(new EventHandler<ActionEvent>() {
+		b1.setOnAction(new EventHandler<ActionEvent>() {
 
 				public void handle(ActionEvent event) {
 					// handle the button click
+					Stage stage = new Stage();
+					
+					stage.setScene(graph(sed));
+					stage.show();
+					
 				}
 
 			});
-		}
-
+		
 		StackPane root = new StackPane();
-		count = 0;
-		while (count < arr.length) {
-			root.getChildren().add(buttonArr.get(count));
 			
-		}
-
+		root.getChildren().add(b1);
+			
 		Scene s = new Scene(root, 300, 250);
 
 		return s;
