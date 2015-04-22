@@ -6,6 +6,11 @@ import java.util.NavigableSet;
 
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -13,8 +18,12 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.application.Application;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxListCell;
 
 // class to output to the user the graphical information 
 // gathered from the web browser
@@ -97,35 +106,62 @@ public class GraphicalOutput {
 	 */
 
 	public Scene sites(final SiteEfficiencyData sed) {
+		// Scene scene = null;
 
-		//ArrayList<Button> buttonArr = new ArrayList<Button>();
-		//Iterator<Button> it = buttonArr.iterator();
-		Object[] arr = SiteEfficiencyData.getAvailableDomains().toArray();
+		// get the domains
+		NavigableSet<String> keySet = SiteEfficiencyData.getAvailableDomains();
+		ArrayList<String> doms = new ArrayList<String>();
+		// put domains in list
+		doms.addAll(keySet);
+
+		// putting domains in observable list 'data'
+		final ObservableList<String> data = FXCollections
+				.observableArrayList(doms);
+
+		final ListView<String> listView = new ListView<String>(data);
 		
-		Button b1 = new Button();
-		b1.setText(arr[1].toString());
-		
+		listView.setPrefSize(200, 250);
+		listView.setEditable(true);
+		listView.setItems(data);
 
-		b1.setOnAction(new EventHandler<ActionEvent>() {
+		listView.getSelectionModel().getSelectedIndices()
+				.addListener(new ListChangeListener<Integer>() {
+					@Override
+					public void onChanged(Change<? extends Integer> change) {
+						
+						for (int i = 0; i < data.size(); i++) {
+							if(change.getList().contains(i)) {
+								Stage stage = new Stage();
+								stage.setScene(graph(sed));
+								stage.show();
+							}
+						}
+						/*
+						if(change.getList().contains(0)) {
+							System.out.println("you selected the first item");
+						}
+						else if(change.getList().contains(1)) {
+							System.out.println("You selected the second item");
+						}
+						else {
+							System.out.println("I don't know wtf is going on");
+						}
+						*/
+					}
 
-				public void handle(ActionEvent event) {
-					// handle the button click
-					Stage stage = new Stage();
-					
-					stage.setScene(graph(sed));
-					stage.show();
-					
-				}
+				});
 
-			});
-		
+		/*
+		 * Stage stage = new Stage();
+		+					
+		+	stage.setScene(graph(sed));
+		+	stage.show();
+		 */
 		StackPane root = new StackPane();
-			
-		root.getChildren().add(b1);
-			
-		Scene s = new Scene(root, 300, 250);
+		root.getChildren().add(listView);
+		Scene scene = new Scene(root, 200, 250);
 
-		return s;
+		return scene;
 	}
 
 }
