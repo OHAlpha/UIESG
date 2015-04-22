@@ -157,42 +157,53 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 	public boolean equals( Object o ) {
 		if (getClass().isInstance(o)) {
 			AbstractMouseGraphNode n = (AbstractMouseGraphNode) o;
-			if (getTimestamp() != n.getTimestamp())
-				return false;
-			if (getType() != n.getType())
-				return false;
-			if (getSubType() != n.getSubType())
-				return false;
-			if (!range.equals(n.range))
-				return false;
-			if (error != n.error)
-				return false;
-			if (!variance.equals(n.variance))
-				return false;
-			return true;
+			return assertEquals(n, false);
 		} else
 			return false;
 	}
 
-	public void assertEquals( MouseGraphAction action ) throws AssertionError {
+	public boolean assertEquals( MouseGraphAction action, boolean error )
+			throws AssertionError {
 		if (getTimestamp() != action.getTimestamp())
-			throw new AssertionError("not the same time");
+			if (error)
+				throw new AssertionError("not the same time");
+			else
+				return false;
 		if (getType() != action.getType())
-			throw new AssertionError("not the same type");
+			if (error)
+				throw new AssertionError("not the same type");
+			else
+				return false;
 		if (getSubType() != action.getSubType())
-			throw new AssertionError("not the same subType");
+			if (error)
+				throw new AssertionError("not the same subType");
+			else
+				return false;
 		if (!getClass().isInstance(action))
-			throw new AssertionError("not an AbstractMouseGraphNode");
+			if (error)
+				throw new AssertionError("not an AbstractMouseGraphNode");
+			else
+				return false;
 		AbstractMouseGraphNode n = (AbstractMouseGraphNode) action;
 		if (!range.equals(n.range))
-			throw new AssertionError("range should be " + range + " but is "
-					+ n.range);
-		if (error != n.error)
-			throw new AssertionError("error should be " + error + " but is "
-					+ n.error);
+			if (error)
+				throw new AssertionError("range should be " + range
+						+ " but is " + n.range);
+			else
+				return false;
+		if (this.error != n.error)
+			if (error)
+				throw new AssertionError("error should be " + error
+						+ " but is " + n.error);
+			else
+				return false;
 		if (!variance.equals(n.variance))
-			throw new AssertionError("variance should be " + variance
-					+ " but is " + n.variance);
+			if (error)
+				throw new AssertionError("variance should be " + variance
+						+ " but is " + n.variance);
+			else
+				return false;
+		return true;
 	}
 
 	public String toString() {

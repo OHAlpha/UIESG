@@ -147,11 +147,15 @@ public interface MouseActionInputData {
 	/**
 	 * Throws an error if this maid is not equivalent to the specified maid.
 	 * 
-	 * @param mouseData
+	 * @param maid
 	 *            the maid to test
+	 * @param error
+	 *            if an error should be thrown
 	 * @throws AssertionError
-	 *             if these maids are not equivalent
+	 *             if these actions are not equivalent
+	 * @return if these maids are equal
 	 */
-	void assertEquals( MouseActionInputData mouseData ) throws AssertionError;
+	boolean assertEquals( MouseActionInputData maid, boolean error )
+			throws AssertionError;
 
 }

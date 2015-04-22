@@ -291,12 +291,13 @@ public class GraphOutputDataImp implements GraphOutputData {
 
 	@Override
 	@SuppressWarnings( "javadoc" )
-	public void assertEquals( GraphOutputData graphData ) {
+	public boolean assertEquals( GraphOutputData graphData, boolean error ) {
 		if (graphData.numActions() != actions.size())
 			throw new AssertionError("graphData.size() should be "
 					+ numActions() + " but is " + graphData.numActions());
 		for (int i = 0; i < actions.size(); i++)
-			graphData.getAction(i).assertEquals(actions.get(i));
+			graphData.getAction(i).assertEquals(actions.get(i), false);
+		return true;
 	}
 
 	@SuppressWarnings( "javadoc" )

@@ -183,52 +183,65 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 	public boolean equals( Object o ) {
 		if (getClass().isInstance(o)) {
 			AbstractMouseGraphEdge e = (AbstractMouseGraphEdge) o;
-			if (getTimestamp() != e.getTimestamp())
-				return false;
-			if (getType() != e.getType())
-				return false;
-			if (getSubType() != e.getSubType())
-				return false;
-			if (!range.equals(e.range))
-				return false;
-			if (error != e.error)
-				return false;
-			if (!variance.equals(e.variance))
-				return false;
-			if (!source.equals(e.source))
-				return false;
-			if (!dest.equals(e.dest))
-				return false;
-			return true;
+			return assertEquals(e, false);
 		} else
 			return false;
 	}
 
-	public void assertEquals( MouseGraphAction action ) throws AssertionError {
+	public boolean assertEquals( MouseGraphAction action, boolean error )
+			throws AssertionError {
 		if (getTimestamp() != action.getTimestamp())
-			throw new AssertionError("not the same time");
+			if (error)
+				throw new AssertionError("not the same time");
+			else
+				return false;
 		if (getType() != action.getType())
-			throw new AssertionError("not the same type");
+			if (error)
+				throw new AssertionError("not the same type");
+			else
+				return false;
 		if (getSubType() != action.getSubType())
-			throw new AssertionError("not the same subType");
+			if (error)
+				throw new AssertionError("not the same subType");
+			else
+				return false;
 		if (!getClass().isInstance(action))
-			throw new AssertionError("not an AbstractMouseGraphEdge");
+			if (error)
+				throw new AssertionError("not an AbstractMouseGraphEdge");
+			else
+				return false;
 		AbstractMouseGraphEdge e = (AbstractMouseGraphEdge) action;
 		if (!range.equals(e.range))
-			throw new AssertionError("range should be " + range + " but is "
-					+ e.range);
-		if (error != e.error)
-			throw new AssertionError("error should be " + error + " but is "
-					+ e.error);
+			if (error)
+				throw new AssertionError("range should be " + range
+						+ " but is " + e.range);
+			else
+				return false;
+		if (this.error != e.error)
+			if (error)
+				throw new AssertionError("error should be " + error
+						+ " but is " + e.error);
+			else
+				return false;
 		if (!variance.equals(e.variance))
-			throw new AssertionError("variance should be " + variance
-					+ " but is " + e.variance);
+			if (error)
+				throw new AssertionError("variance should be " + variance
+						+ " but is " + e.variance);
+			else
+				return false;
 		if (!source.equals(e.source))
-			throw new AssertionError("source should be " + source + " but is "
-					+ e.source);
+			if (error)
+				throw new AssertionError("source should be " + source
+						+ " but is " + e.source);
+			else
+				return false;
 		if (!dest.equals(e.dest))
-			throw new AssertionError("dest should be " + dest + " but is "
-					+ e.dest);
+			if (error)
+				throw new AssertionError("dest should be " + dest + " but is "
+						+ e.dest);
+			else
+				return false;
+		return true;
 	}
 
 	public String toString() {

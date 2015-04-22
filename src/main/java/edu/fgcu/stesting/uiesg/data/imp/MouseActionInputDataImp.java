@@ -183,7 +183,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		if (o instanceof MouseActionInputData) {
 			MouseActionInputData maid = (MouseActionInputData) o;
 			try {
-				assertEquals(maid);
+				assertEquals(maid, false);
 				return true;
 			} catch (AssertionError ex) {
 				return false;
@@ -194,7 +194,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 
 	@Override
 	@SuppressWarnings( "javadoc" )
-	public void assertEquals( MouseActionInputData mouseData )
+	public boolean assertEquals( MouseActionInputData mouseData, boolean error )
 			throws AssertionError {
 		int i = 0;
 		for (Iterator<Point> it = mouseData.iterate(); it.hasNext(); i++) {
@@ -204,6 +204,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 			// e + " but is " + r);
 			e.assertEquals(r);
 		}
+		return true;
 	}
 
 }

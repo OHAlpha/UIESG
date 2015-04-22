@@ -57,7 +57,7 @@ public class MouseActionInputDataMock implements MouseActionInputData {
 		if (o instanceof MouseActionInputDataMock) {
 			MouseActionInputDataMock maid = (MouseActionInputDataMock) o;
 			try {
-				assertEquals(maid);
+				assertEquals(maid, false);
 				return true;
 			} catch (AssertionError ex) {
 				return false;
@@ -67,7 +67,7 @@ public class MouseActionInputDataMock implements MouseActionInputData {
 	}
 
 	@Override
-	public void assertEquals( MouseActionInputData mouseData )
+	public boolean assertEquals( MouseActionInputData mouseData, boolean error )
 			throws AssertionError {
 		if (mouseData.size() != points.size())
 			throw new AssertionError("mouseData.size() should be "
@@ -79,6 +79,7 @@ public class MouseActionInputDataMock implements MouseActionInputData {
 				throw new AssertionError("point at index " + i + " should be "
 						+ e + " but is " + r);
 		}
+		return true;
 	}
 
 }

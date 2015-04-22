@@ -149,7 +149,7 @@ public interface MouseGraphAction {
 	 *            if an error should be thrown
 	 * @throws AssertionError
 	 *             if these actions are not equivalent
-	 *             
+	 * @return if these actions are equal
 	 */
 	boolean assertEquals( MouseGraphAction action, boolean error )
 			throws AssertionError;

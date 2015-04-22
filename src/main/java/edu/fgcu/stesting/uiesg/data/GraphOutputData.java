@@ -87,13 +87,17 @@ public interface GraphOutputData {
 	void lock();
 
 	/**
-	 * Throws an error if this god is not equivalent to the specified god.
+	 * Throws an error if this graph is not equivalent to the specified graph.
 	 * 
-	 * @param graphData
-	 *            the god to test
+	 * @param graph
+	 *            the graph to test
+	 * @param error
+	 *            if an error should be thrown
 	 * @throws AssertionError
-	 *             if these gods are not equivalent
+	 *             if these actions are not equivalent
+	 * @return if these graphs are equal
 	 */
-	void assertEquals( GraphOutputData graphData );
+	boolean assertEquals( GraphOutputData graph, boolean error )
+			throws AssertionError;
 
 }

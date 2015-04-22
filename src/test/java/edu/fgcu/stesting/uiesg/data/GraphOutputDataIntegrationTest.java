@@ -205,7 +205,7 @@ public class GraphOutputDataIntegrationTest {
 		for (int i = 0; i < n; i += 2)
 			// assertEquals("getAction returned incorrect value", as[i],
 			// godA.getAction(i));
-			as[i].assertEquals(godA.getAction(i));
+			as[i].assertEquals(godA.getAction(i), true);
 	}
 
 	@Test( expected = IllegalArgumentException.class )
@@ -218,7 +218,7 @@ public class GraphOutputDataIntegrationTest {
 		for (int i = 1; i < n; i += 2)
 			// assertEquals("getAction returned incorrect value", as[i],
 			// godA.getAction(i));
-			as[i].assertEquals(godA.getAction(i));
+			as[i].assertEquals(godA.getAction(i), true);
 	}
 
 }

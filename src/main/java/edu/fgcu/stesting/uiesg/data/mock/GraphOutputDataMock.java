@@ -126,9 +126,10 @@ public class GraphOutputDataMock implements GraphOutputData {
 	}
 
 	@Override
-	public void assertEquals( GraphOutputData graphData ) {
+	public boolean assertEquals( GraphOutputData graphData, boolean error ) {
 		if( !equals(graphData) )
 			throw new AssertionError("not equal");
+		return true;
 	}
 
 }

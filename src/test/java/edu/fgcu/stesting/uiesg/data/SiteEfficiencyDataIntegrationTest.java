@@ -310,11 +310,11 @@ public class SiteEfficiencyDataIntegrationTest {
 
 		DataSet ds = wiki.getSet(0);
 		assertNotNull("mouse data should not be null", ds.mouseData);
-		mm.assertEquals(ds.mouseData);
+		mm.assertEquals(ds.mouseData, true);
 		assertNotNull("graph data should not be null", ds.graphData);
 		assertEquals(ds.graphData.order(), mg.order());
 		assertEquals(ds.graphData.size(), mg.size());
-		mg.assertEquals(ds.graphData);
+		mg.assertEquals(ds.graphData, true);
 		assertNotNull("statistics should not be null", ds.statistics);
 		assertEquals("statistics should have " + mss.size() + " statistic",
 				ds.statistics.size(), mss.size());

@@ -61,9 +61,10 @@ public abstract class AbstractMouseGraphActionMock extends
 	 * .uiesg.data.MouseGraphAction)
 	 */
 	@Override
-	public void assertEquals( MouseGraphAction action ) throws AssertionError {
+	public boolean assertEquals( MouseGraphAction action, boolean error ) throws AssertionError {
 		if (!equals(action))
 			throw new AssertionError("not equal");
+		return true;
 	}
 
 	public String toString() {
