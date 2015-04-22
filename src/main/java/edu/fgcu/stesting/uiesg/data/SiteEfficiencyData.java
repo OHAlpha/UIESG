@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.NavigableMap;
+import java.util.NavigableSet;
 import java.util.TreeMap;
 
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
@@ -31,7 +32,7 @@ public class SiteEfficiencyData {
 	/**
 	 * The collection to map domains to SED instances.
 	 */
-	protected static Map<String, SiteEfficiencyData> domains = new TreeMap<>();
+	protected static NavigableMap<String, SiteEfficiencyData> domains = new TreeMap<>();
 
 	/**
 	 * Returns an SED for the specified domain if it exists. If none exists, one
@@ -49,6 +50,15 @@ public class SiteEfficiencyData {
 			domains.put(domain, sed);
 			return sed;
 		}
+	}
+	
+	/**
+	 * Returns all the available domain names from the collection.
+	 * 
+	 * @return the set of domain names.
+	 */
+	public static NavigableSet<String> getAvailableDomains() {
+		return domains.keySet();
 	}
 
 	/**
