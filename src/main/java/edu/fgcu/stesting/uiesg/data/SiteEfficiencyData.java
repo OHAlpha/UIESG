@@ -58,7 +58,7 @@ public class SiteEfficiencyData {
 	 * @return the set of domain names.
 	 */
 	public static NavigableSet<String> getAvailableDomains() {
-		return domains.keySet();
+		return domains.navigableKeySet();
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class SiteEfficiencyData {
 		/**
 		 * The UIESs of this set
 		 */
-		public Map<String, UIEfficiencyStatistic> statistics;
+		public NavigableMap<String, UIEfficiencyStatistic> statistics;
 
 	}
 
@@ -549,16 +549,37 @@ public class SiteEfficiencyData {
 			}
 		}
 	}
-	
+
+	/**
+	 * Returns the maid at the specified index.
+	 * 
+	 * @param i
+	 *            the index
+	 * @return the maid
+	 */
 	public MouseActionInputData getMouseData( int i ) {
 		return data.get(i).mouseData;
 	}
-	
+
+	/**
+	 * Returns the god at the specified index.
+	 * 
+	 * @param i
+	 *            the index
+	 * @return the god
+	 */
 	public GraphOutputData getGraphData( int i ) {
 		return data.get(i).graphData;
 	}
-	
-	public Map<String,UIEfficiencyStatistic> getStatistics( int i ) {
+
+	/**
+	 * Returns the statistics at the specified index.
+	 * 
+	 * @param i
+	 *            the index
+	 * @return the statistics
+	 */
+	public NavigableMap<String, UIEfficiencyStatistic> getStatistics( int i ) {
 		return data.get(i).statistics;
 	}
 

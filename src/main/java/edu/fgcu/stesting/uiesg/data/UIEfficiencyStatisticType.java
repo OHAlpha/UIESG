@@ -2,7 +2,7 @@ package edu.fgcu.stesting.uiesg.data;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Map;
+import java.util.NavigableMap;
 import java.util.TreeMap;
 
 /**
@@ -44,11 +44,11 @@ public abstract class UIEfficiencyStatisticType {
 	@SuppressWarnings( "javadoc" )
 	public static class UIEfficiencyStatistics {
 
-		protected static Map<String, UIEfficiencyStatisticType> types = new TreeMap<>();
+		protected static NavigableMap<String, UIEfficiencyStatisticType> types = new TreeMap<>();
 
-		public static Map<String, UIEfficiencyStatistic> calculateStatistics(
+		public static NavigableMap<String, UIEfficiencyStatistic> calculateStatistics(
 				GraphOutputData graphData ) {
-			Map<String, UIEfficiencyStatistic> statistics = new TreeMap<>();
+			NavigableMap<String, UIEfficiencyStatistic> statistics = new TreeMap<>();
 			for (String type : types.keySet())
 				statistics.put(type, types.get(type).calculate(graphData));
 			return statistics;
