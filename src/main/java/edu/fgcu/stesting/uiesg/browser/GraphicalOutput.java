@@ -1,6 +1,7 @@
 package edu.fgcu.stesting.uiesg.browser;
 
 
+import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -22,7 +23,7 @@ public class GraphicalOutput {
 	 */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Scene setup(SiteEfficiencyData sed){
+	public Scene graph(SiteEfficiencyData sed){
 		
 		
 		final LineChart<Number, Number> lc = new LineChart<>(new NumberAxis(),
@@ -56,6 +57,10 @@ public class GraphicalOutput {
 		// retrieve the GOD
 		// god = sed.getGraphData(i);
 		
+		sed.compileMouseData();
+		
+		GraphOutputData god = sed.getGraphData(0);
+		
 		
 		// test points for mouse movements
 		series2.getData().add(new XYChart.Data(5.2, 229.2));
@@ -81,6 +86,24 @@ public class GraphicalOutput {
 		//stage.show();
 		return scene;
 	}
+	
+	/***
+	 *  method to display to the user the websites that they can choose from 
+	 *  in order to display the graph
+	 *  
+	 * @return
+	 */
+	
+	public Scene sites () {
+		
+		Scene s = null;
+		
+		
+		
+		
+		return s;
+	}
+	
 	
 
 

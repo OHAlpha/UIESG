@@ -203,7 +203,11 @@ public class Browser extends Application {
 				if (sed != null) {
 					GraphicalOutput go = new GraphicalOutput();
 					Stage stage = new Stage();
-					stage.setScene(go.setup(sed));
+					
+					// set the stage with the graph scene
+					stage.setScene(go.graph(sed));
+					
+					// show the stage
 					stage.show();
 				}
 			}
