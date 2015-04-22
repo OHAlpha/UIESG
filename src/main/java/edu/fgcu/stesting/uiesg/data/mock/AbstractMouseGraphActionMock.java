@@ -3,6 +3,7 @@ package edu.fgcu.stesting.uiesg.data.mock;
 import java.awt.Dimension;
 import java.awt.geom.Dimension2D;
 
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.graph.AbstractMouseGraphAction;
 
 @SuppressWarnings( "javadoc" )
@@ -48,6 +49,15 @@ public abstract class AbstractMouseGraphActionMock extends
 	public boolean equals( Object o ) {
 		return getClass().isInstance(o)
 				&& ((AbstractMouseGraphAction) o).getTimestamp() == getTimestamp();
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.fgcu.stesting.uiesg.data.MouseGraphAction#assertEquals(edu.fgcu.stesting.uiesg.data.MouseGraphAction)
+	 */
+	@Override
+	public void assertEquals( MouseGraphAction action ) throws AssertionError {
+		if( !equals( action ) )
+			throw new AssertionError( "not equal" );
 	}
 
 }

@@ -11,6 +11,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import static edu.fgcu.stesting.uiesg.data.MouseGraphAction.types;
+import static edu.fgcu.stesting.uiesg.data.MouseGraphAction.subTypes;
+
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
 public class GraphOutputDataUnitTest {
@@ -20,9 +23,6 @@ public class GraphOutputDataUnitTest {
 	private static int o = 4, s = 3, n = 7;
 
 	private static MouseGraphAction[] as;
-
-	private static String[] types = { "Node", "Edge" }, subTypes = { "ENTER",
-			"HOVER", "CLICK", "EXIT", "MOVE", "DRAG" };
 
 	/**
 	 * Initializes SiteEfficiencyData.

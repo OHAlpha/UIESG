@@ -13,6 +13,13 @@ import java.io.OutputStream;
  */
 public interface MouseGraphAction {
 
+	@SuppressWarnings( "javadoc" )
+	public static final String[] types = { "Node", "Edge" };
+
+	@SuppressWarnings( "javadoc" )
+	public static final String[] subTypes = { "ENTER", "HOVER", "CLICK",
+			"EXIT", "MOVE", "DRAG" };
+
 	// TODO: javadoc
 	@SuppressWarnings( "javadoc" )
 	public static final int NODE_TYPE_MASK = 0x00ff;
@@ -132,5 +139,15 @@ public interface MouseGraphAction {
 	 * @return the sub type
 	 */
 	int getSubType();
+
+	/**
+	 * Throws an error if this action is not equivalent to the specified action.
+	 * 
+	 * @param action
+	 *            the action to test
+	 * @throws AssertionError
+	 *             if these actions are not equivalent
+	 */
+	void assertEquals( MouseGraphAction action ) throws AssertionError;
 
 }

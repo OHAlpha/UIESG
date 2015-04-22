@@ -62,7 +62,25 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 		super(timestamp);
 	}
 
+	/**
+	 * @param timestamp
+	 * @param range
+	 * @param error
+	 * @param variance
+	 */
+	protected AbstractMouseGraphEdge( long timestamp, Point2D source,
+			Point2D dest, Rectangle2D range, double error, Dimension2D variance ) {
+		super(timestamp);
+		this.range = range;
+		this.error = error;
+		this.variance = variance;
+		this.source = source;
+		this.dest = dest;
+	}
+
 	protected void calc( double[] data ) {
+		source = new Point2D.Double(data[0], data[1]);
+		dest = new Point2D.Double(data[data.length - 2], data[data.length - 1]);
 		double nx = data[0], ny = data[1], xx = data[0], xy = data[1];
 		error = 0;
 		double lx = nx, ly = ny;
@@ -160,6 +178,61 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 	@Override
 	public Dimension2D getVariance() {
 		return variance;
+	}
+
+	public boolean equals( Object o ) {
+		if (getClass().isInstance(o)) {
+			AbstractMouseGraphEdge e = (AbstractMouseGraphEdge) o;
+			if (getType() != e.getType())
+				return false;
+			if (getSubType() != e.getSubType())
+				return false;
+			if (!range.equals(e.range))
+				return false;
+			if (error != e.error)
+				return false;
+			if (!variance.equals(e.variance))
+				return false;
+			if (!source.equals(e.source))
+				return false;
+			if (!dest.equals(e.dest))
+				return false;
+			return true;
+		} else
+			return false;
+	}
+
+	public void assertEquals( MouseGraphAction action ) throws AssertionError {
+		if (getType() != action.getType())
+			throw new AssertionError("not the same type");
+		if (getSubType() != action.getSubType())
+			throw new AssertionError("not the same subType");
+		if (!getClass().isInstance(action))
+			throw new AssertionError("not an AbstractMouseGraphEdge");
+		AbstractMouseGraphEdge e = (AbstractMouseGraphEdge) action;
+		if (!range.equals(e.range))
+			throw new AssertionError("range should be " + range + " but is "
+					+ e.range);
+		if (error != e.error)
+			throw new AssertionError("error should be " + error + " but is "
+					+ e.error);
+		if (!variance.equals(e.variance))
+			throw new AssertionError("variance should be " + variance
+					+ " but is " + e.variance);
+		if (!source.equals(e.source))
+			throw new AssertionError("source should be " + source + " but is "
+					+ e.source);
+		if (!dest.equals(e.dest))
+			throw new AssertionError("dest should be " + dest + " but is "
+					+ e.dest);
+	}
+
+	public String toString() {
+		return types[getType()] + "-" + subTypes[getSubType()] + "( range: "
+				+ range + ", error: " + error + ", variance: ("
+				+ variance.getWidth() + "," + variance.getHeight()
+				+ "), source: (" + source.getX() + "," + source.getY()
+				+ "), dest: (" + dest.getX() + "," + dest.getY() + ") )";
 	}
 
 }

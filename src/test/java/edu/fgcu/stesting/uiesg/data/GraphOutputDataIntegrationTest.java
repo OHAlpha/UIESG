@@ -11,6 +11,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static edu.fgcu.stesting.uiesg.data.MouseGraphAction.types;
+import static edu.fgcu.stesting.uiesg.data.MouseGraphAction.subTypes;
+
 /**
  * Integration tests for the GOD class using implementations of the
  * MouseGraphAction interface.
@@ -27,9 +30,6 @@ public class GraphOutputDataIntegrationTest {
 	private static int o = 4, s = 3, n = 7;
 
 	private static MouseGraphAction[] as;
-
-	private static String[] types = { "Node", "Edge" }, subTypes = { "ENTER",
-			"HOVER", "CLICK", "EXIT", "MOVE", "DRAG" };
 
 	/**
 	 * Initializes SiteEfficiencyData.
@@ -68,15 +68,19 @@ public class GraphOutputDataIntegrationTest {
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.ENTER, 30, 0),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, new double[] {30, 0, 30, 50}),
+						GODFactory.EDGE, GODFactory.MOVE, new double[] { 30, 0,
+								30, 50 }),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.CLICK, 30, 50),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, new double[] {30, 50, 60, 50}),
+						GODFactory.EDGE, GODFactory.MOVE, new double[] { 30,
+								50, 60, 50 }),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.NODE, GODFactory.HOVER, new double[] {60, 50}),
+						GODFactory.NODE, GODFactory.HOVER, new double[] { 60,
+								50 }),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, new double[] {60, 50, 30, 0}),
+						GODFactory.EDGE, GODFactory.MOVE, new double[] { 60,
+								50, 30, 0 }),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.EXIT, 30, 0) };
 		for (int i = 0; i < as.length; i++) {
@@ -151,7 +155,7 @@ public class GraphOutputDataIntegrationTest {
 	@Test
 	public void testAddEdge() {
 		godA.addAction(GODFactory.newGraphAction(System.currentTimeMillis(),
-				GODFactory.EDGE, GODFactory.MOVE, 2, 3, 4, 5));
+				GODFactory.EDGE, GODFactory.MOVE, new double[] { 2, 3, 4, 5 }));
 		assertEquals("godA.order() must be " + o, godA.order(), o);
 		assertEquals("godA.size() must be " + (s + 1), godA.size(), s + 1);
 	}
@@ -180,7 +184,7 @@ public class GraphOutputDataIntegrationTest {
 	@Test
 	public void testIndexOf() {
 		for (int i = 0; i < n; i++)
-			assertEquals("indexof returned incorrect value", i,
+			assertEquals("indexof( " + as[i] + " ) should return " + i, i,
 					godA.indexOf(as[i]));
 	}
 
@@ -199,8 +203,9 @@ public class GraphOutputDataIntegrationTest {
 	@Test
 	public void testGetNode() {
 		for (int i = 0; i < n; i += 2)
-			assertEquals("getAction returned incorrect value", as[i],
-					godA.getAction(i));
+			// assertEquals("getAction returned incorrect value", as[i],
+			// godA.getAction(i));
+			as[i].assertEquals(godA.getAction(i));
 	}
 
 	@Test( expected = IllegalArgumentException.class )
@@ -211,8 +216,9 @@ public class GraphOutputDataIntegrationTest {
 	@Test
 	public void testGetEdge() {
 		for (int i = 1; i < n; i += 2)
-			assertEquals("getAction returned incorrect value", as[i],
-					godA.getAction(i));
+			// assertEquals("getAction returned incorrect value", as[i],
+			// godA.getAction(i));
+			as[i].assertEquals(godA.getAction(i));
 	}
 
 }

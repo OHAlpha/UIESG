@@ -125,4 +125,10 @@ public class GraphOutputDataMock implements GraphOutputData {
 			return false;
 	}
 
+	@Override
+	public void assertEquals( GraphOutputData graphData ) {
+		if( !equals(graphData) )
+			throw new AssertionError("not equal");
+	}
+
 }

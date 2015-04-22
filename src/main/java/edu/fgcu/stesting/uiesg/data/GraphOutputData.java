@@ -86,4 +86,14 @@ public interface GraphOutputData {
 	 */
 	void lock();
 
+	/**
+	 * Throws an error if this god is not equivalent to the specified god.
+	 * 
+	 * @param graphData
+	 *            the god to test
+	 * @throws AssertionError
+	 *             if these gods are not equivalent
+	 */
+	void assertEquals( GraphOutputData graphData );
+
 }

@@ -9,6 +9,7 @@ import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
+import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
@@ -271,6 +272,38 @@ public class GraphOutputDataImp implements GraphOutputData {
 	@Override
 	public void lock() {
 		locked = true;
+	}
+
+	@Override
+	@SuppressWarnings( "javadoc" )
+	public boolean equals( Object o ) {
+		if (o instanceof GraphOutputDataMock) {
+			GraphOutputDataMock god = (GraphOutputDataMock) o;
+			if (god.numActions() != actions.size())
+				return false;
+			for (int i = 0; i < actions.size(); i++)
+				if (!god.getAction(i).equals(actions.get(i)))
+					return false;
+			return true;
+		} else
+			return false;
+	}
+
+	@Override
+	@SuppressWarnings( "javadoc" )
+	public void assertEquals( GraphOutputData graphData ) {
+		if (graphData.numActions() != actions.size())
+			throw new AssertionError("graphData.size() should be "
+					+ numActions() + " but is " + graphData.numActions());
+		for (int i = 0; i < actions.size(); i++)
+			graphData.getAction(i).assertEquals(actions.get(i));
+	}
+
+	@SuppressWarnings( "javadoc" )
+	@Override
+	public String toString() {
+		return "GODImp( #points: " + numActions() + ", order: " + order()
+				+ ", size: " + size() + " )";
 	}
 
 }

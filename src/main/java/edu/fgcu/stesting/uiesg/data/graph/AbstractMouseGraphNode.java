@@ -52,6 +52,20 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 		super(timestamp);
 	}
 
+	/**
+	 * @param timestamp
+	 * @param range
+	 * @param error
+	 * @param variance
+	 */
+	protected AbstractMouseGraphNode( long timestamp, Rectangle2D range,
+			double error, Dimension2D variance ) {
+		super(timestamp);
+		this.range = range;
+		this.error = error;
+		this.variance = variance;
+	}
+
 	protected void calc( double[] data ) {
 		double nx = data[0], ny = data[1], xx = data[0], xy = data[1];
 		error = 0;
@@ -80,8 +94,8 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 			vx += dx * dx;
 			vy += dy * dy;
 		}
-		variance = new Dim(vx / (data.length / 2 - 1), vy
-				/ (data.length / 2 - 1));
+		variance = data.length == 2 ? new Dim() : new Dim(vx
+				/ (data.length / 2 - 1), vy / (data.length / 2 - 1));
 		range = new Rectangle2D.Double(nx, ny, xx - nx, xy - ny);
 	}
 
@@ -127,7 +141,7 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 
 	@Override
 	public Point2D getLocation() {
-		return new Point2D.Double(range.getX(), range.getY());
+		return new Point2D.Double(range.getCenterX(), range.getCenterY());
 	}
 
 	@Override
@@ -138,6 +152,51 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 	@Override
 	public Dimension2D getVariance() {
 		return variance;
+	}
+
+	public boolean equals( Object o ) {
+		if (getClass().isInstance(o)) {
+			AbstractMouseGraphNode n = (AbstractMouseGraphNode) o;
+			if (getType() != n.getType())
+				return false;
+			if (getSubType() != n.getSubType())
+				return false;
+			if (!range.equals(n.range))
+				return false;
+			if (error != n.error)
+				return false;
+			if (!variance.equals(n.variance))
+				return false;
+			return true;
+		} else
+			return false;
+	}
+
+	public void assertEquals( MouseGraphAction action ) throws AssertionError {
+		if (getType() != action.getType())
+			throw new AssertionError("not the same type");
+		if (getSubType() != action.getSubType())
+			throw new AssertionError("not the same subType");
+		if (!getClass().isInstance(action))
+			throw new AssertionError("not an AbstractMouseGraphNode");
+		AbstractMouseGraphNode n = (AbstractMouseGraphNode) action;
+		if (!range.equals(n.range))
+			throw new AssertionError("range should be " + range + " but is "
+					+ n.range);
+		if (error != n.error)
+			throw new AssertionError("error should be " + error + " but is "
+					+ n.error);
+		if (!variance.equals(n.variance))
+			throw new AssertionError("variance should be " + variance
+					+ " but is " + n.variance);
+	}
+
+	public String toString() {
+		return types[getType()] + "-" + subTypes[getSubType()] + "( range: "
+				+ range + ", error: " + error + ", variance: ("
+				+ variance.getWidth() + "," + variance.getHeight()
+				+ "), location: (" + range.getCenterX() + ","
+				+ range.getCenterY() + ") )";
 	}
 
 }
