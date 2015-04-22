@@ -31,6 +31,8 @@ public class GraphicalOutput {
 		// set the title of the graph
 		lc.setTitle("UIESG Data");
 		
+		// ******commented out series 1 which showed unconnected points*********
+		/*
 		// series1 will consist of just points that
 		// are considered an "event"
 		XYChart.Series series1 = new XYChart.Series();
@@ -41,15 +43,15 @@ public class GraphicalOutput {
 		series1.getData().add(new XYChart.Data(4.2, 193.2));
 		series1.getData().add(new XYChart.Data(2.8, 33.6));
 		series1.getData().add(new XYChart.Data(6.8, 23.6));
-		// multiple GODs for each SED...get the SED by calling SiteEffiencyData.getForDomain()...that'll give
-		// me the domain and then use the domain to get the GODs...by calling getGraphData()...
-
-		// series2 will have the mouse x,y data and be a line 
-		// graph
+		*/
 		
+		// series2 will have the mouse x,y data and be a line 
+		// graph		
 		XYChart.Series series2 = new XYChart.Series();
 		series2.setName("Mouse movement");
 		
+		// multiple GODs for each SED...get the SED by calling SiteEffiencyData.getForDomain()...that'll give
+		// me the domain and then use the domain to get the GODs...by calling getGraphData()...
 		// call compile on the SED which will create the GODs.
 		// retrieve the GOD
 		// god = sed.getGraphData(i);
@@ -64,7 +66,7 @@ public class GraphicalOutput {
 		lc.setCreateSymbols(true);
 		
 		// add points to the LineChart
-		lc.getData().addAll(series1, series2);
+		lc.getData().addAll(series2);
 		
 		// initialize the Scene with points and specify size
 		Scene scene = new Scene(lc, 500, 400);
