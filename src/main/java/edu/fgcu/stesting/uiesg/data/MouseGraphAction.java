@@ -145,9 +145,13 @@ public interface MouseGraphAction {
 	 * 
 	 * @param action
 	 *            the action to test
+	 * @param error
+	 *            if an error should be thrown
 	 * @throws AssertionError
 	 *             if these actions are not equivalent
+	 *             
 	 */
-	void assertEquals( MouseGraphAction action ) throws AssertionError;
+	boolean assertEquals( MouseGraphAction action, boolean error )
+			throws AssertionError;
 
 }
