@@ -86,4 +86,18 @@ public interface GraphOutputData {
 	 */
 	void lock();
 
+	/**
+	 * Throws an error if this graph is not equivalent to the specified graph.
+	 * 
+	 * @param graph
+	 *            the graph to test
+	 * @param error
+	 *            if an error should be thrown
+	 * @throws AssertionError
+	 *             if these actions are not equivalent
+	 * @return if these graphs are equal
+	 */
+	boolean assertEquals( GraphOutputData graph, boolean error )
+			throws AssertionError;
+
 }

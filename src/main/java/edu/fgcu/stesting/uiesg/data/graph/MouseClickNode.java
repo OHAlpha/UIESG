@@ -1,6 +1,7 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
 import java.awt.geom.Rectangle2D;
+
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 

@@ -177,4 +177,34 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		return "MAID( #points: " + rawData.size() + " )";
 	}
 
+	@Override
+	@SuppressWarnings( "javadoc" )
+	public boolean equals( Object o ) {
+		if (o instanceof MouseActionInputData) {
+			MouseActionInputData maid = (MouseActionInputData) o;
+			try {
+				assertEquals(maid, false);
+				return true;
+			} catch (AssertionError ex) {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	@SuppressWarnings( "javadoc" )
+	public boolean assertEquals( MouseActionInputData mouseData, boolean error )
+			throws AssertionError {
+		int i = 0;
+		for (Iterator<Point> it = mouseData.iterate(); it.hasNext(); i++) {
+			Point e = rawData.get(i), r = it.next();
+			// if( !e.equals(r) )
+			// throw new AssertionError("point at index " + i + " should be " +
+			// e + " but is " + r);
+			e.assertEquals(r);
+		}
+		return true;
+	}
+
 }

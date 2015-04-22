@@ -1,33 +1,25 @@
 package edu.fgcu.stesting.uiesg.browser;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.NavigableSet;
 
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.ComboBoxListCell;
 
 // class to output to the user the graphical information 
 // gathered from the web browser
 
+@SuppressWarnings( "javadoc" )
 public class GraphicalOutput {
 
 	// SiteEfficiencyData sed;

@@ -63,6 +63,31 @@ public interface MouseActionInputData {
 				return false;
 		}
 
+		@SuppressWarnings( "javadoc" )
+		public void assertEquals( Point p ) throws AssertionError {
+			if (!browserLocation.equals(p.browserLocation))
+				throw new AssertionError("browserLocation should be "
+						+ browserLocation + " but is " + p.browserLocation);
+			if (!pagePosition.equals(p.pagePosition))
+				throw new AssertionError("pagePosition should be "
+						+ pagePosition + " but is " + p.pagePosition);
+			if (timestamp != p.timestamp)
+				throw new AssertionError("timestamp should be " + timestamp
+						+ " but is " + p.timestamp);
+			if (type != p.type)
+				throw new AssertionError("type should be " + type + " but is "
+						+ p.type);
+		}
+
+		@Override
+		@SuppressWarnings( "javadoc" )
+		public String toString() {
+			return "Point( type: " + type + ", timestamp: " + timestamp
+					+ " point: (" + browserLocation.getX() + ","
+					+ browserLocation.getY() + ")-(" + browserLocation.getX()
+					+ "," + browserLocation.getY() + ") )";
+		}
+
 	}
 
 	/**
@@ -118,5 +143,19 @@ public interface MouseActionInputData {
 	 * @return the iterator
 	 */
 	Iterator<Point> iterate();
+
+	/**
+	 * Throws an error if this maid is not equivalent to the specified maid.
+	 * 
+	 * @param maid
+	 *            the maid to test
+	 * @param error
+	 *            if an error should be thrown
+	 * @throws AssertionError
+	 *             if these actions are not equivalent
+	 * @return if these maids are equal
+	 */
+	boolean assertEquals( MouseActionInputData maid, boolean error )
+			throws AssertionError;
 
 }

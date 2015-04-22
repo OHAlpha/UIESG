@@ -3,6 +3,7 @@ package edu.fgcu.stesting.uiesg.data.mock;
 import java.awt.Dimension;
 import java.awt.geom.Dimension2D;
 
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.graph.AbstractMouseGraphAction;
 
 @SuppressWarnings( "javadoc" )
@@ -47,7 +48,30 @@ public abstract class AbstractMouseGraphActionMock extends
 	@Override
 	public boolean equals( Object o ) {
 		return getClass().isInstance(o)
-				&& ((AbstractMouseGraphAction) o).getTimestamp() == getTimestamp();
+				&& ((AbstractMouseGraphAction) o).getTimestamp() == getTimestamp()
+				&& ((AbstractMouseGraphAction) o).getType() == getType()
+				&& ((AbstractMouseGraphAction) o).getSubType() == getSubType();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * edu.fgcu.stesting.uiesg.data.MouseGraphAction#assertEquals(edu.fgcu.stesting
+	 * .uiesg.data.MouseGraphAction)
+	 */
+	@Override
+	public boolean assertEquals( MouseGraphAction action, boolean error ) throws AssertionError {
+		if (!equals(action))
+			throw new AssertionError("not equal");
+		return true;
+	}
+
+	public String toString() {
+		return types[getType()] + "-" + subTypes[getSubType()] + "( range: "
+				+ getRange() + ", error: " + getError() + ", variance: ("
+				+ getVariance().getWidth() + "," + getVariance().getHeight()
+				+ ") )";
 	}
 
 }

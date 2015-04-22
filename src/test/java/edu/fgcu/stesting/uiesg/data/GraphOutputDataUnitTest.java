@@ -11,6 +11,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import static edu.fgcu.stesting.uiesg.data.MouseGraphAction.types;
+import static edu.fgcu.stesting.uiesg.data.MouseGraphAction.subTypes;
+
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
 public class GraphOutputDataUnitTest {
@@ -20,9 +23,6 @@ public class GraphOutputDataUnitTest {
 	private static int o = 4, s = 3, n = 7;
 
 	private static MouseGraphAction[] as;
-
-	private static String[] types = { "Node", "Edge" }, subTypes = { "ENTER",
-			"HOVER", "CLICK", "EXIT", "MOVE", "DRAG" };
 
 	/**
 	 * Initializes SiteEfficiencyData.
@@ -173,7 +173,7 @@ public class GraphOutputDataUnitTest {
 	@Test
 	public void testIndexOf() {
 		for (int i = 0; i < n; i++)
-			assertEquals("indexof returned incorrect value", i,
+			assertEquals(as[i]+".indexof should return "+i, i,
 					godA.indexOf(as[i]));
 	}
 

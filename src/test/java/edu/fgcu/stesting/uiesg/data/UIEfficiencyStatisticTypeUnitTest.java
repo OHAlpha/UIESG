@@ -1,90 +1,73 @@
-/**
- * 
- */
 package edu.fgcu.stesting.uiesg.data;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.*;
-import org.junit.BeforeClass;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
-/**
- * A test for implementations of UIEfficiencyStatisticType.
- * 
- * @author oalpha
- *
- */
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
+import edu.fgcu.stesting.uiesg.data.statistic.MouseArea;
+import edu.fgcu.stesting.uiesg.data.statistic.NodesPerMinute;
+
 @SuppressWarnings( "javadoc" )
+@RunWith( value = Parameterized.class )
 public class UIEfficiencyStatisticTypeUnitTest {
 
-	private static class FakeType extends UIEfficiencyStatisticType {
+	static GraphOutputData god;
 
-		String name;
-
-		FakeType( String name ) {
-			this.name = name;
+	@Parameters
+	public static Collection<Object[]> dataParameters() {
+		god = GODFactory.newInstance(null);
+		try {
+			List<Object[]> params = new LinkedList<>();
+			params.add(new Object[] { "NodesPerMinute", new NodesPerMinute() });
+			params.add(new Object[] { "MouseArea", new MouseArea() });
+			return params;
+		} catch (DuplicateTypeException e) {
+			return null;
 		}
-
-		@Override
-		public String getName() {
-			return name;
-		}
-
-		@Override
-		public String getDescription() {
-			return "";
-		}
-
-		@Override
-		public UIEfficiencyStatistic calculate( GraphOutputData graph ) {
-			return this.createStatistic(0);
-		}
-
-		@Override
-		public UIEfficiencyStatistic create( InputStream in ) {
-			return this.createStatistic(0);
-		}
-
-		@Override
-		public Class<?> getValueType() {
-			return Integer.class;
-		}
-
-		@Override
-		public void write( UIEfficiencyStatistic statistic, OutputStream out ) {}
-
 	}
 
-	@BeforeClass
-	public static void setup() {
-		MAIDFactory.init(MAIDFactory.MOCK);
-		GODFactory.init(GODFactory.MOCK);
-		new FakeType("one").register();
-		new FakeType("two").register();
+	String name;
+
+	UIEfficiencyStatisticType type;
+
+	public UIEfficiencyStatisticTypeUnitTest( String name,
+			UIEfficiencyStatisticType type ) {
+		this.type = type;
+		this.name = name;
+	}
+
+	@Test
+	public void testGetName() {
+		assertEquals("name should be " + name, name, type.getName());
+	}
+
+	@Test
+	public void testGetDescription() {
+		assertNotNull("description should not be null", type.getDescription());
 	}
 
 	@Test
 	public void testRegister() {
-		FakeType t = new FakeType("three");
-		assertTrue( t.register() );
-		assertEquals(t,UIEfficiencyStatisticType.getByName("three"));
+		assertTrue("register should succeed", type.register());
+		assertFalse("register should fail", type.register());
 	}
 
 	@Test
-	public void testRegisterDuplicate() {
-		FakeType t = new FakeType("two");
-		assertFalse( t.register() );
-	}
-
-	@Test
-	public void testGetByName() {
-		assertNotNull(UIEfficiencyStatisticType.getByName("one"));
-	}
-
-	@Test
-	public void testCalculateStatistics() {
+	public void testCalculate() {
+		UIEfficiencyStatistic s = type.calculate(god);
+		assertNotNull("description should not be null", s);
+		assertEquals("type should equal stat.type", type, s.getType());
 	}
 
 }

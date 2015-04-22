@@ -1,7 +1,9 @@
 package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.Point;
+import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 
+import edu.fgcu.stesting.uiesg.data.graph.Dim;
 import edu.fgcu.stesting.uiesg.data.graph.MouseClickNode;
 import edu.fgcu.stesting.uiesg.data.graph.MouseDragEdge;
 import edu.fgcu.stesting.uiesg.data.graph.MouseHoverNode;
@@ -37,6 +40,9 @@ public class GODFactory {
 	public static final int EDGE = 1;
 
 	// TODO: javadoc
+	public static final int FIRST = 0;
+
+	// TODO: javadoc
 	public static final int ENTER = 0;
 
 	// TODO: javadoc
@@ -53,6 +59,9 @@ public class GODFactory {
 
 	// TODO: javadoc
 	public static final int DRAG = 5;
+
+	// TODO: javadoc
+	public static final int LAST = 5;
 
 	// TODO: javadoc
 	protected static int godMode;
@@ -150,10 +159,7 @@ public class GODFactory {
 			int t = in.readInt(), s = in.readInt();
 			if (t == NODE)
 				if (s == HOVER)
-					return newGraphAction(
-							l,
-							t,
-							s,
+					return newGraphAction(l, t, s,
 							new double[] { in.readDouble(), in.readDouble() });
 				else
 					return newGraphAction(l, t, s, in.readDouble(),
@@ -161,6 +167,41 @@ public class GODFactory {
 			else
 				return newGraphAction(l, t, s, new double[] { in.readDouble(),
 						in.readDouble(), in.readDouble(), in.readDouble() });
+		} else if (actionMode == IMPLEMENTATION) {
+			long l = in.readLong();
+			in.readInt();
+			int s = in.readInt();
+			switch (s) {
+			case CLICK:
+				return new MouseClickNode(l, in.readDouble(), in.readDouble());
+			case HOVER:
+				return new MouseHoverNode(l, new Rectangle2D.Double(
+						in.readDouble(), in.readDouble(), in.readDouble(),
+						in.readDouble()), in.readDouble(), new Dim(
+						in.readDouble(), in.readDouble()));
+			case ENTER:
+				return new MouseWindowNode(l, true, in.readDouble(),
+						in.readDouble());
+			case EXIT:
+				return new MouseWindowNode(l, false, in.readDouble(),
+						in.readDouble());
+			case MOVE:
+				return new MouseMoveEdge(l, new Point2D.Double(in.readDouble(),
+						in.readDouble()), new Point2D.Double(in.readDouble(),
+						in.readDouble()), new Rectangle2D.Double(
+						in.readDouble(), in.readDouble(), in.readDouble(),
+						in.readDouble()), in.readDouble(), new Dim(
+						in.readDouble(), in.readDouble()));
+			case DRAG:
+				return new MouseDragEdge(l, new Point2D.Double(in.readDouble(),
+						in.readDouble()), new Point2D.Double(in.readDouble(),
+						in.readDouble()), new Rectangle2D.Double(
+						in.readDouble(), in.readDouble(), in.readDouble(),
+						in.readDouble()), in.readDouble(), new Dim(
+						in.readDouble(), in.readDouble()));
+			default:
+				return null;
+			}
 		} else
 			return null;
 	}
@@ -184,6 +225,54 @@ public class GODFactory {
 				out.writeDouble(a.getY());
 				out.writeDouble(b.getX());
 				out.writeDouble(b.getY());
+			}
+		} else if (actionMode == IMPLEMENTATION) {
+			out.writeLong(action.getTimestamp());
+			out.writeInt(action.getType());
+			out.writeInt(action.getSubType());
+			Point2D p, q;
+			Rectangle2D r;
+			double e;
+			Dimension2D v;
+			switch (action.getSubType()) {
+			case CLICK:
+			case ENTER:
+			case EXIT:
+				p = ((MouseGraphNode) action).getLocation();
+				out.writeDouble(p.getX());
+				out.writeDouble(p.getY());
+				break;
+			case HOVER:
+				r = action.getRange();
+				e = action.getError();
+				v = action.getVariance();
+				out.writeDouble(r.getX());
+				out.writeDouble(r.getY());
+				out.writeDouble(r.getWidth());
+				out.writeDouble(r.getHeight());
+				out.writeDouble(e);
+				out.writeDouble(v.getWidth());
+				out.writeDouble(v.getHeight());
+				break;
+			case MOVE:
+			case DRAG:
+				p = ((MouseGraphEdge) action).getSource();
+				q = ((MouseGraphEdge) action).getDest();
+				r = action.getRange();
+				e = action.getError();
+				v = action.getVariance();
+				out.writeDouble(p.getX());
+				out.writeDouble(p.getY());
+				out.writeDouble(q.getX());
+				out.writeDouble(q.getY());
+				out.writeDouble(r.getX());
+				out.writeDouble(r.getY());
+				out.writeDouble(r.getWidth());
+				out.writeDouble(r.getHeight());
+				out.writeDouble(e);
+				out.writeDouble(v.getWidth());
+				out.writeDouble(v.getHeight());
+				break;
 			}
 		}
 	}
