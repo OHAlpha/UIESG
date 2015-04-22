@@ -31,6 +31,7 @@ import org.junit.Test;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.DataSet;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
+import edu.fgcu.stesting.uiesg.data.statistic.MouseArea;
 import edu.fgcu.stesting.uiesg.data.statistic.NodesPerMinute;
 
 /**
@@ -85,6 +86,7 @@ public class SiteEfficiencyDataIntegrationTest {
 		GODFactory.init(GODFactory.IMPLEMENTATION);
 		try {
 			new NodesPerMinute().register();
+			new MouseArea().register();
 		} catch (DuplicateTypeException e) {
 			e.printStackTrace();
 		}

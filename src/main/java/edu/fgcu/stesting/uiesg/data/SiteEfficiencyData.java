@@ -594,7 +594,7 @@ public class SiteEfficiencyData {
 	 * 
 	 * @return the number of sets
 	 */
-	protected int size() {
+	public int size() {
 		return data.size();
 	}
 
@@ -605,7 +605,7 @@ public class SiteEfficiencyData {
 	 *            the index of the desired data set
 	 * @return the number of data set
 	 */
-	protected DataSet getSet( int i ) {
+	public DataSet getSet( int i ) {
 		return data.get(i);
 	}
 
