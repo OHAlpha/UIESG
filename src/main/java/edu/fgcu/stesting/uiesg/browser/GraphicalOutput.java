@@ -29,8 +29,10 @@ import javafx.scene.control.cell.ComboBoxListCell;
 // gathered from the web browser
 
 public class GraphicalOutput {
-	
-	SiteEfficiencyData pick;
+
+	// SiteEfficiencyData sed;
+	GraphOutputData god;
+
 	/*
 	 * The types are: click, hover, enter, and exit (non-Javadoc)
 	 * 
@@ -70,9 +72,14 @@ public class GraphicalOutput {
 		// retrieve the GOD
 		// god = sed.getGraphData(i);
 
+		// compiles mouse data for selected SED
 		sed.compileMouseData();
 
-		GraphOutputData god = sed.getGraphData(0);
+		/** get the number of instances for the particular domain ***/
+		
+		/*** then get the number of actions god.numActions() ***/
+
+		/*** loop through the actions and assign points ***/
 
 		// test points for mouse movements
 		series2.getData().add(new XYChart.Data(5.2, 229.2));
@@ -106,9 +113,9 @@ public class GraphicalOutput {
 	 * @return
 	 */
 
-	public Scene sites(final SiteEfficiencyData sed) {
+	public Scene sites() {
 		// Scene scene = null;
-		
+
 		// get the domains
 		NavigableSet<String> keySet = SiteEfficiencyData.getAvailableDomains();
 		ArrayList<String> doms = new ArrayList<String>();
@@ -120,7 +127,7 @@ public class GraphicalOutput {
 				.observableArrayList(doms);
 
 		final ListView<String> listView = new ListView<String>(data);
-		
+
 		listView.setPrefSize(200, 250);
 		listView.setEditable(true);
 		listView.setItems(data);
@@ -129,36 +136,23 @@ public class GraphicalOutput {
 				.addListener(new ListChangeListener<Integer>() {
 					@Override
 					public void onChanged(Change<? extends Integer> change) {
-						
+
 						for (int i = 0; i < data.size(); i++) {
-							if(change.getList().contains(i)) {
-								pick = SiteEfficiencyData.getForDomain(data.get(i));
+							if (change.getList().contains(i)) {
+								// send the domain name to getForDomain to get
+								// the SED
+								SiteEfficiencyData sed = SiteEfficiencyData
+										.getForDomain(data.get(i));
 								Stage stage = new Stage();
-								stage.setScene(graph(pick));
+								stage.setScene(graph(sed));
 								stage.show();
 							}
 						}
-						/*
-						if(change.getList().contains(0)) {
-							System.out.println("you selected the first item");
-						}
-						else if(change.getList().contains(1)) {
-							System.out.println("You selected the second item");
-						}
-						else {
-							System.out.println("I don't know wtf is going on");
-						}
-						*/
+
 					}
 
 				});
 
-		/*
-		 * Stage stage = new Stage();
-		+					
-		+	stage.setScene(graph(sed));
-		+	stage.show();
-		 */
 		StackPane root = new StackPane();
 		root.getChildren().add(listView);
 		Scene scene = new Scene(root, 200, 250);

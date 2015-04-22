@@ -206,7 +206,7 @@ public class Browser extends Application {
 					
 					// set the stage with the graph scene
 					//stage.setScene(go.graph(sed));
-					stage.setScene(go.sites(sed));
+					stage.setScene(go.sites());
 					
 					// show the stage
 					stage.show();
