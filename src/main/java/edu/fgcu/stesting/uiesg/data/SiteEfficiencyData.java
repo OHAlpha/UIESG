@@ -58,7 +58,7 @@ public class SiteEfficiencyData {
 	 * @return the set of domain names.
 	 */
 	public static NavigableSet<String> getAvailableDomains() {
-		return domains.keySet();
+		return domains.navigableKeySet();
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class SiteEfficiencyData {
 		/**
 		 * The UIESs of this set
 		 */
-		public Map<String, UIEfficiencyStatistic> statistics;
+		public NavigableMap<String, UIEfficiencyStatistic> statistics;
 
 	}
 
@@ -579,7 +579,7 @@ public class SiteEfficiencyData {
 	 *            the index
 	 * @return the statistics
 	 */
-	public Map<String, UIEfficiencyStatistic> getStatistics( int i ) {
+	public NavigableMap<String, UIEfficiencyStatistic> getStatistics( int i ) {
 		return data.get(i).statistics;
 	}
 
