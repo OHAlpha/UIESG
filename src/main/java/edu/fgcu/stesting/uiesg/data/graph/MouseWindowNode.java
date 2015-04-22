@@ -1,12 +1,9 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
-import java.awt.Shape;
-import java.awt.geom.Dimension2D;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
-import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 
 /**
  * Represents the mouse entering or exiting the browser window.
@@ -15,72 +12,56 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
  *
  */
 public class MouseWindowNode extends AbstractMouseGraphNode {
+	
+	/**
+	 * Whether this action was an enter.
+	 */
+	private boolean enter;
 
 	/**
 	 * @param timestamp
+	 *            the time of the action
+	 * @param enter whether this action was an enter
 	 * @param previous
+	 *            the previous action
 	 * @param next
+	 *            the next action
+	 * @param x
+	 *            the x value of the click point
+	 * @param y
+	 *            the y value of the click point
 	 */
-	protected MouseWindowNode( long timestamp, MouseGraphAction previous,
-			MouseGraphAction next ) {
+	public MouseWindowNode( long timestamp, boolean enter, MouseGraphAction previous,
+			MouseGraphAction next, double x, double y ) {
 		super(timestamp, previous, next);
-		// TODO Auto-generated constructor stub
+		range = new Rectangle2D.Double(x, y, 0, 0);
+		error = 0;
+		variance = new Dim();
+		this.enter = enter;
 	}
 
 	/**
 	 * @param timestamp
+	 *            the time of the action
+	 * @param enter whether this action was an enter
+	 * @param x
+	 *            the x value of the click point
+	 * @param y
+	 *            the y value of the click point
 	 */
-	protected MouseWindowNode( long timestamp ) {
+	public MouseWindowNode( long timestamp, boolean enter, double x, double y ) {
 		super(timestamp);
-		// TODO Auto-generated constructor stub
+		range = new Rectangle2D.Double(x, y, 0, 0);
+		error = 0;
+		variance = new Dim();
+		this.enter = enter;
 	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public long getTimestamp() {
-		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public MouseGraphNode getNext() {
-		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public Rectangle2D getRange() {
-		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public Shape getArea() {
-		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public Point2D getLocation() {
-		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public MouseGraphAction getPrevious() {
-		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public double getError() {
-		throw new RuntimeException("method not implemented");
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public Dimension2D getVariance() {
-		throw new RuntimeException("method not implemented");
+	
+	/**
+	 * @return whether this action was an enter
+	 */
+	public boolean isEntered() {
+		return enter;
 	}
 
 	/*
@@ -91,7 +72,7 @@ public class MouseWindowNode extends AbstractMouseGraphNode {
 	@Override
 	@SuppressWarnings( "javadoc" )
 	public int getSubType() {
-		return GODFactory.ENTER;
+		return enter ? GODFactory.ENTER : GODFactory.EXIT;
 	}
 
 }

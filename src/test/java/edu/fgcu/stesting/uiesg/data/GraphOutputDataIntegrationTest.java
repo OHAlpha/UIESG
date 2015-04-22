@@ -38,7 +38,7 @@ public class GraphOutputDataIntegrationTest {
 	public static void setup() {
 		SiteEfficiencyData.init("tmp/datafiles");
 		MAIDFactory.init(MAIDFactory.IMPLEMENTATION);
-		GODFactory.init(GODFactory.IMPLEMENTATION, GODFactory.IMPLEMENTATION);
+		GODFactory.init(GODFactory.IMPLEMENTATION);
 		maid = MAIDFactory.newInstance();
 		maid.addPoint(new Point(30, 0), new Point(30, 0),
 				System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
@@ -68,15 +68,15 @@ public class GraphOutputDataIntegrationTest {
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.ENTER, 30, 0),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, 30, 0, 30, 50),
+						GODFactory.EDGE, GODFactory.MOVE, new double[] {30, 0, 30, 50}),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.CLICK, 30, 50),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, 30, 50, 60, 50),
+						GODFactory.EDGE, GODFactory.MOVE, new double[] {30, 50, 60, 50}),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.NODE, GODFactory.HOVER, 60, 50),
+						GODFactory.NODE, GODFactory.HOVER, new double[] {60, 50}),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, 60, 50, 30, 0),
+						GODFactory.EDGE, GODFactory.MOVE, new double[] {60, 50, 30, 0}),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.EXIT, 30, 0) };
 		for (int i = 0; i < as.length; i++) {

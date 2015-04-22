@@ -9,6 +9,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 
+import edu.fgcu.stesting.uiesg.data.graph.MouseClickNode;
+import edu.fgcu.stesting.uiesg.data.graph.MouseDragEdge;
+import edu.fgcu.stesting.uiesg.data.graph.MouseHoverNode;
+import edu.fgcu.stesting.uiesg.data.graph.MouseMoveEdge;
+import edu.fgcu.stesting.uiesg.data.graph.MouseWindowNode;
 import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
 import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;
@@ -86,22 +91,53 @@ public class GODFactory {
 			;
 			// System.out.println("action type is "+type);
 			if (type == NODE) {
-				return new MouseGraphNodeMock(timestamp, type, subType,
-						new Point(((Number) params[0]).intValue(),
-								((Number) params[1]).intValue()));
+				if (subType == HOVER) {
+					double[] p = (double[]) params[0];
+					int l = p.length;
+					return new MouseGraphNodeMock(timestamp, type, subType,
+							new Point((int) (p[0] + p[l - 2]) / 2,
+									(int) (p[1] + p[l - 1]) / 2));
+				} else
+					return new MouseGraphNodeMock(timestamp, type, subType,
+							new Point(((Number) params[0]).intValue(),
+									((Number) params[1]).intValue()));
 			} else if (type == EDGE) {
+				double[] p = (double[]) params[0];
+				int l = p.length;
 				return new MouseGraphEdgeMock(timestamp, type, subType,
-						new Point(((Number) params[0]).intValue(),
-								((Number) params[1]).intValue()), new Point(
-								((Number) params[2]).intValue(),
-								((Number) params[3]).intValue()));
+						new Point((int) p[0], (int) p[1]), new Point(
+								(int) p[l - 2], (int) p[l - 1]));
 			} else {
 				;
 				// System.out.println("action type cannot be "+type);
 				return null;
 			}
 		} else if (actionMode == IMPLEMENTATION) {
-			return null;
+			if (type == NODE) {
+				if (subType == CLICK) {
+					return new MouseClickNode(timestamp,
+							((Number) params[0]).doubleValue(),
+							((Number) params[1]).doubleValue());
+				} else if (subType == HOVER) {
+					return new MouseHoverNode(timestamp, (double[]) params[0]);
+				} else if (subType == ENTER || subType == EXIT) {
+					return new MouseWindowNode(timestamp, subType == ENTER,
+							((Number) params[0]).doubleValue(),
+							((Number) params[1]).doubleValue());
+				} else
+					return null;
+			} else if (type == EDGE) {
+				if (subType == MOVE)
+					return new MouseMoveEdge(timestamp, (double[]) params[0]);
+				else if (subType == DRAG)
+					return new MouseDragEdge(timestamp, (double[]) params[0]);
+				else
+					return null;
+			} else {
+				;
+				// System.out.println("action type cannot be "+type);
+				return null;
+			}
 		}
 		return null;
 	}
@@ -113,10 +149,18 @@ public class GODFactory {
 			long l = in.readLong();
 			int t = in.readInt(), s = in.readInt();
 			if (t == NODE)
-				return newGraphAction(l, t, s, in.readDouble(), in.readDouble());
+				if (s == HOVER)
+					return newGraphAction(
+							l,
+							t,
+							s,
+							new double[] { in.readDouble(), in.readDouble() });
+				else
+					return newGraphAction(l, t, s, in.readDouble(),
+							in.readDouble());
 			else
-				return newGraphAction(l, t, s, in.readDouble(),
-						in.readDouble(), in.readDouble(), in.readDouble());
+				return newGraphAction(l, t, s, new double[] { in.readDouble(),
+						in.readDouble(), in.readDouble(), in.readDouble() });
 		} else
 			return null;
 	}

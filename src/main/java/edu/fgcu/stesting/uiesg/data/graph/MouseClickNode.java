@@ -1,8 +1,5 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
-import java.awt.Shape;
-import java.awt.geom.Dimension2D;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
@@ -14,11 +11,6 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
  *
  */
 public class MouseClickNode extends AbstractMouseGraphNode {
-
-	/**
-	 * The point clicked.
-	 */
-	private Rectangle2D range;
 
 	/**
 	 * @param timestamp
@@ -36,6 +28,8 @@ public class MouseClickNode extends AbstractMouseGraphNode {
 			MouseGraphAction next, double x, double y ) {
 		super(timestamp, previous, next);
 		range = new Rectangle2D.Double(x, y, 0, 0);
+		error = 0;
+		variance = new Dim();
 	}
 
 	/**
@@ -49,36 +43,8 @@ public class MouseClickNode extends AbstractMouseGraphNode {
 	public MouseClickNode( long timestamp, double x, double y ) {
 		super(timestamp);
 		range = new Rectangle2D.Double(x, y, 0, 0);
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public Rectangle2D getRange() {
-		return range;
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public Shape getArea() {
-		return range;
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public Point2D getLocation() {
-		return new Point2D.Double(range.getX(), range.getY());
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public double getError() {
-		return 0;
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public Dimension2D getVariance() {
-		return new Dim();
+		error = 0;
+		variance = new Dim();
 	}
 
 	/*

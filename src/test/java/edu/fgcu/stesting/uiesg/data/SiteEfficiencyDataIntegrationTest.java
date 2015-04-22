@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.Point;
+import java.awt.event.MouseEvent;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
@@ -18,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -28,8 +31,6 @@ import org.junit.Test;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.DataSet;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
-import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
-import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
 import edu.fgcu.stesting.uiesg.data.statistic.NodesPerMinute;
 
 /**
@@ -58,14 +59,9 @@ public class SiteEfficiencyDataIntegrationTest {
 	static GraphOutputData mg;
 
 	/**
-	 * The IMPLEMENTATION uiest to use for testing.
+	 * The statistics to use for testing.
 	 */
-	static UIEfficiencyStatisticType mt;
-
-	/**
-	 * The IMPLEMENTATION uies to use for testing.
-	 */
-	static UIEfficiencyStatistic ms;
+	static Map<String, UIEfficiencyStatistic> mss;
 
 	/**
 	 * A SED for "fgcu.edu".
@@ -88,7 +84,7 @@ public class SiteEfficiencyDataIntegrationTest {
 		MAIDFactory.init(MAIDFactory.IMPLEMENTATION);
 		GODFactory.init(GODFactory.IMPLEMENTATION);
 		try {
-			new NodesPerMinute();
+			new NodesPerMinute().register();
 		} catch (DuplicateTypeException e) {
 			e.printStackTrace();
 		}
@@ -99,7 +95,31 @@ public class SiteEfficiencyDataIntegrationTest {
 				new BufferedOutputStream(new FileOutputStream(file)));) {
 			out.writeInt(1);
 			out.writeInt(0x07);
-			mm = new MouseActionInputDataImp();
+			mm = MAIDFactory.newInstance();
+			mm.addPoint(new Point(30, 0), new Point(30, 0),
+					System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
+			mm.addPoint(new Point(30, 10), new Point(30, 10),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 30), new Point(30, 30),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 50), new Point(30, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 50), new Point(30, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+			mm.addPoint(new Point(40, 50), new Point(40, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(50, 50), new Point(50, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(60, 50), new Point(60, 50),
+					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(50, 30), new Point(50, 30),
+					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(40, 10), new Point(40, 10),
+					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 0), new Point(30, 0),
+					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+			mm.addPoint(new Point(30, 0), new Point(30, 0),
+					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_EXITED);
 			out.writeInt(mm.size());
 			for (Iterator<MouseActionInputData.Point> it = mm.iterate(); it
 					.hasNext();) {
@@ -111,18 +131,19 @@ public class SiteEfficiencyDataIntegrationTest {
 				out.writeLong(p.timestamp);
 				out.writeInt(p.type);
 			}
-			mg = new GraphOutputDataImp(mm.iterate());
+			mg = GODFactory.newInstance(mm.iterate());
 			out.writeInt(mg.order() + mg.size());
 			for (int i = 0; i < mg.order() + mg.size(); i++) {
 				MouseGraphAction ma = mg.getAction(i);
 				GODFactory.write(ma, out);
 				out.writeInt(mg.indexOf(ma.getPrevious()));
 			}
-			out.writeInt(1);
-			mt = UIEfficiencyStatistics.getType("NodesPerMinute");
-			ms = mt.calculate(mg);
-			out.writeUTF(mt.getName());
-			ms.write(out);
+			mss = UIEfficiencyStatistics.calculateStatistics(mg);
+			out.writeInt(mss.size());
+			for (String t : mss.keySet()) {
+				out.writeUTF(t);
+				mss.get(t).write(out);
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -293,10 +314,12 @@ public class SiteEfficiencyDataIntegrationTest {
 		assertEquals(ds.graphData.size(), mg.size());
 		assertEquals(ds.graphData, mg);
 		assertNotNull("statistics should not be null", ds.statistics);
-		assertEquals("statistics should have 1 statistic",
-				ds.statistics.size(), 1);
-		assertTrue(ds.statistics.containsKey(mt.getName()));
-		assertEquals(ds.statistics.get(mt.getName()), ms);
+		assertEquals("statistics should have " + mss.size() + " statistic",
+				ds.statistics.size(), mss.size());
+		for (String t : mss.keySet()) {
+			assertTrue(ds.statistics.containsKey(t));
+			assertEquals(ds.statistics.get(t), ds.statistics.get(t));
+		}
 
 	}
 

@@ -29,36 +29,6 @@ import edu.fgcu.stesting.uiesg.data.imp.GraphOutputDataImp;
 public class SiteEfficiencyData {
 
 	/**
-	 * DuplicateDomainException signifies that the domain for which a SED is
-	 * being created for already is referenced by an existing SED.
-	 * 
-	 * Since the constructor has been made protected, this exception is no
-	 * longer needed.
-	 * 
-	 * @author oalpha
-	 *
-	 */
-	public class DuplicateDomainException extends Exception {
-
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = -7294874443006338512L;
-
-		/**
-		 * Constructs an instance for the given domain
-		 * 
-		 * @param domain
-		 *            the domain to which the exception refers
-		 */
-		public DuplicateDomainException( String domain ) {
-			super(domain);
-			// TODO Auto-generated constructor stub
-		}
-
-	}
-
-	/**
 	 * The collection to map domains to SED instances.
 	 */
 	protected static Map<String, SiteEfficiencyData> domains = new TreeMap<>();
@@ -561,13 +531,25 @@ public class SiteEfficiencyData {
 			if (d.statistics == null) {
 				if (d.graphData != null) {
 					// statistics type will already exist. a static method
-					// calculate all satistics will be added
+					// calculate all statistics will be added
 					d.statistics = UIEfficiencyStatistics
 							.calculateStatistics(d.graphData);
 				}
 
 			}
 		}
+	}
+	
+	public MouseActionInputData getMouseData( int i ) {
+		return data.get(i).mouseData;
+	}
+	
+	public GraphOutputData getGraphData( int i ) {
+		return data.get(i).graphData;
+	}
+	
+	public Map<String,UIEfficiencyStatistic> getStatistics( int i ) {
+		return data.get(i).statistics;
 	}
 
 	@Override

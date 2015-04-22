@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <project name="UI Efficiency Statistics Generator" default="build" xmlns:jacoco="antlib:org.jacoco.ant">
+	<property name="uiesg.pack" value="edu.fgcu.stesting.uiesg" />
 	<property name="src.dir" value="src/main/java" />
 	<property name="build.dir" value="bin/classes" />
 	<property name="doc.dir" value="doc" />
@@ -10,6 +11,7 @@
 	<property name="reports.unit.dir" value="reports/unit" />
 	<property name="reports.int.dir" value="reports/integration" />
 	<property name="reports.jacoco.dir" value="reports/coverage" />
+	<property name="jacoco.exc" value="${uiesg.pack}.*Test:${uiesg.pack}.data.*Test:${uiesg.pack}.browser.*Test:${uiesg.pack}.data.mock.*Mock" />
 	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
 		<classpath path="${jars.dir}/jacocoant.jar" />
 	</taskdef>
@@ -49,7 +51,8 @@
 				</classpath>
 				<formatter type="xml" />
 				<formatter type="plain" />
-				<test name="edu.fgcu.stesting.uiesg.UnitTest" todir="${reports.unit.dir}"></test>
+				<test name="edu.fgcu.stesting.uiesg.UnitTest" todir="${reports.unit.dir}">
+				</test>
 			</junit>
 		</jacoco:coverage>
 	</target>
@@ -66,7 +69,8 @@
 				</classpath>
 				<formatter type="xml" />
 				<formatter type="plain" />
-				<test name="edu.fgcu.stesting.uiesg.IntegrationTest" todir="${reports.int.dir}"></test>
+				<test name="edu.fgcu.stesting.uiesg.IntegrationTest" todir="${reports.int.dir}">
+				</test>
 			</junit>
 		</jacoco:coverage>
 	</target>

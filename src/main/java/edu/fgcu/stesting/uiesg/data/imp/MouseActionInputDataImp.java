@@ -163,7 +163,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	@Override
 	public Iterator<Point> iterate() {
-		throw new RuntimeException("method not implemented");
+		return rawData.iterator();
 	}
 
 	@SuppressWarnings( "javadoc" )

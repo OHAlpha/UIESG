@@ -3,9 +3,12 @@
  */
 package edu.fgcu.stesting.uiesg.data;
 
-import org.junit.Test;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
+import static org.junit.Assert.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * A test for implementations of UIEfficiencyStatisticType.
@@ -13,53 +16,75 @@ import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeExcep
  * @author oalpha
  *
  */
+@SuppressWarnings( "javadoc" )
 public class UIEfficiencyStatisticTypeUnitTest {
 
-	// TODO: javadoc
-	@SuppressWarnings( "javadoc" )
-	@Test
-	public void testGetForDomain() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+	private static class FakeType extends UIEfficiencyStatisticType {
+
+		String name;
+
+		FakeType( String name ) {
+			this.name = name;
+		}
+
+		@Override
+		public String getName() {
+			return name;
+		}
+
+		@Override
+		public String getDescription() {
+			return "";
+		}
+
+		@Override
+		public UIEfficiencyStatistic calculate( GraphOutputData graph ) {
+			return this.createStatistic(0);
+		}
+
+		@Override
+		public UIEfficiencyStatistic create( InputStream in ) {
+			return this.createStatistic(0);
+		}
+
+		@Override
+		public Class<?> getValueType() {
+			return Integer.class;
+		}
+
+		@Override
+		public void write( UIEfficiencyStatistic statistic, OutputStream out ) {}
+
 	}
 
-	// TODO: javadoc
-	@SuppressWarnings( "javadoc" )
-	@Test
-	public void testConstructor() throws DuplicateTypeException {
-		throw new RuntimeException("constructor not implemented");
+	@BeforeClass
+	public static void setup() {
+		MAIDFactory.init(MAIDFactory.MOCK);
+		GODFactory.init(GODFactory.MOCK);
+		new FakeType("one").register();
+		new FakeType("two").register();
 	}
 
-	// TODO: javadoc
-	@SuppressWarnings( "javadoc" )
 	@Test
-	public void testGetName() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+	public void testRegister() {
+		FakeType t = new FakeType("three");
+		assertTrue( t.register() );
+		assertEquals(t,UIEfficiencyStatisticType.getByName("three"));
 	}
 
-	// TODO: javadoc
-	@SuppressWarnings( "javadoc" )
 	@Test
-	public void testGetDescription() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+	public void testRegisterDuplicate() {
+		FakeType t = new FakeType("two");
+		assertFalse( t.register() );
 	}
 
-	// TODO: javadoc
-	@SuppressWarnings( "javadoc" )
 	@Test
-	public void testCalculate() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+	public void testGetByName() {
+		assertNotNull(UIEfficiencyStatisticType.getByName("one"));
 	}
 
-	// TODO: javadoc
-	@SuppressWarnings( "javadoc" )
 	@Test
-	public void testGetValueType() {
-		throw new RuntimeException("method not implemented");
-		// TODO
+	public void testCalculateStatistics() {
 	}
 
 }
