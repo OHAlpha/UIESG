@@ -8,8 +8,7 @@
 	<property name="test.build.dir" value="bin/test/classes" />
 	<property name="test.doc.dir" value="testdoc" />
 	<property name="jars.dir" value="jars" />
-	<property name="reports.unit.dir" value="reports/unit" />
-	<property name="reports.int.dir" value="reports/integration" />
+	<property name="reports.test.dir" value="reports/test" />
 	<property name="reports.jacoco.dir" value="reports/coverage" />
 	<property name="jacoco.exc" value="${uiesg.pack}.*Test:${uiesg.pack}.data.*Test:${uiesg.pack}.browser.*Test:${uiesg.pack}.data.mock.*Mock" />
 	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
@@ -38,9 +37,9 @@
 			<classpath refid="master-classpath" />
 		</javac>
 	</target>
-	<target name="unit-test" depends="build-test">
-		<mkdir dir="${reports.unit.dir}" />
-		<jacoco:coverage destfile="jacoco.unit.exec">
+	<target name="test">
+		<mkdir dir="${reports.test.dir}" />
+		<jacoco:coverage destfile="jacoco.exec">
 			<junit fork="true" haltonfailure="false" printsummary="on">
 				<classpath>
 					<pathelement location="${build.dir}" />
@@ -50,31 +49,10 @@
 					<pathelement location="${test.build.dir}" />
 				</classpath>
 				<formatter type="xml" />
-				<formatter type="plain" />
-				<test name="edu.fgcu.stesting.uiesg.UnitTest" todir="${reports.unit.dir}">
+				<test name="edu.fgcu.stesting.uiesg.Test" todir="${reports.test.dir}">
 				</test>
 			</junit>
 		</jacoco:coverage>
-	</target>
-	<target name="integration-test" depends="build-test">
-		<mkdir dir="${reports.int.dir}" />
-		<jacoco:coverage destfile="jacoco.int.exec">
-			<junit fork="true" haltonfailure="false" printsummary="on">
-				<classpath>
-					<pathelement location="${build.dir}" />
-					<fileset dir="${jars.dir}">
-						<include name="*.jar" />
-					</fileset>
-					<pathelement location="${test.build.dir}" />
-				</classpath>
-				<formatter type="xml" />
-				<formatter type="plain" />
-				<test name="edu.fgcu.stesting.uiesg.IntegrationTest" todir="${reports.int.dir}">
-				</test>
-			</junit>
-		</jacoco:coverage>
-	</target>
-	<target name="test" depends="unit-test,integration-test">
 		<mkdir dir="${reports.jacoco.dir}" />
 		<jacoco:report>
 			<executiondata>
