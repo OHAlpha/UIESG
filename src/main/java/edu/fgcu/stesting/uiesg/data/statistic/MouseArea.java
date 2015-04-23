@@ -56,7 +56,7 @@ public class MouseArea extends UIEfficiencyStatisticType {
 	@Override
 	public void write( UIEfficiencyStatistic statistic, DataOutputStream out ) throws IOException {
 		out.writeDouble((Double) statistic
-				.getValue());
+				.getUIValue());
 	}
 
 }

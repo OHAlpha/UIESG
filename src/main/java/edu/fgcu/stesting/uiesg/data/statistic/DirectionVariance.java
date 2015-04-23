@@ -63,7 +63,7 @@ public class DirectionVariance extends UIEfficiencyStatisticType {
 	@Override
 	public void write( UIEfficiencyStatistic statistic, DataOutputStream out )
 			throws IOException {
-		Dimension2D v = (Dimension2D) statistic.getValue();
+		Dimension2D v = (Dimension2D) statistic.getUIValue();
 		out.writeDouble(v.getWidth());
 		out.writeDouble(v.getHeight());
 	}

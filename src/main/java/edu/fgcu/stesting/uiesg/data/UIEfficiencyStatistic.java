@@ -50,7 +50,7 @@ public class UIEfficiencyStatistic {
 	 * 
 	 * @return the value
 	 */
-	public Object getValue() {
+	public Object getUIValue() {
 		return value;
 	}
 
@@ -75,7 +75,7 @@ public class UIEfficiencyStatistic {
 	public boolean equals( Object o ) {
 		if (o instanceof UIEfficiencyStatistic) {
 			UIEfficiencyStatistic uies = (UIEfficiencyStatistic) o;
-			return uies.type == type && uies.getValue().equals(value);
+			return uies.type == type && uies.getUIValue().equals(value);
 		} else
 			return false;
 	}

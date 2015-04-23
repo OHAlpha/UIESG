@@ -2,6 +2,7 @@ package edu.fgcu.stesting.uiesg.browser;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.NavigableMap;
 import java.util.NavigableSet;
 import java.util.TreeMap;
 
@@ -10,6 +11,7 @@ import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -31,7 +33,7 @@ import javafx.stage.Stage;
 // class to output to the user the graphical information 
 // gathered from the web browser
 
-@SuppressWarnings( "javadoc" )
+@SuppressWarnings("javadoc")
 public class GraphicalOutput {
 
 	// SiteEfficiencyData sed;
@@ -47,33 +49,54 @@ public class GraphicalOutput {
 	public Scene graph(SiteEfficiencyData sed) {
 
 		// define LineChart
-		final LineChart<Number, Number> lineChart = new LineChart<>(new NumberAxis(),
-				new NumberAxis());
+		final LineChart<Number, Number> lineChart = new LineChart<>(
+				new NumberAxis(), new NumberAxis());
 
 		// set the title of the graph
 		lineChart.setTitle("UIESG Data");
 
-		
 		// declare series
 		XYChart.Series series2 = new XYChart.Series();
 		series2.setName("Mouse movement");
-		
-		
+
 		// methods to use for Stats:
 		// sed.calculateStatistics();
 		// sed.getStatistics(i);
 
-		
 		// compiles mouse data for selected SED
 		sed.compileMouseData();
-				
-		//NavigableSet<String> stats = sed.calculateStatistics();
+
+		// NavigableSet<String> stats = sed.calculateStatistics();
+
+		/*** get the number of instances for the particular domain ***/
+		int size = sed.size()-1;
+		
+		System.out.println("SED.size() = " + size);
+		god = sed.getGraphData(size);
+
+		/*** then get the number of actions god.numActions() ***/
+		int actions = god.numActions();
+
+		/*** loop through the actions and assign points ***/
+		for (int i = 0; i < actions; i++) {
+			MouseGraphAction a = god.getAction(i);
+			if (a.getType() == GODFactory.NODE) {
+				Point2D p = ((MouseGraphNode) a).getLocation();
+				series2.getData().add(new XYChart.Data(p.getX(), p.getY()));
+			}
+		}
+
+		// calculates stats for SED
+		sed.calculateStatistics();
+		
 		ArrayList<String> tmp = new ArrayList<String>();
-		// put domains in list
-		tmp.add("stat1");
-		tmp.add("stat2");
-		tmp.add("stat3");
-		//tmp.addAll(stats);
+
+		NavigableMap<String, UIEfficiencyStatistic> stats = sed.getStatistics(size);
+
+		
+		for(NavigableMap.Entry<String, UIEfficiencyStatistic> entry:stats.entrySet()) {
+			tmp.add(entry.getKey() + " :  " + entry.getValue().getUIValue());
+		}
 
 		// putting domains in observable list 'data'
 		final ObservableList<String> data = FXCollections
@@ -81,26 +104,7 @@ public class GraphicalOutput {
 
 		final ListView<String> listView = new ListView<String>(data);
 		listView.setItems(data);
-		
-		/*** get the number of instances for the particular domain ***/
-		int size = sed.size();	
-		if (size>0)	god = sed.getGraphData(size-1);
-		
-		/*** then get the number of actions god.numActions() ***/
-		int actions = god.numActions();
-				
-		/*** loop through the actions and assign points ***/
-		for(int i = 0; i < actions; i++) {
-			MouseGraphAction a = god.getAction(i);
-			if (a.getType() == GODFactory.NODE) {
-				Point2D p = ((MouseGraphNode)a).getLocation();
-				series2.getData().add(new XYChart.Data(p.getX(),p.getY()));
-			}
-		}
-		
-		// calculates stats for SED
-		sed.calculateStatistics();
-		
+
 		// setup display and add lineChart and statBar to the grid
 		GridPane grid = new GridPane();
 		VBox vBox = new VBox();
@@ -110,7 +114,7 @@ public class GraphicalOutput {
 		vBox.getChildren().add(listView);
 		grid.add(vBox, 0, 0, 1, 1);
 		grid.add(lineChart, 0, 1, 1, 1);
-		
+
 		lineChart.setAnimated(false);
 		lineChart.setCreateSymbols(true);
 

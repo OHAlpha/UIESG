@@ -40,7 +40,7 @@ public class NodesPerMinute extends UIEfficiencyStatisticType {
 
 	@Override
 	public void write( UIEfficiencyStatistic statistic, DataOutputStream out ) throws IOException {
-		out.writeDouble((Double) statistic.getValue());
+		out.writeDouble((Double) statistic.getUIValue());
 	}
 
 }

@@ -103,7 +103,7 @@ public class UIEfficiencyStatisticTypeUnitTest {
 		assertNotNull("statistic should not be null", s);
 		assertEquals("type should equal stat.type", type, s.getType());
 		assertTrue("value should be of type type.valuetype", type
-				.getValueType().isInstance(s.getValue()));
+				.getValueType().isInstance(s.getUIValue()));
 	}
 
 	@SuppressWarnings( "resource" )
