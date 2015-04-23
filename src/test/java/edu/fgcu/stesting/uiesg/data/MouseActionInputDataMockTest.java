@@ -2,30 +2,53 @@ package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-import java.util.NoSuchElementException;
 
 import org.junit.*;
 
-import edu.fgcu.stesting.uiesg.data.mock.MouseActionInputDataMock;
 import static org.junit.Assert.*;
 
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
 public class MouseActionInputDataMockTest {
 
-	MouseActionInputDataMock MAID;
+	MouseActionInputData MAID, MAIDB, MAIDC,MAIDD;
 
 	public MouseActionInputDataMockTest() {
 	}
 
 	@BeforeClass
 	public static void setup() {
-
+		MAIDFactory.init(MAIDFactory.MOCK);
 	}
 
 	@Before
 	public void before() {
-		MAID = new MouseActionInputDataMock();
+		MAID = MAIDFactory.newInstance();
+		MAID.addPoint(new Point(0, 1), new Point(2, 0),
+				1l, MouseEvent.MOUSE_CLICKED);
+		MAID.addPoint(new Point(1, 2), new Point(4, 2),
+				2l, MouseEvent.MOUSE_CLICKED);
+		MAID.addPoint(new Point(2, 3), new Point(6, 4),
+				3l, MouseEvent.MOUSE_CLICKED);
+		MAIDB = MAIDFactory.newInstance();
+		MAIDB.addPoint(new Point(0, 1), new Point(2, 0),
+				1l, MouseEvent.MOUSE_CLICKED);
+		MAIDB.addPoint(new Point(1, 2), new Point(4, 2),
+				2l, MouseEvent.MOUSE_CLICKED);
+		MAIDC = MAIDFactory.newInstance();
+		MAIDC.addPoint(new Point(0, 1), new Point(2, 0),
+				1l, MouseEvent.MOUSE_CLICKED);
+		MAIDC.addPoint(new Point(1, 2), new Point(4, 2),
+				2l, MouseEvent.MOUSE_CLICKED);
+		MAIDC.addPoint(new Point(2, 3), new Point(7, 4),
+				3l, MouseEvent.MOUSE_CLICKED);
+		MAIDD = MAIDFactory.newInstance();
+		MAIDD.addPoint(new Point(0, 1), new Point(2, 0),
+				1l, MouseEvent.MOUSE_CLICKED);
+		MAIDD.addPoint(new Point(1, 2), new Point(4, 2),
+				2l, MouseEvent.MOUSE_CLICKED);
+		MAIDD.addPoint(new Point(2, 3), new Point(6, 4),
+				3l, MouseEvent.MOUSE_CLICKED);
 	}
 
 	@After
@@ -41,25 +64,14 @@ public class MouseActionInputDataMockTest {
 		// throw new RuntimeException("test not implemented");
 		// add a bunch of points and see if the size is correct
 		MAID.addPoint(new Point(0, 1), new Point(2, 0),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+				4l, MouseEvent.MOUSE_CLICKED);
 		MAID.addPoint(new Point(1, 2), new Point(4, 2),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+				5l, MouseEvent.MOUSE_CLICKED);
 		MAID.addPoint(new Point(2, 3), new Point(6, 4),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+				6l, MouseEvent.MOUSE_CLICKED);
 
 		// test to see if there are three elements in the list
-		assertEquals(3, MAID.size());
-
-	}
-
-	/***
-	 * method to test latest timestamp while rawData is empty
-	 */
-	@Test( expected = NoSuchElementException.class )
-	public void testTimeStamp() {
-
-		// rawData should be empty which will throw an error
-		MAID.latestTimestamp();
+		assertEquals(6, MAID.size());
 
 	}
 
@@ -101,6 +113,13 @@ public class MouseActionInputDataMockTest {
 		// test y value of pageposition
 		assertEquals(0, p.pagePosition.getY(), .01);
 
+	}
+	
+	@Test
+	public void testEquals() {
+		assertEquals(MAID,MAIDD);
+		assertNotEquals(MAID,MAIDB);
+		assertNotEquals(MAID,MAIDC);
 	}
 
 }
