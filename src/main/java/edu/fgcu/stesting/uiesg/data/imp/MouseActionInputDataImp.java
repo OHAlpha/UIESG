@@ -5,7 +5,6 @@ import static java.awt.event.MouseEvent.MOUSE_EXITED;
 import static java.awt.event.MouseEvent.MOUSE_LAST;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,45 +52,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	 */
 	@Override
 	public int size() {
-		return getRawData().size();
-	}
-
-	/**
-	 * Returns the box bounding the points in rawData.
-	 * 
-	 * @param page
-	 *            true if the box should bound position instead of location.
-	 * 
-	 * @return the bounding box
-	 */
-	@Override
-	public Rectangle2D getRange( boolean page ) {
-
-		// iterate through the arraylist to find the minimums and maximums to
-		// create the box
-		Point temp = getRawData().get(0);
-		double minX = (page ? temp.pagePosition : temp.browserLocation).getX();
-		double minY = (page ? temp.pagePosition : temp.browserLocation).getY();
-		double maxX = (page ? temp.pagePosition : temp.browserLocation).getX();
-		double maxY = (page ? temp.pagePosition : temp.browserLocation).getY();
-		for (int i = 1; i < getRawData().size(); i++) {
-			Point tmp = getRawData().get(i);
-			// find the smallest x value
-			if ((page ? tmp.pagePosition : tmp.browserLocation).getX() < minX)
-				minX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
-			// find the largest x value
-			if ((maxX < (page ? tmp.pagePosition : tmp.browserLocation).getX()))
-				maxX = (page ? tmp.pagePosition : tmp.browserLocation).getX();
-			// find the smallest y value
-			if ((page ? tmp.pagePosition : tmp.browserLocation).getY() < minY)
-				minY = (page ? tmp.pagePosition : tmp.browserLocation).getY();
-			// find the largest y value
-			if ((maxY < (page ? tmp.pagePosition : tmp.browserLocation).getY()))
-				maxY = (page ? tmp.pagePosition : tmp.browserLocation).getY();
-		}
-
-		return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
-
+		return rawData.size();
 	}
 
 	/**
@@ -107,7 +68,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		if (rawData.isEmpty())
 			throw new NoSuchElementException("No element");
 		else {
-			Point item = getRawData().get(getRawData().size() - 1);
+			Point item = rawData.get(rawData.size() - 1);
 			return item.timestamp;
 		}
 
@@ -151,7 +112,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 		p.timestamp = timestamp;
 		p.type = type;
 
-		getRawData().add(p);
+		rawData.add(p);
 
 	}
 
@@ -164,11 +125,6 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	@Override
 	public Iterator<Point> iterate() {
 		return rawData.iterator();
-	}
-
-	@SuppressWarnings( "javadoc" )
-	public List<Point> getRawData() {
-		return rawData;
 	}
 
 	@Override
@@ -201,6 +157,12 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	@SuppressWarnings( "javadoc" )
+	public Point getPoint( int i ) {
+		return rawData.get(i);
 	}
 
 }

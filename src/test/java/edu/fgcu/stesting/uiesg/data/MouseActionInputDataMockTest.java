@@ -6,16 +6,16 @@ import java.util.NoSuchElementException;
 
 import org.junit.*;
 
-import edu.fgcu.stesting.uiesg.data.imp.MouseActionInputDataImp;
+import edu.fgcu.stesting.uiesg.data.mock.MouseActionInputDataMock;
 import static org.junit.Assert.*;
 
 // TODO: javadoc
 @SuppressWarnings( "javadoc" )
-public class MouseActionInputDataUnitTest {
+public class MouseActionInputDataMockTest {
 
-	MouseActionInputDataImp MAID;
+	MouseActionInputDataMock MAID;
 
-	public MouseActionInputDataUnitTest() {
+	public MouseActionInputDataMockTest() {
 	}
 
 	@BeforeClass
@@ -25,7 +25,7 @@ public class MouseActionInputDataUnitTest {
 
 	@Before
 	public void before() {
-		MAID = new MouseActionInputDataImp();
+		MAID = new MouseActionInputDataMock();
 	}
 
 	@After
@@ -100,38 +100,6 @@ public class MouseActionInputDataUnitTest {
 		assertEquals(2, p.pagePosition.getX(), .01);
 		// test y value of pageposition
 		assertEquals(0, p.pagePosition.getY(), .01);
-
-	}
-
-	@Test( expected = IllegalArgumentException.class )
-	public void testAddPointFault() {
-		// the errors that this is testing for
-		/*
-		 * if (type != MOUSE_EXITED && (browserPoint.getX() < 0 ||
-		 * browserPoint.getY() < 0)) throw new IllegalArgumentException(); if
-		 * (pagePoint.getX() < 0 || pagePoint.getY() < 0) throw new
-		 * IllegalArgumentException(); if (rawData.size() > 0) if (timestamp <
-		 * latestTimestamp()) throw new IllegalArgumentException(); if (type <
-		 * MOUSE_FIRST || type > MOUSE_LAST) throw new
-		 * IllegalArgumentException();
-		 */
-		// addPoint( Point2D browserPoint, Point2D pagePoint, long timestamp,
-		// int type )
-		// throw error for wrong type, x < 0, and y < 0
-		MAID.addPoint(new Point(-1, 9), new Point(0, 0),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		// throw error for pagepoint being less than 0
-		MAID.addPoint(new Point(1, 10), new Point(-1, 2),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		// create a legitimate point and then throw error for timestamp being
-		// less than current timestamp of point
-		MAID.addPoint(new Point(1, 1), new Point(1, 1),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		MAID.addPoint(new Point(0, 1), new Point(2, 0), 0,
-				MouseEvent.MOUSE_CLICKED);
-		// throw an error for the type being less than mouse_first
-		MAID.addPoint(new Point(1, 1), new Point(1, 1),
-				System.currentTimeMillis(), 0);
 
 	}
 

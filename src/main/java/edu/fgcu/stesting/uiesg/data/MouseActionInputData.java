@@ -1,7 +1,6 @@
 package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -109,17 +108,7 @@ public interface MouseActionInputData {
 	 * @return the number of points
 	 */
 	int size();
-
-	/**
-	 * Returns the box bounding the points in rawData.
-	 * 
-	 * @param page
-	 *            true if the box should bound position instead of location.
-	 * 
-	 * @return the bounding box
-	 */
-	Rectangle2D getRange( boolean page );
-
+	
 	/**
 	 * Returns the timestamp of the latest point added if any exist.
 	 * 
@@ -170,5 +159,14 @@ public interface MouseActionInputData {
 	 */
 	boolean assertEquals( MouseActionInputData maid, boolean error )
 			throws AssertionError;
+
+	/**
+	 * Returns the point at the specified index.
+	 * 
+	 * @param i
+	 *            the index
+	 * @return the point
+	 */
+	Point getPoint( int i );
 
 }

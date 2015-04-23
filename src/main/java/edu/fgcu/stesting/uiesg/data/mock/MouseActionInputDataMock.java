@@ -1,7 +1,6 @@
 package edu.fgcu.stesting.uiesg.data.mock;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,11 +21,6 @@ public class MouseActionInputDataMock implements MouseActionInputData {
 	@Override
 	public int size() {
 		return points.size();
-	}
-
-	@Override
-	public Rectangle2D getRange( boolean page ) {
-		return null;
 	}
 
 	@Override
@@ -81,6 +75,11 @@ public class MouseActionInputDataMock implements MouseActionInputData {
 					return false;
 		}
 		return true;
+	}
+
+	@Override
+	public Point getPoint( int i ) {
+		return points.get(i);
 	}
 
 }
