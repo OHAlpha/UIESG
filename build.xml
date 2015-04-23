@@ -10,7 +10,6 @@
 	<property name="jars.dir" value="jars" />
 	<property name="reports.test.dir" value="reports/test" />
 	<property name="reports.jacoco.dir" value="reports/coverage" />
-	<property name="jacoco.exc" value="${uiesg.pack}.*Test:${uiesg.pack}.data.*Test:${uiesg.pack}.browser.*Test:${uiesg.pack}.data.mock.*Mock" />
 	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
 		<classpath path="${jars.dir}/jacocoant.jar" />
 	</taskdef>
@@ -98,7 +97,10 @@
 	<target name="clean">
 		<delete dir="${build.dir}" />
 		<delete dir="${test.build.dir}" />
-		<delete dir="${reports.unit.dir}" />
-		<delete dir="${reports.int.dir}" />
+		<delete dir="${reports.test.dir}" />
+		<delete dir="${reports.jacoco.dir}" />
+		<delete file="jacoco.unit.exec}" />
+		<delete file="jacoco.int.exec}" />
+		<delete file="jacoco.exec}" />
 	</target>
 </project>
