@@ -82,34 +82,34 @@ public class MouseGraphNodeUnitTest extends MouseGraphActionUnitTest {
 		this.var = var;
 	}
 
-	@Test( expected=AssertionError.class )
+	@Test( expected = AssertionError.class )
 	public void testDiffType() {
 		assertNotEquals(node, edge);
 		node.assertEquals(edge, true);
 	}
 
-	@Test( expected=AssertionError.class )
+	@Test( expected = AssertionError.class )
 	public void testDiffSubType() {
 		assertNotEquals(node, sub);
 		node.assertEquals(sub, true);
 	}
 
-	@Test( expected=AssertionError.class )
+	@Test( expected = AssertionError.class )
 	public void testDiffRanType() {
 		assertNotEquals(node, ran);
 		node.assertEquals(ran, true);
 	}
 
-	@Test( expected=AssertionError.class )
+	@Test( expected = AssertionError.class )
 	public void testDiffErrType() {
 		assertNotEquals(node, err);
 		node.assertEquals(err, true);
 	}
 
-	@Test( expected=AssertionError.class )
+	@Test( expected = AssertionError.class )
 	public void testDiffVarType() {
 		assertNotEquals(node, var);
-		node.assertEquals(err, true);
+		node.assertEquals(var, true);
 	}
 
 }
