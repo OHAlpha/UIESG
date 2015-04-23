@@ -2,6 +2,9 @@ package edu.fgcu.stesting.uiesg.browser;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
 import java.util.NavigableSet;
 
 import edu.fgcu.stesting.uiesg.data.GODFactory;
@@ -9,6 +12,7 @@ import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -80,7 +84,6 @@ public class GraphicalOutput {
 		int size = sed.size();
 		if (size > 0)
 			god = sed.getGraphData(size - 1);
-
 		/*** then get the number of actions god.numActions() ***/
 		int actions = god.numActions();
 
@@ -104,7 +107,22 @@ public class GraphicalOutput {
 
 		// calculates stats for SED
 		sed.calculateStatistics();
+		
+		NavigableMap<String, UIEfficiencyStatistic> stats = sed.getStatistics(size-1);
+		tmp = new ArrayList<String>();
+		
+		for(NavigableMap.Entry<String, UIEfficiencyStatistic> entry:stats.entrySet()) {
+			tmp.add(entry.getKey() + " :      " + entry.getValue().toString());
+		}
 
+		// putting domains in observable list 'data'
+		final ObservableList<String> datab = FXCollections
+				.observableArrayList(tmp);
+
+		final ListView<String> listViewb = new ListView<String>(datab);
+		listViewb.setItems(data);
+		
+		
 		// setup display and add lineChart and statBar to the grid
 		GridPane grid = new GridPane();
 		VBox vBox = new VBox();
