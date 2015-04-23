@@ -71,6 +71,11 @@ public class Browser extends Application {
 	 */
 	WebEngine engine;
 
+	/**
+	 * The addressbar.
+	 */
+	TextField addrT;
+
 	@SuppressWarnings( "javadoc" )
 	@Override
 	public void start( Stage primaryStage ) throws Exception {
@@ -146,6 +151,7 @@ public class Browser extends Application {
 						// + arg1 + ", new: " + arg2);
 						String url = (String) engine
 								.executeScript("window.location.href");
+						addrT.setText(url);
 						// System.out.println("\turl: " + url);
 						try {
 							updatePage(new URL(url));
@@ -160,7 +166,7 @@ public class Browser extends Application {
 		GridPane grid = new GridPane();
 		HBox toolbar = new HBox();
 		Label addrL = new Label("Address:");
-		final TextField addrT = new TextField();
+		addrT = new TextField();
 		Button btn = new Button();
 		btn.setText("Go");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
