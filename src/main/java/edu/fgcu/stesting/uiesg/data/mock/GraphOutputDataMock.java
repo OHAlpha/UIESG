@@ -84,11 +84,7 @@ public class GraphOutputDataMock implements GraphOutputData {
 
 	@Override
 	public MouseGraphAction getAction( int index ) {
-		try {
-			return list.get(index);
-		} catch (Exception e) {
-			throw new RuntimeException("index: " + index + ";", e);
-		}
+		return list.get(index);
 	}
 
 	@Override
@@ -119,11 +115,8 @@ public class GraphOutputDataMock implements GraphOutputData {
 
 	@Override
 	public boolean equals( Object o ) {
-		if (o instanceof GraphOutputDataMock) {
-			GraphOutputDataMock god = (GraphOutputDataMock) o;
-			return assertEquals(god, false);
-		} else
-			return false;
+		GraphOutputDataMock god = (GraphOutputDataMock) o;
+		return assertEquals(god, false);
 	}
 
 	@Override

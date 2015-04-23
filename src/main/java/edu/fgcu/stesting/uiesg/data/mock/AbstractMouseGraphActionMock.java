@@ -47,11 +47,8 @@ public abstract class AbstractMouseGraphActionMock extends
 
 	@Override
 	public boolean equals( Object o ) {
-		if (o instanceof MouseGraphAction) {
-			MouseGraphAction a = (MouseGraphAction) o;
-			return assertEquals(a, false);
-		}
-		return false;
+		MouseGraphAction a = (MouseGraphAction) o;
+		return assertEquals(a, false);
 	}
 
 	/*

@@ -38,11 +38,8 @@ public class Dim extends Dimension2D {
 	}
 
 	public boolean equals( Object o ) {
-		if (o instanceof Dimension2D) {
-			Dimension2D d = (Dimension2D) o;
-			return w == d.getWidth() && h == d.getHeight();
-		}
-		return false;
+		Dimension2D d = (Dimension2D) o;
+		return w == d.getWidth() && h == d.getHeight();
 	}
 
 }
