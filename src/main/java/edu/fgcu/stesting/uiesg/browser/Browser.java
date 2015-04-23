@@ -71,7 +71,7 @@ public class Browser extends Application {
 	@SuppressWarnings("javadoc")
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		WebView browser = new WebView();
+		final WebView browser = new WebView();
 		browser.addEventHandler(MouseEvent.ANY, new EventHandler<MouseEvent>() {
 
 			@Override
@@ -193,14 +193,15 @@ public class Browser extends Application {
 				}
 			}
 		});
-		Button b = new Button();
-		b.setText("Graph");
-		b.setOnAction(new EventHandler<ActionEvent>() {
+		Button graph = new Button();
+		graph.setText("Graph");
+		graph.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				// create new scene in Graphical Output
 				if (sed != null) {
+					//browser.getEngine().load(null);
 					GraphicalOutput go = new GraphicalOutput();
 					Stage stage = new Stage();
 					
@@ -220,7 +221,7 @@ public class Browser extends Application {
 		toolbar.getChildren().add(addrL);
 		toolbar.getChildren().add(addrT);
 		toolbar.getChildren().add(btn);
-		toolbar.getChildren().add(b);
+		toolbar.getChildren().add(graph);
 		grid.add(toolbar, 0, 0, 1, 1);
 		grid.add(browser, 0, 1, 1, 1);
 		grid.setAlignment(Pos.CENTER);
