@@ -3,7 +3,6 @@ package edu.fgcu.stesting.uiesg.browser;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.NavigableSet;
-import java.util.TreeMap;
 
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
@@ -13,14 +12,12 @@ import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -43,37 +40,34 @@ public class GraphicalOutput {
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
 	 */
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Scene graph(SiteEfficiencyData sed) {
+	@SuppressWarnings( { "unchecked", "rawtypes" } )
+	public Scene graph( SiteEfficiencyData sed ) {
 
 		// define LineChart
-		final LineChart<Number, Number> lineChart = new LineChart<>(new NumberAxis(),
-				new NumberAxis());
+		final LineChart<Number, Number> lineChart = new LineChart<>(
+				new NumberAxis(), new NumberAxis());
 
 		// set the title of the graph
 		lineChart.setTitle("UIESG Data");
 
-		
 		// declare series
 		XYChart.Series series2 = new XYChart.Series();
 		series2.setName("Mouse movement");
-		
-		
+
 		// methods to use for Stats:
 		// sed.calculateStatistics();
 		// sed.getStatistics(i);
 
-		
 		// compiles mouse data for selected SED
 		sed.compileMouseData();
-				
-		//NavigableSet<String> stats = sed.calculateStatistics();
+
+		// NavigableSet<String> stats = sed.calculateStatistics();
 		ArrayList<String> tmp = new ArrayList<String>();
 		// put domains in list
 		tmp.add("stat1");
 		tmp.add("stat2");
 		tmp.add("stat3");
-		//tmp.addAll(stats);
+		// tmp.addAll(stats);
 
 		// putting domains in observable list 'data'
 		final ObservableList<String> data = FXCollections
@@ -81,26 +75,36 @@ public class GraphicalOutput {
 
 		final ListView<String> listView = new ListView<String>(data);
 		listView.setItems(data);
-		
+
 		/*** get the number of instances for the particular domain ***/
-		int size = sed.size();	
-		if (size>0)	god = sed.getGraphData(size-1);
-		
+		int size = sed.size();
+		if (size > 0)
+			god = sed.getGraphData(size - 1);
+
 		/*** then get the number of actions god.numActions() ***/
 		int actions = god.numActions();
-				
+
 		/*** loop through the actions and assign points ***/
-		for(int i = 0; i < actions; i++) {
+		for (int i = 0; i < actions; i++) {
 			MouseGraphAction a = god.getAction(i);
+			System.out.println(i+": "+a);
 			if (a.getType() == GODFactory.NODE) {
-				Point2D p = ((MouseGraphNode)a).getLocation();
-				series2.getData().add(new XYChart.Data(p.getX(),p.getY()));
+				Point2D p = ((MouseGraphNode) a).getLocation();
+				XYChart.Data d = new XYChart.Data(p.getX(), p.getY());
+				series2.getData().add(d);
+				d.setNode(new javafx.scene.shape.Rectangle(
+						5,
+						5,
+						a.getSubType() == GODFactory.ENTER ? javafx.scene.paint.Color.RED
+								: (a.getSubType() == GODFactory.HOVER ? javafx.scene.paint.Color.YELLOW
+										: (a.getSubType() == GODFactory.EXIT ? javafx.scene.paint.Color.BLUE
+												: javafx.scene.paint.Color.RED))));
 			}
 		}
-		
+
 		// calculates stats for SED
 		sed.calculateStatistics();
-		
+
 		// setup display and add lineChart and statBar to the grid
 		GridPane grid = new GridPane();
 		VBox vBox = new VBox();
@@ -110,7 +114,7 @@ public class GraphicalOutput {
 		vBox.getChildren().add(listView);
 		grid.add(vBox, 0, 0, 1, 1);
 		grid.add(lineChart, 0, 1, 1, 1);
-		
+
 		lineChart.setAnimated(false);
 		lineChart.setCreateSymbols(true);
 
@@ -160,7 +164,7 @@ public class GraphicalOutput {
 		listView.getSelectionModel().getSelectedIndices()
 				.addListener(new ListChangeListener<Integer>() {
 					@Override
-					public void onChanged(Change<? extends Integer> change) {
+					public void onChanged( Change<? extends Integer> change ) {
 
 						for (int i = 0; i < data.size(); i++) {
 							if (change.getList().contains(i)) {
