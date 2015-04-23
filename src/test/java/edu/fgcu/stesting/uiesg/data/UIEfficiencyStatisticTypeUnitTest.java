@@ -22,6 +22,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
 import edu.fgcu.stesting.uiesg.data.mock.UIEfficiencyStatisticTypeMock;
 import edu.fgcu.stesting.uiesg.data.statistic.MouseArea;
 import edu.fgcu.stesting.uiesg.data.statistic.NodesPerMinute;
@@ -34,6 +35,7 @@ public class UIEfficiencyStatisticTypeUnitTest {
 
 	@Parameters
 	public static Collection<Object[]> dataParameters() {
+		UIEfficiencyStatistics.reset();
 		god = GODFactory.newInstance(null);
 		try {
 			List<Object[]> params = new LinkedList<>();

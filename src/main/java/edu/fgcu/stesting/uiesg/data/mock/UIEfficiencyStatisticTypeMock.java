@@ -11,8 +11,6 @@ import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType;
 @SuppressWarnings( "javadoc" )
 public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
 
-	public UIEfficiencyStatisticTypeMock() throws DuplicateTypeException {}
-
 	@Override
 	public String getDescription() {
 		return "A mock statistic type";
@@ -24,12 +22,8 @@ public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public UIEfficiencyStatistic create( DataInputStream in ) {
-		try {
-			in.read();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public UIEfficiencyStatistic create( DataInputStream in ) throws IOException {
+		in.read();
 		return createStatistic("mock statistic");
 	}
 
@@ -39,12 +33,8 @@ public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public void write( UIEfficiencyStatistic statistic, DataOutputStream out ) {
-		try {
-			out.write(53);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void write( UIEfficiencyStatistic statistic, DataOutputStream out ) throws IOException {
+		out.write(53);
 	}
 
 }

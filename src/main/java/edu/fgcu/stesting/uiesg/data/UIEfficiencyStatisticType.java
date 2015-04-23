@@ -66,6 +66,10 @@ public abstract class UIEfficiencyStatisticType {
 			return types.get(type);
 		}
 
+		public static void reset() {
+			types.clear();
+		}
+
 	}
 
 	/**

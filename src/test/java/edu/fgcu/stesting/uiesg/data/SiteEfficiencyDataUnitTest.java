@@ -21,7 +21,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData.DataSet;
-import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
 import edu.fgcu.stesting.uiesg.data.mock.UIEfficiencyStatisticTypeMock;
 import static org.junit.Assert.*;
@@ -75,11 +74,7 @@ public class SiteEfficiencyDataUnitTest {
 		SiteEfficiencyData.init("tmp/datafiles");
 		MAIDFactory.init(MAIDFactory.MOCK);
 		GODFactory.init(GODFactory.MOCK);
-		try {
-			new UIEfficiencyStatisticTypeMock().register();
-		} catch (DuplicateTypeException e) {
-			e.printStackTrace();
-		}
+		new UIEfficiencyStatisticTypeMock().register();
 
 		// write data to data folder
 		File file = new File(dir, "wikipedia.org.sed");

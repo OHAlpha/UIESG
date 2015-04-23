@@ -10,7 +10,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-
 import static edu.fgcu.stesting.uiesg.data.MouseGraphAction.types;
 import static edu.fgcu.stesting.uiesg.data.MouseGraphAction.subTypes;
 
@@ -53,11 +52,11 @@ public class GraphOutputDataMockTest {
 				{ 60, 50, 10, MouseEvent.MOUSE_CLICKED },
 				{ 50, 30, 2011, MouseEvent.MOUSE_MOVED },
 				{ 50, 25, 2012, MouseEvent.MOUSE_MOVED },
-				{ 50, 24, 2118, MouseEvent.MOUSE_MOVED },
-				{ 50, 23, 2123, MouseEvent.MOUSE_MOVED },
-				{ 40, 10, 2124, MouseEvent.MOUSE_MOVED },
-				{ 30, 0, 2125, MouseEvent.MOUSE_MOVED },
-				{ 30, 0, 2126, MouseEvent.MOUSE_EXITED } };
+				{ 50, 24, 3018, MouseEvent.MOUSE_MOVED },
+				{ 50, 23, 3023, MouseEvent.MOUSE_MOVED },
+				{ 40, 10, 3024, MouseEvent.MOUSE_MOVED },
+				{ 30, 0, 3025, MouseEvent.MOUSE_MOVED },
+				{ 30, 0, 3026, MouseEvent.MOUSE_EXITED } };
 		maid = MAIDFactory.newInstance();
 		for (int i = 0; i < data.length; i++)
 			maid.addPoint(new Point(data[i][0], data[i][1]), new Point(
@@ -219,6 +218,24 @@ public class GraphOutputDataMockTest {
 	public void testGetEdge() {
 		for (int i : new int[] { 1, 3, 6 })
 			as[i].assertEquals(godA.getEdge(i), true);
+	}
+
+	@Test
+	public void testEquals() {
+		godB.assertEquals(godE, true);
+		assertTrue(godB.equals(godE));
+	}
+
+	@Test( expected = AssertionError.class )
+	public void testEqualsC() {
+		assertNotEquals(godB + " should not be " + godC, godB, godC);
+		godB.assertEquals(godC,true);
+	}
+
+	@Test( expected = AssertionError.class )
+	public void testEqualsD() {
+		assertNotEquals(godB + " should not be " + godD, godB, godD);
+		godB.assertEquals(godD,true);
 	}
 
 }
