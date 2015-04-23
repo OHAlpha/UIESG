@@ -138,4 +138,10 @@ public class GraphOutputDataMock implements GraphOutputData {
 		return true;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "GODMock( #points: " + numActions() + ", order: " + order()
+//				+ ", size: " + size() + " )";
+//	}
+
 }

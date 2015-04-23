@@ -20,6 +20,10 @@ public class GraphOutputDataMockTest {
 
 	private static MouseActionInputData maid;
 
+	private static MouseActionInputData maid2;
+
+	private static MouseActionInputData maid3;
+
 	private static int o = 4, s = 3, n = 7;
 
 	private static MouseGraphAction[] as;
@@ -29,9 +33,13 @@ public class GraphOutputDataMockTest {
 	 */
 	@BeforeClass
 	public static void setup() {
+		setup(MAIDFactory.MOCK, GODFactory.MOCK, GODFactory.MOCK);
+	}
+
+	protected static void setup( int maidM, int godM, int mgaM ) {
 		SiteEfficiencyData.init("tmp/datafiles");
-		MAIDFactory.init(MAIDFactory.MOCK);
-		GODFactory.init(GODFactory.MOCK);
+		MAIDFactory.init(maidM);
+		GODFactory.init(godM, mgaM);
 		maid = MAIDFactory.newInstance();
 		maid.addPoint(new Point(30, 0), new Point(30, 0),
 				System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
@@ -57,6 +65,54 @@ public class GraphOutputDataMockTest {
 				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
 		maid.addPoint(new Point(30, 0), new Point(30, 0),
 				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_EXITED);
+		maid2 = MAIDFactory.newInstance();
+		maid2.addPoint(new Point(30, 0), new Point(30, 0),
+				System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
+		maid2.addPoint(new Point(30, 10), new Point(30, 10),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid2.addPoint(new Point(30, 30), new Point(30, 30),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid2.addPoint(new Point(30, 50), new Point(30, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid2.addPoint(new Point(30, 50), new Point(30, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		maid2.addPoint(new Point(40, 50), new Point(40, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid2.addPoint(new Point(50, 50), new Point(50, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid2.addPoint(new Point(60, 50), new Point(60, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid2.addPoint(new Point(50, 30), new Point(50, 30),
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+		maid2.addPoint(new Point(40, 10), new Point(40, 10),
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+		maid2.addPoint(new Point(30, 0), new Point(30, 0),
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+		maid3 = MAIDFactory.newInstance();
+		maid3.addPoint(new Point(30, 0), new Point(30, 0),
+				System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
+		maid3.addPoint(new Point(30, 10), new Point(30, 10),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid3.addPoint(new Point(30, 30), new Point(30, 30),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid3.addPoint(new Point(30, 50), new Point(30, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid3.addPoint(new Point(30, 50), new Point(30, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		maid3.addPoint(new Point(40, 50), new Point(40, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid3.addPoint(new Point(50, 50), new Point(50, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid3.addPoint(new Point(60, 50), new Point(60, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+		maid3.addPoint(new Point(50, 30), new Point(50, 30),
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+		maid3.addPoint(new Point(40, 10), new Point(40, 10),
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+		maid3.addPoint(new Point(30, 0), new Point(35, 0),
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+		maid3.addPoint(new Point(30, 0), new Point(35, 0),
+				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_EXITED);
 		as = new MouseGraphAction[] {
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.ENTER, 30, 0),
@@ -76,16 +132,9 @@ public class GraphOutputDataMockTest {
 								50, 30, 0 }),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.EXIT, 30, 0) };
-		for (int i = 0; i < as.length; i++) {
-			@SuppressWarnings( "unused" )
-			MouseGraphAction a = as[i];
-			;
-			// System.out.printf("\t%d: ( type, subType ) = ( %s, %s )\n", i,
-			// types[a.getType()], subTypes[a.getSubType()]);
-		}
 	}
 
-	private GraphOutputData godA, godB;
+	protected GraphOutputData godA, godB, godC, godD, godE;
 
 	@Before
 	public void before() {
@@ -93,6 +142,9 @@ public class GraphOutputDataMockTest {
 		for (int i = 0; i < n; i++)
 			godA.addAction(as[i]);
 		godB = GODFactory.newInstance(maid.iterate());
+		godC = GODFactory.newInstance(maid2.iterate());
+		godD = GODFactory.newInstance(maid3.iterate());
+		godE = GODFactory.newInstance(maid.iterate());
 	}
 
 	@After
