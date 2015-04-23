@@ -98,24 +98,31 @@ public class Browser extends Application {
 				case "MOUSE_ENTERED":
 					maid.addPoint(pos, pos, System.currentTimeMillis(),
 							java.awt.event.MouseEvent.MOUSE_ENTERED);
+					break;
 				case "MOUSE_MOVED":
 					maid.addPoint(pos, pos, System.currentTimeMillis(),
 							java.awt.event.MouseEvent.MOUSE_MOVED);
+					break;
 				case "MOUSE_PRESSED":
 					maid.addPoint(pos, pos, System.currentTimeMillis(),
 							java.awt.event.MouseEvent.MOUSE_PRESSED);
+					break;
 				case "MOUSE_DRAGGED":
 					maid.addPoint(pos, pos, System.currentTimeMillis(),
 							java.awt.event.MouseEvent.MOUSE_DRAGGED);
+					break;
 				case "MOUSE_RELEASED":
 					maid.addPoint(pos, pos, System.currentTimeMillis(),
 							java.awt.event.MouseEvent.MOUSE_RELEASED);
+					break;
 				case "MOUSE_CLICKED":
 					maid.addPoint(pos, pos, System.currentTimeMillis(),
 							java.awt.event.MouseEvent.MOUSE_CLICKED);
+					break;
 				case "MOUSE_EXITED":
 					maid.addPoint(pos, pos, System.currentTimeMillis(),
 							java.awt.event.MouseEvent.MOUSE_EXITED);
+					break;
 				}
 				System.out.println("\t" + maid);
 
