@@ -484,9 +484,6 @@ public class SiteEfficiencyData {
 	 */
 	public String getDomain() {
 		return domain;
-		// TODO
-		//
-
 	}
 
 	/**
