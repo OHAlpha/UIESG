@@ -1,9 +1,13 @@
 package edu.fgcu.stesting.uiesg.browser;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.NavigableSet;
 
+import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
+import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -64,20 +68,33 @@ public class GraphicalOutput {
 		// retrieve the GOD
 		// god = sed.getGraphData(i);
 
+		
 		// compiles mouse data for selected SED
 		sed.compileMouseData();
-
-		/** get the number of instances for the particular domain ***/
+	
+		
+		/*** get the number of instances for the particular domain ***/
+		int size = sed.size();	
+		if (size>0)	god = sed.getGraphData(size-1);
 		
 		/*** then get the number of actions god.numActions() ***/
-
+		int actions = god.numActions();
+				
 		/*** loop through the actions and assign points ***/
-
+		for(int i = 0; i < actions; i++) {
+			MouseGraphAction a = god.getAction(i);
+			if (a.getType() == GODFactory.NODE) {
+				Point2D p = ((MouseGraphNode)a).getLocation();
+				series2.getData().add(new XYChart.Data(p.getX(),p.getY()));
+			}
+		}
+		
 		// test points for mouse movements
+		/*
 		series2.getData().add(new XYChart.Data(5.2, 229.2));
 		series2.getData().add(new XYChart.Data(2.4, 37.6));
 		series2.getData().add(new XYChart.Data(50, 15.6));
-
+		*/
 		lc.setAnimated(false);
 		lc.setCreateSymbols(true);
 
