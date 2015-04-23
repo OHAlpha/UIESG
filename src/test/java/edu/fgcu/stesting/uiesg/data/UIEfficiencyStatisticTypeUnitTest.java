@@ -22,6 +22,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
+import edu.fgcu.stesting.uiesg.data.mock.UIEfficiencyStatisticTypeMock;
 import edu.fgcu.stesting.uiesg.data.statistic.MouseArea;
 import edu.fgcu.stesting.uiesg.data.statistic.NodesPerMinute;
 
@@ -36,6 +37,7 @@ public class UIEfficiencyStatisticTypeUnitTest {
 		god = GODFactory.newInstance(null);
 		try {
 			List<Object[]> params = new LinkedList<>();
+			params.add(new Object[] { "UIEfficiencyStatisticTypeMock", new UIEfficiencyStatisticTypeMock() });
 			params.add(new Object[] { "NodesPerMinute", new NodesPerMinute() });
 			params.add(new Object[] { "MouseArea", new MouseArea() });
 			return params;

@@ -60,45 +60,37 @@ public class GraphOutputDataMockTest {
 				{ 30, 0, 2126, MouseEvent.MOUSE_EXITED } };
 		maid = MAIDFactory.newInstance();
 		for (int i = 0; i < data.length; i++)
-			maid.addPoint(new Point(data[i][0], (i < data.length - 2 ? 0 : 10)
-					+ data[i][1]), new Point(data[i][0], data[i][1]),
-					data[i][2], data[i][3]);
+			maid.addPoint(new Point(data[i][0], data[i][1]), new Point(
+					data[i][0], data[i][1]), data[i][2], data[i][3]);
 		maid2 = MAIDFactory.newInstance();
 		for (int i = 0; i < data.length - 1; i++)
 			maid2.addPoint(new Point(data[i][0], data[i][1]), new Point(
 					data[i][0], data[i][1]), data[i][2], data[i][3]);
 		maid3 = MAIDFactory.newInstance();
 		for (int i = 0; i < data.length; i++)
-			maid3.addPoint(new Point(data[i][0], (i < data.length - 2 ? 0 : 10)
-					+ data[i][1]), new Point(data[i][0], data[i][1]),
-					data[i][2], data[i][3]);
+			maid3.addPoint(new Point(data[i][0], 10 + data[i][1]), new Point(
+					data[i][0], 10 + data[i][1]), data[i][2], data[i][3]);
 		as = new MouseGraphAction[] {
-				GODFactory.newGraphAction(0,
-						GODFactory.NODE, GODFactory.ENTER, 30, 0),
-				GODFactory.newGraphAction(1,
-						GODFactory.EDGE, GODFactory.MOVE, new double[] { 30, 0,
-								30, 50 }),
-				GODFactory.newGraphAction(4,
-						GODFactory.NODE, GODFactory.CLICK, 30, 50),
-				GODFactory.newGraphAction(6,
-						GODFactory.EDGE, GODFactory.DRAG, new double[] { 30,
-								50, 60, 50 }),
-				GODFactory.newGraphAction(10,
-						GODFactory.NODE, GODFactory.CLICK, 60, 50),
-				GODFactory.newGraphAction(2011,
-						GODFactory.NODE, GODFactory.HOVER, new double[] { 60,
-								50 }),
-				GODFactory.newGraphAction(2012,
-						GODFactory.EDGE, GODFactory.MOVE, new double[] { 60,
-								50, 50, 25 }),
-				GODFactory.newGraphAction(2012,
-						GODFactory.NODE, GODFactory.HOVER, new double[] { 50,
-								25, 50, 23 }),
-				GODFactory.newGraphAction(2014,
-						GODFactory.EDGE, GODFactory.MOVE, new double[] { 50,
-								23, 30, 0 }),
-				GODFactory.newGraphAction(2017,
-						GODFactory.NODE, GODFactory.EXIT, 30, 0) };
+				GODFactory.newGraphAction(0, GODFactory.NODE, GODFactory.ENTER,
+						30, 0),
+				GODFactory.newGraphAction(1, GODFactory.EDGE, GODFactory.MOVE,
+						new double[] { 30, 0, 30, 50 }),
+				GODFactory.newGraphAction(4, GODFactory.NODE, GODFactory.CLICK,
+						30, 50),
+				GODFactory.newGraphAction(6, GODFactory.EDGE, GODFactory.DRAG,
+						new double[] { 30, 50, 60, 50 }),
+				GODFactory.newGraphAction(10, GODFactory.NODE,
+						GODFactory.CLICK, 60, 50),
+				GODFactory.newGraphAction(2011, GODFactory.NODE,
+						GODFactory.HOVER, new double[] { 60, 50 }),
+				GODFactory.newGraphAction(2012, GODFactory.EDGE,
+						GODFactory.MOVE, new double[] { 60, 50, 50, 25 }),
+				GODFactory.newGraphAction(2012, GODFactory.NODE,
+						GODFactory.HOVER, new double[] { 50, 25, 50, 23 }),
+				GODFactory.newGraphAction(2014, GODFactory.EDGE,
+						GODFactory.MOVE, new double[] { 50, 23, 30, 0 }),
+				GODFactory.newGraphAction(2017, GODFactory.NODE,
+						GODFactory.EXIT, 30, 0) };
 	}
 
 	protected GraphOutputData godA, godB, godC, godD, godE;

@@ -11,14 +11,7 @@ import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType;
 @SuppressWarnings( "javadoc" )
 public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
 
-	public UIEfficiencyStatisticTypeMock() throws DuplicateTypeException {
-		super();
-	}
-
-	@Override
-	public String getName() {
-		return "Mock";
-	}
+	public UIEfficiencyStatisticTypeMock() throws DuplicateTypeException {}
 
 	@Override
 	public String getDescription() {
