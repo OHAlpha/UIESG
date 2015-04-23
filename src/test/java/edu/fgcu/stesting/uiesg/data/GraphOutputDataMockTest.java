@@ -267,8 +267,8 @@ public class GraphOutputDataMockTest {
 
 	@Test
 	public void testGetNode() {
-		for (int i = 0; i < n; i += 2)
-			as[i].assertEquals(godA.getAction(i), true);
+		for (int i : new int[] {0,2,4,5,7})
+			as[i].assertEquals(godA.getNode(i), true);
 	}
 
 	@Test( expected = IllegalArgumentException.class )
@@ -278,8 +278,8 @@ public class GraphOutputDataMockTest {
 
 	@Test
 	public void testGetEdge() {
-		for (int i = 1; i < n; i += 2)
-			as[i].assertEquals(godA.getAction(i), true);
+		for (int i : new int[] {1,3,6})
+			as[i].assertEquals(godA.getEdge(i), true);
 	}
 
 }
