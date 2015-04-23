@@ -28,17 +28,6 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	private List<Point> rawData;
 
 	/**
-	 * Constructs a MAID instance with an existing collection. This is for
-	 * testing purposes.
-	 * 
-	 * @param rawData
-	 *            the collection to be used in place of the default.
-	 */
-	protected MouseActionInputDataImp( List<Point> rawData ) {
-		this.rawData = rawData;
-	}
-
-	/**
 	 * Constructs a standard MAID instance.
 	 */
 	public MouseActionInputDataImp() {

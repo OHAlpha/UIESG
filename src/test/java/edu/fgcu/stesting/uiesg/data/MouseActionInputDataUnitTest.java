@@ -134,5 +134,10 @@ public class MouseActionInputDataUnitTest {
 				System.currentTimeMillis(), 0);
 
 	}
+	
+	@Test
+	public void testToString() {
+		assertEquals("MAID( #points: " + MAID.size() + " )",MAID.toString());
+	}
 
 }
