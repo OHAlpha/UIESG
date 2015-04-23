@@ -24,7 +24,7 @@ public class GraphOutputDataMockTest {
 
 	private static MouseActionInputData maid3;
 
-	private static int o = 5, s = 3, n = o + s;
+	private static int o = 6, s = 4, n = o + s;
 
 	private static MouseGraphAction[] as;
 
@@ -40,117 +40,64 @@ public class GraphOutputDataMockTest {
 		SiteEfficiencyData.init("tmp/datafiles");
 		MAIDFactory.init(maidM);
 		GODFactory.init(godM, mgaM);
+		int[][] data = new int[][] { { 30, 0, 0, MouseEvent.MOUSE_ENTERED },
+				{ 30, 10, 1, MouseEvent.MOUSE_MOVED },
+				{ 30, 30, 2, MouseEvent.MOUSE_MOVED },
+				{ 30, 50, 3, MouseEvent.MOUSE_MOVED },
+				{ 30, 50, 4, MouseEvent.MOUSE_CLICKED },
+				{ 30, 50, 5, MouseEvent.MOUSE_PRESSED },
+				{ 40, 50, 6, MouseEvent.MOUSE_DRAGGED },
+				{ 50, 50, 7, MouseEvent.MOUSE_DRAGGED },
+				{ 60, 50, 8, MouseEvent.MOUSE_DRAGGED },
+				{ 60, 50, 9, MouseEvent.MOUSE_RELEASED },
+				{ 60, 50, 10, MouseEvent.MOUSE_CLICKED },
+				{ 50, 30, 2011, MouseEvent.MOUSE_MOVED },
+				{ 50, 25, 2012, MouseEvent.MOUSE_MOVED },
+				{ 50, 24, 2118, MouseEvent.MOUSE_MOVED },
+				{ 50, 23, 2123, MouseEvent.MOUSE_MOVED },
+				{ 40, 10, 2124, MouseEvent.MOUSE_MOVED },
+				{ 30, 0, 2125, MouseEvent.MOUSE_MOVED },
+				{ 30, 0, 2126, MouseEvent.MOUSE_EXITED } };
 		maid = MAIDFactory.newInstance();
-		maid.addPoint(new Point(30, 0), new Point(30, 0),
-				System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
-		maid.addPoint(new Point(30, 10), new Point(30, 10),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 30), new Point(30, 30),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 50), new Point(30, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 50), new Point(30, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		maid.addPoint(new Point(30, 50), new Point(30, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_PRESSED);
-		maid.addPoint(new Point(40, 50), new Point(40, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
-		maid.addPoint(new Point(50, 50), new Point(50, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
-		maid.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
-		maid.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_RELEASED);
-		maid.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		maid.addPoint(new Point(50, 30), new Point(50, 30),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(40, 10), new Point(40, 10),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(30, 0),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-		maid.addPoint(new Point(30, 0), new Point(30, 0),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_EXITED);
+		for (int i = 0; i < data.length; i++)
+			maid.addPoint(new Point(data[i][0], (i < data.length - 2 ? 0 : 10)
+					+ data[i][1]), new Point(data[i][0], data[i][1]),
+					data[i][2], data[i][3]);
 		maid2 = MAIDFactory.newInstance();
-		maid2.addPoint(new Point(30, 0), new Point(30, 0),
-				System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
-		maid2.addPoint(new Point(30, 10), new Point(30, 10),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid2.addPoint(new Point(30, 30), new Point(30, 30),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid2.addPoint(new Point(30, 50), new Point(30, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid2.addPoint(new Point(30, 50), new Point(30, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		maid2.addPoint(new Point(30, 50), new Point(30, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_PRESSED);
-		maid2.addPoint(new Point(40, 50), new Point(40, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
-		maid2.addPoint(new Point(50, 50), new Point(50, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
-		maid2.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
-		maid2.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_RELEASED);
-		maid2.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		maid2.addPoint(new Point(50, 30), new Point(50, 30),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-		maid2.addPoint(new Point(40, 10), new Point(40, 10),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-		maid2.addPoint(new Point(30, 0), new Point(30, 0),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
+		for (int i = 0; i < data.length - 1; i++)
+			maid2.addPoint(new Point(data[i][0], data[i][1]), new Point(
+					data[i][0], data[i][1]), data[i][2], data[i][3]);
 		maid3 = MAIDFactory.newInstance();
-		maid3.addPoint(new Point(30, 0), new Point(30, 0),
-				System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
-		maid3.addPoint(new Point(30, 10), new Point(30, 10),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid3.addPoint(new Point(30, 30), new Point(30, 30),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid3.addPoint(new Point(30, 50), new Point(30, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-		maid3.addPoint(new Point(30, 50), new Point(30, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		maid3.addPoint(new Point(30, 50), new Point(30, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_PRESSED);
-		maid3.addPoint(new Point(40, 50), new Point(40, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
-		maid3.addPoint(new Point(50, 50), new Point(50, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
-		maid3.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
-		maid3.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_RELEASED);
-		maid3.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-		maid3.addPoint(new Point(50, 30), new Point(50, 30),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-		maid3.addPoint(new Point(40, 10), new Point(40, 10),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-		maid3.addPoint(new Point(30, 0), new Point(35, 0),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-		maid3.addPoint(new Point(30, 0), new Point(35, 0),
-				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_EXITED);
+		for (int i = 0; i < data.length; i++)
+			maid3.addPoint(new Point(data[i][0], (i < data.length - 2 ? 0 : 10)
+					+ data[i][1]), new Point(data[i][0], data[i][1]),
+					data[i][2], data[i][3]);
 		as = new MouseGraphAction[] {
-				GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.newGraphAction(0,
 						GODFactory.NODE, GODFactory.ENTER, 30, 0),
-				GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.newGraphAction(1,
 						GODFactory.EDGE, GODFactory.MOVE, new double[] { 30, 0,
 								30, 50 }),
-				GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.newGraphAction(4,
 						GODFactory.NODE, GODFactory.CLICK, 30, 50),
-				GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.newGraphAction(6,
 						GODFactory.EDGE, GODFactory.DRAG, new double[] { 30,
 								50, 60, 50 }),
-				GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.newGraphAction(10,
 						GODFactory.NODE, GODFactory.CLICK, 60, 50),
-				GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.newGraphAction(2011,
 						GODFactory.NODE, GODFactory.HOVER, new double[] { 60,
 								50 }),
-				GODFactory.newGraphAction(System.currentTimeMillis(),
+				GODFactory.newGraphAction(2012,
 						GODFactory.EDGE, GODFactory.MOVE, new double[] { 60,
-								50, 30, 0 }),
-				GODFactory.newGraphAction(System.currentTimeMillis(),
+								50, 50, 25 }),
+				GODFactory.newGraphAction(2012,
+						GODFactory.NODE, GODFactory.HOVER, new double[] { 50,
+								25, 50, 23 }),
+				GODFactory.newGraphAction(2014,
+						GODFactory.EDGE, GODFactory.MOVE, new double[] { 50,
+								23, 30, 0 }),
+				GODFactory.newGraphAction(2017,
 						GODFactory.NODE, GODFactory.EXIT, 30, 0) };
 	}
 
@@ -267,7 +214,7 @@ public class GraphOutputDataMockTest {
 
 	@Test
 	public void testGetNode() {
-		for (int i : new int[] {0,2,4,5,7})
+		for (int i : new int[] { 0, 2, 4, 5, 7 })
 			as[i].assertEquals(godA.getNode(i), true);
 	}
 
@@ -278,7 +225,7 @@ public class GraphOutputDataMockTest {
 
 	@Test
 	public void testGetEdge() {
-		for (int i : new int[] {1,3,6})
+		for (int i : new int[] { 1, 3, 6 })
 			as[i].assertEquals(godA.getEdge(i), true);
 	}
 

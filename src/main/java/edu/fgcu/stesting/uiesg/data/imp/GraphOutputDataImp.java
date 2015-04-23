@@ -97,15 +97,6 @@ public class GraphOutputDataImp implements GraphOutputData {
 			int t = c.type;
 			switch (t) {
 			case MOUSE_ENTERED:
-				if (lastType == MOUSE_MOVED)
-					this.addAction(GODFactory.newGraphAction(lastTime,
-							GODFactory.EDGE, GODFactory.MOVE, toDouble(h)));
-				else if (lastType == MOUSE_DRAGGED)
-					this.addAction(GODFactory.newGraphAction(lastTime,
-							GODFactory.EDGE, GODFactory.DRAG, toDouble(h)));
-				else if (lastType == MOUSE_HOVER)
-					this.addAction(GODFactory.newGraphAction(lastTime,
-							GODFactory.NODE, GODFactory.HOVER, toDouble(h)));
 				h.clear();
 				this.addAction(GODFactory.newGraphAction(c.timestamp,
 						GODFactory.NODE, GODFactory.ENTER,

@@ -23,8 +23,8 @@ public class GraphOutputDataMock implements GraphOutputData {
 
 	public GraphOutputDataMock( Iterator<Point> mouseData ) {
 		locked = true;
-		order = 5;
-		size = 3;
+		order = 6;
+		size = 4;
 		list = new LinkedList<>();
 		list.add(GODFactory.newGraphAction(0, GODFactory.NODE,
 				GODFactory.ENTER, 0, 0));
@@ -34,13 +34,17 @@ public class GraphOutputDataMock implements GraphOutputData {
 				GODFactory.CLICK, 0, 0));
 		list.add(GODFactory.newGraphAction(3, GODFactory.EDGE, GODFactory.DRAG,
 				new double[] { 0, 0, 0, 0 }));
-		list.add(GODFactory.newGraphAction(2, GODFactory.NODE,
-				GODFactory.CLICK, 0, 0));
 		list.add(GODFactory.newGraphAction(4, GODFactory.NODE,
+				GODFactory.CLICK, 0, 0));
+		list.add(GODFactory.newGraphAction(5, GODFactory.NODE,
 				GODFactory.HOVER, new double[] { 0, 0 }));
-		list.add(GODFactory.newGraphAction(5, GODFactory.EDGE, GODFactory.MOVE,
+		list.add(GODFactory.newGraphAction(6, GODFactory.EDGE, GODFactory.MOVE,
 				new double[] { 0, 0, 0, 0 }));
-		list.add(GODFactory.newGraphAction(6, GODFactory.NODE, GODFactory.EXIT,
+		list.add(GODFactory.newGraphAction(7, GODFactory.NODE,
+				GODFactory.HOVER, new double[] { 0, 0 }));
+		list.add(GODFactory.newGraphAction(8, GODFactory.EDGE, GODFactory.MOVE,
+				new double[] { 0, 0, 0, 0 }));
+		list.add(GODFactory.newGraphAction(9, GODFactory.NODE, GODFactory.EXIT,
 				0, 0));
 	}
 
