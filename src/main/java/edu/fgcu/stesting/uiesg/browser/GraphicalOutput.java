@@ -13,6 +13,7 @@ import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -22,6 +23,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 // class to output to the user the graphical information 
@@ -42,39 +46,27 @@ public class GraphicalOutput {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Scene graph(SiteEfficiencyData sed) {
 
-		final LineChart<Number, Number> lc = new LineChart<>(new NumberAxis(),
+		// define LineChart
+		final LineChart<Number, Number> lineChart = new LineChart<>(new NumberAxis(),
 				new NumberAxis());
 
 		// set the title of the graph
-		lc.setTitle("UIESG Data");
+		lineChart.setTitle("UIESG Data");
 
-		// ******commented out series 1 which showed unconnected points*********
-		/*
-		 * // series1 will consist of just points that // are considered an
-		 * "event" XYChart.Series series1 = new XYChart.Series();
-		 * series1.setName("Mouse events"); //
-		 * //SiteEfficiencyData.getForDomain(domain); // test points for mouse
-		 * events series1.getData().add(new XYChart.Data(4.2, 193.2));
-		 * series1.getData().add(new XYChart.Data(2.8, 33.6));
-		 * series1.getData().add(new XYChart.Data(6.8, 23.6));
-		 */
-
-		// series2 will have the mouse x,y data and be a line
-		// graph
+		
+		// declare series
 		XYChart.Series series2 = new XYChart.Series();
 		series2.setName("Mouse movement");
-
-		// multiple GODs for each SED...get the SED by calling
-		// SiteEffiencyData.getForDomain()...that'll give
-		// me the domain and then use the domain to get the GODs...by calling
-		// getGraphData()...
-		// call compile on the SED which will create the GODs.
-		// retrieve the GOD
-		// god = sed.getGraphData(i);
+		
+		
+		// methods to use for Stats:
+		// sed.calculateStatistics();
+		// sed.getStatistics(i);
 
 		
 		// compiles mouse data for selected SED
 		sed.compileMouseData();
+				
 		//NavigableSet<String> stats = sed.calculateStatistics();
 		ArrayList<String> tmp = new ArrayList<String>();
 		// put domains in list
@@ -106,27 +98,27 @@ public class GraphicalOutput {
 			}
 		}
 		
+		// calculates stats for SED
+		sed.calculateStatistics();
+		
+		// setup display and add lineChart and statBar to the grid
 		GridPane grid = new GridPane();
-		VBox statBar = new VBox();
-		statBar.getChildren().add(listView);
-		grid.add(statBar, 0, 0, 1, 1);
-		grid.add(lc, 0, 1, 1, 1);
+		VBox vBox = new VBox();
+		Text title = new Text("Statistics");
+		title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		vBox.getChildren().add(title);
+		vBox.getChildren().add(listView);
+		grid.add(vBox, 0, 0, 1, 1);
+		grid.add(lineChart, 0, 1, 1, 1);
 		
-		
-		// test points for mouse movements
-		/*
-		series2.getData().add(new XYChart.Data(5.2, 229.2));
-		series2.getData().add(new XYChart.Data(2.4, 37.6));
-		series2.getData().add(new XYChart.Data(50, 15.6));
-		*/
-		lc.setAnimated(false);
-		lc.setCreateSymbols(true);
+		lineChart.setAnimated(false);
+		lineChart.setCreateSymbols(true);
 
 		// add points to the LineChart
-		lc.getData().addAll(series2);
+		lineChart.getData().addAll(series2);
 
 		// initialize the Scene with points and specify size
-		Scene scene = new Scene(grid, 600, 550);
+		Scene scene = new Scene(grid, 800, 750);
 
 		// use custom .css to hide one of the lines so that only the
 		// points are visible
