@@ -7,11 +7,10 @@ import java.io.IOException;
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType;
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
 
 @SuppressWarnings( "javadoc" )
 public class NodesPerMinute extends UIEfficiencyStatisticType {
-
-	public NodesPerMinute() throws DuplicateTypeException {}
 
 	@Override
 	public String getDescription() {
@@ -22,7 +21,7 @@ public class NodesPerMinute extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public UIEfficiencyStatistic calculate( GraphOutputData graph ) {
+	public UIEfficiencyStatistic calculate( MouseActionInputData maid, GraphOutputData graph ) {
 		int o = graph.order(), s = graph.size();
 		long b = graph.getAction(0).getTimestamp(), e = graph.getAction(
 				o + s - 1).getTimestamp();

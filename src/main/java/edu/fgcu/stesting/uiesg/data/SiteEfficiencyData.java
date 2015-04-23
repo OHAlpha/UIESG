@@ -452,6 +452,9 @@ public class SiteEfficiencyData {
 
 			}
 
+			out.flush();
+			out.close();
+
 			data = null;
 
 			return true;
@@ -538,15 +541,18 @@ public class SiteEfficiencyData {
 		// create a statistics based on the GOD
 		for (Iterator<DataSet> it = data.iterator(); it.hasNext();) {
 			DataSet d = it.next();
-			if (d.statistics == null) {
-				if (d.graphData != null) {
+			if (d.mouseData.size() > 0)
+				if (d.statistics == null) {
+					if (d.graphData != null) {
+						d.graphData = GODFactory.newInstance(d.mouseData
+								.iterate());
+					}
 					// statistics type will already exist. a static method
 					// calculate all statistics will be added
-					d.statistics = UIEfficiencyStatistics
-							.calculateStatistics(d.graphData);
-				}
+					d.statistics = UIEfficiencyStatistics.calculateStatistics(
+							d.mouseData, d.graphData);
 
-			}
+				}
 		}
 	}
 
