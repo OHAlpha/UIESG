@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 @SuppressWarnings( "javadoc" )
 public class MouseActionInputDataMockTest {
 
-	MouseActionInputData MAID, MAIDB, MAIDC,MAIDD;
+	MouseActionInputData MAID, MAIDB, MAIDCA, MAIDCB, MAIDCC, MAIDCD, MAIDD;
 
 	public MouseActionInputDataMockTest() {
 	}
@@ -25,31 +25,36 @@ public class MouseActionInputDataMockTest {
 	@Before
 	public void before() {
 		MAID = MAIDFactory.newInstance();
-		MAID.addPoint(new Point(0, 1), new Point(2, 0),
-				1l, MouseEvent.MOUSE_CLICKED);
-		MAID.addPoint(new Point(1, 2), new Point(4, 2),
-				2l, MouseEvent.MOUSE_CLICKED);
-		MAID.addPoint(new Point(2, 3), new Point(6, 4),
-				3l, MouseEvent.MOUSE_CLICKED);
+		MAID.addPoint(new Point(0, 1), new Point(2, 0), 1l,
+				MouseEvent.MOUSE_CLICKED);
+		MAID.addPoint(new Point(1, 2), new Point(4, 2), 2l,
+				MouseEvent.MOUSE_CLICKED);
+		MAID.addPoint(new Point(2, 3), new Point(6, 4), 3l,
+				MouseEvent.MOUSE_CLICKED);
 		MAIDB = MAIDFactory.newInstance();
-		MAIDB.addPoint(new Point(0, 1), new Point(2, 0),
-				1l, MouseEvent.MOUSE_CLICKED);
-		MAIDB.addPoint(new Point(1, 2), new Point(4, 2),
-				2l, MouseEvent.MOUSE_CLICKED);
-		MAIDC = MAIDFactory.newInstance();
-		MAIDC.addPoint(new Point(0, 1), new Point(2, 0),
-				1l, MouseEvent.MOUSE_CLICKED);
-		MAIDC.addPoint(new Point(1, 2), new Point(4, 2),
-				2l, MouseEvent.MOUSE_CLICKED);
-		MAIDC.addPoint(new Point(2, 3), new Point(7, 4),
-				3l, MouseEvent.MOUSE_CLICKED);
+		MAIDB.addPoint(new Point(0, 1), new Point(2, 0), 1l,
+				MouseEvent.MOUSE_CLICKED);
+		MAIDB.addPoint(new Point(1, 2), new Point(4, 2), 2l,
+				MouseEvent.MOUSE_CLICKED);
+		MAIDCA = MAIDFactory.newInstance();
+		MAIDCA.addPoint(new Point(1, 1), new Point(2, 0), 1l,
+				MouseEvent.MOUSE_CLICKED);
+		MAIDCB = MAIDFactory.newInstance();
+		MAIDCB.addPoint(new Point(0, 1), new Point(2, 1), 1l,
+				MouseEvent.MOUSE_CLICKED);
+		MAIDCC = MAIDFactory.newInstance();
+		MAIDCC.addPoint(new Point(0, 1), new Point(2, 0), 2l,
+				MouseEvent.MOUSE_CLICKED);
+		MAIDCD = MAIDFactory.newInstance();
+		MAIDCD.addPoint(new Point(0, 1), new Point(2, 0), 1l,
+				MouseEvent.MOUSE_MOVED);
 		MAIDD = MAIDFactory.newInstance();
-		MAIDD.addPoint(new Point(0, 1), new Point(2, 0),
-				1l, MouseEvent.MOUSE_CLICKED);
-		MAIDD.addPoint(new Point(1, 2), new Point(4, 2),
-				2l, MouseEvent.MOUSE_CLICKED);
-		MAIDD.addPoint(new Point(2, 3), new Point(6, 4),
-				3l, MouseEvent.MOUSE_CLICKED);
+		MAIDD.addPoint(new Point(0, 1), new Point(2, 0), 1l,
+				MouseEvent.MOUSE_CLICKED);
+		MAIDD.addPoint(new Point(1, 2), new Point(4, 2), 2l,
+				MouseEvent.MOUSE_CLICKED);
+		MAIDD.addPoint(new Point(2, 3), new Point(6, 4), 3l,
+				MouseEvent.MOUSE_CLICKED);
 	}
 
 	@After
@@ -64,12 +69,12 @@ public class MouseActionInputDataMockTest {
 	public void testSize() {
 		// throw new RuntimeException("test not implemented");
 		// add a bunch of points and see if the size is correct
-		MAID.addPoint(new Point(0, 1), new Point(2, 0),
-				4l, MouseEvent.MOUSE_CLICKED);
-		MAID.addPoint(new Point(1, 2), new Point(4, 2),
-				5l, MouseEvent.MOUSE_CLICKED);
-		MAID.addPoint(new Point(2, 3), new Point(6, 4),
-				6l, MouseEvent.MOUSE_CLICKED);
+		MAID.addPoint(new Point(0, 1), new Point(2, 0), 4l,
+				MouseEvent.MOUSE_CLICKED);
+		MAID.addPoint(new Point(1, 2), new Point(4, 2), 5l,
+				MouseEvent.MOUSE_CLICKED);
+		MAID.addPoint(new Point(2, 3), new Point(6, 4), 6l,
+				MouseEvent.MOUSE_CLICKED);
 
 		// test to see if there are three elements in the list
 		assertEquals(6, MAID.size());
@@ -115,22 +120,40 @@ public class MouseActionInputDataMockTest {
 		assertEquals(0, p.pagePosition.getY(), .01);
 
 	}
-	
+
 	@Test
 	public void testEquals() {
-		assertEquals(MAID,MAIDD);
-		assertNotEquals(MAID,MAIDB);
-		assertNotEquals(MAID,MAIDC);
-	}
-	
-	@Test( expected=AssertionError.class)
-	public void testNotEqualsB() {
-		MAID.assertEquals(MAIDB,true);
+		assertEquals(MAID, MAIDD);
+		assertNotEquals(MAID, MAIDB);
+		assertNotEquals(MAID, MAIDCA);
+		assertNotEquals(MAID, MAIDCB);
+		assertNotEquals(MAID, MAIDCC);
+		assertNotEquals(MAID, MAIDCD);
 	}
 
-	@Test( expected=AssertionError.class)
-	public void testNotEqualsC() {
-		MAID.assertEquals(MAIDC,true);
+	@Test( expected = AssertionError.class )
+	public void testNotEqualsB() {
+		MAID.assertEquals(MAIDB, true);
+	}
+
+	@Test( expected = AssertionError.class )
+	public void testNotEqualsCA() {
+		MAID.assertEquals(MAIDCA, true);
+	}
+
+	@Test( expected = AssertionError.class )
+	public void testNotEqualsCB() {
+		MAID.assertEquals(MAIDCB, true);
+	}
+
+	@Test( expected = AssertionError.class )
+	public void testNotEqualsCC() {
+		MAID.assertEquals(MAIDCC, true);
+	}
+
+	@Test( expected = AssertionError.class )
+	public void testNotEqualsCD() {
+		MAID.assertEquals(MAIDCD, true);
 	}
 
 	/***
