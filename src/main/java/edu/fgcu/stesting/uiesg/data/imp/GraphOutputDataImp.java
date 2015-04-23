@@ -293,9 +293,10 @@ public class GraphOutputDataImp implements GraphOutputData {
 						+ numActions() + " but is " + graphData.numActions());
 			else
 				return false;
-		for (int i = 0; i < actions.size(); i++)
+		for (int i = 0; i < actions.size(); i++) {
 			if (!graphData.getAction(i).assertEquals(actions.get(i), error))
 				return false;
+		}
 		return true;
 	}
 

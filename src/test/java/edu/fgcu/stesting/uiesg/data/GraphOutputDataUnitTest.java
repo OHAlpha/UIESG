@@ -19,11 +19,25 @@ public class GraphOutputDataUnitTest extends GraphOutputDataMockTest {
 
 	@Test
 	public void testEquals() {
+		if (!godB.equals(godE))
+			godB.assertEquals(godE, true);
+	}
+
+	@Test
+	public void testNotEquals() {
 		assertNotEquals(godB + " should not be 5", godB, 5);
 		assertNotEquals(godB + " should not be " + godC, godB, godC);
 		assertNotEquals(godB + " should not be " + godD, godB, godD);
-		if (!godB.equals(godE))
-			godB.assertEquals(godE, true);
+	}
+
+	@Test( expected = AssertionError.class )
+	public void testEqualsC() {
+		godB.assertEquals(godC,true);
+	}
+
+	@Test( expected = AssertionError.class )
+	public void testEqualsD() {
+		godB.assertEquals(godD,true);
 	}
 
 }

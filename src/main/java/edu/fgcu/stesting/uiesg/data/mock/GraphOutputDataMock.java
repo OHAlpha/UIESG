@@ -23,7 +23,7 @@ public class GraphOutputDataMock implements GraphOutputData {
 
 	public GraphOutputDataMock( Iterator<Point> mouseData ) {
 		locked = true;
-		order = 4;
+		order = 5;
 		size = 3;
 		list = new LinkedList<>();
 		list.add(GODFactory.newGraphAction(0, GODFactory.NODE,
@@ -32,8 +32,10 @@ public class GraphOutputDataMock implements GraphOutputData {
 				new double[] { 0, 0, 0, 0 }));
 		list.add(GODFactory.newGraphAction(2, GODFactory.NODE,
 				GODFactory.CLICK, 0, 0));
-		list.add(GODFactory.newGraphAction(3, GODFactory.EDGE, GODFactory.MOVE,
+		list.add(GODFactory.newGraphAction(3, GODFactory.EDGE, GODFactory.DRAG,
 				new double[] { 0, 0, 0, 0 }));
+		list.add(GODFactory.newGraphAction(2, GODFactory.NODE,
+				GODFactory.CLICK, 0, 0));
 		list.add(GODFactory.newGraphAction(4, GODFactory.NODE,
 				GODFactory.HOVER, new double[] { 0, 0 }));
 		list.add(GODFactory.newGraphAction(5, GODFactory.EDGE, GODFactory.MOVE,

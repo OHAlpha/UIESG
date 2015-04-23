@@ -24,7 +24,7 @@ public class GraphOutputDataMockTest {
 
 	private static MouseActionInputData maid3;
 
-	private static int o = 4, s = 3, n = 7;
+	private static int o = 5, s = 3, n = o + s;
 
 	private static MouseGraphAction[] as;
 
@@ -51,12 +51,18 @@ public class GraphOutputDataMockTest {
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
 		maid.addPoint(new Point(30, 50), new Point(30, 50),
 				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		maid.addPoint(new Point(30, 50), new Point(30, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_PRESSED);
 		maid.addPoint(new Point(40, 50), new Point(40, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
 		maid.addPoint(new Point(50, 50), new Point(50, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
 		maid.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
+		maid.addPoint(new Point(60, 50), new Point(60, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_RELEASED);
+		maid.addPoint(new Point(60, 50), new Point(60, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 		maid.addPoint(new Point(50, 30), new Point(50, 30),
 				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
 		maid.addPoint(new Point(40, 10), new Point(40, 10),
@@ -76,12 +82,18 @@ public class GraphOutputDataMockTest {
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
 		maid2.addPoint(new Point(30, 50), new Point(30, 50),
 				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		maid2.addPoint(new Point(30, 50), new Point(30, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_PRESSED);
 		maid2.addPoint(new Point(40, 50), new Point(40, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
 		maid2.addPoint(new Point(50, 50), new Point(50, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
 		maid2.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
+		maid2.addPoint(new Point(60, 50), new Point(60, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_RELEASED);
+		maid2.addPoint(new Point(60, 50), new Point(60, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 		maid2.addPoint(new Point(50, 30), new Point(50, 30),
 				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
 		maid2.addPoint(new Point(40, 10), new Point(40, 10),
@@ -99,12 +111,18 @@ public class GraphOutputDataMockTest {
 				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
 		maid3.addPoint(new Point(30, 50), new Point(30, 50),
 				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
+		maid3.addPoint(new Point(30, 50), new Point(30, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_PRESSED);
 		maid3.addPoint(new Point(40, 50), new Point(40, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
 		maid3.addPoint(new Point(50, 50), new Point(50, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
 		maid3.addPoint(new Point(60, 50), new Point(60, 50),
-				System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
+				System.currentTimeMillis(), MouseEvent.MOUSE_DRAGGED);
+		maid3.addPoint(new Point(60, 50), new Point(60, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_RELEASED);
+		maid3.addPoint(new Point(60, 50), new Point(60, 50),
+				System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
 		maid3.addPoint(new Point(50, 30), new Point(50, 30),
 				System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
 		maid3.addPoint(new Point(40, 10), new Point(40, 10),
@@ -122,8 +140,10 @@ public class GraphOutputDataMockTest {
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.CLICK, 30, 50),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
-						GODFactory.EDGE, GODFactory.MOVE, new double[] { 30,
+						GODFactory.EDGE, GODFactory.DRAG, new double[] { 30,
 								50, 60, 50 }),
+				GODFactory.newGraphAction(System.currentTimeMillis(),
+						GODFactory.NODE, GODFactory.CLICK, 60, 50),
 				GODFactory.newGraphAction(System.currentTimeMillis(),
 						GODFactory.NODE, GODFactory.HOVER, new double[] { 60,
 								50 }),
