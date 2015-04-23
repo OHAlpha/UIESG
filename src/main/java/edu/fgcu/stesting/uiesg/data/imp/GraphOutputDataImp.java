@@ -115,9 +115,11 @@ public class GraphOutputDataImp implements GraphOutputData {
 					this.addAction(GODFactory.newGraphAction(lastTime,
 							GODFactory.NODE, GODFactory.HOVER, toDouble(h)));
 				}
-				Point2D l = h.get(h.size() - 1);
-				h.clear();
-				h.add(l);
+				if (!h.isEmpty()) {
+					Point2D l = h.get(h.size() - 1);
+					h.clear();
+					h.add(l);
+				}
 				break;
 			case MOUSE_PRESSED:
 				if (lastType == MOUSE_MOVED)

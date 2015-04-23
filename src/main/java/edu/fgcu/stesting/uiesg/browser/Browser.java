@@ -47,7 +47,7 @@ public class Browser extends Application {
 	 * @param mode
 	 *            the mode to initialize the factories in.
 	 */
-	public static void init(int mode) {
+	public static void init( int mode ) {
 		MAIDFactory.init(mode);
 	}
 
@@ -66,14 +66,14 @@ public class Browser extends Application {
 	 */
 	WebEngine engine;
 
-	@SuppressWarnings("javadoc")
+	@SuppressWarnings( "javadoc" )
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start( Stage primaryStage ) throws Exception {
 		final WebView browser = new WebView();
 		browser.addEventHandler(MouseEvent.ANY, new EventHandler<MouseEvent>() {
 
 			@Override
-			public void handle(MouseEvent arg0) {
+			public void handle( MouseEvent arg0 ) {
 				if (maid == null)
 					return;
 				EventType<? extends MouseEvent> type = arg0.getEventType();
@@ -111,20 +111,20 @@ public class Browser extends Application {
 
 			}
 
-			@SuppressWarnings("unused")
-			private String pos(MouseEvent arg0) {
+			@SuppressWarnings( "unused" )
+			private String pos( MouseEvent arg0 ) {
 				return "( " + arg0.getX() + ", " + arg0.getY() + ", "
 						+ arg0.getZ() + " )";
 			}
 
-			@SuppressWarnings("unused")
-			private String screen(MouseEvent arg0) {
+			@SuppressWarnings( "unused" )
+			private String screen( MouseEvent arg0 ) {
 				return "( " + arg0.getScreenX() + ", " + arg0.getScreenY()
 						+ " )";
 			}
 
-			@SuppressWarnings("unused")
-			private String scene(MouseEvent arg0) {
+			@SuppressWarnings( "unused" )
+			private String scene( MouseEvent arg0 ) {
 				return "( " + arg0.getSceneX() + ", " + arg0.getSceneY() + " )";
 			}
 
@@ -134,8 +134,8 @@ public class Browser extends Application {
 				.addListener(new ChangeListener<Worker.State>() {
 
 					@Override
-					public void changed(ObservableValue<? extends State> arg0,
-							State arg1, State arg2) {
+					public void changed( ObservableValue<? extends State> arg0,
+							State arg1, State arg2 ) {
 						// TODO Auto-generated method stub
 						// System.out.println("observable: " + arg0 + ", old: "
 						// + arg1 + ", new: " + arg2);
@@ -160,7 +160,7 @@ public class Browser extends Application {
 		btn.setText("Go");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent event) {
+			public void handle( ActionEvent event ) {
 				String url = addrT.getText();
 				// System.out.println("Loading "+url);
 				URL u = null;
@@ -195,22 +195,21 @@ public class Browser extends Application {
 		graph.setText("Graph");
 		graph.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent arg0) {
+			public void handle( ActionEvent arg0 ) {
 				// TODO Auto-generated method stub
 				// create new scene in Graphical Output
 				if (sed != null) {
-					//browser.getEngine().load(null);
+					// browser.getEngine().load(null);
 					GraphicalOutput go = new GraphicalOutput();
 					Stage stage = new Stage();
-					
+
 					// set the stage with the graph scene
-					//stage.setScene(go.graph(sed));
+					// stage.setScene(go.graph(sed));
 					stage.setScene(go.sites());
-					
+
 					// show the stage
 					stage.show();
-				}
-				else
+				} else
 					System.out.println("sed is null...");
 			}
 
@@ -241,12 +240,12 @@ public class Browser extends Application {
 	 *            the url to load
 	 * @return whether or not a MAID was created successfully.
 	 */
-	public boolean updatePage(URL url) {
+	public boolean updatePage( URL url ) {
 
 		String domain = url.getHost();
 		if (sed == null || !sed.getDomain().equalsIgnoreCase(domain)) {
-			if (sed != null)
-				sed.unloadData();
+			// if (sed != null)
+			// sed.unloadData();
 			sed = SiteEfficiencyData.getForDomain(domain);
 			if (!sed.isLoaded())
 				sed.loadData();
@@ -260,8 +259,8 @@ public class Browser extends Application {
 		return true;
 	}
 
-	@SuppressWarnings("javadoc")
-	public static void main(String[] args) {
+	@SuppressWarnings( "javadoc" )
+	public static void main( String[] args ) {
 		init(MAIDFactory.IMPLEMENTATION);
 		launch();
 	}
