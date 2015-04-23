@@ -38,7 +38,7 @@ import javafx.stage.Stage;
 @SuppressWarnings( "javadoc" )
 public class GraphicalOutput {
 
-	// SiteEfficiencyData sed;
+	SiteEfficiencyData sed;
 	GraphOutputData god;
 
 	/*
@@ -69,9 +69,10 @@ public class GraphicalOutput {
 		sed.compileMouseData();
 				
 		/*** get the number of instances for the particular domain ***/
-		int size = sed.size()-1;	
+		int size = sed.size()-1;
 		if (size>0)	god = sed.getGraphData(size);
-		
+		System.out.println(god);
+		System.out.println(sed.getMouseData(size));
 		/*** then get the number of actions god.numActions() ***/
 		int actions = god.numActions();
 				
@@ -91,7 +92,7 @@ public class GraphicalOutput {
 		ArrayList<String> tmp = new ArrayList<String>();
 		
 		for(NavigableMap.Entry<String, UIEfficiencyStatistic> entry:stats.entrySet()) {
-			tmp.add(entry.getKey() + " :      " + entry.getValue().toString());
+			tmp.add(entry.getKey() + " :      " + entry.getValue());
 		}
 
 		// putting domains in observable list 'data'
@@ -167,6 +168,7 @@ public class GraphicalOutput {
 							if (change.getList().contains(i)) {
 								// send the domain name to getForDomain to get
 								// the SED
+								System.out.println("you selected" + data.get(i));
 								SiteEfficiencyData sed = SiteEfficiencyData
 										.getForDomain(data.get(i));
 								Stage stage = new Stage();
