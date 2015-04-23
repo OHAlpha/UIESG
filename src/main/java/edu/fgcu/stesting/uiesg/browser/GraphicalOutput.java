@@ -2,6 +2,9 @@ package edu.fgcu.stesting.uiesg.browser;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
 import java.util.NavigableSet;
 import java.util.TreeMap;
 
@@ -10,6 +13,7 @@ import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
+import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -59,32 +63,14 @@ public class GraphicalOutput {
 		series2.setName("Mouse movement");
 		
 		
-		// methods to use for Stats:
-		// sed.calculateStatistics();
-		// sed.getStatistics(i);
-
+		
 		
 		// compiles mouse data for selected SED
 		sed.compileMouseData();
 				
-		//NavigableSet<String> stats = sed.calculateStatistics();
-		ArrayList<String> tmp = new ArrayList<String>();
-		// put domains in list
-		tmp.add("stat1");
-		tmp.add("stat2");
-		tmp.add("stat3");
-		//tmp.addAll(stats);
-
-		// putting domains in observable list 'data'
-		final ObservableList<String> data = FXCollections
-				.observableArrayList(tmp);
-
-		final ListView<String> listView = new ListView<String>(data);
-		listView.setItems(data);
-		
 		/*** get the number of instances for the particular domain ***/
-		int size = sed.size();	
-		if (size>0)	god = sed.getGraphData(size-1);
+		int size = sed.size()-1;	
+		if (size>0)	god = sed.getGraphData(size);
 		
 		/*** then get the number of actions god.numActions() ***/
 		int actions = god.numActions();
@@ -100,6 +86,21 @@ public class GraphicalOutput {
 		
 		// calculates stats for SED
 		sed.calculateStatistics();
+		
+		NavigableMap<String, UIEfficiencyStatistic> stats = sed.getStatistics(size);
+		ArrayList<String> tmp = new ArrayList<String>();
+		
+		for(NavigableMap.Entry<String, UIEfficiencyStatistic> entry:stats.entrySet()) {
+			tmp.add(entry.getKey() + " :      " + entry.getValue().toString());
+		}
+
+		// putting domains in observable list 'data'
+		final ObservableList<String> data = FXCollections
+				.observableArrayList(tmp);
+
+		final ListView<String> listView = new ListView<String>(data);
+		listView.setItems(data);
+		
 		
 		// setup display and add lineChart and statBar to the grid
 		GridPane grid = new GridPane();
