@@ -183,6 +183,11 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 
 	public boolean assertEquals( MouseGraphAction action, boolean error )
 			throws AssertionError {
+		if( action == null )
+			if (error)
+				throw new AssertionError("ation is null");
+			else
+				return false;
 		if (getTimestamp() != action.getTimestamp())
 			if (error)
 				throw new AssertionError("not the same time");

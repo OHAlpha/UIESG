@@ -33,13 +33,6 @@ public class MouseWindowNode extends AbstractMouseGraphNode {
 		variance = new Dim();
 		this.enter = enter;
 	}
-	
-	/**
-	 * @return whether this action was an enter
-	 */
-	public boolean isEntered() {
-		return enter;
-	}
 
 	/*
 	 * (non-Javadoc)
