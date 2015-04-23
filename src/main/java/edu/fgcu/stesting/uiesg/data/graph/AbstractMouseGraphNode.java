@@ -1,6 +1,5 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
-import java.awt.Shape;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -131,11 +130,6 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 
 	@Override
 	public Rectangle2D getRange() {
-		return range;
-	}
-
-	@Override
-	public Shape getArea() {
 		return range;
 	}
 

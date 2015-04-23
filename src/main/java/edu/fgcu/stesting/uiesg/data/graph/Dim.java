@@ -35,10 +35,6 @@ public class Dim extends Dimension2D {
 	public void setSize( double width, double height ) {
 		this.w = width;
 		this.h = height;
-		if( Double.isNaN(width) )
-			throw new IllegalArgumentException("width cannot be NaN");
-		if( Double.isNaN(height) )
-			throw new IllegalArgumentException("height cannot be NaN");
 	}
 
 	public boolean equals( Object o ) {
@@ -47,10 +43,6 @@ public class Dim extends Dimension2D {
 			return w == d.getWidth() && h == d.getHeight();
 		}
 		return false;
-	}
-
-	public String toString() {
-		return "Dim(" + w + "," + h + ")";
 	}
 
 }

@@ -51,7 +51,7 @@ public class SiteEfficiencyData {
 			return sed;
 		}
 	}
-	
+
 	/**
 	 * Returns all the available domain names from the collection.
 	 * 
@@ -418,7 +418,7 @@ public class SiteEfficiencyData {
 
 						// write action
 						MouseGraphAction action = d.graphData.getAction(j);
-						action.write(out);
+						GODFactory.write(action, out);
 
 						// write previous
 						int prev = d.graphData.indexOf(action.getPrevious());

@@ -1,9 +1,7 @@
 package edu.fgcu.stesting.uiesg.data;
 
-import java.awt.Shape;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Rectangle2D;
-import java.io.OutputStream;
 
 /**
  * Represents an MouseEvent or group of MouseEvents in the browser window.
@@ -99,16 +97,12 @@ public interface MouseGraphAction {
 	 */
 	Rectangle2D getRange();
 
-	/**
-	 * Returns the shape of minimal area bounding the path.
-	 * 
-	 * @return the bounds
-	 */
-	Shape getArea();
-
-	// TODO: javadoc
-	@SuppressWarnings( "javadoc" )
-	void write( OutputStream out );
+//	/**
+//	 * Returns the shape of minimal area bounding the path.
+//	 * 
+//	 * @return the bounds
+//	 */
+//	Shape getArea();
 
 	/**
 	 * Returns this action cast to a node. If this action is an edge, an

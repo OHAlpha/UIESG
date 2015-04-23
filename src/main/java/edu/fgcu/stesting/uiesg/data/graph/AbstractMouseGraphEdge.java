@@ -1,6 +1,5 @@
 package edu.fgcu.stesting.uiesg.data.graph;
 
-import java.awt.Shape;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -106,8 +105,8 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 		error = Math.abs(error - Math.sqrt(Dx * Dx + Dy * Dy));
 		// TODO: calculate error based on area instead of difference of length
 		range = new Rectangle2D.Double(nx, ny, xx - nx, xy - ny);
-		sx /= data.length / 2;
-		sy /= data.length / 2;
+		sx /= data.length / 2 - 1;
+		sy /= data.length / 2 - 1;
 		double vx = 0, vy = 0;
 		for (int i = 0; i < ds.length; i += 2) {
 			double tx = ds[i], ty = ds[i + 1];
@@ -115,8 +114,7 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 			vx += dx * dx;
 			vy += dy * dy;
 		}
-		variance = new Dim(vx / (data.length / 2 - 1), vy
-				/ (data.length / 2 - 1));
+		variance = new Dim(vx / (ds.length / 2 - 1), vy / (ds.length / 2 - 1));
 		range = new Rectangle2D.Double(nx, ny, xx - nx, xy - ny);
 	}
 
@@ -152,11 +150,6 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 
 	@Override
 	public Rectangle2D getRange() {
-		return range;
-	}
-
-	@Override
-	public Shape getArea() {
 		return range;
 	}
 
@@ -223,10 +216,20 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 						+ " but is " + e.error);
 			else
 				return false;
-		if (!variance.equals(e.variance))
+		double vx = variance.getWidth() - e.variance.getWidth();
+		double vy = variance.getHeight() - e.variance.getHeight();
+		if (vx * vx > .001)
 			if (error)
-				throw new AssertionError("variance should be " + variance
-						+ " but is " + e.variance);
+				throw new AssertionError("variance.w should be "
+						+ variance.getWidth() + " but is "
+						+ e.variance.getWidth());
+			else
+				return false;
+		if (vy * vy > .001)
+			if (error)
+				throw new AssertionError("variance.h should be "
+						+ variance.getHeight() + " but is "
+						+ e.variance.getHeight());
 			else
 				return false;
 		if (!source.equals(e.source))

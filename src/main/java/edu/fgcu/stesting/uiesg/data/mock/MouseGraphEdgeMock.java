@@ -1,7 +1,6 @@
 package edu.fgcu.stesting.uiesg.data.mock;
 
 import java.awt.Point;
-import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -23,11 +22,6 @@ public class MouseGraphEdgeMock extends AbstractMouseGraphActionMock implements
 	@Override
 	public Rectangle2D getRange() {
 		return line.getBounds2D();
-	}
-
-	@Override
-	public Shape getArea() {
-		return line;
 	}
 
 	@Override

@@ -85,7 +85,7 @@ public class MouseDragEdge extends AbstractMouseGraphEdge {
 	@Override
 	@SuppressWarnings( "javadoc" )
 	public int getSubType() {
-		return GODFactory.MOVE;
+		return GODFactory.DRAG;
 	}
 
 }
