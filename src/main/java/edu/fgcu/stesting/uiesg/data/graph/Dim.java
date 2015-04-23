@@ -42,4 +42,8 @@ public class Dim extends Dimension2D {
 		return w == d.getWidth() && h == d.getHeight();
 	}
 
+	public String toString() {
+		return "( " + w + ", " + h + " )";
+	}
+
 }

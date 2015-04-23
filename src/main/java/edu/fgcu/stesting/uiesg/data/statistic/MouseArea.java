@@ -9,6 +9,7 @@ import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType;
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
 
 @SuppressWarnings( "javadoc" )
 public class MouseArea extends UIEfficiencyStatisticType {
@@ -22,7 +23,7 @@ public class MouseArea extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public UIEfficiencyStatistic calculate( GraphOutputData graph ) {
+	public UIEfficiencyStatistic calculate( MouseActionInputData maid, GraphOutputData graph ) {
 		int n = graph.numActions();
 		MouseGraphAction a = graph.getAction(0);
 		Rectangle2D range = a.getRange().getBounds2D();

@@ -9,7 +9,6 @@ import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData.Point;
-import edu.fgcu.stesting.uiesg.data.mock.GraphOutputDataMock;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
@@ -270,8 +269,8 @@ public class GraphOutputDataImp implements GraphOutputData {
 	@Override
 	@SuppressWarnings( "javadoc" )
 	public boolean equals( Object o ) {
-		if (o instanceof GraphOutputDataMock) {
-			GraphOutputDataMock god = (GraphOutputDataMock) o;
+		if (o instanceof GraphOutputDataImp) {
+			GraphOutputDataImp god = (GraphOutputDataImp) o;
 			return assertEquals(god, false);
 		} else
 			return false;

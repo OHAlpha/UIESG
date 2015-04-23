@@ -1,5 +1,7 @@
 package edu.fgcu.stesting.uiesg.data;
 
+import java.awt.Point;
+import java.awt.event.MouseEvent;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
@@ -48,11 +50,11 @@ public class SiteEfficiencyDataUnitTest {
 	 * The mock god to use for testing.
 	 */
 	static GraphOutputData mg;
-	
+
 	/**
 	 * The statistics to use for testing.
 	 */
-	static Map<String,UIEfficiencyStatistic> mss;
+	static Map<String, UIEfficiencyStatistic> mss;
 
 	/**
 	 * A SED for "fgcu.edu".
@@ -72,9 +74,14 @@ public class SiteEfficiencyDataUnitTest {
 		if (!dir.exists())
 			dir.mkdirs();
 		SiteEfficiencyData.init("tmp/datafiles");
-		MAIDFactory.init(MAIDFactory.MOCK);
-		GODFactory.init(GODFactory.MOCK);
-		new UIEfficiencyStatisticTypeMock().register();
+		new UIEfficiencyStatisticTypeMock("Mock").register();
+		setup(MAIDFactory.MOCK, GODFactory.MOCK);
+	}
+
+	@SuppressWarnings( "javadoc" )
+	protected static void setup( int m, int g ) {
+		MAIDFactory.init(m);
+		GODFactory.init(g);
 
 		// write data to data folder
 		File file = new File(dir, "wikipedia.org.sed");
@@ -83,6 +90,31 @@ public class SiteEfficiencyDataUnitTest {
 			out.writeInt(1);
 			out.writeInt(0x07);
 			mm = MAIDFactory.newInstance();
+			int[][] data = new int[][] {
+					{ 30, 0, 0, MouseEvent.MOUSE_ENTERED },
+					{ 30, 10, 1, MouseEvent.MOUSE_MOVED },
+					{ 30, 30, 2, MouseEvent.MOUSE_MOVED },
+					{ 30, 50, 3, MouseEvent.MOUSE_MOVED },
+					{ 30, 50, 4, MouseEvent.MOUSE_CLICKED },
+					{ 30, 50, 5, MouseEvent.MOUSE_PRESSED },
+					{ 40, 50, 6, MouseEvent.MOUSE_DRAGGED },
+					{ 50, 50, 7, MouseEvent.MOUSE_DRAGGED },
+					{ 60, 50, 8, MouseEvent.MOUSE_DRAGGED },
+					{ 60, 50, 9, MouseEvent.MOUSE_RELEASED },
+					{ 60, 50, 10, MouseEvent.MOUSE_CLICKED },
+					{ 50, 30, 2011, MouseEvent.MOUSE_MOVED },
+					{ 50, 25, 2012, MouseEvent.MOUSE_MOVED },
+					{ 50, 24, 2118, MouseEvent.MOUSE_MOVED },
+					{ 50, 23, 2123, MouseEvent.MOUSE_MOVED },
+					{ 40, 10, 2124, MouseEvent.MOUSE_MOVED },
+					{ 30, 0, 2125, MouseEvent.MOUSE_MOVED },
+					{ 30, 0, 2126, MouseEvent.MOUSE_EXITED } };
+			mm = MAIDFactory.newInstance();
+			for (int i = 0; i < data.length; i++)
+				mm.addPoint(new Point(data[i][0],
+						(i < data.length - 2 ? 0 : 10) + data[i][1]),
+						new Point(data[i][0], data[i][1]), data[i][2],
+						data[i][3]);
 			out.writeInt(mm.size());
 			for (Iterator<MouseActionInputData.Point> it = mm.iterate(); it
 					.hasNext();) {
@@ -101,12 +133,14 @@ public class SiteEfficiencyDataUnitTest {
 				GODFactory.write(ma, out);
 				out.writeInt(mg.indexOf(ma.getPrevious()));
 			}
-			mss = UIEfficiencyStatistics.calculateStatistics(mg);
+			mss = UIEfficiencyStatistics.calculateStatistics(mm, mg);
 			out.writeInt(mss.size());
-			for( String t : mss.keySet() ) {
+			for (String t : mss.keySet()) {
 				out.writeUTF(t);
 				mss.get(t).write(out);
 			}
+			out.flush();
+			out.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

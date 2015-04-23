@@ -5,11 +5,22 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
+import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType;
 
 @SuppressWarnings( "javadoc" )
 public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
+	
+	String name;
+
+	public UIEfficiencyStatisticTypeMock( String string ) {
+		name = string;
+	}
+	
+	public String getName() {
+		return name;
+	}
 
 	@Override
 	public String getDescription() {
@@ -17,7 +28,7 @@ public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public UIEfficiencyStatistic calculate( GraphOutputData graph ) {
+	public UIEfficiencyStatistic calculate( MouseActionInputData maid, GraphOutputData graph ) {
 		return createStatistic("mock statistic");
 	}
 

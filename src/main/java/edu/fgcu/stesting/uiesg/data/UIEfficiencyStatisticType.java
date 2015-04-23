@@ -48,10 +48,11 @@ public abstract class UIEfficiencyStatisticType {
 		protected static NavigableMap<String, UIEfficiencyStatisticType> types = new TreeMap<>();
 
 		public static NavigableMap<String, UIEfficiencyStatistic> calculateStatistics(
-				GraphOutputData graphData ) {
+				MouseActionInputData maid, GraphOutputData graphData ) {
 			NavigableMap<String, UIEfficiencyStatistic> statistics = new TreeMap<>();
 			for (String type : types.keySet())
-				statistics.put(type, types.get(type).calculate(graphData));
+				statistics
+						.put(type, types.get(type).calculate(maid, graphData));
 			return statistics;
 		}
 
@@ -131,11 +132,14 @@ public abstract class UIEfficiencyStatisticType {
 	/**
 	 * Creates a UIES instance of this type from the given graph.
 	 * 
+	 * @param maid
+	 *            the raw data to use if needed
 	 * @param graph
 	 *            the graph data to analyze
 	 * @return the UIES instance
 	 */
-	public abstract UIEfficiencyStatistic calculate( GraphOutputData graph );
+	public abstract UIEfficiencyStatistic calculate( MouseActionInputData maid,
+			GraphOutputData graph );
 
 	/**
 	 * Creates a UIES instance of this type from an input stream.
@@ -143,9 +147,11 @@ public abstract class UIEfficiencyStatisticType {
 	 * @param in
 	 *            the stream of data to read
 	 * @return the UIES instance
-	 * @throws IOException if the retrieval fails
+	 * @throws IOException
+	 *             if the retrieval fails
 	 */
-	public abstract UIEfficiencyStatistic create( DataInputStream in ) throws IOException;
+	public abstract UIEfficiencyStatistic create( DataInputStream in )
+			throws IOException;
 
 	/**
 	 * The type of value this type creates.
@@ -161,7 +167,8 @@ public abstract class UIEfficiencyStatisticType {
 	 *            the stream of data to write to
 	 * @param statistic
 	 *            the UIES instance
-	 * @throws IOException if the save fails
+	 * @throws IOException
+	 *             if the save fails
 	 */
 	public abstract void write( UIEfficiencyStatistic statistic,
 			DataOutputStream out ) throws IOException;

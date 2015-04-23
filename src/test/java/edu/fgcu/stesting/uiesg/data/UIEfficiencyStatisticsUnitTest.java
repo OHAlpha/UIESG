@@ -3,9 +3,6 @@
  */
 package edu.fgcu.stesting.uiesg.data;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-
 import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
@@ -13,6 +10,7 @@ import org.junit.Test;
 
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
+import edu.fgcu.stesting.uiesg.data.mock.UIEfficiencyStatisticTypeMock;
 
 /**
  * A test for implementations of UIEfficiencyStatisticType.
@@ -23,62 +21,24 @@ import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatis
 @SuppressWarnings( "javadoc" )
 public class UIEfficiencyStatisticsUnitTest {
 
-	private static class FakeType extends UIEfficiencyStatisticType {
-
-		String name;
-
-		FakeType( String name ) {
-			this.name = name;
-		}
-
-		@Override
-		public String getName() {
-			return name;
-		}
-
-		@Override
-		public String getDescription() {
-			return "";
-		}
-
-		@Override
-		public UIEfficiencyStatistic calculate( GraphOutputData graph ) {
-			return this.createStatistic(0);
-		}
-
-		@Override
-		public UIEfficiencyStatistic create( DataInputStream in ) {
-			return this.createStatistic(0);
-		}
-
-		@Override
-		public Class<?> getValueType() {
-			return Integer.class;
-		}
-
-		@Override
-		public void write( UIEfficiencyStatistic statistic, DataOutputStream out ) {}
-
-	}
-
 	@BeforeClass
 	public static void setup() {
 		MAIDFactory.init(MAIDFactory.MOCK);
 		GODFactory.init(GODFactory.MOCK);
-		new FakeType("one").register();
-		new FakeType("two").register();
+		new UIEfficiencyStatisticTypeMock("one").register();
+		new UIEfficiencyStatisticTypeMock("two").register();
 	}
 
 	@Test
 	public void testAddType() throws DuplicateTypeException {
-		FakeType t = new FakeType("three");
+		UIEfficiencyStatisticTypeMock t = new UIEfficiencyStatisticTypeMock("three");
 		UIEfficiencyStatistics.addType(t);
 		assertEquals(t,UIEfficiencyStatisticType.getByName("three"));
 	}
 
 	@Test( expected = DuplicateTypeException.class )
 	public void testAddDuplicateType() throws DuplicateTypeException {
-		FakeType t = new FakeType("two");
+		UIEfficiencyStatisticTypeMock t = new UIEfficiencyStatisticTypeMock("two");
 		UIEfficiencyStatistics.addType(t);
 	}
 

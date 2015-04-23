@@ -21,7 +21,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.DuplicateTypeException;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.UIEfficiencyStatistics;
 import edu.fgcu.stesting.uiesg.data.mock.UIEfficiencyStatisticTypeMock;
 import edu.fgcu.stesting.uiesg.data.statistic.MouseArea;
@@ -30,22 +29,22 @@ import edu.fgcu.stesting.uiesg.data.statistic.NodesPerMinute;
 @SuppressWarnings( "javadoc" )
 @RunWith( value = Parameterized.class )
 public class UIEfficiencyStatisticTypeUnitTest {
+	
+	static MouseActionInputData maid;
 
 	static GraphOutputData god;
 
 	@Parameters
 	public static Collection<Object[]> dataParameters() {
 		UIEfficiencyStatistics.reset();
+		maid = MAIDFactory.newInstance();
+		//TODO: add points
 		god = GODFactory.newInstance(null);
-		try {
-			List<Object[]> params = new LinkedList<>();
-			params.add(new Object[] { "UIEfficiencyStatisticTypeMock", new UIEfficiencyStatisticTypeMock() });
-			params.add(new Object[] { "NodesPerMinute", new NodesPerMinute() });
-			params.add(new Object[] { "MouseArea", new MouseArea() });
-			return params;
-		} catch (DuplicateTypeException e) {
-			return null;
-		}
+		List<Object[]> params = new LinkedList<>();
+		params.add(new Object[] { "UIEfficiencyStatisticTypeMock", new UIEfficiencyStatisticTypeMock("Mock") });
+		params.add(new Object[] { "NodesPerMinute", new NodesPerMinute() });
+		params.add(new Object[] { "MouseArea", new MouseArea() });
+		return params;
 	}
 
 	String name;
@@ -76,7 +75,7 @@ public class UIEfficiencyStatisticTypeUnitTest {
 
 	@Test
 	public void testCalculate() {
-		UIEfficiencyStatistic s = type.calculate(god);
+		UIEfficiencyStatistic s = type.calculate(maid,god);
 		assertNotNull("statistic should not be null", s);
 		assertEquals("type should equal stat.type", type, s.getType());
 		assertTrue("value should be of type type.valuetype", type
@@ -86,7 +85,7 @@ public class UIEfficiencyStatisticTypeUnitTest {
 	@SuppressWarnings( "resource" )
 	@Test
 	public void testStream() throws IOException {
-		UIEfficiencyStatistic s = type.calculate(god);
+		UIEfficiencyStatistic s = type.calculate(maid,god);
 		assertNotNull("statistic should not be null", s);
 		ByteArrayOutputStream bout = new ByteArrayOutputStream();
 		DataOutputStream out = new DataOutputStream(new BufferedOutputStream(

@@ -7,9 +7,14 @@ import java.awt.geom.Point2D;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.MAIDFactory;
 import edu.fgcu.stesting.uiesg.data.MouseActionInputData;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
+import edu.fgcu.stesting.uiesg.data.statistic.DirectionVariance;
+import edu.fgcu.stesting.uiesg.data.statistic.MouseArea;
+import edu.fgcu.stesting.uiesg.data.statistic.NodesPerMinute;
+import edu.fgcu.stesting.uiesg.data.statistic.PositionVariance;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -261,7 +266,13 @@ public class Browser extends Application {
 
 	@SuppressWarnings( "javadoc" )
 	public static void main( String[] args ) {
+		SiteEfficiencyData.init("tmp/datafiles");
 		init(MAIDFactory.IMPLEMENTATION);
+		init(GODFactory.IMPLEMENTATION);
+		new NodesPerMinute().register();
+		new MouseArea().register();
+		new PositionVariance().register();
+		new DirectionVariance().register();
 		launch();
 	}
 
