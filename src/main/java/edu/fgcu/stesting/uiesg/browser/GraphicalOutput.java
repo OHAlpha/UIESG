@@ -3,6 +3,7 @@ package edu.fgcu.stesting.uiesg.browser;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.NavigableSet;
+import java.util.TreeMap;
 
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
@@ -17,7 +18,10 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 // class to output to the user the graphical information 
@@ -71,7 +75,20 @@ public class GraphicalOutput {
 		
 		// compiles mouse data for selected SED
 		sed.compileMouseData();
-	
+		//NavigableSet<String> stats = sed.calculateStatistics();
+		ArrayList<String> tmp = new ArrayList<String>();
+		// put domains in list
+		tmp.add("stat1");
+		tmp.add("stat2");
+		tmp.add("stat3");
+		//tmp.addAll(stats);
+
+		// putting domains in observable list 'data'
+		final ObservableList<String> data = FXCollections
+				.observableArrayList(tmp);
+
+		final ListView<String> listView = new ListView<String>(data);
+		listView.setItems(data);
 		
 		/*** get the number of instances for the particular domain ***/
 		int size = sed.size();	
@@ -88,6 +105,14 @@ public class GraphicalOutput {
 				series2.getData().add(new XYChart.Data(p.getX(),p.getY()));
 			}
 		}
+		
+		GridPane grid = new GridPane();
+		VBox statBar = new VBox();
+		statBar.getChildren().add(listView);
+		grid.add(statBar, 0, 0, 1, 1);
+		grid.add(lc, 0, 1, 1, 1);
+		
+		
 		// test points for mouse movements
 		/*
 		series2.getData().add(new XYChart.Data(5.2, 229.2));
@@ -101,7 +126,7 @@ public class GraphicalOutput {
 		lc.getData().addAll(series2);
 
 		// initialize the Scene with points and specify size
-		Scene scene = new Scene(lc, 500, 400);
+		Scene scene = new Scene(grid, 600, 550);
 
 		// use custom .css to hide one of the lines so that only the
 		// points are visible
