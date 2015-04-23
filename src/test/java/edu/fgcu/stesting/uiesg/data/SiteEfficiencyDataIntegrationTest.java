@@ -97,31 +97,29 @@ public class SiteEfficiencyDataIntegrationTest {
 				new BufferedOutputStream(new FileOutputStream(file)));) {
 			out.writeInt(1);
 			out.writeInt(0x07);
+			int[][] data = new int[][] { { 30, 0, 0, MouseEvent.MOUSE_ENTERED },
+					{ 30, 10, 1, MouseEvent.MOUSE_MOVED },
+					{ 30, 30, 2, MouseEvent.MOUSE_MOVED },
+					{ 30, 50, 3, MouseEvent.MOUSE_MOVED },
+					{ 30, 50, 4, MouseEvent.MOUSE_CLICKED },
+					{ 30, 50, 5, MouseEvent.MOUSE_PRESSED },
+					{ 40, 50, 6, MouseEvent.MOUSE_DRAGGED },
+					{ 50, 50, 7, MouseEvent.MOUSE_DRAGGED },
+					{ 60, 50, 8, MouseEvent.MOUSE_DRAGGED },
+					{ 60, 50, 9, MouseEvent.MOUSE_RELEASED },
+					{ 60, 50, 10, MouseEvent.MOUSE_CLICKED },
+					{ 50, 30, 2011, MouseEvent.MOUSE_MOVED },
+					{ 50, 25, 2012, MouseEvent.MOUSE_MOVED },
+					{ 50, 24, 2118, MouseEvent.MOUSE_MOVED },
+					{ 50, 23, 2123, MouseEvent.MOUSE_MOVED },
+					{ 40, 10, 2124, MouseEvent.MOUSE_MOVED },
+					{ 30, 0, 2125, MouseEvent.MOUSE_MOVED },
+					{ 30, 0, 2126, MouseEvent.MOUSE_EXITED } };
 			mm = MAIDFactory.newInstance();
-			mm.addPoint(new Point(30, 0), new Point(30, 0),
-					System.currentTimeMillis(), MouseEvent.MOUSE_ENTERED);
-			mm.addPoint(new Point(30, 10), new Point(30, 10),
-					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-			mm.addPoint(new Point(30, 30), new Point(30, 30),
-					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-			mm.addPoint(new Point(30, 50), new Point(30, 50),
-					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-			mm.addPoint(new Point(30, 50), new Point(30, 50),
-					System.currentTimeMillis(), MouseEvent.MOUSE_CLICKED);
-			mm.addPoint(new Point(40, 50), new Point(40, 50),
-					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-			mm.addPoint(new Point(50, 50), new Point(50, 50),
-					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-			mm.addPoint(new Point(60, 50), new Point(60, 50),
-					System.currentTimeMillis(), MouseEvent.MOUSE_MOVED);
-			mm.addPoint(new Point(50, 30), new Point(50, 30),
-					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-			mm.addPoint(new Point(40, 10), new Point(40, 10),
-					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-			mm.addPoint(new Point(30, 0), new Point(30, 0),
-					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_MOVED);
-			mm.addPoint(new Point(30, 0), new Point(30, 0),
-					System.currentTimeMillis() + 2000, MouseEvent.MOUSE_EXITED);
+			for (int i = 0; i < data.length; i++)
+				mm.addPoint(new Point(data[i][0], (i < data.length - 2 ? 0 : 10)
+						+ data[i][1]), new Point(data[i][0], data[i][1]),
+						data[i][2], data[i][3]);
 			out.writeInt(mm.size());
 			for (Iterator<MouseActionInputData.Point> it = mm.iterate(); it
 					.hasNext();) {
