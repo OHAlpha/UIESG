@@ -2,6 +2,7 @@ package edu.fgcu.stesting.uiesg.data;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.util.NoSuchElementException;
 
 import org.junit.*;
 
@@ -120,6 +121,28 @@ public class MouseActionInputDataMockTest {
 		assertEquals(MAID,MAIDD);
 		assertNotEquals(MAID,MAIDB);
 		assertNotEquals(MAID,MAIDC);
+	}
+	
+	@Test( expected=AssertionError.class)
+	public void testNotEqualsB() {
+		MAID.assertEquals(MAIDB,true);
+	}
+
+	@Test( expected=AssertionError.class)
+	public void testNotEqualsC() {
+		MAID.assertEquals(MAIDC,true);
+	}
+
+	/***
+	 * method to test latest timestamp while rawData is empty
+	 */
+	@Test( expected = NoSuchElementException.class )
+	public void testTimeStamp() {
+
+		// rawData should be empty which will throw an error
+		MouseActionInputData MAID = MAIDFactory.newInstance();
+		MAID.latestTimestamp();
+
 	}
 
 }

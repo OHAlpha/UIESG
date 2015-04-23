@@ -136,14 +136,16 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	@SuppressWarnings( "javadoc" )
 	public boolean assertEquals( MouseActionInputData mouseData, boolean error )
 			throws AssertionError {
+		if (size() != mouseData.size())
+			if (error)
+				throw new AssertionError("size not equal");
+			else
+				return false;
 		int i = 0;
 		for (Iterator<Point> it = mouseData.iterate(); it.hasNext(); i++) {
 			Point e = rawData.get(i), r = it.next();
-			// if( !e.equals(r) )
-			// throw new AssertionError("point at index " + i + " should be " +
-			// e + " but is " + r);
-			if( !e.assertEquals(r, false) )
-			return false;
+			if (!e.assertEquals(r, error))
+				return false;
 		}
 		return true;
 	}
