@@ -55,8 +55,7 @@
 		<mkdir dir="${reports.jacoco.dir}" />
 		<jacoco:report>
 			<executiondata>
-				<file file="jacoco.unit.exec" />
-				<file file="jacoco.int.exec" />
+				<file file="jacoco.exec" />
 			</executiondata>
 			<structure name="UIESG">
 				<classfiles>
