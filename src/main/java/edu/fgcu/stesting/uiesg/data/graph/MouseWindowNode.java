@@ -3,7 +3,6 @@ package edu.fgcu.stesting.uiesg.data.graph;
 import java.awt.geom.Rectangle2D;
 
 import edu.fgcu.stesting.uiesg.data.GODFactory;
-import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
 
 /**
  * Represents the mouse entering or exiting the browser window.
@@ -17,28 +16,6 @@ public class MouseWindowNode extends AbstractMouseGraphNode {
 	 * Whether this action was an enter.
 	 */
 	private boolean enter;
-
-	/**
-	 * @param timestamp
-	 *            the time of the action
-	 * @param enter whether this action was an enter
-	 * @param previous
-	 *            the previous action
-	 * @param next
-	 *            the next action
-	 * @param x
-	 *            the x value of the click point
-	 * @param y
-	 *            the y value of the click point
-	 */
-	public MouseWindowNode( long timestamp, boolean enter, MouseGraphAction previous,
-			MouseGraphAction next, double x, double y ) {
-		super(timestamp, previous, next);
-		range = new Rectangle2D.Double(x, y, 0, 0);
-		error = 0;
-		variance = new Dim();
-		this.enter = enter;
-	}
 
 	/**
 	 * @param timestamp

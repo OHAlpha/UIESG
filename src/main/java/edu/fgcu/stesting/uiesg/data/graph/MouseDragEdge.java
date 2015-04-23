@@ -5,8 +5,6 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import edu.fgcu.stesting.uiesg.data.GODFactory;
-import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
-import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 
 /**
  * Represents dragging of the mouse in the browser window. The previous and next
@@ -16,22 +14,6 @@ import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
  *
  */
 public class MouseDragEdge extends AbstractMouseGraphEdge {
-
-	/**
-	 * @param timestamp
-	 *            the time of the action
-	 * @param previous
-	 *            the previous action
-	 * @param next
-	 *            the next action
-	 * @param data
-	 *            the x and y values of the hover points
-	 */
-	public MouseDragEdge( long timestamp, MouseGraphAction previous,
-			MouseGraphAction next, double[] data ) {
-		super(timestamp, previous, next);
-		calc(data);
-	}
 
 	/**
 	 * @param timestamp
@@ -61,20 +43,6 @@ public class MouseDragEdge extends AbstractMouseGraphEdge {
 	public MouseDragEdge( long timestamp, Point2D source, Point2D dest,
 			Rectangle2D range, double error, Dimension2D variance ) {
 		super(timestamp, source, dest, range, error, variance);
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public int getPathType() {
-		// TODO: determine path type
-		return MouseGraphEdge.PATH_TYPE_ANY;
-	}
-
-	@SuppressWarnings( "javadoc" )
-	@Override
-	public Object getPathParameters() {
-		// TODO: determine path params
-		return null;
 	}
 
 	/*

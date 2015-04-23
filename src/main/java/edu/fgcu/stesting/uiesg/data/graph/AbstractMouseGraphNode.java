@@ -36,16 +36,6 @@ public abstract class AbstractMouseGraphNode extends AbstractMouseGraphAction
 
 	/**
 	 * @param timestamp
-	 * @param previous
-	 * @param next
-	 */
-	protected AbstractMouseGraphNode( long timestamp,
-			MouseGraphAction previous, MouseGraphAction next ) {
-		super(timestamp, previous, next);
-	}
-
-	/**
-	 * @param timestamp
 	 */
 	protected AbstractMouseGraphNode( long timestamp ) {
 		super(timestamp);

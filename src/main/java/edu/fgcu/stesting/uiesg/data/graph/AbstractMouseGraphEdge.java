@@ -46,16 +46,6 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 
 	/**
 	 * @param timestamp
-	 * @param previous
-	 * @param next
-	 */
-	protected AbstractMouseGraphEdge( long timestamp,
-			MouseGraphAction previous, MouseGraphAction next ) {
-		super(timestamp, previous, next);
-	}
-
-	/**
-	 * @param timestamp
 	 */
 	protected AbstractMouseGraphEdge( long timestamp ) {
 		super(timestamp);
@@ -171,6 +161,16 @@ public abstract class AbstractMouseGraphEdge extends AbstractMouseGraphAction
 	@Override
 	public Dimension2D getVariance() {
 		return variance;
+	}
+
+	@Override
+	public int getPathType() {
+		return MouseGraphEdge.PATH_TYPE_LINEAR;
+	}
+
+	@Override
+	public double[] getPathParameters() {
+		return new double[0];
 	}
 
 	public boolean equals( Object o ) {

@@ -49,7 +49,7 @@ public interface MouseGraphEdge extends MouseGraphAction {
 	 * 
 	 * @return the parameters of the path
 	 */
-	Object getPathParameters();
+	double[] getPathParameters();
 
 	/**
 	 * The action occurring immediately before this one. For MouseGraphEdges

@@ -16,13 +16,6 @@ public abstract class AbstractMouseGraphAction implements MouseGraphAction {
 		this.timestamp = timestamp;
 	}
 
-	protected AbstractMouseGraphAction( long timestamp,
-			MouseGraphAction previous, MouseGraphAction next ) {
-		this.timestamp = timestamp;
-		this.previous = previous;
-		this.next = next;
-	}
-
 	@Override
 	public MouseGraphAction getPrevious() {
 		return previous;

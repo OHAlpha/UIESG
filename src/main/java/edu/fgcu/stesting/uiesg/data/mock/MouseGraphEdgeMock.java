@@ -30,8 +30,8 @@ public class MouseGraphEdgeMock extends AbstractMouseGraphActionMock implements
 	}
 
 	@Override
-	public Object getPathParameters() {
-		return new Point2D[] { line.getP1(), line.getP2() };
+	public double[] getPathParameters() {
+		return new double[0];
 	}
 
 	@Override
