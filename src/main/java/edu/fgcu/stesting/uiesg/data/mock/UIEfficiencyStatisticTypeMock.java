@@ -1,8 +1,8 @@
 package edu.fgcu.stesting.uiesg.data.mock;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
@@ -31,7 +31,7 @@ public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public UIEfficiencyStatistic create( InputStream in ) {
+	public UIEfficiencyStatistic create( DataInputStream in ) {
 		try {
 			in.read();
 		} catch (IOException e) {
@@ -46,7 +46,7 @@ public class UIEfficiencyStatisticTypeMock extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public void write( UIEfficiencyStatistic statistic, OutputStream out ) {
+	public void write( UIEfficiencyStatistic statistic, DataOutputStream out ) {
 		try {
 			out.write(53);
 		} catch (IOException e) {

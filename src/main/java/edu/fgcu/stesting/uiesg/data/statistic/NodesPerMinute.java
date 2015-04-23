@@ -3,8 +3,6 @@ package edu.fgcu.stesting.uiesg.data.statistic;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
@@ -13,9 +11,7 @@ import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType;
 @SuppressWarnings( "javadoc" )
 public class NodesPerMinute extends UIEfficiencyStatisticType {
 
-	public NodesPerMinute() throws DuplicateTypeException {
-		super();
-	}
+	public NodesPerMinute() throws DuplicateTypeException {}
 
 	@Override
 	public String getDescription() {
@@ -34,14 +30,8 @@ public class NodesPerMinute extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public UIEfficiencyStatistic create( InputStream i ) {
-		DataInputStream in = new DataInputStream(i);
-		try {
-			return createStatistic(in.readDouble());
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
+	public UIEfficiencyStatistic create( DataInputStream in ) throws IOException {
+		return createStatistic(in.readDouble());
 	}
 
 	@Override
@@ -50,13 +40,8 @@ public class NodesPerMinute extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public void write( UIEfficiencyStatistic statistic, OutputStream o ) {
-		DataOutputStream out = new DataOutputStream(o);
-		try {
-			out.writeDouble((Double) statistic.getValue());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void write( UIEfficiencyStatistic statistic, DataOutputStream out ) throws IOException {
+		out.writeDouble((Double) statistic.getValue());
 	}
 
 }

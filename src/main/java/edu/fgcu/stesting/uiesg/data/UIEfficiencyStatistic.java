@@ -1,6 +1,7 @@
 package edu.fgcu.stesting.uiesg.data;
 
-import java.io.OutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  * UIEfficiencyStatistic (UIES) is a container for a specific metric for the
@@ -58,8 +59,9 @@ public class UIEfficiencyStatistic {
 	 * 
 	 * @param out
 	 *            the output stream
+	 * @throws IOException if the save fails
 	 */
-	public void write( OutputStream out ) {
+	public void write( DataOutputStream out ) throws IOException {
 		type.write(this, out);
 	}
 

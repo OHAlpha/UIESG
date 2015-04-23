@@ -9,6 +9,8 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -83,16 +85,17 @@ public class UIEfficiencyStatisticTypeUnitTest {
 		UIEfficiencyStatistic s = type.calculate(god);
 		assertNotNull("statistic should not be null", s);
 		ByteArrayOutputStream bout = new ByteArrayOutputStream();
-		BufferedOutputStream out = new BufferedOutputStream(bout);
+		DataOutputStream out = new DataOutputStream(new BufferedOutputStream(
+				bout));
 		s.write(out);
 		out.flush();
 		byte[] data = bout.toByteArray();
 		out.close();
-		BufferedInputStream in = new BufferedInputStream(
-				new ByteArrayInputStream(data));
+		DataInputStream in = new DataInputStream(new BufferedInputStream(
+				new ByteArrayInputStream(data)));
 		UIEfficiencyStatistic t = type.create(in);
 		in.close();
-		assertEquals(s,t);
+		assertEquals(s, t);
 	}
 
 }

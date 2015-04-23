@@ -1,7 +1,8 @@
 package edu.fgcu.stesting.uiesg.data;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
@@ -138,8 +139,9 @@ public abstract class UIEfficiencyStatisticType {
 	 * @param in
 	 *            the stream of data to read
 	 * @return the UIES instance
+	 * @throws IOException if the retrieval fails
 	 */
-	public abstract UIEfficiencyStatistic create( InputStream in );
+	public abstract UIEfficiencyStatistic create( DataInputStream in ) throws IOException;
 
 	/**
 	 * The type of value this type creates.
@@ -155,8 +157,9 @@ public abstract class UIEfficiencyStatisticType {
 	 *            the stream of data to write to
 	 * @param statistic
 	 *            the UIES instance
+	 * @throws IOException if the save fails
 	 */
 	public abstract void write( UIEfficiencyStatistic statistic,
-			OutputStream out );
+			DataOutputStream out ) throws IOException;
 
 }

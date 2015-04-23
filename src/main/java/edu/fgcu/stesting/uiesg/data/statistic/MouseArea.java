@@ -4,8 +4,6 @@ import java.awt.geom.Rectangle2D;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
@@ -26,8 +24,6 @@ public class MouseArea extends UIEfficiencyStatisticType {
 	@Override
 	public UIEfficiencyStatistic calculate( GraphOutputData graph ) {
 		int n = graph.numActions();
-		if (n == 0)
-			return createStatistic(0.0);
 		MouseGraphAction a = graph.getAction(0);
 		Rectangle2D range = a.getRange().getBounds2D();
 		for (int i = 1; i < n; i++) {
@@ -47,14 +43,8 @@ public class MouseArea extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public UIEfficiencyStatistic create( InputStream in ) {
-		try {
-			return createStatistic((in instanceof DataInputStream ? (DataInputStream) in
-					: new DataInputStream(in)).readDouble());
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
+	public UIEfficiencyStatistic create( DataInputStream in ) throws IOException {
+		return createStatistic(in.readDouble());
 	}
 
 	@Override
@@ -63,14 +53,9 @@ public class MouseArea extends UIEfficiencyStatisticType {
 	}
 
 	@Override
-	public void write( UIEfficiencyStatistic statistic, OutputStream out ) {
-		try {
-			(out instanceof DataOutputStream ? (DataOutputStream) out
-					: new DataOutputStream(out)).writeDouble((Double) statistic
-					.getValue());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void write( UIEfficiencyStatistic statistic, DataOutputStream out ) throws IOException {
+		out.writeDouble((Double) statistic
+				.getValue());
 	}
 
 }

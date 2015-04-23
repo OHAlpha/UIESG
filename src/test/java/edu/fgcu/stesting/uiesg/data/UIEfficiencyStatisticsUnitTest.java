@@ -3,8 +3,8 @@
  */
 package edu.fgcu.stesting.uiesg.data;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 
 import static org.junit.Assert.*;
 
@@ -47,7 +47,7 @@ public class UIEfficiencyStatisticsUnitTest {
 		}
 
 		@Override
-		public UIEfficiencyStatistic create( InputStream in ) {
+		public UIEfficiencyStatistic create( DataInputStream in ) {
 			return this.createStatistic(0);
 		}
 
@@ -57,7 +57,7 @@ public class UIEfficiencyStatisticsUnitTest {
 		}
 
 		@Override
-		public void write( UIEfficiencyStatistic statistic, OutputStream out ) {}
+		public void write( UIEfficiencyStatistic statistic, DataOutputStream out ) {}
 
 	}
 
