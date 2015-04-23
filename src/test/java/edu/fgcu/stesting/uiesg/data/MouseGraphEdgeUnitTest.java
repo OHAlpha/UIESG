@@ -94,6 +94,11 @@ public class MouseGraphEdgeUnitTest extends MouseGraphActionUnitTest {
 		assertEquals(pathType, edge.getPathType());
 	}
 
+	@Test
+	public void testPathParameters() {
+		assertEquals(0, edge.getPathParameters().length);
+	}
+
 	@Test( expected = AssertionError.class )
 	public void testDiffType() {
 		assertNotEquals(edge, node);
