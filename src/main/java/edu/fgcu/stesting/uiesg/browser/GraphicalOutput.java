@@ -80,6 +80,7 @@ public class GraphicalOutput {
 		/*** loop through the actions and assign points ***/
 		for (int i = 0; i < actions; i++) {
 			MouseGraphAction a = god.getAction(i);
+			System.out.println(a);
 			if (a.getType() == GODFactory.NODE) {
 				Point2D p = ((MouseGraphNode) a).getLocation();
 				series2.getData().add(new XYChart.Data(p.getX(), p.getY()));
