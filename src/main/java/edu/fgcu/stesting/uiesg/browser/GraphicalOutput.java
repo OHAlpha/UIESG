@@ -71,8 +71,6 @@ public class GraphicalOutput {
 		
 		// compiles mouse data for selected SED
 		sed.compileMouseData();
-
-		GraphOutputData god = sed.getGraphData(0);
 	
 		
 		/*** get the number of instances for the particular domain ***/
