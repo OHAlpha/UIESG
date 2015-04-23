@@ -25,6 +25,7 @@ public class MouseActionInputDataUnitTest extends MouseActionInputDataMockTest {
 	public void testTimeStamp() {
 
 		// rawData should be empty which will throw an error
+		MouseActionInputData MAID = MAIDFactory.newInstance();
 		MAID.latestTimestamp();
 
 	}

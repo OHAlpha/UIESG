@@ -1,7 +1,5 @@
 package edu.fgcu.stesting.uiesg;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -33,14 +31,5 @@ import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticsUnitTest;
 		GraphOutputDataIntegrationTest.class,
 		SiteEfficiencyDataIntegrationTest.class, } )
 public class Test {
-
-	/**
-	 * A fake test to keep jacoco from adding an extra 0% class to the coverage
-	 * report.
-	 */
-	@org.junit.Test
-	public void testing() {
-		assertTrue(true);
-	}
 
 }

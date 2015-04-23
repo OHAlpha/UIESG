@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="oalpha-HP-2000-Notebook-PC" name="edu.fgcu.stesting.uiesg.Test" skipped="0" tests="1" time="0.0" timestamp="2015-04-23T05:46:25">
+<testsuite errors="0" failures="8" hostname="oalpha-HP-2000-Notebook-PC" name="edu.fgcu.stesting.uiesg.Test" skipped="0" tests="143" time="2.104" timestamp="2015-04-23T05:53:11">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="ant.file.UI Efficiency Statistics Generator" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
-    <property name="eclipse.pdebuild.templates" value="/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/templates//" />
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
     <property name="os.name" value="Linux" />
-    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes" />
+    <property name="sun.boot.class.path" value="/usr/local/java/jdk1.8.0_25/jre/lib/resources.jar:/usr/local/java/jdk1.8.0_25/jre/lib/rt.jar:/usr/local/java/jdk1.8.0_25/jre/lib/sunrsasign.jar:/usr/local/java/jdk1.8.0_25/jre/lib/jsse.jar:/usr/local/java/jdk1.8.0_25/jre/lib/jce.jar:/usr/local/java/jdk1.8.0_25/jre/lib/charsets.jar:/usr/local/java/jdk1.8.0_25/jre/lib/jfr.jar:/usr/local/java/jdk1.8.0_25/jre/classes" />
     <property name="reports.jacoco.dir" value="reports/coverage" />
     <property name="sun.desktop" value="gnome" />
     <property name="java.vm.specification.vendor" value="Oracle Corporation" />
-    <property name="ant.home" value="/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502" />
-    <property name="java.runtime.version" value="1.8.0_45-b14" />
+    <property name="ant.home" value="/usr/share/ant" />
+    <property name="java.runtime.version" value="1.8.0_25-b17" />
     <property name="test.build.dir" value="bin/test/classes" />
     <property name="user.name" value="oalpha" />
     <property name="build.dir" value="bin/classes" />
     <property name="user.language" value="en" />
-    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64" />
+    <property name="sun.boot.library.path" value="/usr/local/java/jdk1.8.0_25/jre/lib/amd64" />
     <property name="ant.project.default-target" value="build" />
     <property name="doc.dir" value="doc" />
     <property name="ant.project.name" value="UI Efficiency Statistics Generator" />
-    <property name="java.version" value="1.8.0_45" />
+    <property name="java.version" value="1.8.0_25" />
     <property name="user.timezone" value="America/New_York" />
     <property name="sun.arch.data.model" value="64" />
     <property name="test.src.dir" value="src/test/java" />
-    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/endorsed" />
+    <property name="java.endorsed.dirs" value="/usr/local/java/jdk1.8.0_25/jre/lib/endorsed" />
     <property name="sun.cpu.isalist" value="" />
     <property name="sun.jnu.encoding" value="UTF-8" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -33,62 +32,361 @@
     <property name="java.specification.name" value="Java Platform API Specification" />
     <property name="java.class.version" value="52.0" />
     <property name="user.country" value="US" />
-    <property name="java.home" value="/usr/lib/jvm/java-8-oracle/jre" />
+    <property name="java.home" value="/usr/local/java/jdk1.8.0_25/jre" />
     <property name="java.vm.info" value="mixed mode" />
     <property name="uiesg.pack" value="edu.fgcu.stesting.uiesg" />
     <property name="ant.file" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/build.xml" />
     <property name="os.version" value="3.13.0-49-generic" />
     <property name="path.separator" value=":" />
     <property name="jacoco.exc" value="edu.fgcu.stesting.uiesg.*Test:edu.fgcu.stesting.uiesg.data.*Test:edu.fgcu.stesting.uiesg.browser.*Test:edu.fgcu.stesting.uiesg.data.mock.*Mock" />
-    <property name="java.vm.version" value="25.45-b02" />
-    <property name="ant.library.dir" value="/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib" />
+    <property name="java.vm.version" value="25.25-b02" />
+    <property name="ant.library.dir" value="/usr/share/ant/lib" />
     <property name="test.doc.dir" value="testdoc" />
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
-    <property name="_jacoco.agentFile" value="/tmp/jacocoagent6925837634585250996.jar" />
+    <property name="_jacoco.agentFile" value="/tmp/jacocoagent1040804218646829831.jar" />
     <property name="ant.file.type.UI Efficiency Statistics Generator" value="file" />
-    <property name="eclipse.pdebuild.scripts" value="/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/scripts//" />
     <property name="user.home" value="/home/oalpha" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
     <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib" />
     <property name="java.vendor.url" value="http://java.oracle.com/" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner edu.fgcu.stesting.uiesg.Test filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/test/TEST-edu.fgcu.stesting.uiesg.Test.xml crashfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junitvmwatcher5093384076598095122.properties propsfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junit2764401854686380570.properties" />
-    <property name="java.class.path" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/hamcrest-all-1.3.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoagent.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoant.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/javafx-mx.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/junit4.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.agent-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.ant-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.core-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.report-0.7.4.201502262128.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-launcher.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit.jar:/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit4.jar:/tmp/jacocoagent6925837634585250996.jar" />
-    <property name="ant.version" value="Apache Ant(TM) version 1.9.2 compiled on July 8 2013" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner edu.fgcu.stesting.uiesg.Test skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/reports/test/TEST-edu.fgcu.stesting.uiesg.Test.xml crashfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junitvmwatcher3736811630856448210.properties propsfile=/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/junit8101377505650993996.properties" />
+    <property name="java.class.path" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/classes:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/hamcrest-all-1.3.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoagent.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/jacocoant.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/javafx-mx.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/junit4.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.agent-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.ant-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.core-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/jars/org.jacoco.report-0.7.4.201502262128.jar:/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG/bin/test/classes:/usr/share/ant/lib/junit.jar:/usr/share/java/ant-launcher-1.9.3.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar:/tmp/jacocoagent1040804218646829831.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.3 compiled on April 8 2014" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.file.type" value="file" />
     <property name="jars.dir" value="jars" />
     <property name="java.vm.specification.version" value="1.8" />
     <property name="sun.cpu.endian" value="little" />
     <property name="sun.os.patch.level" value="unknown" />
     <property name="reports.test.dir" value="reports/test" />
-    <property name="eclipse.pdebuild.home" value="/usr/lib/eclipse/luna/eclipse/../../../../../home/oalpha/.eclipse/org.eclipse.platform_4.4.1_22880240_linux_gtk_x86_64/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/.//" />
     <property name="java.io.tmpdir" value="/tmp" />
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
     <property name="os.arch" value="amd64" />
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
-    <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/ext:/usr/java/packages/lib/ext" />
+    <property name="java.ext.dirs" value="/usr/local/java/jdk1.8.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
     <property name="user.dir" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG" />
     <property name="line.separator" value="&#xa;" />
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
     <property name="basedir" value="/mnt/Work-School-All/000/Workspace/Software-Testing/UIESG" />
     <property name="ant.java.version" value="1.8" />
-    <property name="ant.core.lib" value="/usr/lib/eclipse/luna/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant.jar" />
+    <property name="ant.core.lib" value="/usr/share/ant/lib/ant.jar" />
     <property name="file.encoding" value="UTF-8" />
     <property name="java.specification.version" value="1.8" />
     <property name="src.dir" value="src/main/java" />
     <property name="ant.project.invoked-targets" value="test" />
   </properties>
-  <error message="edu.fgcu.stesting.uiesg.Test" type="java.lang.ClassNotFoundException">java.lang.ClassNotFoundException: edu.fgcu.stesting.uiesg.Test
-	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
-	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
-	at java.lang.Class.forName0(Native Method)
-	at java.lang.Class.forName(Class.java:264)
-</error>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testConstructorDefault" time="0.05" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testGetNodeAsEdge" time="0.009" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testAddEdge" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testAddNode" time="0.006" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testOrder" time="0.006" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testLock" time="0.015" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testSize" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testAddActionLocked" time="0.009" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testGetEdgeAsNode" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testGetEdge" time="0.013" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testGetNode" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testGetAction" time="0.003" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testConstructorIterator" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataMockTest" name="testIndexOf" time="0.011" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataMockTest" name="testSize" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataMockTest" name="testAddPoint" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataMockTest" name="testEquals" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testEqualsC" time="0.041" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testEqualsD" time="0.113">
+    <failure message="Expected exception: java.lang.AssertionError" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Expected exception: java.lang.AssertionError
+</failure>
+  </testcase>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testEquals" time="0.003" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testNotEquals" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testConstructorDefault" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testGetNodeAsEdge" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testAddEdge" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testAddNode" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testOrder" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testLock" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testSize" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testAddActionLocked" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testGetEdgeAsNode" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testGetEdge" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testGetNode" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testGetAction" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testConstructorIterator" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataUnitTest" name="testIndexOf" time="0.003" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testToString" time="0.006" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testTimeStamp" time="0.003">
+    <failure message="Expected exception: java.util.NoSuchElementException" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Expected exception: java.util.NoSuchElementException
+</failure>
+  </testcase>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testSize" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testAddPoint" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseActionInputDataUnitTest" name="testEquals" time="0.004">
+    <failure message="Values should be different. Actual: MAID( #points: 3 )" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Values should be different. Actual: MAID( #points: 3 )
+	at edu.fgcu.stesting.uiesg.data.MouseActionInputDataMockTest.testEquals(Unknown Source)
+</failure>
+  </testcase>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testAsNot[0]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testRange[0]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testAs[0]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testGetType[0]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testSequene[0]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testDeviance[0]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testAsNot[1]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testRange[1]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testAs[1]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testGetType[1]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testSequene[1]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testDeviance[1]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testAsNot[2]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testRange[2]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testAs[2]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testGetType[2]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testSequene[2]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testDeviance[2]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testAsNot[3]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testRange[3]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testAs[3]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testGetType[3]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testSequene[3]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphNodeUnitTest" name="testDeviance[3]" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testPathType[0]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testAsNot[0]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testRange[0]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testAs[0]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testGetType[0]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testSequene[0]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testDeviance[0]" time="0.004">
+    <failure message="expected:&lt;0.5&gt; but was:&lt;5.0&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;0.5&gt; but was:&lt;5.0&gt;
+	at edu.fgcu.stesting.uiesg.data.MouseGraphActionUnitTest.testDeviance(Unknown Source)
+</failure>
+  </testcase>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testPathType[1]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testAsNot[1]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testRange[1]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testAs[1]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testGetType[1]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testSequene[1]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.MouseGraphEdgeUnitTest" name="testDeviance[1]" time="0.017">
+    <failure message="expected:&lt;0.5&gt; but was:&lt;5.0&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;0.5&gt; but was:&lt;5.0&gt;
+	at edu.fgcu.stesting.uiesg.data.MouseGraphActionUnitTest.testDeviance(Unknown Source)
+</failure>
+  </testcase>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCalculateStatisticsLoaded" time="0.144" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCompileMouseDataLoaded" time="0.003" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testNewMouseDataLoaded" time="0.003" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetForDomainExistsWithFile" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testIsLoadedNotLoaded" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetForDomainNotExists" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testLoadDataFileNotExists" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testUnloadDataLoaded" time="0.007">
+    <failure message="expected:&lt;363&gt; but was:&lt;27&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;363&gt; but was:&lt;27&gt;
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest.testUnloadDataLoaded(Unknown Source)
+</failure>
+  </testcase>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testIsLoadedLoaded" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testNewMouseDataNotLoaded" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testLoadDataFileExists" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testLoadDataFileLoaded" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testUnloadDataNotLoaded" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetDomain" time="0.004" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCalculateStatisticsNotLoaded" time="0.003" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testCompileMouseDataNotLoaded" time="0.005" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataUnitTest" name="testGetForDomainExistsNoFile" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticsUnitTest" name="testAddType" time="0.007" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticsUnitTest" name="testGetType" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticsUnitTest" name="testCalculateStatistics" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticsUnitTest" name="testAddDuplicateType" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testCalculate[0]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testGetName[0]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testRegister[0]" time="0.005" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testGetDescription[0]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testStream[0]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testCalculate[1]" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testGetName[1]" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testRegister[1]" time="0.004" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testGetDescription[1]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest" name="testStream[1]" time="0.0" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testEqualsC" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testEqualsD" time="0.004">
+    <failure message="Expected exception: java.lang.AssertionError" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Expected exception: java.lang.AssertionError
+</failure>
+  </testcase>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testEquals" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testNotEquals" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testConstructorDefault" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testGetNodeAsEdge" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testAddEdge" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testAddNode" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testOrder" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testLock" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testSize" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testAddActionLocked" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testGetEdgeAsNode" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testGetEdge" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testGetNode" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testGetAction" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testConstructorIterator" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.GraphOutputDataIntegrationTest" name="testIndexOf" time="0.004" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testCalculateStatisticsLoaded" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testCompileMouseDataLoaded" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testNewMouseDataLoaded" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testGetForDomainExistsWithFile" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testIsLoadedNotLoaded" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testGetForDomainNotExists" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testLoadDataFileNotExists" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testUnloadDataLoaded" time="0.008">
+    <failure message="expected:&lt;1123&gt; but was:&lt;615&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;1123&gt; but was:&lt;615&gt;
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest.testUnloadDataLoaded(Unknown Source)
+</failure>
+  </testcase>
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testIsLoadedLoaded" time="0.003" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testNewMouseDataNotLoaded" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testLoadDataFileExists" time="0.008" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testLoadDataFileLoaded" time="0.001" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testUnloadDataNotLoaded" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testCalculateStatisticsNotLoaded" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testCompileMouseDataNotLoaded" time="0.002" />
+  <testcase classname="edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest" name="testGetForDomainExistsNoFile" time="0.005" />
+  <system-out><![CDATA[363
+1123
+]]></system-out>
+  <system-err><![CDATA[edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType$DuplicateTypeException: NodesPerMinute
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType$UIEfficiencyStatistics.addType(Unknown Source)
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.register(Unknown Source)
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest.testRegister(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:532)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1165)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1016)
+edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType$DuplicateTypeException: MouseArea
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType$UIEfficiencyStatistics.addType(Unknown Source)
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.register(Unknown Source)
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticTypeUnitTest.testRegister(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:532)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1165)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1016)
+edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType$DuplicateTypeException: NodesPerMinute
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType$UIEfficiencyStatistics.addType(Unknown Source)
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.register(Unknown Source)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest.setup(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:532)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1165)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1016)
+edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType$DuplicateTypeException: MouseArea
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType$UIEfficiencyStatistics.addType(Unknown Source)
+	at edu.fgcu.stesting.uiesg.data.UIEfficiencyStatisticType.register(Unknown Source)
+	at edu.fgcu.stesting.uiesg.data.SiteEfficiencyDataIntegrationTest.setup(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:532)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1165)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1016)
+]]></system-err>
 </testsuite>
