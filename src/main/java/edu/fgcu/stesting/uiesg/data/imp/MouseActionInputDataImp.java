@@ -182,12 +182,7 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 	public boolean equals( Object o ) {
 		if (o instanceof MouseActionInputData) {
 			MouseActionInputData maid = (MouseActionInputData) o;
-			try {
-				assertEquals(maid, false);
-				return true;
-			} catch (AssertionError ex) {
-				return false;
-			}
+			return assertEquals(maid, false);
 		}
 		return false;
 	}
@@ -202,7 +197,8 @@ public class MouseActionInputDataImp implements MouseActionInputData {
 			// if( !e.equals(r) )
 			// throw new AssertionError("point at index " + i + " should be " +
 			// e + " but is " + r);
-			e.assertEquals(r);
+			if( !e.assertEquals(r, false) )
+			return false;
 		}
 		return true;
 	}

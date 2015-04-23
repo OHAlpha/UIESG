@@ -29,15 +29,15 @@ public class GraphOutputDataMock implements GraphOutputData {
 		list.add(GODFactory.newGraphAction(0, GODFactory.NODE,
 				GODFactory.ENTER, 0, 0));
 		list.add(GODFactory.newGraphAction(1, GODFactory.EDGE, GODFactory.MOVE,
-				new double[] {0, 0, 0, 0}));
+				new double[] { 0, 0, 0, 0 }));
 		list.add(GODFactory.newGraphAction(2, GODFactory.NODE,
 				GODFactory.CLICK, 0, 0));
 		list.add(GODFactory.newGraphAction(3, GODFactory.EDGE, GODFactory.MOVE,
-				new double[] {0, 0, 0, 0}));
+				new double[] { 0, 0, 0, 0 }));
 		list.add(GODFactory.newGraphAction(4, GODFactory.NODE,
-				GODFactory.HOVER, new double[] {0, 0}));
+				GODFactory.HOVER, new double[] { 0, 0 }));
 		list.add(GODFactory.newGraphAction(5, GODFactory.EDGE, GODFactory.MOVE,
-				new double[] {0, 0, 0, 0}));
+				new double[] { 0, 0, 0, 0 }));
 		list.add(GODFactory.newGraphAction(6, GODFactory.NODE, GODFactory.EXIT,
 				0, 0));
 	}
@@ -115,20 +115,26 @@ public class GraphOutputDataMock implements GraphOutputData {
 	public boolean equals( Object o ) {
 		if (o instanceof GraphOutputDataMock) {
 			GraphOutputDataMock god = (GraphOutputDataMock) o;
-			if (god.list.size() != list.size())
-				return false;
-			for (int i = 0; i < list.size(); i++)
-				if (!god.list.get(i).equals(list.get(i)))
-					return false;
-			return true;
+			return assertEquals(god, false);
 		} else
 			return false;
 	}
 
 	@Override
-	public boolean assertEquals( GraphOutputData graphData, boolean error ) {
-		if( !equals(graphData) )
-			throw new AssertionError("not equal");
+	public boolean assertEquals( GraphOutputData god, boolean error ) {
+		if (god.numActions() != list.size())
+			if (error)
+				throw new AssertionError("numActions not equal");
+			else
+				return false;
+		for (int i = 0; i < list.size(); i++)
+			if (!list.get(i).equals(god.getAction(i)))
+				if (error)
+					throw new AssertionError("action at index " + i
+							+ " not should be " + list.get(i) + " but is "
+							+ god.getAction(i));
+				else
+					return false;
 		return true;
 	}
 

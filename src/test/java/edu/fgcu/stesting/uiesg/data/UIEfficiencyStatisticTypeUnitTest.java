@@ -5,6 +5,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,8 +71,28 @@ public class UIEfficiencyStatisticTypeUnitTest {
 	@Test
 	public void testCalculate() {
 		UIEfficiencyStatistic s = type.calculate(god);
-		assertNotNull("description should not be null", s);
+		assertNotNull("statistic should not be null", s);
 		assertEquals("type should equal stat.type", type, s.getType());
+		assertTrue("value should be of type type.valuetype", type
+				.getValueType().isInstance(s.getValue()));
+	}
+
+	@SuppressWarnings( "resource" )
+	@Test
+	public void testStream() throws IOException {
+		UIEfficiencyStatistic s = type.calculate(god);
+		assertNotNull("statistic should not be null", s);
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		BufferedOutputStream out = new BufferedOutputStream(bout);
+		s.write(out);
+		out.flush();
+		byte[] data = bout.toByteArray();
+		out.close();
+		BufferedInputStream in = new BufferedInputStream(
+				new ByteArrayInputStream(data));
+		UIEfficiencyStatistic t = type.create(in);
+		in.close();
+		assertEquals(s,t);
 	}
 
 }

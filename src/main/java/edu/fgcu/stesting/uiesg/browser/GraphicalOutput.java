@@ -63,6 +63,7 @@ public class GraphicalOutput {
 
 		sed.compileMouseData();
 
+		@SuppressWarnings( "unused" )
 		GraphOutputData god = sed.getGraphData(0);
 
 		// test points for mouse movements

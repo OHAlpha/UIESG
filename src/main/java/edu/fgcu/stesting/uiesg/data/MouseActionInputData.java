@@ -56,27 +56,40 @@ public interface MouseActionInputData {
 		public boolean equals( Object o ) {
 			if (o instanceof Point) {
 				Point p = (Point) o;
-				return p.browserLocation.equals(browserLocation)
-						&& p.equals(pagePosition) && p.timestamp == timestamp
-						&& p.type == type;
+				return assertEquals(p, false);
 			} else
 				return false;
 		}
 
 		@SuppressWarnings( "javadoc" )
-		public void assertEquals( Point p ) throws AssertionError {
+		public boolean assertEquals( Point p, boolean error )
+				throws AssertionError {
 			if (!browserLocation.equals(p.browserLocation))
-				throw new AssertionError("browserLocation should be "
-						+ browserLocation + " but is " + p.browserLocation);
+				if (error)
+					throw new AssertionError("browserLocation should be "
+							+ browserLocation + " but is " + p.browserLocation);
+				else
+					return false;
 			if (!pagePosition.equals(p.pagePosition))
-				throw new AssertionError("pagePosition should be "
-						+ pagePosition + " but is " + p.pagePosition);
+				if (error)
+					throw new AssertionError("pagePosition should be "
+							+ pagePosition + " but is " + p.pagePosition);
+				else
+					return false;
 			if (timestamp != p.timestamp)
-				throw new AssertionError("timestamp should be " + timestamp
-						+ " but is " + p.timestamp);
+				if (error)
+					throw new AssertionError("timestamp should be " + timestamp
+							+ " but is " + p.timestamp);
+				else
+					return false;
 			if (type != p.type)
-				throw new AssertionError("type should be " + type + " but is "
-						+ p.type);
+				if (error)
+					throw new AssertionError("type should be " + type
+							+ " but is " + p.type);
+				else
+					return false;
+			else
+				return true;
 		}
 
 		@Override

@@ -279,12 +279,7 @@ public class GraphOutputDataImp implements GraphOutputData {
 	public boolean equals( Object o ) {
 		if (o instanceof GraphOutputDataMock) {
 			GraphOutputDataMock god = (GraphOutputDataMock) o;
-			if (god.numActions() != actions.size())
-				return false;
-			for (int i = 0; i < actions.size(); i++)
-				if (!god.getAction(i).equals(actions.get(i)))
-					return false;
-			return true;
+			return assertEquals(god, false);
 		} else
 			return false;
 	}
@@ -293,10 +288,14 @@ public class GraphOutputDataImp implements GraphOutputData {
 	@SuppressWarnings( "javadoc" )
 	public boolean assertEquals( GraphOutputData graphData, boolean error ) {
 		if (graphData.numActions() != actions.size())
-			throw new AssertionError("graphData.size() should be "
-					+ numActions() + " but is " + graphData.numActions());
+			if (error)
+				throw new AssertionError("graphData.size() should be "
+						+ numActions() + " but is " + graphData.numActions());
+			else
+				return false;
 		for (int i = 0; i < actions.size(); i++)
-			graphData.getAction(i).assertEquals(actions.get(i), false);
+			if (!graphData.getAction(i).assertEquals(actions.get(i), error))
+				return false;
 		return true;
 	}
 
