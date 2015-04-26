@@ -9,6 +9,7 @@ import java.util.TreeMap;
 import edu.fgcu.stesting.uiesg.data.GODFactory;
 import edu.fgcu.stesting.uiesg.data.GraphOutputData;
 import edu.fgcu.stesting.uiesg.data.MouseGraphAction;
+import edu.fgcu.stesting.uiesg.data.MouseGraphEdge;
 import edu.fgcu.stesting.uiesg.data.MouseGraphNode;
 import edu.fgcu.stesting.uiesg.data.SiteEfficiencyData;
 import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
@@ -16,7 +17,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -135,6 +139,70 @@ public class GraphicalOutput {
 		// stage.show();
 		return scene;
 	}
+	
+	/***
+	 * 
+	 * Canvas creates a graph based on the mouse movements to display to the user. It uses canvas
+	 * to create the visual representation.
+	 * 
+	 * @param sed
+	 * @return
+	 */
+	
+	public Scene canvas(SiteEfficiencyData sed) {
+		
+		Group root = new Group();
+		Canvas canvas = new Canvas (900,900);
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		// begin path??
+		gc.beginPath();
+		
+		//gc.moveTo(0,0);
+		//gc.lineTo(1,3);
+		//gc.lineTo(25, 50);
+		//gc.stroke(); //stroke the lines that were made???
+	
+		// creates a line from x1, y1 to x2, y2 strokeLine(x1, y1, x2, y2)
+		sed.compileMouseData();
+		int size = sed.size()-1;
+		god = sed.getGraphData(size);
+		int actions = god.numActions();
+		// going to try starting i at 1 and doing i and i-1 for the two points
+		for(int i = 1; i < actions; i++) {
+			MouseGraphAction a = god.getAction(i);
+			if(a.getType() == GODFactory.NODE) {
+					Point2D p = ((MouseGraphNode) a).getLocation();
+					
+					System.out.println("x1: " + p.getX() +
+							" y1: " + p.getY());
+				
+					gc.lineTo(p.getX(), p.getY());
+					
+			}
+			else{
+					MouseGraphEdge e = a.asEdge();
+					Point2D source = e.getSource(), dest = e.getDest();
+					int pt = e.getPathType();
+					double [] ps = e.getPathParameters();
+					
+			}
+			
+		}
+	
+		gc.stroke();
+		// testing stroke line
+		//gc.strokeLine(50,50,150,150);
+		//gc.strokeLine(150, 150, 150, 50);
+		
+		// create canvas and add to new scene
+		root.getChildren().add(canvas);
+		Scene scene = new Scene(root);
+		
+		
+		
+		return scene;
+				
+	}
 
 	/***
 	 * method to display to the user the websites that they can choose from in
@@ -175,7 +243,10 @@ public class GraphicalOutput {
 										.getForDomain(data.get(i));
 								Stage stage = new Stage();
 								stage.setScene(graph(sed));
+								// code to set a new scene here:
+								
 								stage.show();
+								
 							}
 						}
 

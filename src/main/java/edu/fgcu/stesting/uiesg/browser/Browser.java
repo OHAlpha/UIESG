@@ -216,14 +216,19 @@ public class Browser extends Application {
 			public void handle( ActionEvent arg0 ) {
 				// TODO Auto-generated method stub
 				// create new scene in Graphical Output
+				
+				// just temporarily comment this out so i don't have to load a page
 				if (sed != null) {
 					// browser.getEngine().load(null);
 					GraphicalOutput go = new GraphicalOutput();
 					Stage stage = new Stage();
 
 					// set the stage with the graph scene
-					// stage.setScene(go.graph(sed));
-					stage.setScene(go.sites());
+					//stage.setScene(go.graph(sed)); // this is the working(ish) graph
+					
+					// test out the new canvas scene
+					stage.setScene(go.canvas(sed));
+					
 
 					// show the stage
 					stage.show();
@@ -244,10 +249,12 @@ public class Browser extends Application {
 		grid.setVgap(10);
 		grid.setPadding(new Insets(0));
 		// screen size
-		Scene scene = new Scene(grid, 600, 550);
+		Scene scene = new Scene(grid, 825, 700);
 		// set the browser title
 		primaryStage.setTitle("*UIESG* - You're Being Monitored!");
 		primaryStage.setScene(scene);
+		primaryStage.sizeToScene();
+		//primaryStage.setFullScreen(true);
 		primaryStage.show();
 	}
 
