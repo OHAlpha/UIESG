@@ -227,8 +227,8 @@ public class Browser extends Application {
 					//stage.setScene(go.graph(sed)); // this is the working(ish) graph
 					
 					// test out the new canvas scene
-					stage.setScene(go.canvas(sed));
-					
+					//stage.setScene(go.canvas(sed));
+					stage.setScene(go.sites());
 
 					// show the stage
 					stage.show();

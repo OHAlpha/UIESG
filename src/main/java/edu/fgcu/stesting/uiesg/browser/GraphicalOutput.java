@@ -167,7 +167,7 @@ public class GraphicalOutput {
 		int size = sed.size()-1;
 		god = sed.getGraphData(size);
 		int actions = god.numActions();
-		// going to try starting i at 1 and doing i and i-1 for the two points
+		// create the points on the canvas
 		for(int i = 1; i < actions; i++) {
 			MouseGraphAction a = god.getAction(i);
 			if(a.getType() == GODFactory.NODE) {
@@ -242,7 +242,7 @@ public class GraphicalOutput {
 								SiteEfficiencyData sed = SiteEfficiencyData
 										.getForDomain(data.get(i));
 								Stage stage = new Stage();
-								stage.setScene(graph(sed));
+								stage.setScene(canvas(sed));
 								// code to set a new scene here:
 								
 								stage.show();
