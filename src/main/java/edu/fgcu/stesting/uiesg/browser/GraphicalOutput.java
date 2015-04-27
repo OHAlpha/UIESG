@@ -16,6 +16,7 @@ import edu.fgcu.stesting.uiesg.data.UIEfficiencyStatistic;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -151,7 +152,7 @@ public class GraphicalOutput {
 	
 	public Scene canvas(SiteEfficiencyData sed) {
 		
-		Group root = new Group();
+		//Group root = new Group();
 		Canvas canvas = new Canvas (900,900);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		// begin path??
@@ -173,9 +174,6 @@ public class GraphicalOutput {
 			if(a.getType() == GODFactory.NODE) {
 					Point2D p = ((MouseGraphNode) a).getLocation();
 					
-					System.out.println("x1: " + p.getX() +
-							" y1: " + p.getY());
-				
 					gc.lineTo(p.getX(), p.getY());
 					
 			}
@@ -188,15 +186,43 @@ public class GraphicalOutput {
 			}
 			
 		}
-	
+		
 		gc.stroke();
-		// testing stroke line
-		//gc.strokeLine(50,50,150,150);
-		//gc.strokeLine(150, 150, 150, 50);
+		
+		//calcuate the statistics
+		sed.calculateStatistics();
+		// tmp array to hold the stats from "stats"
+		ArrayList<String> tmp = new ArrayList<String>();
+		// getting the calcualted statistics
+		NavigableMap<String, UIEfficiencyStatistic> stats = sed.getStatistics(size);
+		// loop through "stats" to add everything to tmp
+		for (NavigableMap.Entry<String, UIEfficiencyStatistic> entry:stats.entrySet()) {
+			tmp.add(entry.getKey()+ " : " + entry.getValue().getUIValue());
+			System.out.println(entry.getKey() + " : " + entry.getValue().getUIValue());
+		}
+		// create new observable list for the list display
+		final ObservableList<String> data = FXCollections.observableArrayList(tmp);
+		// new listView 
+		final ListView<String> listView = new ListView<String>(data);
+		
+		// create gridpane to hold the elements for the scene
+		GridPane grid = new GridPane();
+		VBox vBox = new VBox();
+		// set title for the statistics
+		
+		Text title = new Text("Statistics and Graphical Analysis");
+		title.setFont(Font.font("Arial", 20));
+		
+		vBox.getChildren().add(title);
+		vBox.getChildren().add(listView);
+		
+		grid.add(vBox, 0, 1, 1, 1);
+		grid.add(canvas, 1, 1, 1, 1);
+		
 		
 		// create canvas and add to new scene
-		root.getChildren().add(canvas);
-		Scene scene = new Scene(root);
+		//root.getChildren().add(canvas);
+		Scene scene = new Scene(grid, 800, 750);
 		
 		
 		
@@ -244,7 +270,7 @@ public class GraphicalOutput {
 								Stage stage = new Stage();
 								stage.setScene(canvas(sed));
 								// code to set a new scene here:
-								
+								//stage.setFullScreen(true);
 								stage.show();
 								
 							}

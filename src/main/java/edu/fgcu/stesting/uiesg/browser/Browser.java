@@ -229,7 +229,7 @@ public class Browser extends Application {
 					// test out the new canvas scene
 					//stage.setScene(go.canvas(sed));
 					stage.setScene(go.sites());
-
+					
 					// show the stage
 					stage.show();
 				} else
