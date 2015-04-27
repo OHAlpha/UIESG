@@ -30,6 +30,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -154,8 +155,11 @@ public class GraphicalOutput {
 		
 		//Group root = new Group();
 		Canvas canvas = new Canvas (900,900);
+		
+		//GridLayout gl = new GridLayout(0,2);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		// begin path??
+		
 		gc.beginPath();
 		
 		//gc.moveTo(0,0);
@@ -207,22 +211,26 @@ public class GraphicalOutput {
 		
 		// create gridpane to hold the elements for the scene
 		GridPane grid = new GridPane();
-		VBox vBox = new VBox();
+		VBox vBox = new VBox(10);
 		// set title for the statistics
+		//grid.setStyle("-fx-background-color: red;");
 		
 		Text title = new Text("Statistics and Graphical Analysis");
 		title.setFont(Font.font("Arial", 20));
 		
 		vBox.getChildren().add(title);
 		vBox.getChildren().add(listView);
-		
-		grid.add(vBox, 0, 1, 1, 1);
-		grid.add(canvas, 1, 1, 1, 1);
+				
+		//vBox.getChildren().add(canvas);
+		// add constructor
+		// add(Node child, int columnIndex, int rowIndex, int colspan, int rowspan)
+		grid.add(vBox, 0, 0, 2, 3);
+		grid.add(canvas, 2, 2, 1, 1);
 		
 		
 		// create canvas and add to new scene
-		//root.getChildren().add(canvas);
-		Scene scene = new Scene(grid, 800, 750);
+		
+		Scene scene = new Scene(grid, 1200, 900);
 		
 		
 		
