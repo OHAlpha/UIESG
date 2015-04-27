@@ -212,21 +212,28 @@ public class GraphicalOutput {
 		// create gridpane to hold the elements for the scene
 		GridPane grid = new GridPane();
 		VBox vBox = new VBox(10);
+		
 		// set title for the statistics
 		//grid.setStyle("-fx-background-color: red;");
 		
 		Text title = new Text("Statistics and Graphical Analysis");
-		title.setFont(Font.font("Arial", 20));
+		title.setFont(Font.font("Arial", 25));
 		
+		
+		//vBox.getChildren().add(title);
 		vBox.getChildren().add(title);
 		vBox.getChildren().add(listView);
 				
 		//vBox.getChildren().add(canvas);
 		// add constructor
 		// add(Node child, int columnIndex, int rowIndex, int colspan, int rowspan)
-		grid.add(vBox, 0, 0, 2, 3);
+		grid.add(vBox, 0, 1, 2, 3); 
 		grid.add(canvas, 2, 2, 1, 1);
-		
+		grid.setHgap(200);
+		grid.setVgap(50);
+		// working version:
+		//grid.add(vBox, 0, 0, 2, 3);
+		//grid.add(canvas, 2, 2, 1, 1);
 		
 		// create canvas and add to new scene
 		
